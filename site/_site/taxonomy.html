@@ -322,6 +322,7 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#what-is-an-llm-agent" id="toc-what-is-an-llm-agent" class="nav-link active" data-scroll-target="#what-is-an-llm-agent">What Is an LLM Agent?</a></li>
+  <li><a href="#a-note-on-taxonomies" id="toc-a-note-on-taxonomies" class="nav-link" data-scroll-target="#a-note-on-taxonomies">A Note on Taxonomies</a></li>
   <li><a href="#the-core-agent-loop" id="toc-the-core-agent-loop" class="nav-link" data-scroll-target="#the-core-agent-loop">The Core Agent Loop</a></li>
   <li><a href="#decomposing-agent-design-space" id="toc-decomposing-agent-design-space" class="nav-link" data-scroll-target="#decomposing-agent-design-space">Decomposing Agent Design Space</a>
   <ul class="collapse">
@@ -341,6 +342,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#family-6-memory-augmented-agents" id="toc-family-6-memory-augmented-agents" class="nav-link" data-scroll-target="#family-6-memory-augmented-agents">Family 6: Memory-Augmented Agents</a></li>
   <li><a href="#family-7-embodied-action-agents" id="toc-family-7-embodied-action-agents" class="nav-link" data-scroll-target="#family-7-embodied-action-agents">Family 7: Embodied / Action Agents</a></li>
   </ul></li>
+  <li><a href="#the-virtuous-cycle-plaat-et-al." id="toc-the-virtuous-cycle-plaat-et-al." class="nav-link" data-scroll-target="#the-virtuous-cycle-plaat-et-al.">The Virtuous Cycle (Plaat et al.)</a></li>
   <li><a href="#key-design-tensions" id="toc-key-design-tensions" class="nav-link" data-scroll-target="#key-design-tensions">Key Design Tensions</a></li>
   <li><a href="#how-the-field-has-evolved" id="toc-how-the-field-has-evolved" class="nav-link" data-scroll-target="#how-the-field-has-evolved">How the Field Has Evolved</a></li>
   <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further Reading</a></li>
@@ -381,6 +383,15 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Memory beyond context</strong>: The system can store and retrieve information across turns</li>
 </ol>
 <p>The canonical formulation (from Wang et al., 2023 survey): an agent has a <strong>Brain</strong> (the LLM), <strong>Perception</strong> (inputs), <strong>Memory</strong> (short- and long-term storage), <strong>Action</strong> (what it can do), and <strong>Planning</strong> (how it decides what to do).</p>
+<hr>
+</section>
+<section id="a-note-on-taxonomies" class="level2">
+<h2 class="anchored" data-anchor-id="a-note-on-taxonomies">A Note on Taxonomies</h2>
+<p>There is no single consensus taxonomy for LLM agents — different surveys slice the design space differently. Two major competing frameworks:</p>
+<p><strong>Wang et al.&nbsp;(2023) — Component-based:</strong> Brain (LLM) + Perception + Memory + Planning + Action. Organized around <em>what an agent has</em>.</p>
+<p><strong>Plaat et al.&nbsp;(2025, JAIR) — Capability-based:</strong> Reason + Act + Interact. Organized around <em>what an agent does</em>.</p>
+<p>The Plaat et al.&nbsp;framework is elegant in its simplicity and maps cleanly onto the literature: reasoning papers, acting/tool papers, and multi-agent interaction papers. It also reveals a <strong>virtuous cycle</strong>: agents that reason generate better actions; reflection improves multi-agent interaction; and crucially, acting and interacting generate new training data — a solution to the “running out of training data” problem. See <a href="https://arxiv.org/abs/2503.23037">Plaat et al., arXiv:2503.23037</a>.</p>
+<p>The rest of this page follows a hybrid approach: the component decomposition from Wang et al.&nbsp;for design dimensions, and the Plaat et al.&nbsp;capability framing for architectural families.</p>
 <hr>
 </section>
 <section id="the-core-agent-loop" class="level2">
@@ -654,6 +665,18 @@ Action: ...</code></pre>
 <p>Key papers: SayCan, RT-2, CogAgent, UFO, OS-Copilot, SWE-agent Key products: Devin, Claude Computer Use, OpenAI Operator</p>
 <hr>
 </section>
+</section>
+<section id="the-virtuous-cycle-plaat-et-al." class="level2">
+<h2 class="anchored" data-anchor-id="the-virtuous-cycle-plaat-et-al.">The Virtuous Cycle (Plaat et al.)</h2>
+<p>One underappreciated insight from the Plaat et al.&nbsp;survey: the three categories of agentic behavior form a <strong>virtuous cycle</strong> that also generates training data:</p>
+<pre><code>Reasoning ──→ better decisions
+    ↑                ↓
+Interacting ←── Acting in the world
+    │                │
+    └──→ new training data ──→ better LLMs</code></pre>
+<p>Key insight: agentic LLMs that act and interact generate new empirical data — action-feedback sequences, multi-agent dialogues, role-play transcripts — that can feed back into pretraining and finetuning. This offers a potential solution to the “running out of training data” problem: agents create their own curriculum through experience. Vision-Language-Action models (RT-2, π₀, Magma) are the clearest current example.</p>
+<p><strong>The flip side:</strong> feedback loops can destabilize learning. Agent-generated data may amplify biases or errors if not carefully filtered and validated.</p>
+<hr>
 </section>
 <section id="key-design-tensions" class="level2">
 <h2 class="anchored" data-anchor-id="key-design-tensions">Key Design Tensions</h2>

@@ -40,6 +40,24 @@ Expands scope to multimodal agents operating across text, vision, and action spa
 
 Most recent comprehensive survey (March 2025) with structured taxonomy for LLM agent methodology. Catalogs current applications and synthesizes open challenges.
 
+### Agentic Large Language Models: A Survey (2025)
+**Plaat, van Duijn, van Stein, Preuss, van der Putten, Batenburg (Leiden University)** · [arXiv:2503.23037](https://arxiv.org/abs/2503.23037) · *JAIR Vol. 84, December 2025* · [companion website](https://askeplaat.github.io/agentic-llm-survey-site/)
+
+A major peer-reviewed survey published in the Journal of Artificial Intelligence Research. Organizes the field around a distinctive **Reason–Act–Interact** taxonomy, offering a cleaner alternative to component-based frameworks:
+
+- **Reason:** Multi-step reasoning (CoT, search trees), self-reflection, retrieval augmentation
+- **Act:** Action models (world models, VLA models), robots and tools, domain assistants (medicine, finance, science)
+- **Interact:** Social capabilities, role-based multi-agent interaction, open-ended agent societies and emergent norms
+
+**Key original contributions:**
+1. **Virtuous cycle framing** — the three capabilities are mutually reinforcing *and* generate new training data through agent-world interaction, addressing the "running out of training data" problem
+2. **Thinking Fast and Slow** — connects LLM reasoning models (System 2 slow deliberation) to Kahneman's dual-process theory
+3. **Theory of Mind** — covers strategic behavior, negotiation, and theory of mind as prerequisites for effective multi-agent interaction
+4. **Emergent social norms** — agent societies can develop emergent norms through interaction, enabling large-scale social science simulation
+5. **Research agenda** — explicit open problems table covering all three categories
+
+**Applications highlighted:** medical diagnosis, logistics, financial market analysis, scientific research augmentation.
+
 ### Cognitive Architectures for Language Agents (2023)
 **Sumers et al.** · [arXiv:2309.02427](https://arxiv.org/abs/2309.02427)
 

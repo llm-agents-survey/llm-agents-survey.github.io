@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [1.0.3] - 2026-03-12
+
+### Featured addition: Plaat et al. (2025) — *Agentic Large Language Models, a survey* (JAIR)
+
+A peer-reviewed survey from Leiden University (Plaat, van Duijn, van Stein, Preuss, van der Putten, Batenburg), published in JAIR Vol. 84, December 2025. arXiv:2503.23037. Companion site: askeplaat.github.io/agentic-llm-survey-site/. Also at alphaxiv.org/abs/2503.23037.
+
+### What this paper adds and where it changed the survey
+
+**Taxonomy page:** Added explicit discussion of competing taxonomic frameworks (Wang et al. component-based vs. Plaat et al. Reason–Act–Interact), explaining both and showing how they map onto the survey's organization. Added new "Virtuous Cycle" section with diagram: the three capabilities (Reason, Act, Interact) are mutually reinforcing *and* generate new training data, addressing the "running out of training data" problem.
+
+**Foundations page:** Added full entry for Plaat et al. as a major survey paper, including its five original contributions: virtuous cycle, Thinking Fast & Slow connection, Theory of Mind coverage, emergent social norms, and research agenda.
+
+**Reasoning & Planning page:** Added Thinking Fast & Slow callout box connecting Kahneman's dual-process theory to LLM reasoning: System 1 (fast, associative generation) vs. System 2 (slow, deliberate CoT/tree search), with RL-trained reasoning models (o1, DeepSeek-R1) representing attempts to internalize System 2 through training rather than prompting.
+
+**Multi-Agent page:** Added Theory of Mind & Social Capabilities section (strategic behavior, negotiation, ToM benchmarks) and Emergent Social Behavior section (agent societies, emergent norms, social science simulation, alignment implications).
+
+**Resources page:** Added Plaat et al. to the "Getting Started" top list (item 2) and to the survey papers table.
+
+---
+
 ## [1.0.2] - 2026-03-12
 
 ### Updates to existing pages

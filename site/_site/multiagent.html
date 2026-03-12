@@ -363,6 +363,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#pattern-4-peer-debate" id="toc-pattern-4-peer-debate" class="nav-link" data-scroll-target="#pattern-4-peer-debate">Pattern 4: Peer Debate</a></li>
   <li><a href="#pattern-5-hierarchical-teams" id="toc-pattern-5-hierarchical-teams" class="nav-link" data-scroll-target="#pattern-5-hierarchical-teams">Pattern 5: Hierarchical Teams</a></li>
   </ul></li>
+  <li><a href="#theory-of-mind-social-capabilities" id="toc-theory-of-mind-social-capabilities" class="nav-link" data-scroll-target="#theory-of-mind-social-capabilities">Theory of Mind &amp; Social Capabilities</a></li>
+  <li><a href="#emergent-social-behavior-in-agent-societies" id="toc-emergent-social-behavior-in-agent-societies" class="nav-link" data-scroll-target="#emergent-social-behavior-in-agent-societies">Emergent Social Behavior in Agent Societies</a></li>
   <li><a href="#model-context-protocol-mcp" id="toc-model-context-protocol-mcp" class="nav-link" data-scroll-target="#model-context-protocol-mcp">Model Context Protocol (MCP)</a></li>
   <li><a href="#evaluation-benchmarks" id="toc-evaluation-benchmarks" class="nav-link" data-scroll-target="#evaluation-benchmarks">Evaluation &amp; Benchmarks</a>
   <ul class="collapse">
@@ -664,6 +666,27 @@ ul.task-list li input[type="checkbox"] {
 <p>Teams of teams. Each sub-team has an internal coordinator; sub-teams report to a top-level orchestrator. Scales to complex, long-horizon tasks.</p>
 <hr>
 </section>
+</section>
+<section id="theory-of-mind-social-capabilities" class="level2">
+<h2 class="anchored" data-anchor-id="theory-of-mind-social-capabilities">Theory of Mind &amp; Social Capabilities</h2>
+<p>Effective multi-agent interaction requires agents to model each other’s intentions, beliefs, and goals — what cognitive science calls <strong>Theory of Mind (ToM)</strong>. Plaat et al.&nbsp;(2025) dedicate a full section to this, covering:</p>
+<ul>
+<li><strong>Strategic behavior</strong> — game-theoretic reasoning, negotiation, cooperative/competitive dynamics between LLM agents</li>
+<li><strong>Theory of Mind benchmarks</strong> — tests of whether LLMs can correctly model what another agent knows vs.&nbsp;doesn’t know</li>
+<li><strong>Negotiation agents</strong> — conversational agents that can bargain, persuade, and reach agreements</li>
+</ul>
+<p>This is a frequently underemphasized dimension of multi-agent systems: it’s not just about task decomposition and tool calls — it’s about whether agents can genuinely reason about each other.</p>
+</section>
+<section id="emergent-social-behavior-in-agent-societies" class="level2">
+<h2 class="anchored" data-anchor-id="emergent-social-behavior-in-agent-societies">Emergent Social Behavior in Agent Societies</h2>
+<p>Beyond structured multi-agent workflows, a distinct research thread studies what happens when many agents interact freely — <strong>emergent social behavior</strong>.</p>
+<ul>
+<li><strong>Generative Agents (Park et al., 2023)</strong> — the foundational demonstration: 25 agents in a simulated town develop social relationships, organize events, and exhibit norms without explicit programming</li>
+<li><strong>Emergent social norms</strong> — agents interacting in open-ended environments can develop conventions, role divisions, and behavioral norms that weren’t programmed in</li>
+<li><strong>Large-scale simulation</strong> — agent societies can run social science experiments at scales and speeds impossible with human participants</li>
+<li><strong>New training data</strong> — agent-agent interactions generate training data that can feed back into better base models (the virtuous cycle; see <a href="./taxonomy.html#the-virtuous-cycle-plaat-et-al">Taxonomy →</a>)</li>
+</ul>
+<p><strong>Research implications:</strong> The study of emergent norms in agent societies has implications for AI alignment (can we engineer beneficial norms?), social science (are LLM-simulated societies valid models of human society?), and AI safety (what norms emerge by default, and are they safe?).</p>
 </section>
 <section id="model-context-protocol-mcp" class="level2">
 <h2 class="anchored" data-anchor-id="model-context-protocol-mcp">Model Context Protocol (MCP)</h2>

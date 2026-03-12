@@ -238,6 +238,27 @@ Teams of teams. Each sub-team has an internal coordinator; sub-teams report to a
 
 ---
 
+## Theory of Mind & Social Capabilities
+
+Effective multi-agent interaction requires agents to model each other's intentions, beliefs, and goals — what cognitive science calls **Theory of Mind (ToM)**. Plaat et al. (2025) dedicate a full section to this, covering:
+
+- **Strategic behavior** — game-theoretic reasoning, negotiation, cooperative/competitive dynamics between LLM agents
+- **Theory of Mind benchmarks** — tests of whether LLMs can correctly model what another agent knows vs. doesn't know
+- **Negotiation agents** — conversational agents that can bargain, persuade, and reach agreements
+
+This is a frequently underemphasized dimension of multi-agent systems: it's not just about task decomposition and tool calls — it's about whether agents can genuinely reason about each other.
+
+## Emergent Social Behavior in Agent Societies
+
+Beyond structured multi-agent workflows, a distinct research thread studies what happens when many agents interact freely — **emergent social behavior**.
+
+- **Generative Agents (Park et al., 2023)** — the foundational demonstration: 25 agents in a simulated town develop social relationships, organize events, and exhibit norms without explicit programming
+- **Emergent social norms** — agents interacting in open-ended environments can develop conventions, role divisions, and behavioral norms that weren't programmed in
+- **Large-scale simulation** — agent societies can run social science experiments at scales and speeds impossible with human participants
+- **New training data** — agent-agent interactions generate training data that can feed back into better base models (the virtuous cycle; see [Taxonomy →](taxonomy.qmd#the-virtuous-cycle-plaat-et-al))
+
+**Research implications:** The study of emergent norms in agent societies has implications for AI alignment (can we engineer beneficial norms?), social science (are LLM-simulated societies valid models of human society?), and AI safety (what norms emerge by default, and are they safe?).
+
 ## Model Context Protocol (MCP)
 
 **Anthropic** · Announced November 2024

@@ -16,6 +16,20 @@ The canonical formulation (from Wang et al., 2023 survey): an agent has a **Brai
 
 ---
 
+## A Note on Taxonomies
+
+There is no single consensus taxonomy for LLM agents — different surveys slice the design space differently. Two major competing frameworks:
+
+**Wang et al. (2023) — Component-based:** Brain (LLM) + Perception + Memory + Planning + Action. Organized around *what an agent has*.
+
+**Plaat et al. (2025, JAIR) — Capability-based:** Reason + Act + Interact. Organized around *what an agent does*.
+
+The Plaat et al. framework is elegant in its simplicity and maps cleanly onto the literature: reasoning papers, acting/tool papers, and multi-agent interaction papers. It also reveals a **virtuous cycle**: agents that reason generate better actions; reflection improves multi-agent interaction; and crucially, acting and interacting generate new training data — a solution to the "running out of training data" problem. See [Plaat et al., arXiv:2503.23037](https://arxiv.org/abs/2503.23037).
+
+The rest of this page follows a hybrid approach: the component decomposition from Wang et al. for design dimensions, and the Plaat et al. capability framing for architectural families.
+
+---
+
 ## The Core Agent Loop
 
 Most LLM agent architectures implement some version of this loop:
@@ -164,6 +178,24 @@ Agents that control computers (GUI agents), robots (embodied agents), or execute
 
 Key papers: SayCan, RT-2, CogAgent, UFO, OS-Copilot, SWE-agent
 Key products: Devin, Claude Computer Use, OpenAI Operator
+
+---
+
+## The Virtuous Cycle (Plaat et al.)
+
+One underappreciated insight from the Plaat et al. survey: the three categories of agentic behavior form a **virtuous cycle** that also generates training data:
+
+```
+Reasoning ──→ better decisions
+    ↑                ↓
+Interacting ←── Acting in the world
+    │                │
+    └──→ new training data ──→ better LLMs
+```
+
+Key insight: agentic LLMs that act and interact generate new empirical data — action-feedback sequences, multi-agent dialogues, role-play transcripts — that can feed back into pretraining and finetuning. This offers a potential solution to the "running out of training data" problem: agents create their own curriculum through experience. Vision-Language-Action models (RT-2, π₀, Magma) are the clearest current example.
+
+**The flip side:** feedback loops can destabilize learning. Agent-generated data may amplify biases or errors if not carefully filtered and validated.
 
 ---
 
