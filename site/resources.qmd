@@ -86,13 +86,36 @@ If you're new to LLM agents, start with these:
 
 ## Influential Blog Posts
 
+### Introductions & Overviews
+
 | Title | Author | Date |
 |-------|--------|------|
 | [LLM Powered Autonomous Agents](https://lilianweng.github.io/posts/2023-06-23-agent/) | Lilian Weng | Jun 2023 |
 | [Emerging Architectures for LLM Applications](https://a16z.com/emerging-architectures-for-llm-applications/) | a16z | Jun 2023 |
-| [The Anatomy of Autonomy](https://www.sequoiacap.com/article/ai-agents-perspective/) | Sequoia Capital | 2023 |
-| [What We Learned from a Year of Building with LLMs](https://applied-llms.org) | Various practitioners | 2024 |
-| [Building effective agents](https://www.anthropic.com/research/building-effective-agents) | Anthropic | Dec 2024 |
+| [A Hitchhiker's Guide to Building AI Agents](https://saurabhalone.com/blog/agent) | Saurabh Alone | 2025 |
+| [Making Sense of Memory in AI Agents](https://www.leoniemonigatti.com/blog/memory-in-ai-agents.html) | Leonie Monigatti | 2025 |
+
+### Production & Practitioner Guides
+
+| Title | Author | Date |
+|-------|--------|------|
+| [Building effective agents](https://www.anthropic.com/research/building-effective-agents) | Anthropic (Schluntz & Zhang) | Dec 2024 |
+| [How we built our multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system) | Anthropic Engineering | 2025 |
+| [What We Learned from a Year of Building with LLMs](https://applied-llms.org) | Eugene Yan et al. | 2024 |
+| [Agents 101: The Art of Actually Getting Things Done](https://devin.ai/agents101) | Cognition AI (Devin) | 2025 |
+| [Building Your Own Coding Agent](https://martinfowler.com/articles/build-own-coding-agent.html) | Martin Fowler | 2025 |
+| [AI in Production: What Actually Works in 2026](https://47billion.com/blog/ai-agents-in-production-frameworks-protocols-and-what-actually-works-in-2026/) | 47 Billion | 2026 |
+| [Google Cloud: Lessons from 2025 on Agents and Trust](https://cloud.google.com/transform/ai-grew-up-and-got-a-job-lessons-from-2025-on-agents-and-trust) | Google Cloud CTO Office | Dec 2025 |
+
+### Builder Diaries & Case Studies
+
+| Title | Author | Date |
+|-------|--------|------|
+| [Strix: Meet the Stateful Agent](https://timkellogg.me/blog/2025/12/15/strix) | Tim Kellogg | Dec 2025 |
+| [Memory Architecture for a Synthetic Being](https://timkellogg.me/blog/2025/12/30/memory-arch) | Tim Kellogg | Dec 2025 |
+| [Viable Systems: How to Build a Fully Autonomous Agent](https://timkellogg.me/blog/2026/01/09/viable-systems) | Tim Kellogg | Jan 2026 |
+| [One Human + One Agent + One Browser](https://emsh.cat/one-human-one-agent-one-browser/) | emsh.cat | 2026 |
+| [OpenAI Harness Engineering](https://openai.com/index/harness-engineering/) | OpenAI | 2025 |
 
 ---
 

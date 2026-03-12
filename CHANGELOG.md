@@ -4,6 +4,32 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [1.0.4] - 2026-03-12
+
+### Structural reorganization
+
+**New pages (4):**
+- `timeline.qmd` — Single consolidated field timeline covering 2021–2026, replacing the three separate timelines that were scattered across foundations.qmd, multiagent.qmd, memory-tools.qmd, and recent.qmd
+- `topics.qmd` — Hub page for cross-cutting themes with navigation cards to sub-pages
+- `evaluation.qmd` — Dedicated Evaluation & Benchmarks page: coding benchmarks (SWE-bench, HumanEval, Aider leaderboard), web/computer use (WebArena, OSWorld, Mind2Web), general capability (GAIA, AgentBench, tau-bench), METR time horizons, science benchmarks (PaperBench, LabBench), safety benchmarks (AgentDojo, InjecAgent, AgentHarm), and the benchmark lifecycle problem
+- `safety.qmd` — Dedicated Safety & Alignment page: prompt injection / IPI, privilege escalation, tool misuse, unintended side effects; safety principles (reversibility, minimal footprint, HIL checkpoints, sandboxing, tool discipline); MIT AI Agent Index findings; Constitutional AI; agent-specific alignment challenges; web conduct gaps; safety benchmarks table; research agenda
+
+**Navbar restructure:**
+- Added `timeline.qmd` as top-level nav item
+- "Core Areas" dropdown: Foundations, Reasoning & Planning, Multi-Agent Systems, Memory/Tools & Actions
+- "Topics" dropdown: Topics Overview, Evaluation & Benchmarks, Safety & Alignment, Science & Research Agents
+- Reduced top-level nav clutter from 10 flat items to 7 items (2 with dropdowns)
+
+**Existing pages updated:**
+- `foundations.qmd` — Timeline replaced with "see Timeline →" link
+- `multiagent.qmd` — Timeline replaced with "see Timeline →" link
+- `memory-tools.qmd` — Timeline replaced with "see Timeline →" link
+- `recent.qmd` — Timeline replaced with "see Timeline →" link; Safety section replaced with callout box pointing to safety.qmd
+- `resources.qmd` — Blog posts section substantially expanded: added Saurabh Alone Hitchhiker's Guide, Leonie Monigatti on memory, Anthropic multi-agent system engineering, Devin Agents 101, Martin Fowler CLI coding agent, 47 Billion production guide, Google Cloud lessons from 2025, Strix series (3 posts), emsh.cat browser build, OpenAI Harness Engineering; organized into three sub-categories (Introductions, Production guides, Builder diaries)
+- `index.qmd` — Homepage cards updated to reflect new Topics page instead of standalone Science Agents card
+
+---
+
 ## [1.0.3] - 2026-03-12
 
 ### Featured addition: Plaat et al. (2025) — *Agentic Large Language Models, a survey* (JAIR)

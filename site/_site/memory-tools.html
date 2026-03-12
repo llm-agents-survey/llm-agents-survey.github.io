@@ -266,29 +266,59 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Taxonomy</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./foundations.html"> 
-<span class="menu-text">Foundations</span></a>
+    <a class="nav-link" href="./timeline.html"> 
+<span class="menu-text">Timeline</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./reasoning.html"> 
-<span class="menu-text">Reasoning &amp; Planning</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-core-areas" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Core Areas</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-core-areas">    
+        <li>
+    <a class="dropdown-item" href="./foundations.html">
+ <span class="dropdown-text">Foundations (2022–2023)</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./multiagent.html"> 
-<span class="menu-text">Multi-Agent</span></a>
+        <li>
+    <a class="dropdown-item" href="./reasoning.html">
+ <span class="dropdown-text">Reasoning &amp; Planning</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="./memory-tools.html" aria-current="page"> 
-<span class="menu-text">Memory &amp; Tools</span></a>
+        <li>
+    <a class="dropdown-item" href="./multiagent.html">
+ <span class="dropdown-text">Multi-Agent Systems</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./memory-tools.html">
+ <span class="dropdown-text">Memory, Tools &amp; Actions</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="./recent.html"> 
 <span class="menu-text">2024–2026</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./science-agents.html"> 
-<span class="menu-text">Science Agents</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-topics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Topics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-topics">    
+        <li>
+    <a class="dropdown-item" href="./topics.html">
+ <span class="dropdown-text">Topics Overview</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./evaluation.html">
+ <span class="dropdown-text">Evaluation &amp; Benchmarks</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./safety.html">
+ <span class="dropdown-text">Safety &amp; Alignment</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./science-agents.html">
+ <span class="dropdown-text">Science &amp; Research Agents</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="./community.html"> 
 <span class="menu-text">Community</span></a>
@@ -359,7 +389,6 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#self-rag-2023" id="toc-self-rag-2023" class="nav-link" data-scroll-target="#self-rag-2023">Self-RAG (2023)</a></li>
   <li><a href="#agentic-rag-patterns" id="toc-agentic-rag-patterns" class="nav-link" data-scroll-target="#agentic-rag-patterns">Agentic RAG Patterns</a></li>
   </ul></li>
-  <li><a href="#timeline" id="toc-timeline" class="nav-link" data-scroll-target="#timeline">Timeline</a></li>
   </ul>
 </nav>
     </div>
@@ -644,80 +673,11 @@ Vision-language-action model. Web-scale training + robot data; emergent robot ge
 <li><strong>HyDE (Hypothetical Document Embeddings):</strong> Generate a hypothetical answer, embed it, retrieve similar documents</li>
 </ul>
 <hr>
-</section>
-</section>
-<section id="timeline" class="level2">
-<h2 class="anchored" data-anchor-id="timeline">Timeline</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 35%">
-<col style="width: 64%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Date</th>
-<th>Milestone</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Dec 2021</td>
-<td>WebGPT — browser-based QA agent</td>
-</tr>
-<tr class="even">
-<td>Feb 2023</td>
-<td>Toolformer — self-supervised tool learning</td>
-</tr>
-<tr class="odd">
-<td>Apr 2023</td>
-<td>Generative Agents — episodic+semantic+procedural memory</td>
-</tr>
-<tr class="even">
-<td>Jun 2023</td>
-<td>OpenAI function calling — industry standard</td>
-</tr>
-<tr class="odd">
-<td>Jul 2023</td>
-<td>ToolLLM — 16k+ API coverage</td>
-</tr>
-<tr class="even">
-<td>Oct 2023</td>
-<td>MemGPT — LLM as OS with memory paging</td>
-</tr>
-<tr class="odd">
-<td>Dec 2023</td>
-<td>CogAgent, AppAgent — GUI specialist models</td>
-</tr>
-<tr class="even">
-<td>Feb 2024</td>
-<td>ReadAgent — gist memory for long docs</td>
-</tr>
-<tr class="odd">
-<td>Feb 2024</td>
-<td>CodeAct — code as unified action space</td>
-</tr>
-<tr class="even">
-<td>Apr 2024</td>
-<td>OSWorld benchmark — desktop GUI evaluation</td>
-</tr>
-<tr class="odd">
-<td>Oct 2024</td>
-<td>Anthropic Computer Use — mass-market computer control</td>
-</tr>
-<tr class="even">
-<td>2025</td>
-<td>browser-use hits 78k stars; Skyvern, Stagehand mature</td>
-</tr>
-<tr class="odd">
-<td>2025</td>
-<td>Long-context models (2M tokens) reduce but don’t eliminate memory needs</td>
-</tr>
-</tbody>
-</table>
 <hr>
-<p><em>Continue to <a href="./recent.html">2024–2026 Frontier →</a></em></p>
+<p><em>Full chronology in the <a href="./timeline.html">Timeline →</a>. Continue to <a href="./recent.html">2024–2026 Frontier →</a></em></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

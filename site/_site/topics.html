@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Foundations (2022–2023) – LLM Agents: A Survey (2022–2026)</title>
+<title>Topics – LLM Agents: A Survey (2022–2026)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -78,7 +78,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -346,46 +346,15 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#survey-taxonomy-papers" id="toc-survey-taxonomy-papers" class="nav-link" data-scroll-target="#survey-taxonomy-papers">Survey &amp; Taxonomy Papers</a>
-  <ul class="collapse">
-  <li><a href="#a-survey-on-large-language-model-based-autonomous-agents-2023" id="toc-a-survey-on-large-language-model-based-autonomous-agents-2023" class="nav-link" data-scroll-target="#a-survey-on-large-language-model-based-autonomous-agents-2023">A Survey on Large Language Model based Autonomous Agents (2023)</a></li>
-  <li><a href="#the-rise-and-potential-of-large-language-model-based-agents-2023" id="toc-the-rise-and-potential-of-large-language-model-based-agents-2023" class="nav-link" data-scroll-target="#the-rise-and-potential-of-large-language-model-based-agents-2023">The Rise and Potential of Large Language Model Based Agents (2023)</a></li>
-  <li><a href="#agent-ai-surveying-the-horizons-of-multimodal-interaction-2024" id="toc-agent-ai-surveying-the-horizons-of-multimodal-interaction-2024" class="nav-link" data-scroll-target="#agent-ai-surveying-the-horizons-of-multimodal-interaction-2024">Agent AI: Surveying the Horizons of Multimodal Interaction (2024)</a></li>
-  <li><a href="#large-language-model-agent-a-survey-on-methodology-applications-and-challenges-2025" id="toc-large-language-model-agent-a-survey-on-methodology-applications-and-challenges-2025" class="nav-link" data-scroll-target="#large-language-model-agent-a-survey-on-methodology-applications-and-challenges-2025">Large Language Model Agent: A Survey on Methodology, Applications and Challenges (2025)</a></li>
-  <li><a href="#agentic-large-language-models-a-survey-2025" id="toc-agentic-large-language-models-a-survey-2025" class="nav-link" data-scroll-target="#agentic-large-language-models-a-survey-2025">Agentic Large Language Models: A Survey (2025)</a></li>
-  <li><a href="#cognitive-architectures-for-language-agents-2023" id="toc-cognitive-architectures-for-language-agents-2023" class="nav-link" data-scroll-target="#cognitive-architectures-for-language-agents-2023">Cognitive Architectures for Language Agents (2023)</a></li>
-  </ul></li>
-  <li><a href="#core-foundational-papers" id="toc-core-foundational-papers" class="nav-link" data-scroll-target="#core-foundational-papers">Core Foundational Papers</a>
-  <ul class="collapse">
-  <li><a href="#react-synergizing-reasoning-and-acting-in-language-models-2023" id="toc-react-synergizing-reasoning-and-acting-in-language-models-2023" class="nav-link" data-scroll-target="#react-synergizing-reasoning-and-acting-in-language-models-2023">ReAct: Synergizing Reasoning and Acting in Language Models (2023)</a></li>
-  <li><a href="#chain-of-thought-prompting-elicits-reasoning-in-large-language-models-2022" id="toc-chain-of-thought-prompting-elicits-reasoning-in-large-language-models-2022" class="nav-link" data-scroll-target="#chain-of-thought-prompting-elicits-reasoning-in-large-language-models-2022">Chain-of-Thought Prompting Elicits Reasoning in Large Language Models (2022)</a></li>
-  <li><a href="#toolformer-language-models-can-teach-themselves-to-use-tools-2023" id="toc-toolformer-language-models-can-teach-themselves-to-use-tools-2023" class="nav-link" data-scroll-target="#toolformer-language-models-can-teach-themselves-to-use-tools-2023">Toolformer: Language Models Can Teach Themselves to Use Tools (2023)</a></li>
-  <li><a href="#mrkl-systems-a-modular-neuro-symbolic-architecture-2022" id="toc-mrkl-systems-a-modular-neuro-symbolic-architecture-2022" class="nav-link" data-scroll-target="#mrkl-systems-a-modular-neuro-symbolic-architecture-2022">MRKL Systems: A Modular, Neuro-Symbolic Architecture (2022)</a></li>
-  <li><a href="#webgpt-browser-assisted-question-answering-2022" id="toc-webgpt-browser-assisted-question-answering-2022" class="nav-link" data-scroll-target="#webgpt-browser-assisted-question-answering-2022">WebGPT: Browser-Assisted Question Answering (2022)</a></li>
-  <li><a href="#hugginggpt-jarvis-2023" id="toc-hugginggpt-jarvis-2023" class="nav-link" data-scroll-target="#hugginggpt-jarvis-2023">HuggingGPT / JARVIS (2023)</a></li>
-  <li><a href="#saycan-grounding-language-in-robotic-affordances-2022" id="toc-saycan-grounding-language-in-robotic-affordances-2022" class="nav-link" data-scroll-target="#saycan-grounding-language-in-robotic-affordances-2022">SayCan: Grounding Language in Robotic Affordances (2022)</a></li>
-  <li><a href="#voyager-an-open-ended-embodied-agent-in-minecraft-2023" id="toc-voyager-an-open-ended-embodied-agent-in-minecraft-2023" class="nav-link" data-scroll-target="#voyager-an-open-ended-embodied-agent-in-minecraft-2023">Voyager: An Open-Ended Embodied Agent in Minecraft (2023)</a></li>
-  <li><a href="#autogpt-2023" id="toc-autogpt-2023" class="nav-link" data-scroll-target="#autogpt-2023">AutoGPT (2023)</a></li>
-  <li><a href="#babyagi-2023" id="toc-babyagi-2023" class="nav-link" data-scroll-target="#babyagi-2023">BabyAGI (2023)</a></li>
-  </ul></li>
-  <li><a href="#standard-agent-decomposition" id="toc-standard-agent-decomposition" class="nav-link" data-scroll-target="#standard-agent-decomposition">Standard Agent Decomposition</a></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Foundations (2022–2023)</h1>
-<p class="subtitle lead">The papers and ideas that built the field</p>
+<h1 class="title">Topics</h1>
+<p class="subtitle lead">Deep dives into cross-cutting themes in LLM agent research</p>
 </div>
 
 
@@ -402,203 +371,41 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>The modern LLM agent field traces to a cluster of papers from 2022–2023 that established the core paradigms still in use today. Before these works, LLMs were primarily used as single-shot text generators. This period showed they could <strong>act</strong> — using tools, browsing the web, executing code, and reasoning across multiple steps toward a goal.</p>
-<p>The foundational insight: an LLM becomes an agent when you give it a <strong>loop</strong> — the ability to observe outcomes of its actions and decide what to do next.</p>
+<p>Three important themes run across the entire LLM agent field but don’t fit neatly into any single architectural category. This section gives them their own space.</p>
+<div class="card-grid">
+<div class="survey-card">
+<div class="card-icon">
+<p>📊</p>
+</div>
+<section id="evaluation-benchmarks" class="level3">
+<h3 class="anchored" data-anchor-id="evaluation-benchmarks"><a href="./evaluation.html">Evaluation &amp; Benchmarks</a></h3>
+<p>How do we measure agent capability? SWE-bench, WebArena, GAIA, OSWorld, AgentBench, METR time horizons, and the ongoing challenge of benchmarks that don’t saturate or overfit.</p>
+</section>
+</div>
+<div class="survey-card">
+<div class="card-icon">
+<p>🛡️</p>
+</div>
+<section id="safety-alignment" class="level3">
+<h3 class="anchored" data-anchor-id="safety-alignment"><a href="./safety.html">Safety &amp; Alignment</a></h3>
+<p>Prompt injection, trust hierarchies, sandboxing, reversibility, the transparency gap, and what responsible agent deployment looks like in practice.</p>
+</section>
+</div>
+<div class="survey-card">
+<div class="card-icon">
+<p>🔬</p>
+</div>
+<section id="science-research-agents" class="level3">
+<h3 class="anchored" data-anchor-id="science-research-agents"><a href="./science-agents.html">Science &amp; Research Agents</a></h3>
+<p>FutureHouse Platform, Google AI Co-Scientist, PaperCoder, SkyRL, METR, and the frontier of agents built specifically for scientific discovery.</p>
+</section>
+</div>
+</div>
 <hr>
-</section>
-<section id="survey-taxonomy-papers" class="level2">
-<h2 class="anchored" data-anchor-id="survey-taxonomy-papers">Survey &amp; Taxonomy Papers</h2>
-<p>These surveys provide the broadest maps of the field:</p>
-<section id="a-survey-on-large-language-model-based-autonomous-agents-2023" class="level3">
-<h3 class="anchored" data-anchor-id="a-survey-on-large-language-model-based-autonomous-agents-2023">A Survey on Large Language Model based Autonomous Agents (2023)</h3>
-<p><strong>Wang et al.</strong> · <a href="https://arxiv.org/abs/2308.11432">arXiv:2308.11432</a> · <em>Frontiers of Computer Science, 2024</em></p>
-<p>The most comprehensive survey of the field. Covers 200+ papers and presents a <strong>unified framework</strong> decomposing agents into four pillars: Brain (LLM), Perception, Memory, and Action. Analyzes applications across social science, natural science, and engineering. Actively maintained through v7 (March 2025).</p>
-<ul>
-<li><strong>Key ideas:</strong> Unified architecture spanning majority of prior work; systematic taxonomy by application domain; evaluation methodology discussion</li>
-<li><strong>Impact:</strong> De facto reference paper for new entrants to the field</li>
-</ul>
-</section>
-<section id="the-rise-and-potential-of-large-language-model-based-agents-2023" class="level3">
-<h3 class="anchored" data-anchor-id="the-rise-and-potential-of-large-language-model-based-agents-2023">The Rise and Potential of Large Language Model Based Agents (2023)</h3>
-<p><strong>Xi et al.&nbsp;(30 co-authors)</strong> · <a href="https://arxiv.org/abs/2309.07864">arXiv:2309.07864</a> · <em>Science China Information Sciences, 2025</em></p>
-<p>An 86-page survey tracing agents from philosophical origins through modern AI. Uses a brain-perception-action framework. Explores single-agent, multi-agent, and human-agent cooperation. Discusses agent societies, emergent behaviors, and the path toward AGI.</p>
-<ul>
-<li><strong>Key ideas:</strong> Historical and philosophical grounding; vision for agent societies; multi-agent coordination patterns</li>
-</ul>
-</section>
-<section id="agent-ai-surveying-the-horizons-of-multimodal-interaction-2024" class="level3">
-<h3 class="anchored" data-anchor-id="agent-ai-surveying-the-horizons-of-multimodal-interaction-2024">Agent AI: Surveying the Horizons of Multimodal Interaction (2024)</h3>
-<p><strong>Wang et al.</strong> · <a href="https://arxiv.org/abs/2401.03568">arXiv:2401.03568</a></p>
-<p>Expands scope to multimodal agents operating across text, vision, and action spaces. Covers gaming, robotics, healthcare, GUI navigation. A useful bridge between language-only and embodied/multimodal agents.</p>
-</section>
-<section id="large-language-model-agent-a-survey-on-methodology-applications-and-challenges-2025" class="level3">
-<h3 class="anchored" data-anchor-id="large-language-model-agent-a-survey-on-methodology-applications-and-challenges-2025">Large Language Model Agent: A Survey on Methodology, Applications and Challenges (2025)</h3>
-<p><strong>Luo et al.</strong> · <a href="https://arxiv.org/abs/2503.21460">arXiv:2503.21460</a></p>
-<p>Most recent comprehensive survey (March 2025) with structured taxonomy for LLM agent methodology. Catalogs current applications and synthesizes open challenges.</p>
-</section>
-<section id="agentic-large-language-models-a-survey-2025" class="level3">
-<h3 class="anchored" data-anchor-id="agentic-large-language-models-a-survey-2025">Agentic Large Language Models: A Survey (2025)</h3>
-<p><strong>Plaat, van Duijn, van Stein, Preuss, van der Putten, Batenburg (Leiden University)</strong> · <a href="https://arxiv.org/abs/2503.23037">arXiv:2503.23037</a> · <em>JAIR Vol. 84, December 2025</em> · <a href="https://askeplaat.github.io/agentic-llm-survey-site/">companion website</a></p>
-<p>A major peer-reviewed survey published in the Journal of Artificial Intelligence Research. Organizes the field around a distinctive <strong>Reason–Act–Interact</strong> taxonomy, offering a cleaner alternative to component-based frameworks:</p>
-<ul>
-<li><strong>Reason:</strong> Multi-step reasoning (CoT, search trees), self-reflection, retrieval augmentation</li>
-<li><strong>Act:</strong> Action models (world models, VLA models), robots and tools, domain assistants (medicine, finance, science)</li>
-<li><strong>Interact:</strong> Social capabilities, role-based multi-agent interaction, open-ended agent societies and emergent norms</li>
-</ul>
-<p><strong>Key original contributions:</strong> 1. <strong>Virtuous cycle framing</strong> — the three capabilities are mutually reinforcing <em>and</em> generate new training data through agent-world interaction, addressing the “running out of training data” problem 2. <strong>Thinking Fast and Slow</strong> — connects LLM reasoning models (System 2 slow deliberation) to Kahneman’s dual-process theory 3. <strong>Theory of Mind</strong> — covers strategic behavior, negotiation, and theory of mind as prerequisites for effective multi-agent interaction 4. <strong>Emergent social norms</strong> — agent societies can develop emergent norms through interaction, enabling large-scale social science simulation 5. <strong>Research agenda</strong> — explicit open problems table covering all three categories</p>
-<p><strong>Applications highlighted:</strong> medical diagnosis, logistics, financial market analysis, scientific research augmentation.</p>
-</section>
-<section id="cognitive-architectures-for-language-agents-2023" class="level3">
-<h3 class="anchored" data-anchor-id="cognitive-architectures-for-language-agents-2023">Cognitive Architectures for Language Agents (2023)</h3>
-<p><strong>Sumers et al.</strong> · <a href="https://arxiv.org/abs/2309.02427">arXiv:2309.02427</a></p>
-<p>Grounds LLM agent design in cognitive science. Proposes four-part memory model (working, procedural, semantic, episodic) drawing from ACT-R and SOAR. Essential for understanding memory system design.</p>
-<hr>
-</section>
-</section>
-<section id="core-foundational-papers" class="level2">
-<h2 class="anchored" data-anchor-id="core-foundational-papers">Core Foundational Papers</h2>
-<section id="react-synergizing-reasoning-and-acting-in-language-models-2023" class="level3">
-<h3 class="anchored" data-anchor-id="react-synergizing-reasoning-and-acting-in-language-models-2023">ReAct: Synergizing Reasoning and Acting in Language Models (2023)</h3>
-<p><strong>Yao et al.</strong> · <a href="https://arxiv.org/abs/2210.03629">arXiv:2210.03629</a> · <em>ICLR 2023</em></p>
-<p><strong>The most cited and influential agent paper.</strong> Introduces the ReAct paradigm: interleaved reasoning traces and actions. The agent alternates between <code>Thought:</code> (reasoning about what to do) and <code>Action:</code> (doing it), with <code>Observation:</code> feeding back the result. This loop is the skeleton of most modern agent systems.</p>
-<pre><code>Thought: I need to find the population of France.
-Action: search("France population 2024")
-Observation: France has a population of approximately 68 million.
-Thought: Now I can answer the question.
-Action: finish("approximately 68 million")</code></pre>
-<ul>
-<li><strong>Key ideas:</strong> Reasoning and acting are synergistic, not separate; grounding in external feedback reduces hallucination; enables error correction mid-task</li>
-<li><strong>Results:</strong> Outperforms pure CoT and pure acting on HotpotQA, FEVER, ALFWorld, WebShop</li>
-</ul>
-</section>
-<section id="chain-of-thought-prompting-elicits-reasoning-in-large-language-models-2022" class="level3">
-<h3 class="anchored" data-anchor-id="chain-of-thought-prompting-elicits-reasoning-in-large-language-models-2022">Chain-of-Thought Prompting Elicits Reasoning in Large Language Models (2022)</h3>
-<p><strong>Wei et al.</strong> · <a href="https://arxiv.org/abs/2201.11903">arXiv:2201.11903</a> · <em>NeurIPS 2022</em></p>
-<p>The prerequisite to ReAct. Shows that prompting LLMs to generate intermediate reasoning steps dramatically improves performance on arithmetic, commonsense, and symbolic reasoning. Established that <strong>LLMs can reason step-by-step</strong> — the cognitive foundation for all agent work.</p>
-<ul>
-<li><strong>Key ideas:</strong> Few-shot CoT prompting; emergent capability (most effective at 100B+ params); generalizes across reasoning domains</li>
-</ul>
-</section>
-<section id="toolformer-language-models-can-teach-themselves-to-use-tools-2023" class="level3">
-<h3 class="anchored" data-anchor-id="toolformer-language-models-can-teach-themselves-to-use-tools-2023">Toolformer: Language Models Can Teach Themselves to Use Tools (2023)</h3>
-<p><strong>Schick et al.</strong> · <a href="https://arxiv.org/abs/2302.04761">arXiv:2302.04761</a></p>
-<p>Shows how to <strong>train</strong> an LLM to use tools in a self-supervised manner. The model learns to insert API calls into its own generated text, execute them, and incorporate results — without large human-annotated datasets.</p>
-<ul>
-<li><strong>Tools learned:</strong> Calculator, Wikipedia search, calendar, Q&amp;A system, translator</li>
-<li><strong>Key ideas:</strong> Self-supervised tool learning; decides which API to call, when, and with what arguments; training signal from self-generated examples</li>
-<li><strong>Legacy:</strong> Prefigures the function-calling paradigm now standard in GPT-4, Claude, etc.</li>
-</ul>
-</section>
-<section id="mrkl-systems-a-modular-neuro-symbolic-architecture-2022" class="level3">
-<h3 class="anchored" data-anchor-id="mrkl-systems-a-modular-neuro-symbolic-architecture-2022">MRKL Systems: A Modular, Neuro-Symbolic Architecture (2022)</h3>
-<p><strong>Karpas et al.</strong> · <a href="https://arxiv.org/abs/2205.00445">arXiv:2205.00445</a></p>
-<p>Early vision of <strong>modular AI</strong> where an LLM router dispatches to specialized expert modules (calculators, databases, ML models). One of the first papers to articulate the “LLM + tools” architecture.</p>
-<ul>
-<li><strong>Key ideas:</strong> LLM as orchestrator; discrete symbolic modules for reliable computation; router learns which module is appropriate</li>
-<li><strong>Legacy:</strong> Direct ancestor of today’s tool-calling agents</li>
-</ul>
-</section>
-<section id="webgpt-browser-assisted-question-answering-2022" class="level3">
-<h3 class="anchored" data-anchor-id="webgpt-browser-assisted-question-answering-2022">WebGPT: Browser-Assisted Question Answering (2022)</h3>
-<p><strong>Nakano et al.</strong> · <a href="https://arxiv.org/abs/2112.09332">arXiv:2112.09332</a></p>
-<p>GPT-3 fine-tuned to browse the web to answer questions. Introduced the concept of <strong>browser-using agents</strong> — now a major category. Used RLHF to train the browsing behavior.</p>
-<ul>
-<li><strong>Key ideas:</strong> Web browsing as an action space; RLHF for agent behavior; long-form question answering with citations</li>
-</ul>
-</section>
-<section id="hugginggpt-jarvis-2023" class="level3">
-<h3 class="anchored" data-anchor-id="hugginggpt-jarvis-2023">HuggingGPT / JARVIS (2023)</h3>
-<p><strong>Shen et al.</strong> · <a href="https://arxiv.org/abs/2303.17580">arXiv:2303.17580</a></p>
-<p>LLM (ChatGPT) as a <strong>task planner</strong> that orchestrates hundreds of specialized ML models from HuggingFace. The LLM parses user requests, selects the right ML models, executes them in sequence, and synthesizes results.</p>
-<ul>
-<li><strong>Key ideas:</strong> LLM as controller of a model hub; structured task planning; multi-modal capability via model composition</li>
-<li><strong>GitHub:</strong> <a href="https://github.com/microsoft/JARVIS">microsoft/JARVIS</a></li>
-</ul>
-</section>
-<section id="saycan-grounding-language-in-robotic-affordances-2022" class="level3">
-<h3 class="anchored" data-anchor-id="saycan-grounding-language-in-robotic-affordances-2022">SayCan: Grounding Language in Robotic Affordances (2022)</h3>
-<p><strong>Ahn et al.</strong> · <a href="https://arxiv.org/abs/2204.01691">arXiv:2204.01691</a></p>
-<p>Landmark paper combining LLMs with robotics. The LLM generates possible action plans; a learned “affordance” model scores which actions are physically feasible in the current environment. Early example of <strong>embodied agent planning</strong>.</p>
-<ul>
-<li><strong>Key ideas:</strong> LLM proposes, affordance model filters; language grounding in physical world; “what is both useful AND possible”</li>
-</ul>
-</section>
-<section id="voyager-an-open-ended-embodied-agent-in-minecraft-2023" class="level3">
-<h3 class="anchored" data-anchor-id="voyager-an-open-ended-embodied-agent-in-minecraft-2023">Voyager: An Open-Ended Embodied Agent in Minecraft (2023)</h3>
-<p><strong>Wang et al.</strong> · <a href="https://arxiv.org/abs/2305.16291">arXiv:2305.16291</a></p>
-<p>GPT-4 playing Minecraft autonomously for indefinite time spans. Features a <strong>procedural skill library</strong> that grows over time, an automatic curriculum for proposing increasingly complex tasks, and iterative skill refinement via execution feedback.</p>
-<ul>
-<li><strong>Key ideas:</strong> Lifelong learning via skill accumulation; automatic curriculum; code-as-action (skills written as JavaScript); never “forgets” learned skills</li>
-<li><strong>Results:</strong> 3× faster at milestones, unlocks tech tree substantially faster than prior methods</li>
-</ul>
-</section>
-<section id="autogpt-2023" class="level3">
-<h3 class="anchored" data-anchor-id="autogpt-2023">AutoGPT (2023)</h3>
-<p><strong>Riedl et al.&nbsp;(community)</strong> · <a href="https://github.com/Significant-Gravitas/AutoGPT">GitHub</a></p>
-<p>Not a paper, but arguably the most influential artifact of 2023. AutoGPT showed the world what a <strong>fully autonomous LLM agent</strong> looked like: give it a goal, let it run. It sparked massive public interest and downstream research, despite significant reliability issues.</p>
-<ul>
-<li><strong>Key ideas:</strong> Autonomous goal pursuit; persistent memory; web search + code execution; iterative task decomposition</li>
-<li><strong>Legacy:</strong> Demonstrated demand for autonomous agents; exposed failure modes that drove later research</li>
-</ul>
-</section>
-<section id="babyagi-2023" class="level3">
-<h3 class="anchored" data-anchor-id="babyagi-2023">BabyAGI (2023)</h3>
-<p><strong>Nakajima</strong> · <a href="https://github.com/yoheinakajima/babyagi">GitHub</a></p>
-<p>Minimalist task management agent. Maintains a task list, executes tasks with an LLM + web search, and adds new tasks based on results. Showed that a <strong>simple agent loop</strong> could produce surprising emergent behaviors.</p>
-<hr>
-</section>
-</section>
-<section id="standard-agent-decomposition" class="level2">
-<h2 class="anchored" data-anchor-id="standard-agent-decomposition">Standard Agent Decomposition</h2>
-<p>Based on the survey literature, the field converged on this standard decomposition:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 39%">
-<col style="width: 27%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Component</th>
-<th>Description</th>
-<th>Examples</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Perception</strong></td>
-<td>Inputs from environment</td>
-<td>Text, images, tool outputs, web pages</td>
-</tr>
-<tr class="even">
-<td><strong>Memory</strong></td>
-<td>Information storage &amp; retrieval</td>
-<td>In-context, vector DB, key-value stores</td>
-</tr>
-<tr class="odd">
-<td><strong>Planning</strong></td>
-<td>Deciding what to do</td>
-<td>ReAct, CoT, hierarchical decomposition</td>
-</tr>
-<tr class="even">
-<td><strong>Action</strong></td>
-<td>Executing decisions</td>
-<td>Tool calls, web search, code execution</td>
-</tr>
-<tr class="odd">
-<td><strong>Learning</strong></td>
-<td>Improving over time</td>
-<td>Reflexion, skill libraries, RLHF</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<p><em>For a full chronological view of the field, see the <a href="./timeline.html">Timeline →</a>. Continue to <a href="./reasoning.html">Reasoning &amp; Planning →</a></em></p>
+<p>These topics are connected. Evaluation shapes what safety problems we can measure. Safety constrains what autonomy levels are responsible. Scientific agents push the boundary of what evaluation even means — when the “correct” answer is a novel hypothesis, how do you grade it?</p>
+<p>Each page collects primary sources, key papers, and synthesis — use them as reference material rather than introductions.</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -1,0 +1,43 @@
+---
+title: "Topics"
+subtitle: "Deep dives into cross-cutting themes in LLM agent research"
+format:
+  html:
+    toc: false
+---
+
+Three important themes run across the entire LLM agent field but don't fit neatly into any single architectural category. This section gives them their own space.
+
+::: {.card-grid}
+
+::: {.survey-card}
+::: {.card-icon}
+📊
+:::
+### [Evaluation & Benchmarks](evaluation.qmd)
+How do we measure agent capability? SWE-bench, WebArena, GAIA, OSWorld, AgentBench, METR time horizons, and the ongoing challenge of benchmarks that don't saturate or overfit.
+:::
+
+::: {.survey-card}
+::: {.card-icon}
+🛡️
+:::
+### [Safety & Alignment](safety.qmd)
+Prompt injection, trust hierarchies, sandboxing, reversibility, the transparency gap, and what responsible agent deployment looks like in practice.
+:::
+
+::: {.survey-card}
+::: {.card-icon}
+🔬
+:::
+### [Science & Research Agents](science-agents.qmd)
+FutureHouse Platform, Google AI Co-Scientist, PaperCoder, SkyRL, METR, and the frontier of agents built specifically for scientific discovery.
+:::
+
+:::
+
+---
+
+These topics are connected. Evaluation shapes what safety problems we can measure. Safety constrains what autonomy levels are responsible. Scientific agents push the boundary of what evaluation even means — when the "correct" answer is a novel hypothesis, how do you grade it?
+
+Each page collects primary sources, key papers, and synthesis — use them as reference material rather than introductions.

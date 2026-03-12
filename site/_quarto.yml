@@ -4,11 +4,15 @@ project:
   render:
     - index.qmd
     - taxonomy.qmd
+    - timeline.qmd
     - foundations.qmd
     - reasoning.qmd
     - multiagent.qmd
     - memory-tools.qmd
     - recent.qmd
+    - topics.qmd
+    - evaluation.qmd
+    - safety.qmd
     - science-agents.qmd
     - community.qmd
     - resources.qmd
@@ -23,18 +27,30 @@ website:
         text: Home
       - href: taxonomy.qmd
         text: Taxonomy
-      - href: foundations.qmd
-        text: Foundations
-      - href: reasoning.qmd
-        text: Reasoning & Planning
-      - href: multiagent.qmd
-        text: Multi-Agent
-      - href: memory-tools.qmd
-        text: Memory & Tools
+      - href: timeline.qmd
+        text: Timeline
+      - text: "Core Areas"
+        menu:
+          - href: foundations.qmd
+            text: Foundations (2022–2023)
+          - href: reasoning.qmd
+            text: Reasoning & Planning
+          - href: multiagent.qmd
+            text: Multi-Agent Systems
+          - href: memory-tools.qmd
+            text: Memory, Tools & Actions
       - href: recent.qmd
         text: 2024–2026
-      - href: science-agents.qmd
-        text: Science Agents
+      - text: "Topics"
+        menu:
+          - href: topics.qmd
+            text: Topics Overview
+          - href: evaluation.qmd
+            text: Evaluation & Benchmarks
+          - href: safety.qmd
+            text: Safety & Alignment
+          - href: science-agents.qmd
+            text: Science & Research Agents
       - href: community.qmd
         text: Community
       - href: resources.qmd

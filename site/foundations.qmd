@@ -166,30 +166,4 @@ Based on the survey literature, the field converged on this standard decompositi
 
 ---
 
-## Timeline: 2021–2023
-
-| Date | Milestone |
-|------|-----------|
-| Dec 2021 | WebGPT — first browser-using agent |
-| Feb 2022 | Chain-of-Thought (Wei et al.) — reasoning foundation |
-| Apr 2022 | SayCan — embodied language agents |
-| May 2022 | MRKL — LLM + expert module router |
-| Jul 2022 | Inner Monologue — robot agents with language feedback |
-| Oct 2022 | ReAct — the canonical agent loop |
-| Feb 2023 | Toolformer — self-supervised tool learning |
-| Mar 2023 | HuggingGPT/JARVIS — LLM as model orchestrator |
-| Mar 2023 | CAMEL — multi-agent role-playing |
-| Mar 2023 | AutoGPT goes viral — public awareness of agents |
-| Apr 2023 | Generative Agents (Park et al.) — agent towns with memory |
-| May 2023 | Tree of Thoughts — structured search over thoughts |
-| May 2023 | Voyager — lifelong learning agent in Minecraft |
-| Jun 2023 | OpenAI function calling released — industry standard tool use |
-| Jun 2023 | Lilian Weng's "LLM Powered Autonomous Agents" blog post |
-| Aug 2023 | MetaGPT — software dev multi-agent system |
-| Aug 2023 | AutoGen (Microsoft) — conversable agent framework |
-| Aug 2023 | Major surveys: Wang et al., Xi et al. |
-| Oct 2023 | MemGPT — hierarchical memory for LLM agents |
-
----
-
-*Continue to [Reasoning & Planning →](reasoning.qmd)*
+*For a full chronological view of the field, see the [Timeline →](timeline.qmd). Continue to [Reasoning & Planning →](reasoning.qmd)*

@@ -108,10 +108,10 @@ The leading edge: coding agents (SWE-agent, Devin), agentic products (Operator, 
 
 ::: {.survey-card}
 ::: {.card-icon}
-🔬
+📊
 :::
-### [Science & Research Agents](science-agents.qmd)
-FutureHouse Platform, Google AI Co-Scientist, SkyRL, MiniMax Forge, METR time horizons, AgentEvolver, and the frontier of agents built for scientific discovery.
+### [Topics: Evaluation, Safety, Science](topics.qmd)
+Cross-cutting themes with their own pages: agent benchmarks (SWE-bench, METR, WebArena), safety and alignment (prompt injection, trust, reversibility), and science-specific agents (FutureHouse, Google AI Co-Scientist).
 :::
 
 ::: {.survey-card}
@@ -119,7 +119,7 @@ FutureHouse Platform, Google AI Co-Scientist, SkyRL, MiniMax Forge, METR time ho
 🛠️
 :::
 ### [Community & Independent Agents](community.qmd)
-OpenClaw, Pi, Strix, crow-cli, Agno, Orchestra, TapeAgents, AgentFS, stereOS, and the grassroots builder ecosystem. Practitioner blog posts and indie architectures.
+OpenClaw, Pi, Strix, crow-cli, Agno, Orchestra, TapeAgents, AgentFS, stereOS, and the grassroots builder ecosystem.
 :::
 
 :::

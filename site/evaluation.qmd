@@ -1,0 +1,178 @@
+---
+title: "Evaluation & Benchmarks"
+subtitle: "How do we measure whether an agent is actually good?"
+---
+
+## The Evaluation Problem
+
+Evaluating LLM agents is harder than evaluating LLMs. A chatbot can be evaluated on held-out Q&A pairs. An agent takes sequences of actions, operates in non-deterministic environments, and pursues goals that may have multiple valid solutions. Several key challenges:
+
+- **Process vs. outcome:** A wrong final answer might come from correct reasoning; a right answer might come from lucky guessing
+- **Benchmark contamination:** Training data may include solutions; agents may overfit to specific environments
+- **Cost:** Evaluation requires running the full agent loop — expensive at scale
+- **Open-ended tasks:** Some tasks (research, creative work) have no clear ground truth
+- **Adversarial environments:** Real-world deployment involves hostile inputs, not clean benchmarks
+
+The field has iterated through several generations of benchmarks, each trying to close gaps from the previous generation.
+
+---
+
+## Coding Benchmarks
+
+### SWE-bench (2023)
+**Jimenez et al.** · [arXiv:2310.06770](https://arxiv.org/abs/2310.06770) · [swebench.com](https://www.swebench.com)
+
+The dominant coding agent benchmark. Agents resolve real GitHub issues from 12 popular Python repositories (Django, scikit-learn, Flask, etc.). Tested against actual unit tests from the repos.
+
+**Variants:**
+- **SWE-bench Full** — 2,294 issues; original benchmark
+- **SWE-bench Verified** — 500 manually verified high-quality issues; the standard leaderboard
+- **SWE-bench Lite** — 300 issues; faster/cheaper evaluation
+
+**Progress on SWE-bench Verified:**
+
+| Date | System | Score |
+|------|--------|-------|
+| May 2024 | SWE-agent (Princeton) | ~12% |
+| Mar 2024 | Devin (Cognition AI) | ~14% (revised) |
+| Late 2024 | Claude 3.5 Sonnet + scaffolding | ~49% |
+| 2025 | Claude Sonnet 4.5 | ~55% |
+| Nov 2025 | Gemini 3 Pro + Live-SWE-agent | **77.4%** |
+
+**Contamination concern:** By late 2025, SWE-bench Verified was showing signs of saturation and potential training data leakage. Models that score 70%+ on the public benchmark drop to ~15-20% on private codebases.
+
+### SWE-bench Pro (2026)
+**Scale AI** · Novel private-codebase variant
+
+Created specifically to address contamination. Issues come from private repositories never seen in training data. Performance drops dramatically across all models:
+- GPT-5: ~23% (public) → ~15% (private)
+- Claude Opus 4.1: ~22.7%
+
+Reveals the extent to which SWE-bench public scores reflect memorization vs. generalization.
+
+### HumanEval (2021)
+**Chen et al. (OpenAI)** · Python function completion from docstrings. Early coding benchmark, largely saturated by 2024 but still used for baseline comparisons.
+
+### Aider Coding Leaderboard
+**[aider.chat/docs/leaderboards](https://aider.chat/docs/leaderboards)**
+
+Pragmatic leaderboard maintained by the Aider project, ranking models by real-world coding utility (polyglot, code editing, refactoring). Considered more representative of practical use than HumanEval.
+
+---
+
+## Web & Computer Use Benchmarks
+
+### WebArena (2023)
+**Zhou et al.** · [arXiv:2307.13854](https://arxiv.org/abs/2307.13854)
+
+4 functional websites (e-commerce, Reddit clone, GitLab, map service), 812 long-horizon tasks. Baseline GPT-4: ~14%. Realistic web tasks that require multi-step navigation, form filling, and information retrieval.
+
+### Mind2Web (2023)
+**Deng et al.** · [arXiv:2306.06070](https://arxiv.org/abs/2306.06070)
+
+Dataset of 2,350 tasks across 137 real websites. Tests generalization to unseen sites. More diverse than WebArena but less dynamic (static task descriptions).
+
+### OSWorld (2024)
+**Xie et al.** · [arXiv:2404.07972](https://arxiv.org/abs/2404.07972)
+
+Desktop GUI tasks across real applications on Windows, macOS, and Linux. 369 tasks requiring interaction with actual installed software (spreadsheets, code editors, file managers).
+
+| Date | Best Score |
+|------|-----------|
+| Apr 2024 | <10% (baseline models) |
+| Oct 2024 | ~22% (Claude with Computer Use) |
+| Late 2024 | ~72.5% (specialized GUI models) |
+
+### ScreenSpot Pro (2025)
+High-resolution GUI grounding benchmark with tiny target icons. OmniParser V2 + GPT-4o achieves 39.6%; raw GPT-4o achieves 0.8% — showing the importance of specialized screen parsing.
+
+---
+
+## General Capability Benchmarks
+
+### GAIA (2023)
+**Mialon et al. (Meta AI)** · [arXiv:2311.12983](https://arxiv.org/abs/2311.12983) · *ICLR 2024*
+
+General AI assistant tasks requiring multi-step reasoning, tool use, and common sense. Three difficulty levels. Human baseline: 92%; GPT-4 + plugins at release: ~30%. Designed to be "easy for humans, hard for AI."
+
+### AgentBench (2023)
+**Liu et al.** · [arXiv:2308.03688](https://arxiv.org/abs/2308.03688)
+
+8-environment benchmark: operating system, database, knowledge graph, digital card game, lateral thinking puzzles, web shopping, web browsing. First systematic multi-domain agent evaluation. Revealed large gap between GPT-4 and open-source models.
+
+### tau-bench (2024)
+Tests agent reliability in customer service and retail domains. Focuses on multi-turn conversation with tool use and policy compliance.
+
+### WorkArena (2024)
+Enterprise software agent benchmark using ServiceNow. Tests agents on realistic business workflows.
+
+---
+
+## Long-Horizon & Time-Based Measurement
+
+### METR: Task Time Horizons (2025)
+**METR (Model Evaluation & Threat Research)** · [metr.org/time-horizons](https://metr.org/time-horizons/) · [metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks](https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/)
+
+A fundamentally different approach: instead of accuracy on fixed tasks, measure the **maximum task duration** an agent can handle with 50% success rate.
+
+**Key findings:**
+- The time horizon has **doubled approximately every 7 months** since 2019
+- Claude 3.7 Sonnet (Mar 2025): ~1 hour horizon
+- GPT-5 (late 2025): ~2 hours 17 minutes
+- Extrapolation: multi-day task capability within a few years
+
+**Why this matters:** Time horizon maps directly to real-world utility. A 1-hour agent can write a blog post or fix a bug. A 24-hour agent could run a full experiment pipeline. The doubling rate is one of the most striking quantitative facts about agent progress.
+
+---
+
+## Science-Specific Evaluation
+
+### PaperBench (2025)
+Tests ability to reproduce results from ML papers. PaperCoder (Seo et al., ICLR 2026) demonstrates SOTA on this benchmark by transforming papers into working code repositories.
+
+### LabBench (Biology, 2024)
+**FutureHouse** · Measures capabilities for biology research tasks. FutureHouse's agents outperform frontier models on retrieval precision and accuracy.
+
+### BixBench (Bioinformatics, 2024)
+**FutureHouse** · Bioinformatics-specific benchmark for scientific agents.
+
+---
+
+## Safety & Adversarial Evaluation
+
+### ST-WebAgentBench (2024)
+Safety and trustworthiness evaluation for web agents. Tests whether agents correctly follow safety instructions and avoid harmful actions.
+
+### AgentDojo (2024)
+Security benchmark specifically for tool-calling agents under prompt injection attacks.
+
+### AgentHarm (2024)
+Evaluates agent tendency toward harmful behaviors across multiple categories.
+
+---
+
+## The Benchmark Lifecycle Problem
+
+A pattern has emerged in agent benchmarking:
+
+1. **Release** — New benchmark with human baseline; agent baseline far below
+2. **Progress** — Models improve dramatically over 12-24 months
+3. **Saturation** — Top models approach human level; variance dominates
+4. **Contamination** — Training data likely includes benchmark solutions
+5. **Replacement** — A new, harder benchmark is released
+
+SWE-bench is currently in stage 3-4. WebArena and GAIA are in stage 2-3. OSWorld is in stage 1-2.
+
+**The deeper issue:** Every benchmark embeds assumptions about what "good" means. SWE-bench assumes GitHub issues are representative of real coding work. GAIA assumes its tasks represent general intelligence. As the field matures, evaluation methodology itself is becoming a research area.
+
+### Key Open Problems in Agent Evaluation
+
+- How do you evaluate open-ended research tasks?
+- How do you measure reliability over long task horizons without enormous cost?
+- How do you prevent benchmark contamination in an era of internet-scale training?
+- How do you evaluate multi-agent systems where individual performance is not the right unit?
+- How do you measure safety without being able to enumerate all failure modes?
+
+---
+
+*See also: [METR time horizons](science-agents.qmd#metr-measuring-ai-ability-to-complete-long-tasks-2025) · [SWE-bench in context](recent.qmd#swe-bench-the-scoreboard) · [Safety benchmarks](safety.qmd)*

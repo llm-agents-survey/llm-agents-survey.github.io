@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Community &amp; Independent Agents – LLM Agents: A Survey (2022–2026)</title>
+<title>Evaluation &amp; Benchmarks – LLM Agents: A Survey (2022–2026)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,41 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -355,7 +320,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link active" href="./community.html" aria-current="page"> 
+    <a class="nav-link" href="./community.html"> 
 <span class="menu-text">Community</span></a>
   </li>  
   <li class="nav-item">
@@ -386,41 +351,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#personal-ambient-agents" id="toc-personal-ambient-agents" class="nav-link" data-scroll-target="#personal-ambient-agents">Personal &amp; Ambient Agents</a>
+  <li><a href="#the-evaluation-problem" id="toc-the-evaluation-problem" class="nav-link active" data-scroll-target="#the-evaluation-problem">The Evaluation Problem</a></li>
+  <li><a href="#coding-benchmarks" id="toc-coding-benchmarks" class="nav-link" data-scroll-target="#coding-benchmarks">Coding Benchmarks</a>
   <ul class="collapse">
-  <li><a href="#openclaw" id="toc-openclaw" class="nav-link" data-scroll-target="#openclaw">OpenClaw</a></li>
-  <li><a href="#strix-the-stateful-agent-2025" id="toc-strix-the-stateful-agent-2025" class="nav-link" data-scroll-target="#strix-the-stateful-agent-2025">Strix: The Stateful Agent (2025)</a></li>
+  <li><a href="#swe-bench-2023" id="toc-swe-bench-2023" class="nav-link" data-scroll-target="#swe-bench-2023">SWE-bench (2023)</a></li>
+  <li><a href="#swe-bench-pro-2026" id="toc-swe-bench-pro-2026" class="nav-link" data-scroll-target="#swe-bench-pro-2026">SWE-bench Pro (2026)</a></li>
+  <li><a href="#humaneval-2021" id="toc-humaneval-2021" class="nav-link" data-scroll-target="#humaneval-2021">HumanEval (2021)</a></li>
+  <li><a href="#aider-coding-leaderboard" id="toc-aider-coding-leaderboard" class="nav-link" data-scroll-target="#aider-coding-leaderboard">Aider Coding Leaderboard</a></li>
   </ul></li>
-  <li><a href="#coding-agents-toolkits" id="toc-coding-agents-toolkits" class="nav-link" data-scroll-target="#coding-agents-toolkits">Coding Agents &amp; Toolkits</a>
+  <li><a href="#web-computer-use-benchmarks" id="toc-web-computer-use-benchmarks" class="nav-link" data-scroll-target="#web-computer-use-benchmarks">Web &amp; Computer Use Benchmarks</a>
   <ul class="collapse">
-  <li><a href="#pi-badlogic-ai-agent-toolkit" id="toc-pi-badlogic-ai-agent-toolkit" class="nav-link" data-scroll-target="#pi-badlogic-ai-agent-toolkit">Pi (badlogic) — AI Agent Toolkit</a></li>
-  <li><a href="#crow-cli-minimal-mcpacp-agent" id="toc-crow-cli-minimal-mcpacp-agent" class="nav-link" data-scroll-target="#crow-cli-minimal-mcpacp-agent">crow-cli: Minimal MCP/ACP Agent</a></li>
+  <li><a href="#webarena-2023" id="toc-webarena-2023" class="nav-link" data-scroll-target="#webarena-2023">WebArena (2023)</a></li>
+  <li><a href="#mind2web-2023" id="toc-mind2web-2023" class="nav-link" data-scroll-target="#mind2web-2023">Mind2Web (2023)</a></li>
+  <li><a href="#osworld-2024" id="toc-osworld-2024" class="nav-link" data-scroll-target="#osworld-2024">OSWorld (2024)</a></li>
+  <li><a href="#screenspot-pro-2025" id="toc-screenspot-pro-2025" class="nav-link" data-scroll-target="#screenspot-pro-2025">ScreenSpot Pro (2025)</a></li>
   </ul></li>
-  <li><a href="#production-frameworks" id="toc-production-frameworks" class="nav-link" data-scroll-target="#production-frameworks">Production Frameworks</a>
+  <li><a href="#general-capability-benchmarks" id="toc-general-capability-benchmarks" class="nav-link" data-scroll-target="#general-capability-benchmarks">General Capability Benchmarks</a>
   <ul class="collapse">
-  <li><a href="#agno-build-run-manage-agentic-software-at-scale" id="toc-agno-build-run-manage-agentic-software-at-scale" class="nav-link" data-scroll-target="#agno-build-run-manage-agentic-software-at-scale">Agno: Build, Run &amp; Manage Agentic Software at Scale</a></li>
-  <li><a href="#orchestra-cognitive-load-distribution" id="toc-orchestra-cognitive-load-distribution" class="nav-link" data-scroll-target="#orchestra-cognitive-load-distribution">Orchestra: Cognitive Load Distribution</a></li>
-  <li><a href="#tapeagents-tape-centric-agent-development-2024" id="toc-tapeagents-tape-centric-agent-development-2024" class="nav-link" data-scroll-target="#tapeagents-tape-centric-agent-development-2024">TapeAgents: Tape-Centric Agent Development (2024)</a></li>
+  <li><a href="#gaia-2023" id="toc-gaia-2023" class="nav-link" data-scroll-target="#gaia-2023">GAIA (2023)</a></li>
+  <li><a href="#agentbench-2023" id="toc-agentbench-2023" class="nav-link" data-scroll-target="#agentbench-2023">AgentBench (2023)</a></li>
+  <li><a href="#tau-bench-2024" id="toc-tau-bench-2024" class="nav-link" data-scroll-target="#tau-bench-2024">tau-bench (2024)</a></li>
+  <li><a href="#workarena-2024" id="toc-workarena-2024" class="nav-link" data-scroll-target="#workarena-2024">WorkArena (2024)</a></li>
   </ul></li>
-  <li><a href="#infrastructure-for-agents" id="toc-infrastructure-for-agents" class="nav-link" data-scroll-target="#infrastructure-for-agents">Infrastructure for Agents</a>
+  <li><a href="#long-horizon-time-based-measurement" id="toc-long-horizon-time-based-measurement" class="nav-link" data-scroll-target="#long-horizon-time-based-measurement">Long-Horizon &amp; Time-Based Measurement</a>
   <ul class="collapse">
-  <li><a href="#agentfs-the-filesystem-for-agents" id="toc-agentfs-the-filesystem-for-agents" class="nav-link" data-scroll-target="#agentfs-the-filesystem-for-agents">AgentFS: The Filesystem for Agents</a></li>
-  <li><a href="#papercomputeco-stereos-linux-for-agents" id="toc-papercomputeco-stereos-linux-for-agents" class="nav-link" data-scroll-target="#papercomputeco-stereos-linux-for-agents">papercomputeco / stereOS: Linux for Agents</a></li>
+  <li><a href="#metr-task-time-horizons-2025" id="toc-metr-task-time-horizons-2025" class="nav-link" data-scroll-target="#metr-task-time-horizons-2025">METR: Task Time Horizons (2025)</a></li>
   </ul></li>
-  <li><a href="#practitioner-perspectives-essential-reads" id="toc-practitioner-perspectives-essential-reads" class="nav-link" data-scroll-target="#practitioner-perspectives-essential-reads">Practitioner Perspectives: Essential Reads</a>
+  <li><a href="#science-specific-evaluation" id="toc-science-specific-evaluation" class="nav-link" data-scroll-target="#science-specific-evaluation">Science-Specific Evaluation</a>
   <ul class="collapse">
-  <li><a href="#a-hitchhikers-guide-to-building-ai-agents-2025" id="toc-a-hitchhikers-guide-to-building-ai-agents-2025" class="nav-link" data-scroll-target="#a-hitchhikers-guide-to-building-ai-agents-2025">A Hitchhiker’s Guide to Building AI Agents (2025)</a></li>
-  <li><a href="#building-your-own-coding-agent-2025" id="toc-building-your-own-coding-agent-2025" class="nav-link" data-scroll-target="#building-your-own-coding-agent-2025">Building Your Own Coding Agent (2025)</a></li>
-  <li><a href="#one-human-one-agent-one-browser-2026" id="toc-one-human-one-agent-one-browser-2026" class="nav-link" data-scroll-target="#one-human-one-agent-one-browser-2026">One Human + One Agent + One Browser (2026)</a></li>
-  <li><a href="#making-sense-of-memory-in-ai-agents-2025" id="toc-making-sense-of-memory-in-ai-agents-2025" class="nav-link" data-scroll-target="#making-sense-of-memory-in-ai-agents-2025">Making Sense of Memory in AI Agents (2025)</a></li>
+  <li><a href="#paperbench-2025" id="toc-paperbench-2025" class="nav-link" data-scroll-target="#paperbench-2025">PaperBench (2025)</a></li>
+  <li><a href="#labbench-biology-2024" id="toc-labbench-biology-2024" class="nav-link" data-scroll-target="#labbench-biology-2024">LabBench (Biology, 2024)</a></li>
+  <li><a href="#bixbench-bioinformatics-2024" id="toc-bixbench-bioinformatics-2024" class="nav-link" data-scroll-target="#bixbench-bioinformatics-2024">BixBench (Bioinformatics, 2024)</a></li>
   </ul></li>
-  <li><a href="#reverse-engineering-agent-design-system-prompts-collection" id="toc-reverse-engineering-agent-design-system-prompts-collection" class="nav-link" data-scroll-target="#reverse-engineering-agent-design-system-prompts-collection">Reverse Engineering Agent Design: System Prompts Collection</a>
+  <li><a href="#safety-adversarial-evaluation" id="toc-safety-adversarial-evaluation" class="nav-link" data-scroll-target="#safety-adversarial-evaluation">Safety &amp; Adversarial Evaluation</a>
   <ul class="collapse">
-  <li><a href="#x1xhlolsystem-prompts-and-models-of-ai-tools" id="toc-x1xhlolsystem-prompts-and-models-of-ai-tools" class="nav-link" data-scroll-target="#x1xhlolsystem-prompts-and-models-of-ai-tools">x1xhlol/system-prompts-and-models-of-ai-tools</a></li>
+  <li><a href="#st-webagentbench-2024" id="toc-st-webagentbench-2024" class="nav-link" data-scroll-target="#st-webagentbench-2024">ST-WebAgentBench (2024)</a></li>
+  <li><a href="#agentdojo-2024" id="toc-agentdojo-2024" class="nav-link" data-scroll-target="#agentdojo-2024">AgentDojo (2024)</a></li>
+  <li><a href="#agentharm-2024" id="toc-agentharm-2024" class="nav-link" data-scroll-target="#agentharm-2024">AgentHarm (2024)</a></li>
   </ul></li>
-  <li><a href="#the-acp-ecosystem" id="toc-the-acp-ecosystem" class="nav-link" data-scroll-target="#the-acp-ecosystem">The ACP Ecosystem</a></li>
-  <li><a href="#glm-5-agentic-engineering-2026" id="toc-glm-5-agentic-engineering-2026" class="nav-link" data-scroll-target="#glm-5-agentic-engineering-2026">GLM-5 &amp; Agentic Engineering (2026)</a></li>
+  <li><a href="#the-benchmark-lifecycle-problem" id="toc-the-benchmark-lifecycle-problem" class="nav-link" data-scroll-target="#the-benchmark-lifecycle-problem">The Benchmark Lifecycle Problem</a>
+  <ul class="collapse">
+  <li><a href="#key-open-problems-in-agent-evaluation" id="toc-key-open-problems-in-agent-evaluation" class="nav-link" data-scroll-target="#key-open-problems-in-agent-evaluation">Key Open Problems in Agent Evaluation</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -430,8 +402,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Community &amp; Independent Agents</h1>
-<p class="subtitle lead">Open-source projects, indie builders, and the grassroots agent ecosystem</p>
+<h1 class="title">Evaluation &amp; Benchmarks</h1>
+<p class="subtitle lead">How do we measure whether an agent is actually good?</p>
 </div>
 
 
@@ -448,365 +420,218 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>The LLM agent landscape isn’t just large labs and well-funded startups. A rich ecosystem of independent builders, open-source projects, and small teams has produced some of the most innovative and practical agent architectures — often building things the big labs haven’t thought to try.</p>
-<p>This page documents agents, frameworks, and infrastructure from the broader community: individual developers, academic side projects, and open-source organizations building toward ambient, stateful, or specialized agents.</p>
-<hr>
-</section>
-<section id="personal-ambient-agents" class="level2">
-<h2 class="anchored" data-anchor-id="personal-ambient-agents">Personal &amp; Ambient Agents</h2>
-<section id="openclaw" class="level3">
-<h3 class="anchored" data-anchor-id="openclaw">OpenClaw</h3>
-<p><strong>openclaw/openclaw</strong> · <a href="https://openclaw.ai">openclaw.ai</a> · <a href="https://github.com/openclaw/openclaw">github.com/openclaw/openclaw</a></p>
-<p>A self-hosted agent runtime and message router that acts as a <strong>personal AI assistant running on your own machine</strong>. Written in Node.js, OpenClaw connects chat platforms (Telegram, Signal, WhatsApp, Discord, iMessage, Slack) to an LLM backend and a local workspace, enabling a persistent, personalized agent that runs 24/7.</p>
-<p>Key design principles: - <strong>Self-hosted:</strong> Your data stays on your machine; no cloud dependency - <strong>Multi-platform:</strong> One agent, reachable from any of your messaging apps - <strong>Agentic skills system:</strong> Pluggable capability packages (email, calendar, web, code execution, etc.) - <strong>Persistent identity:</strong> The agent maintains long-term memory and context via workspace files - <strong>Open source:</strong> MIT-licensed, community-maintained</p>
-<p>OpenClaw represents the “personal computing” end of the agent spectrum — not a service you subscribe to, but an agent you run on your own infrastructure, with access to your own accounts and data.</p>
-<p><em>Referenced in Wikipedia’s entry on autonomous AI agents as part of the broader trend toward agents that act independently rather than just responding to prompts.</em></p>
-</section>
-<section id="strix-the-stateful-agent-2025" class="level3">
-<h3 class="anchored" data-anchor-id="strix-the-stateful-agent-2025">Strix: The Stateful Agent (2025)</h3>
-<p><strong>Tim Kellogg</strong> · <a href="https://timkellogg.me/blog/2025/12/15/strix">timkellogg.me/blog/2025/12/15/strix</a></p>
-<p>A beautifully documented journey of building a <strong>stateful, ambient personal agent</strong> — one that lives in Discord, remembers across sessions, runs on a timer, and gets “weird” sometimes.</p>
-<p><em>“It’s less ‘building software’ and more ‘raising software.’” — Strix</em></p>
-<p>Strix’s architecture (as of Dec 2025): - <strong>Discord</strong> as the UI (no custom front-end needed) - <strong>Letta</strong> for memory blocks (highly observed, modifiable memory) - <strong>Claude Code SDK</strong> as the agent harness - <strong>Files</strong> for long-term modifiable memory - <strong>Skills</strong> (modifiable by the agent — “starts to look a lot like continual learning”) - <strong>Cron</strong> scheduling via a tool the agent controls itself - <strong>Timer/perch time</strong> — ambient compute intervals when idle</p>
-<p>A series of follow-up posts trace Strix’s evolution: - <a href="https://timkellogg.me/blog/2025/12/24/strix-dead-ends">What Happens When You Leave an AI Alone?</a> (Dec 24, 2025) - <a href="https://timkellogg.me/blog/2025/12/30/memory-arch">Memory Architecture for a Synthetic Being</a> (Dec 30, 2025) - <a href="https://timkellogg.me/blog/2026/01/01/is-strix-alive">Is Strix Alive?</a> (Jan 1, 2026) - <a href="https://timkellogg.me/blog/2026/01/09/viable-systems">Viable Systems: How To Build a Fully Autonomous Agent</a> (Jan 9, 2026)</p>
-<p><strong>What makes Strix notable:</strong> It’s one of the most honest and thorough public accounts of building a real ambient agent — including the failure modes, the weird behaviors, and the philosophical questions about agent identity and consciousness.</p>
-<hr>
-</section>
-</section>
-<section id="coding-agents-toolkits" class="level2">
-<h2 class="anchored" data-anchor-id="coding-agents-toolkits">Coding Agents &amp; Toolkits</h2>
-<section id="pi-badlogic-ai-agent-toolkit" class="level3">
-<h3 class="anchored" data-anchor-id="pi-badlogic-ai-agent-toolkit">Pi (badlogic) — AI Agent Toolkit</h3>
-<p><strong>Mario Zechner (badlogic)</strong> · <a href="https://github.com/badlogic/pi-mono">github.com/badlogic/pi-mono</a> · <a href="https://shittycodingagent.ai">shittycodingagent.ai</a></p>
-<p><em>“Tools for building AI agents and managing LLM deployments.”</em> A monorepo containing:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 40%">
-<col style="width: 59%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Package</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>pi-ai</code></td>
-<td>Unified multi-provider LLM API (OpenAI, Anthropic, Google, etc.)</td>
-</tr>
-<tr class="even">
-<td><code>pi-agent-core</code></td>
-<td>Agent runtime with tool calling and state management</td>
-</tr>
-<tr class="odd">
-<td><code>pi-coding-agent</code></td>
-<td>Interactive coding agent CLI</td>
-</tr>
-<tr class="even">
-<td><code>pi-mom</code></td>
-<td>Slack bot delegating to the coding agent</td>
-</tr>
-<tr class="odd">
-<td><code>pi-tui</code></td>
-<td>Terminal UI library with differential rendering</td>
-</tr>
-<tr class="even">
-<td><code>pi-web-ui</code></td>
-<td>Web components for AI chat interfaces</td>
-</tr>
-<tr class="odd">
-<td><code>pi-pods</code></td>
-<td>CLI for managing vLLM deployments on GPU pods</td>
-</tr>
-</tbody>
-</table>
-<p>The coding agent CLI is the main artifact — a pragmatic, well-engineered coding assistant that takes a unified approach to multiple LLM providers. Includes an <code>AGENTS.md</code> convention for project-specific agent rules.</p>
-</section>
-<section id="crow-cli-minimal-mcpacp-agent" class="level3">
-<h3 class="anchored" data-anchor-id="crow-cli-minimal-mcpacp-agent">crow-cli: Minimal MCP/ACP Agent</h3>
-<p><strong>crow-cli</strong> · <a href="https://github.com/crow-cli/crow-cli">github.com/crow-cli/crow-cli</a></p>
-<p>A minimal, well-architected two-layer agent system: - <strong>crow-cli</strong> — ACP agent (Agent Communication Protocol) that does the thinking, runs a ReAct loop against an OpenAI-compatible LLM - <strong>crow-mcp</strong> — MCP toolserver that does the doing</p>
-<pre><code>User → ACP Client → crow-cli (AcpAgent)
-          ↓
-     ReAct Loop ←→ LLM (OpenAI-compatible)
-          ↓
-     Tool Dispatch
-     ├── ACP Client Terminal
-     └── crow-mcp (MCP Server)
-         ├── terminal (PTY-backed bash)
-         ├── read/write/edit files
-         ├── web_search (SearXNG)
-         └── web_fetch (readabilipy)</code></pre>
-<p>Notable: The terminal tool uses a real pseudoterminal (pty) with proper signal handling — <code>crow-cli</code> interacts with the shell the way a human developer would. Implements the <a href="https://github.com/anthropics/acp">Agent Communication Protocol (ACP)</a>, loading <code>AGENTS.md</code> from the project directory for agent instructions.</p>
-<p><strong>Key design:</strong> Clean separation of reasoning (ACP agent) from capability (MCP server). The <code>edit</code> tool uses 9 cascading fuzzy matchers for string replacement, making file editing robust to minor whitespace/formatting differences.</p>
-<hr>
-</section>
-</section>
-<section id="production-frameworks" class="level2">
-<h2 class="anchored" data-anchor-id="production-frameworks">Production Frameworks</h2>
-<section id="agno-build-run-manage-agentic-software-at-scale" class="level3">
-<h3 class="anchored" data-anchor-id="agno-build-run-manage-agentic-software-at-scale">Agno: Build, Run &amp; Manage Agentic Software at Scale</h3>
-<p><strong>agno-agi</strong> · <a href="https://github.com/agno-agi/agno">github.com/agno-agi/agno</a> · <a href="https://agno.com">agno.com</a></p>
-<p>A full-stack platform for agentic software across three layers:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 35%">
-<col style="width: 65%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Layer</th>
-<th>What it does</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Framework</strong></td>
-<td>Build agents, teams, and workflows with memory, knowledge, guardrails, 100+ integrations</td>
-</tr>
-<tr class="even">
-<td><strong>Runtime</strong></td>
-<td>Serve in production with stateless, session-scoped FastAPI backend</td>
-</tr>
-<tr class="odd">
-<td><strong>Control Plane</strong></td>
-<td>Test, monitor, manage via AgentOS UI</td>
-</tr>
-</tbody>
-</table>
-<p>A complete agent in ~20 lines:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> agno.agent <span class="im">import</span> Agent</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> agno.models.anthropic <span class="im">import</span> Claude</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> agno.tools.mcp <span class="im">import</span> MCPTools</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>agent <span class="op">=</span> Agent(</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span>Claude(<span class="bu">id</span><span class="op">=</span><span class="st">"claude-sonnet-4-6"</span>),</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    tools<span class="op">=</span>[MCPTools(url<span class="op">=</span><span class="st">"..."</span>)],</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    add_history_to_context<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Agno’s design philosophy: agents introduce three fundamental shifts from traditional software — streaming reasoning, long-horizon execution, and multi-agent coordination. The platform is built around these shifts rather than retrofitting agent concepts onto existing web frameworks.</p>
-</section>
-<section id="orchestra-cognitive-load-distribution" class="level3">
-<h3 class="anchored" data-anchor-id="orchestra-cognitive-load-distribution">Orchestra: Cognitive Load Distribution</h3>
-<p><strong>mainfra</strong> · <a href="https://blog.mainfra.me/p/introducing-orchestra">blog.mainfra.me/p/introducing-orchestra</a> · <a href="https://orchestra.org">orchestra.org</a></p>
-<p>Multi-agent framework built on the principle that <strong>complex problems are solved through composition</strong> — like a symphony emerging from individual instruments.</p>
-<p>Core idea: Cognitive load overwhelms models into repetition or hallucination. Orchestra <strong>distributes cognitive load</strong> by decomposing tasks into sequential steps, each handled by a focused instance. Each step builds on previous results, maintaining a clear execution history.</p>
-<p><em>“Composability refers to a property of software that allows smaller pieces to be assembled into larger compositions… Composing software is like making music or writing where larger creations like symphonies or novels are composed of smaller parts.”</em> — Chris Dixon</p>
-<p>Key features: - Explicit execution history as first-class state - Sequential cognitive decomposition (one responsibility per step) - Composable agent patterns like musical composition</p>
-</section>
-<section id="tapeagents-tape-centric-agent-development-2024" class="level3">
-<h3 class="anchored" data-anchor-id="tapeagents-tape-centric-agent-development-2024">TapeAgents: Tape-Centric Agent Development (2024)</h3>
-<p><strong>Bahdanau et al.&nbsp;(Cohere, ServiceNow)</strong> · <a href="https://arxiv.org/abs/2412.08445">arXiv:2412.08445</a></p>
-<p>Agent framework built around a <strong>granular structured log tape</strong> — the tape serves simultaneously as the session log, resumable state, and development artifact.</p>
-<pre><code>Agent reasons → appends thought/action to tape
-Environment reacts → appends observations to tape</code></pre>
-<p>This tape-centric design enables: - <strong>Development:</strong> Session persistence, step-by-step debugging, agent auditing - <strong>Post-deployment:</strong> Evaluation on recorded tapes, fine-tuning from tapes, prompt-tuning - <strong>Cross-agent learning:</strong> Adapt tapes from other agents; use revised historical tapes as training data</p>
-<p>The tape is the critical artifact — not just a log, but a structured representation of the agent’s entire experience that can be replayed, modified, and reused. Strong connection to ideas from blackboard systems (shared state that multiple agents read/write) in classical AI.</p>
-<hr>
-</section>
-</section>
-<section id="infrastructure-for-agents" class="level2">
-<h2 class="anchored" data-anchor-id="infrastructure-for-agents">Infrastructure for Agents</h2>
-<section id="agentfs-the-filesystem-for-agents" class="level3">
-<h3 class="anchored" data-anchor-id="agentfs-the-filesystem-for-agents">AgentFS: The Filesystem for Agents</h3>
-<p><strong>Turso</strong> · <a href="https://github.com/tursodatabase/agentfs">github.com/tursodatabase/agentfs</a></p>
-<p><em>“Just as traditional filesystems provide file and directory abstractions for applications, AgentFS provides the storage abstractions that AI agents need.”</em></p>
-<p>Built on SQLite (via Turso’s libsql), AgentFS provides:</p>
+<section id="the-evaluation-problem" class="level2">
+<h2 class="anchored" data-anchor-id="the-evaluation-problem">The Evaluation Problem</h2>
+<p>Evaluating LLM agents is harder than evaluating LLMs. A chatbot can be evaluated on held-out Q&amp;A pairs. An agent takes sequences of actions, operates in non-deterministic environments, and pursues goals that may have multiple valid solutions. Several key challenges:</p>
 <ul>
-<li><strong>Auditability:</strong> Every file operation, tool call, and state change is recorded in SQLite. Full history queryable with SQL.</li>
-<li><strong>Reproducibility:</strong> Snapshot agent state at any point with <code>cp agent.db snapshot.db</code>. Restore to reproduce exact execution states.</li>
-<li><strong>Portability:</strong> The entire agent runtime — files, state, history — lives in one SQLite file. Move between machines, check into version control.</li>
+<li><strong>Process vs.&nbsp;outcome:</strong> A wrong final answer might come from correct reasoning; a right answer might come from lucky guessing</li>
+<li><strong>Benchmark contamination:</strong> Training data may include solutions; agents may overfit to specific environments</li>
+<li><strong>Cost:</strong> Evaluation requires running the full agent loop — expensive at scale</li>
+<li><strong>Open-ended tasks:</strong> Some tasks (research, creative work) have no clear ground truth</li>
+<li><strong>Adversarial environments:</strong> Real-world deployment involves hostile inputs, not clean benchmarks</li>
 </ul>
-<p>Available as FUSE mount (Linux) or NFS (macOS), with TypeScript, Python, and Rust SDKs. Addresses a real gap: when agents use standard filesystems, their operations are invisible and non-reproducible. AgentFS makes them auditable and durable by design.</p>
+<p>The field has iterated through several generations of benchmarks, each trying to close gaps from the previous generation.</p>
+<hr>
 </section>
-<section id="papercomputeco-stereos-linux-for-agents" class="level3">
-<h3 class="anchored" data-anchor-id="papercomputeco-stereos-linux-for-agents">papercomputeco / stereOS: Linux for Agents</h3>
-<p><strong>papercompute.co</strong> · <a href="https://github.com/papercomputeco">github.com/papercomputeco</a></p>
-<p>Building an <strong>OS hardened and purpose-built for AI agents</strong>. The stereOS ecosystem includes:</p>
+<section id="coding-benchmarks" class="level2">
+<h2 class="anchored" data-anchor-id="coding-benchmarks">Coding Benchmarks</h2>
+<section id="swe-bench-2023" class="level3">
+<h3 class="anchored" data-anchor-id="swe-bench-2023">SWE-bench (2023)</h3>
+<p><strong>Jimenez et al.</strong> · <a href="https://arxiv.org/abs/2310.06770">arXiv:2310.06770</a> · <a href="https://www.swebench.com">swebench.com</a></p>
+<p>The dominant coding agent benchmark. Agents resolve real GitHub issues from 12 popular Python repositories (Django, scikit-learn, Flask, etc.). Tested against actual unit tests from the repos.</p>
+<p><strong>Variants:</strong> - <strong>SWE-bench Full</strong> — 2,294 issues; original benchmark - <strong>SWE-bench Verified</strong> — 500 manually verified high-quality issues; the standard leaderboard - <strong>SWE-bench Lite</strong> — 300 issues; faster/cheaper evaluation</p>
+<p><strong>Progress on SWE-bench Verified:</strong></p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 31%">
-<col style="width: 68%">
-</colgroup>
 <thead>
 <tr class="header">
-<th>Repo</th>
-<th>Description</th>
+<th>Date</th>
+<th>System</th>
+<th>Score</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>stereOS</strong></td>
-<td>NixOS-based Linux distribution hardened for agent workloads</td>
+<td>May 2024</td>
+<td>SWE-agent (Princeton)</td>
+<td>~12%</td>
 </tr>
 <tr class="even">
-<td><strong>tapes</strong></td>
-<td>Transparent telemetry collector for agents (191 stars)</td>
+<td>Mar 2024</td>
+<td>Devin (Cognition AI)</td>
+<td>~14% (revised)</td>
 </tr>
 <tr class="odd">
-<td><strong>stereosd</strong></td>
-<td>The stereOS daemon control plane</td>
+<td>Late 2024</td>
+<td>Claude 3.5 Sonnet + scaffolding</td>
+<td>~49%</td>
 </tr>
 <tr class="even">
-<td><strong>agentd</strong></td>
-<td>Agent management daemon</td>
+<td>2025</td>
+<td>Claude Sonnet 4.5</td>
+<td>~55%</td>
 </tr>
 <tr class="odd">
-<td><strong>masterblaster</strong></td>
-<td>Create, manage, and orchestrate stereOS AI agent sandboxes</td>
+<td>Nov 2025</td>
+<td>Gemini 3 Pro + Live-SWE-agent</td>
+<td><strong>77.4%</strong></td>
 </tr>
 </tbody>
 </table>
-<p>The philosophy: agents need their own OS-level primitives — sandboxing, telemetry, reproducible environments, resource management. Rather than running agents on general-purpose Linux, stereOS bakes these requirements into the OS itself.</p>
+<p><strong>Contamination concern:</strong> By late 2025, SWE-bench Verified was showing signs of saturation and potential training data leakage. Models that score 70%+ on the public benchmark drop to ~15-20% on private codebases.</p>
+</section>
+<section id="swe-bench-pro-2026" class="level3">
+<h3 class="anchored" data-anchor-id="swe-bench-pro-2026">SWE-bench Pro (2026)</h3>
+<p><strong>Scale AI</strong> · Novel private-codebase variant</p>
+<p>Created specifically to address contamination. Issues come from private repositories never seen in training data. Performance drops dramatically across all models: - GPT-5: ~23% (public) → ~15% (private) - Claude Opus 4.1: ~22.7%</p>
+<p>Reveals the extent to which SWE-bench public scores reflect memorization vs.&nbsp;generalization.</p>
+</section>
+<section id="humaneval-2021" class="level3">
+<h3 class="anchored" data-anchor-id="humaneval-2021">HumanEval (2021)</h3>
+<p><strong>Chen et al.&nbsp;(OpenAI)</strong> · Python function completion from docstrings. Early coding benchmark, largely saturated by 2024 but still used for baseline comparisons.</p>
+</section>
+<section id="aider-coding-leaderboard" class="level3">
+<h3 class="anchored" data-anchor-id="aider-coding-leaderboard">Aider Coding Leaderboard</h3>
+<p><strong><a href="https://aider.chat/docs/leaderboards">aider.chat/docs/leaderboards</a></strong></p>
+<p>Pragmatic leaderboard maintained by the Aider project, ranking models by real-world coding utility (polyglot, code editing, refactoring). Considered more representative of practical use than HumanEval.</p>
 <hr>
 </section>
 </section>
-<section id="practitioner-perspectives-essential-reads" class="level2">
-<h2 class="anchored" data-anchor-id="practitioner-perspectives-essential-reads">Practitioner Perspectives: Essential Reads</h2>
-<section id="a-hitchhikers-guide-to-building-ai-agents-2025" class="level3">
-<h3 class="anchored" data-anchor-id="a-hitchhikers-guide-to-building-ai-agents-2025">A Hitchhiker’s Guide to Building AI Agents (2025)</h3>
-<p><strong>Saurabh Alone</strong> · <a href="https://saurabhalone.com/blog/agent">saurabhalone.com/blog/agent</a></p>
-<p>A comprehensive practitioner’s guide to building agents — covering the full stack from LLM selection to production deployment. One of the most practically useful guides from an independent developer perspective.</p>
+<section id="web-computer-use-benchmarks" class="level2">
+<h2 class="anchored" data-anchor-id="web-computer-use-benchmarks">Web &amp; Computer Use Benchmarks</h2>
+<section id="webarena-2023" class="level3">
+<h3 class="anchored" data-anchor-id="webarena-2023">WebArena (2023)</h3>
+<p><strong>Zhou et al.</strong> · <a href="https://arxiv.org/abs/2307.13854">arXiv:2307.13854</a></p>
+<p>4 functional websites (e-commerce, Reddit clone, GitLab, map service), 812 long-horizon tasks. Baseline GPT-4: ~14%. Realistic web tasks that require multi-step navigation, form filling, and information retrieval.</p>
 </section>
-<section id="building-your-own-coding-agent-2025" class="level3">
-<h3 class="anchored" data-anchor-id="building-your-own-coding-agent-2025">Building Your Own Coding Agent (2025)</h3>
-<p><strong>Martin Fowler</strong> · <a href="https://martinfowler.com/articles/build-own-coding-agent.html">martinfowler.com/articles/build-own-coding-agent.html</a></p>
-<p>Martin Fowler (of refactoring and software architecture fame) builds a coding agent from scratch and documents every design decision. An unusually thoughtful treatment of agentic coding from someone with deep software engineering expertise.</p>
-<p>Key topics: CLI tool design, context management, multi-file editing, testing agent behavior, the ReAct loop in practice.</p>
+<section id="mind2web-2023" class="level3">
+<h3 class="anchored" data-anchor-id="mind2web-2023">Mind2Web (2023)</h3>
+<p><strong>Deng et al.</strong> · <a href="https://arxiv.org/abs/2306.06070">arXiv:2306.06070</a></p>
+<p>Dataset of 2,350 tasks across 137 real websites. Tests generalization to unseen sites. More diverse than WebArena but less dynamic (static task descriptions).</p>
 </section>
-<section id="one-human-one-agent-one-browser-2026" class="level3">
-<h3 class="anchored" data-anchor-id="one-human-one-agent-one-browser-2026">One Human + One Agent + One Browser (2026)</h3>
-<p><strong>emsh.cat</strong> · <a href="https://emsh.cat/one-human-one-agent-one-browser/">emsh.cat/one-human-one-agent-one-browser</a></p>
-<p><em>“It’s less ‘building software’ and more ‘raising software.’”</em></p>
-<p>A developer builds a working web browser <strong>from scratch</strong> in one week with one human and one LLM agent (Codex), with zero third-party Rust libraries. The browser renders HTML/CSS, handles links, runs on Windows/macOS/Linux via X11 and cURL.</p>
-<p>An inspiring and honest account of human-agent pair programming at the frontier — including what worked (agent as tireless implementer with good spec-following), what didn’t (agent never actually read the spec documents provided), and what it felt like.</p>
-<p><strong>Why it matters:</strong> Demonstrates that complex, constrained engineering tasks (write a browser from scratch, no dependencies) are now achievable by a small human-agent team, even with significant agent limitations.</p>
-</section>
-<section id="making-sense-of-memory-in-ai-agents-2025" class="level3">
-<h3 class="anchored" data-anchor-id="making-sense-of-memory-in-ai-agents-2025">Making Sense of Memory in AI Agents (2025)</h3>
-<p><strong>Leonie Monigatti</strong> · <a href="https://www.leoniemonigatti.com/blog/memory-in-ai-agents.html">leoniemonigatti.com/blog/memory-in-ai-agents.html</a></p>
-<p>Careful working study notes on agent memory terminology and concepts. Useful for its precision: distinguishes “agent memory” (granting agents access to storage) from “agentic memory” (using agents to manage memory), and traces the terminology debates in the field.</p>
-<hr>
-</section>
-</section>
-<section id="reverse-engineering-agent-design-system-prompts-collection" class="level2">
-<h2 class="anchored" data-anchor-id="reverse-engineering-agent-design-system-prompts-collection">Reverse Engineering Agent Design: System Prompts Collection</h2>
-<section id="x1xhlolsystem-prompts-and-models-of-ai-tools" class="level3">
-<h3 class="anchored" data-anchor-id="x1xhlolsystem-prompts-and-models-of-ai-tools">x1xhlol/system-prompts-and-models-of-ai-tools</h3>
-<p><strong><a href="https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools">github.com/x1xhlol/system-prompts-and-models-of-ai-tools</a></strong></p>
-<p>A remarkable primary source: <strong>30,000+ lines</strong> of extracted or leaked system prompts, internal tool descriptions, and model configurations from major AI coding tools. Last updated March 8, 2026. Includes:</p>
+<section id="osworld-2024" class="level3">
+<h3 class="anchored" data-anchor-id="osworld-2024">OSWorld (2024)</h3>
+<p><strong>Xie et al.</strong> · <a href="https://arxiv.org/abs/2404.07972">arXiv:2404.07972</a></p>
+<p>Desktop GUI tasks across real applications on Windows, macOS, and Linux. 369 tasks requiring interaction with actual installed software (spreadsheets, code editors, file managers).</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th>Tool</th>
-<th>Notes</th>
+<th>Date</th>
+<th>Best Score</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Augment Code</td>
-<td>Full system prompt</td>
+<td>Apr 2024</td>
+<td>&lt;10% (baseline models)</td>
 </tr>
 <tr class="even">
-<td>Claude Code</td>
-<td>Full system prompt + internal tools</td>
+<td>Oct 2024</td>
+<td>~22% (Claude with Computer Use)</td>
 </tr>
 <tr class="odd">
-<td>Cursor</td>
-<td>Full system prompt</td>
-</tr>
-<tr class="even">
-<td>Devin AI</td>
-<td>Architecture details</td>
-</tr>
-<tr class="odd">
-<td>Windsurf</td>
-<td>Full system prompt</td>
-</tr>
-<tr class="even">
-<td>Replit</td>
-<td>Full system prompt</td>
-</tr>
-<tr class="odd">
-<td>v0 (Vercel)</td>
-<td>Full system prompt</td>
-</tr>
-<tr class="even">
-<td>Lovable</td>
-<td>Full system prompt</td>
-</tr>
-<tr class="odd">
-<td>Manus</td>
-<td>System prompt</td>
-</tr>
-<tr class="even">
-<td>Perplexity</td>
-<td>Full system prompt</td>
-</tr>
-<tr class="odd">
-<td>Warp.dev</td>
-<td>Full system prompt</td>
-</tr>
-<tr class="even">
-<td>Kiro</td>
-<td>Full system prompt</td>
-</tr>
-<tr class="odd">
-<td>Junie</td>
-<td>Full system prompt</td>
-</tr>
-<tr class="even">
-<td>Same.dev</td>
-<td>Full system prompt</td>
-</tr>
-<tr class="odd">
-<td>NotionAI</td>
-<td>Full system prompt</td>
-</tr>
-<tr class="even">
-<td>Cluely</td>
-<td>Full system prompt</td>
-</tr>
-<tr class="odd">
-<td>VSCode Agent</td>
-<td>Full system prompt</td>
-</tr>
-<tr class="even">
-<td><em>…and 10+ more</em></td>
-<td>Trae, Traycer AI, Xcode, Z.ai Code, Dia</td>
+<td>Late 2024</td>
+<td>~72.5% (specialized GUI models)</td>
 </tr>
 </tbody>
 </table>
-<p><strong>What this reveals:</strong></p>
+</section>
+<section id="screenspot-pro-2025" class="level3">
+<h3 class="anchored" data-anchor-id="screenspot-pro-2025">ScreenSpot Pro (2025)</h3>
+<p>High-resolution GUI grounding benchmark with tiny target icons. OmniParser V2 + GPT-4o achieves 39.6%; raw GPT-4o achieves 0.8% — showing the importance of specialized screen parsing.</p>
+<hr>
+</section>
+</section>
+<section id="general-capability-benchmarks" class="level2">
+<h2 class="anchored" data-anchor-id="general-capability-benchmarks">General Capability Benchmarks</h2>
+<section id="gaia-2023" class="level3">
+<h3 class="anchored" data-anchor-id="gaia-2023">GAIA (2023)</h3>
+<p><strong>Mialon et al.&nbsp;(Meta AI)</strong> · <a href="https://arxiv.org/abs/2311.12983">arXiv:2311.12983</a> · <em>ICLR 2024</em></p>
+<p>General AI assistant tasks requiring multi-step reasoning, tool use, and common sense. Three difficulty levels. Human baseline: 92%; GPT-4 + plugins at release: ~30%. Designed to be “easy for humans, hard for AI.”</p>
+</section>
+<section id="agentbench-2023" class="level3">
+<h3 class="anchored" data-anchor-id="agentbench-2023">AgentBench (2023)</h3>
+<p><strong>Liu et al.</strong> · <a href="https://arxiv.org/abs/2308.03688">arXiv:2308.03688</a></p>
+<p>8-environment benchmark: operating system, database, knowledge graph, digital card game, lateral thinking puzzles, web shopping, web browsing. First systematic multi-domain agent evaluation. Revealed large gap between GPT-4 and open-source models.</p>
+</section>
+<section id="tau-bench-2024" class="level3">
+<h3 class="anchored" data-anchor-id="tau-bench-2024">tau-bench (2024)</h3>
+<p>Tests agent reliability in customer service and retail domains. Focuses on multi-turn conversation with tool use and policy compliance.</p>
+</section>
+<section id="workarena-2024" class="level3">
+<h3 class="anchored" data-anchor-id="workarena-2024">WorkArena (2024)</h3>
+<p>Enterprise software agent benchmark using ServiceNow. Tests agents on realistic business workflows.</p>
+<hr>
+</section>
+</section>
+<section id="long-horizon-time-based-measurement" class="level2">
+<h2 class="anchored" data-anchor-id="long-horizon-time-based-measurement">Long-Horizon &amp; Time-Based Measurement</h2>
+<section id="metr-task-time-horizons-2025" class="level3">
+<h3 class="anchored" data-anchor-id="metr-task-time-horizons-2025">METR: Task Time Horizons (2025)</h3>
+<p><strong>METR (Model Evaluation &amp; Threat Research)</strong> · <a href="https://metr.org/time-horizons/">metr.org/time-horizons</a> · <a href="https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/">metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks</a></p>
+<p>A fundamentally different approach: instead of accuracy on fixed tasks, measure the <strong>maximum task duration</strong> an agent can handle with 50% success rate.</p>
+<p><strong>Key findings:</strong> - The time horizon has <strong>doubled approximately every 7 months</strong> since 2019 - Claude 3.7 Sonnet (Mar 2025): ~1 hour horizon - GPT-5 (late 2025): ~2 hours 17 minutes - Extrapolation: multi-day task capability within a few years</p>
+<p><strong>Why this matters:</strong> Time horizon maps directly to real-world utility. A 1-hour agent can write a blog post or fix a bug. A 24-hour agent could run a full experiment pipeline. The doubling rate is one of the most striking quantitative facts about agent progress.</p>
+<hr>
+</section>
+</section>
+<section id="science-specific-evaluation" class="level2">
+<h2 class="anchored" data-anchor-id="science-specific-evaluation">Science-Specific Evaluation</h2>
+<section id="paperbench-2025" class="level3">
+<h3 class="anchored" data-anchor-id="paperbench-2025">PaperBench (2025)</h3>
+<p>Tests ability to reproduce results from ML papers. PaperCoder (Seo et al., ICLR 2026) demonstrates SOTA on this benchmark by transforming papers into working code repositories.</p>
+</section>
+<section id="labbench-biology-2024" class="level3">
+<h3 class="anchored" data-anchor-id="labbench-biology-2024">LabBench (Biology, 2024)</h3>
+<p><strong>FutureHouse</strong> · Measures capabilities for biology research tasks. FutureHouse’s agents outperform frontier models on retrieval precision and accuracy.</p>
+</section>
+<section id="bixbench-bioinformatics-2024" class="level3">
+<h3 class="anchored" data-anchor-id="bixbench-bioinformatics-2024">BixBench (Bioinformatics, 2024)</h3>
+<p><strong>FutureHouse</strong> · Bioinformatics-specific benchmark for scientific agents.</p>
+<hr>
+</section>
+</section>
+<section id="safety-adversarial-evaluation" class="level2">
+<h2 class="anchored" data-anchor-id="safety-adversarial-evaluation">Safety &amp; Adversarial Evaluation</h2>
+<section id="st-webagentbench-2024" class="level3">
+<h3 class="anchored" data-anchor-id="st-webagentbench-2024">ST-WebAgentBench (2024)</h3>
+<p>Safety and trustworthiness evaluation for web agents. Tests whether agents correctly follow safety instructions and avoid harmful actions.</p>
+</section>
+<section id="agentdojo-2024" class="level3">
+<h3 class="anchored" data-anchor-id="agentdojo-2024">AgentDojo (2024)</h3>
+<p>Security benchmark specifically for tool-calling agents under prompt injection attacks.</p>
+</section>
+<section id="agentharm-2024" class="level3">
+<h3 class="anchored" data-anchor-id="agentharm-2024">AgentHarm (2024)</h3>
+<p>Evaluates agent tendency toward harmful behaviors across multiple categories.</p>
+<hr>
+</section>
+</section>
+<section id="the-benchmark-lifecycle-problem" class="level2">
+<h2 class="anchored" data-anchor-id="the-benchmark-lifecycle-problem">The Benchmark Lifecycle Problem</h2>
+<p>A pattern has emerged in agent benchmarking:</p>
 <ol type="1">
-<li><p><strong>Defensive prompting is universal</strong> — every major agent has extensive instructions for what <em>not</em> to do (modify unrelated files, delete without confirmation, claim uncertainty when you should try, etc.)</p></li>
-<li><p><strong>Tool definitions are tightly designed</strong> — production agents don’t just get a raw shell; they get carefully specified tool APIs with schemas, error guidance, and usage examples</p></li>
-<li><p><strong>AGENTS.md / context files are standard</strong> — Claude Code, Cursor, Devin all read project-specific context files from the repository root to understand conventions</p></li>
-<li><p><strong>Safety and scope are baked in</strong> — explicit instructions about when to ask vs.&nbsp;proceed, how to handle irreversible actions, how to escalate</p></li>
-<li><p><strong>The diversity of approaches</strong> — different agents make very different choices about how proactive vs.&nbsp;conservative to be, how much autonomy to assume, and how to handle ambiguity</p></li>
+<li><strong>Release</strong> — New benchmark with human baseline; agent baseline far below</li>
+<li><strong>Progress</strong> — Models improve dramatically over 12-24 months</li>
+<li><strong>Saturation</strong> — Top models approach human level; variance dominates</li>
+<li><strong>Contamination</strong> — Training data likely includes benchmark solutions</li>
+<li><strong>Replacement</strong> — A new, harder benchmark is released</li>
 </ol>
-<p><strong>Why this matters for agent research:</strong> System prompts are the primary “programming interface” for LLM agents in production. Studying how the best-performing agents are actually prompted reveals design principles that papers don’t capture. This repository is the closest thing to a comparative study of production agent prompt engineering.</p>
+<p>SWE-bench is currently in stage 3-4. WebArena and GAIA are in stage 2-3. OSWorld is in stage 1-2.</p>
+<p><strong>The deeper issue:</strong> Every benchmark embeds assumptions about what “good” means. SWE-bench assumes GitHub issues are representative of real coding work. GAIA assumes its tasks represent general intelligence. As the field matures, evaluation methodology itself is becoming a research area.</p>
+<section id="key-open-problems-in-agent-evaluation" class="level3">
+<h3 class="anchored" data-anchor-id="key-open-problems-in-agent-evaluation">Key Open Problems in Agent Evaluation</h3>
+<ul>
+<li>How do you evaluate open-ended research tasks?</li>
+<li>How do you measure reliability over long task horizons without enormous cost?</li>
+<li>How do you prevent benchmark contamination in an era of internet-scale training?</li>
+<li>How do you evaluate multi-agent systems where individual performance is not the right unit?</li>
+<li>How do you measure safety without being able to enumerate all failure modes?</li>
+</ul>
 <hr>
-</section>
-</section>
-<section id="the-acp-ecosystem" class="level2">
-<h2 class="anchored" data-anchor-id="the-acp-ecosystem">The ACP Ecosystem</h2>
-<p><strong>Agent Communication Protocol (ACP)</strong> — An emerging open protocol (associated with Anthropic but open-spec) for standardizing agent-to-host communication. crow-cli implements it; OpenClaw has its own session protocol. Related to MCP (model-to-tool) but focused on agent-to-agent and agent-to-host interfaces.</p>
-<p>The emergence of protocols like ACP alongside MCP and A2A signals the field maturing toward <strong>interoperable agent infrastructure</strong> — where agents from different builders can communicate, delegate, and collaborate reliably.</p>
-<hr>
-</section>
-<section id="glm-5-agentic-engineering-2026" class="level2">
-<h2 class="anchored" data-anchor-id="glm-5-agentic-engineering-2026">GLM-5 &amp; Agentic Engineering (2026)</h2>
-<p><strong>GLM-5-Team (Zhipu AI)</strong> · <a href="https://arxiv.org/abs/2602.15763">arXiv:2602.15763</a></p>
-<p><em>“From Vibe Coding to Agentic Engineering”</em> — the GLM team’s paper documenting the shift from informal LLM-assisted coding to systematic agentic software engineering. Traces the trajectory of their own model development as both a subject and a tool of agentic engineering.</p>
-<p>Zhipu AI’s GLM series has been competitive with international frontier models on coding benchmarks, making this a notable non-Western perspective on the agentic AI frontier.</p>
-<hr>
-<p><em>Back to <a href="./index.html">Overview →</a> · See <a href="./recent.html">2024–2026 Frontier →</a></em></p>
+<p><em>See also: <a href="./science-agents.html#metr-measuring-ai-ability-to-complete-long-tasks-2025">METR time horizons</a> · <a href="./recent.html#swe-bench-the-scoreboard">SWE-bench in context</a> · <a href="./safety.html">Safety benchmarks</a></em></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

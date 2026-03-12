@@ -266,29 +266,59 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Taxonomy</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./foundations.html"> 
-<span class="menu-text">Foundations</span></a>
+    <a class="nav-link" href="./timeline.html"> 
+<span class="menu-text">Timeline</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./reasoning.html"> 
-<span class="menu-text">Reasoning &amp; Planning</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-core-areas" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Core Areas</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-core-areas">    
+        <li>
+    <a class="dropdown-item" href="./foundations.html">
+ <span class="dropdown-text">Foundations (2022–2023)</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./multiagent.html"> 
-<span class="menu-text">Multi-Agent</span></a>
+        <li>
+    <a class="dropdown-item" href="./reasoning.html">
+ <span class="dropdown-text">Reasoning &amp; Planning</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./memory-tools.html"> 
-<span class="menu-text">Memory &amp; Tools</span></a>
+        <li>
+    <a class="dropdown-item" href="./multiagent.html">
+ <span class="dropdown-text">Multi-Agent Systems</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./memory-tools.html">
+ <span class="dropdown-text">Memory, Tools &amp; Actions</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="./recent.html"> 
 <span class="menu-text">2024–2026</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./science-agents.html"> 
-<span class="menu-text">Science Agents</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-topics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Topics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-topics">    
+        <li>
+    <a class="dropdown-item" href="./topics.html">
+ <span class="dropdown-text">Topics Overview</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./evaluation.html">
+ <span class="dropdown-text">Evaluation &amp; Benchmarks</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./safety.html">
+ <span class="dropdown-text">Safety &amp; Alignment</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./science-agents.html">
+ <span class="dropdown-text">Science &amp; Research Agents</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="./community.html"> 
 <span class="menu-text">Community</span></a>
@@ -333,7 +363,12 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#coding-agents" id="toc-coding-agents" class="nav-link" data-scroll-target="#coding-agents">Coding Agents</a></li>
   </ul></li>
   <li><a href="#key-frameworks-github" id="toc-key-frameworks-github" class="nav-link" data-scroll-target="#key-frameworks-github">Key Frameworks (GitHub)</a></li>
-  <li><a href="#influential-blog-posts" id="toc-influential-blog-posts" class="nav-link" data-scroll-target="#influential-blog-posts">Influential Blog Posts</a></li>
+  <li><a href="#influential-blog-posts" id="toc-influential-blog-posts" class="nav-link" data-scroll-target="#influential-blog-posts">Influential Blog Posts</a>
+  <ul class="collapse">
+  <li><a href="#introductions-overviews" id="toc-introductions-overviews" class="nav-link" data-scroll-target="#introductions-overviews">Introductions &amp; Overviews</a></li>
+  <li><a href="#production-practitioner-guides" id="toc-production-practitioner-guides" class="nav-link" data-scroll-target="#production-practitioner-guides">Production &amp; Practitioner Guides</a></li>
+  <li><a href="#builder-diaries-case-studies" id="toc-builder-diaries-case-studies" class="nav-link" data-scroll-target="#builder-diaries-case-studies">Builder Diaries &amp; Case Studies</a></li>
+  </ul></li>
   <li><a href="#benchmarks-evaluation" id="toc-benchmarks-evaluation" class="nav-link" data-scroll-target="#benchmarks-evaluation">Benchmarks &amp; Evaluation</a></li>
   <li><a href="#courses-tutorials" id="toc-courses-tutorials" class="nav-link" data-scroll-target="#courses-tutorials">Courses &amp; Tutorials</a></li>
   <li><a href="#about-this-survey" id="toc-about-this-survey" class="nav-link" data-scroll-target="#about-this-survey">About This Survey</a></li>
@@ -536,6 +571,8 @@ Comprehensive academic survey covering construction, application, and evaluation
 </section>
 <section id="influential-blog-posts" class="level2">
 <h2 class="anchored" data-anchor-id="influential-blog-posts">Influential Blog Posts</h2>
+<section id="introductions-overviews" class="level3">
+<h3 class="anchored" data-anchor-id="introductions-overviews">Introductions &amp; Overviews</h3>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -556,23 +593,107 @@ Comprehensive academic survey covering construction, application, and evaluation
 <td>Jun 2023</td>
 </tr>
 <tr class="odd">
-<td><a href="https://www.sequoiacap.com/article/ai-agents-perspective/">The Anatomy of Autonomy</a></td>
-<td>Sequoia Capital</td>
-<td>2023</td>
+<td><a href="https://saurabhalone.com/blog/agent">A Hitchhiker’s Guide to Building AI Agents</a></td>
+<td>Saurabh Alone</td>
+<td>2025</td>
 </tr>
 <tr class="even">
-<td><a href="https://applied-llms.org">What We Learned from a Year of Building with LLMs</a></td>
-<td>Various practitioners</td>
-<td>2024</td>
+<td><a href="https://www.leoniemonigatti.com/blog/memory-in-ai-agents.html">Making Sense of Memory in AI Agents</a></td>
+<td>Leonie Monigatti</td>
+<td>2025</td>
 </tr>
+</tbody>
+</table>
+</section>
+<section id="production-practitioner-guides" class="level3">
+<h3 class="anchored" data-anchor-id="production-practitioner-guides">Production &amp; Practitioner Guides</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Title</th>
+<th>Author</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody>
 <tr class="odd">
 <td><a href="https://www.anthropic.com/research/building-effective-agents">Building effective agents</a></td>
-<td>Anthropic</td>
+<td>Anthropic (Schluntz &amp; Zhang)</td>
 <td>Dec 2024</td>
+</tr>
+<tr class="even">
+<td><a href="https://www.anthropic.com/engineering/multi-agent-research-system">How we built our multi-agent research system</a></td>
+<td>Anthropic Engineering</td>
+<td>2025</td>
+</tr>
+<tr class="odd">
+<td><a href="https://applied-llms.org">What We Learned from a Year of Building with LLMs</a></td>
+<td>Eugene Yan et al.</td>
+<td>2024</td>
+</tr>
+<tr class="even">
+<td><a href="https://devin.ai/agents101">Agents 101: The Art of Actually Getting Things Done</a></td>
+<td>Cognition AI (Devin)</td>
+<td>2025</td>
+</tr>
+<tr class="odd">
+<td><a href="https://martinfowler.com/articles/build-own-coding-agent.html">Building Your Own Coding Agent</a></td>
+<td>Martin Fowler</td>
+<td>2025</td>
+</tr>
+<tr class="even">
+<td><a href="https://47billion.com/blog/ai-agents-in-production-frameworks-protocols-and-what-actually-works-in-2026/">AI in Production: What Actually Works in 2026</a></td>
+<td>47 Billion</td>
+<td>2026</td>
+</tr>
+<tr class="odd">
+<td><a href="https://cloud.google.com/transform/ai-grew-up-and-got-a-job-lessons-from-2025-on-agents-and-trust">Google Cloud: Lessons from 2025 on Agents and Trust</a></td>
+<td>Google Cloud CTO Office</td>
+<td>Dec 2025</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="builder-diaries-case-studies" class="level3">
+<h3 class="anchored" data-anchor-id="builder-diaries-case-studies">Builder Diaries &amp; Case Studies</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Title</th>
+<th>Author</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="https://timkellogg.me/blog/2025/12/15/strix">Strix: Meet the Stateful Agent</a></td>
+<td>Tim Kellogg</td>
+<td>Dec 2025</td>
+</tr>
+<tr class="even">
+<td><a href="https://timkellogg.me/blog/2025/12/30/memory-arch">Memory Architecture for a Synthetic Being</a></td>
+<td>Tim Kellogg</td>
+<td>Dec 2025</td>
+</tr>
+<tr class="odd">
+<td><a href="https://timkellogg.me/blog/2026/01/09/viable-systems">Viable Systems: How to Build a Fully Autonomous Agent</a></td>
+<td>Tim Kellogg</td>
+<td>Jan 2026</td>
+</tr>
+<tr class="even">
+<td><a href="https://emsh.cat/one-human-one-agent-one-browser/">One Human + One Agent + One Browser</a></td>
+<td>emsh.cat</td>
+<td>2026</td>
+</tr>
+<tr class="odd">
+<td><a href="https://openai.com/index/harness-engineering/">OpenAI Harness Engineering</a></td>
+<td>OpenAI</td>
+<td>2025</td>
 </tr>
 </tbody>
 </table>
 <hr>
+</section>
 </section>
 <section id="benchmarks-evaluation" class="level2">
 <h2 class="anchored" data-anchor-id="benchmarks-evaluation">Benchmarks &amp; Evaluation</h2>

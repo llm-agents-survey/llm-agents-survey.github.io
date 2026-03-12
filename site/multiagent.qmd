@@ -299,24 +299,6 @@ Safety and trustworthiness evaluation for web agents. Tests whether agents follo
 
 ---
 
-## Timeline
-
-| Date | Milestone |
-|------|-----------|
-| Mar 2023 | CAMEL — first role-playing multi-agent paper |
-| Apr 2023 | Generative Agents — agent towns (Stanford) |
-| Jul 2023 | ChatDev — multi-agent software development |
-| Aug 2023 | MetaGPT — SOP-driven software agents |
-| Aug 2023 | AutoGen (Microsoft) — conversable agents framework |
-| Aug 2023 | AgentVerse — multi-agent dynamics study |
-| Oct 2023 | DyLAN — dynamic agent networks |
-| Jan 2024 | AgentScope (Alibaba) — production multi-agent platform |
-| Feb 2024 | CrewAI released |
-| Jun 2024 | LangGraph gains adoption for production workflows |
-| Oct 2024 | OpenAI Swarm (experimental) released |
-| Nov 2024 | MCP (Model Context Protocol) by Anthropic |
-| Nov 2025 | LangGraph v1.0 — production-ready release |
-
 ---
 
-*Continue to [Memory, Tools & Actions →](memory-tools.qmd)*
+*Full chronology in the [Timeline →](timeline.qmd). Continue to [Memory, Tools & Actions →](memory-tools.qmd)*

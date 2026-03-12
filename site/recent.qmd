@@ -269,56 +269,10 @@ Companion paper: [arXiv:2602.17753](https://arxiv.org/html/2602.17753v1)
 
 ---
 
-## Agent Safety & Reliability in 2025-2026
-
-Safety emerged as a first-class concern as agents took real-world actions.
-
-### Prompt Injection: The Persistent Threat
-Indirect Prompt Injection (IPI) — malicious content in the environment (web pages, emails, documents) that hijacks an agent's behavior — emerged as the primary attack vector. Multiple papers and red-team efforts documented this.
-
-- **InjecAgent** — benchmark for indirect prompt injection attacks
-- **AgentDojo** — security benchmark for tool-calling agents
-- **AgentHarm** — evaluating harmful agent behaviors
-
-### Trust Hierarchies
-The multi-agent trust problem: if Agent A calls Agent B, and B is compromised, does A inherit the compromise? Multiple papers explored trust propagation in agent networks.
-
-### Reversibility as a Design Principle
-Google's production lessons emphasized **reversibility**: agents should prefer actions that can be undone. "Agent undo stacks," idempotent tools, checkpointing. Design principle adopted widely in 2025.
-
-### Gartner Warning (2024)
-Gartner predicted that 40%+ of agentic AI projects would be cancelled by 2027 due to spiraling costs, unclear ROI, and reliability issues. Counter-narrative to the hype.
-
----
-
-## Timeline: 2024–2026
-
-| Date | Event |
-|------|-------|
-| Mar 2024 | Devin AI announced — "first AI software engineer" |
-| May 2024 | SWE-agent paper — 12% on SWE-bench |
-| Jun 2024 | LangGraph gains production traction |
-| Oct 2024 | Anthropic Computer Use — Claude controls a computer |
-| Oct 2024 | OpenAI Swarm (experimental) released |
-| Nov 2024 | MCP (Model Context Protocol) by Anthropic — open standard |
-| Dec 2024 | Anthropic "Building Effective Agents" — defining practitioner post |
-| Jan 2025 | OpenAI Operator launch — browser-use agent |
-| Jan 2025 | Goose by Block — open-source agent framework |
-| Feb 2025 | OpenAI Deep Research — o3-powered research agent |
-| Mar 2025 | Manus AI launch — general-purpose autonomous agent |
-| Mar 2025 | GitHub Agentic Workflows announced |
-| Apr 2025 | Google A2A (Agent2Agent) protocol |
-| May 2025 | GitHub Copilot Coding Agent launch |
-| Jun 2025 | A2A donated to Linux Foundation |
-| Jul 2025 | ChatGPT Agent: Operator + Deep Research unified |
-| Sep 2025 | Anthropic Claude Code SDK → Claude Agent SDK |
-| Oct 2025 | Microsoft Agent Framework (AutoGen + Semantic Kernel) |
-| Oct 2025 | GitHub Agent HQ at Universe 2025 |
-| Nov 2025 | LangGraph v1.0 — production ready |
-| Nov 2025 | Gemini 3 Pro + Live-SWE-agent: 77.4% on SWE-bench Verified |
-| Dec 2025 | Meta acquires Manus AI |
-| Jan 2026 | Multiple 2025 retrospectives on agent deployments |
-| Mar 2026 | Anthropic Code Review for Claude Code — multi-agent PR review |
+::: {.callout-note}
+## Safety in 2025-2026
+Safety — prompt injection, trust hierarchies, reversibility, the transparency gap — became a first-class concern as agents took real-world actions. Full coverage in [Safety & Alignment →](safety.qmd)
+:::
 
 ---
 

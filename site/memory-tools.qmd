@@ -239,24 +239,6 @@ As agent frameworks matured in 2024, several RAG patterns emerged:
 
 ---
 
-## Timeline
-
-| Date | Milestone |
-|------|-----------|
-| Dec 2021 | WebGPT — browser-based QA agent |
-| Feb 2023 | Toolformer — self-supervised tool learning |
-| Apr 2023 | Generative Agents — episodic+semantic+procedural memory |
-| Jun 2023 | OpenAI function calling — industry standard |
-| Jul 2023 | ToolLLM — 16k+ API coverage |
-| Oct 2023 | MemGPT — LLM as OS with memory paging |
-| Dec 2023 | CogAgent, AppAgent — GUI specialist models |
-| Feb 2024 | ReadAgent — gist memory for long docs |
-| Feb 2024 | CodeAct — code as unified action space |
-| Apr 2024 | OSWorld benchmark — desktop GUI evaluation |
-| Oct 2024 | Anthropic Computer Use — mass-market computer control |
-| 2025 | browser-use hits 78k stars; Skyvern, Stagehand mature |
-| 2025 | Long-context models (2M tokens) reduce but don't eliminate memory needs |
-
 ---
 
-*Continue to [2024–2026 Frontier →](recent.qmd)*
+*Full chronology in the [Timeline →](timeline.qmd). Continue to [2024–2026 Frontier →](recent.qmd)*
