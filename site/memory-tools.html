@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Memory, Tools &amp; Actions</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="memory-tools_files/libs/clipboard/clipboard.min.js"></script>
+<script src="memory-tools_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="memory-tools_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="memory-tools_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="memory-tools_files/libs/quarto-html/popper.min.js"></script>
+<script src="memory-tools_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="memory-tools_files/libs/quarto-html/anchor.min.js"></script>
+<link href="memory-tools_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="memory-tools_files/libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="memory-tools_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="memory-tools_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="memory-tools_files/libs/bootstrap/bootstrap-d74ef27052b58c3bdbc68372515425d1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Memory, Tools &amp; Actions</h1>
+<p class="subtitle lead">How agents remember, use tools, and act in the world</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>Three capabilities transform an LLM from a text generator into an agent: <strong>memory</strong> (persisting information beyond the context window), <strong>tools</strong> (calling external capabilities), and <strong>actions</strong> (operating in digital or physical environments). This section surveys the research landscape for each.</p>
+<hr>
+</section>
+<section id="memory-systems" class="level2">
+<h2 class="anchored" data-anchor-id="memory-systems">Memory Systems</h2>
+<section id="the-memory-problem" class="level3">
+<h3 class="anchored" data-anchor-id="the-memory-problem">The Memory Problem</h3>
+<p>Standard LLMs have a fixed context window. For short conversations this is fine; for long-running agents tasked with multi-day work, it’s a fundamental limitation. Memory research asks: <em>How do we give agents persistent, organized access to past experience?</em></p>
+</section>
+<section id="memory-taxonomy" class="level3">
+<h3 class="anchored" data-anchor-id="memory-taxonomy">Memory Taxonomy</h3>
+<p>Based on cognitive science (ACT-R, SOAR), the literature uses four memory types:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 33%">
+<col style="width: 28%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Description</th>
+<th>Stored As</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Working / In-context</strong></td>
+<td>Current context window</td>
+<td>Tokens</td>
+<td>Conversation history</td>
+</tr>
+<tr class="even">
+<td><strong>Episodic</strong></td>
+<td>Time-stamped experiences</td>
+<td>Natural language</td>
+<td>“Yesterday I searched for X and found Y”</td>
+</tr>
+<tr class="odd">
+<td><strong>Semantic</strong></td>
+<td>World knowledge and facts</td>
+<td>Embeddings / KV store</td>
+<td>Entity facts, document summaries</td>
+</tr>
+<tr class="even">
+<td><strong>Procedural</strong></td>
+<td>How-to skills and rules</td>
+<td>Code / prompts</td>
+<td>Voyager skill library, tool specs</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="key-papers" class="level3">
+<h3 class="anchored" data-anchor-id="key-papers">Key Papers</h3>
+<section id="memgpt-towards-llms-as-operating-systems-2023" class="level4">
+<h4 class="anchored" data-anchor-id="memgpt-towards-llms-as-operating-systems-2023">MemGPT: Towards LLMs as Operating Systems (2023)</h4>
+<p><strong>Packer et al.&nbsp;(UCB)</strong> · <a href="https://arxiv.org/abs/2310.08560">arXiv:2310.08560</a></p>
+<p><strong>The canonical memory paper.</strong> Draws analogy to OS virtual memory: a small “main context” (fast, limited) and large “external storage” (slow, vast). MemGPT manages movement between tiers, deciding what to load, store, and evict. Enables indefinite conversation and multi-document analysis.</p>
+<ul>
+<li><strong>Architecture:</strong> Hierarchical context management; interrupt-driven control flow; memory functions (search, append, update)</li>
+<li><strong>Results:</strong> Outperforms baselines on long-document tasks and multi-session conversation</li>
+<li><strong>GitHub:</strong> <a href="https://github.com/cpacker/MemGPT">cpacker/MemGPT</a> → became <a href="https://github.com/letta-ai/letta">Letta</a></li>
+</ul>
+</section>
+<section id="generative-agents-interactive-simulacra-of-human-behavior-2023" class="level4">
+<h4 class="anchored" data-anchor-id="generative-agents-interactive-simulacra-of-human-behavior-2023">Generative Agents: Interactive Simulacra of Human Behavior (2023)</h4>
+<p><strong>Park et al.</strong> · <a href="https://arxiv.org/abs/2304.03442">arXiv:2304.03442</a></p>
+<p>Establishes the <strong>memory stream</strong> pattern: continuous natural language log of agent experiences. Three operations: <strong>observation</strong> (record events), <strong>reflection</strong> (synthesize into higher-level insights), <strong>planning</strong> (use memories to plan future actions). Recency, importance, and relevance jointly score which memories to retrieve.</p>
+<ul>
+<li><strong>Reflection:</strong> “I notice that I’ve talked to people about the party three times today — it must be important”</li>
+<li><strong>Impact:</strong> Most-cited memory architecture for autonomous agents</li>
+</ul>
+</section>
+<section id="readagent-gist-memory-for-long-documents-2024" class="level4">
+<h4 class="anchored" data-anchor-id="readagent-gist-memory-for-long-documents-2024">ReadAgent: Gist Memory for Long Documents (2024)</h4>
+<p><strong>Lee et al.&nbsp;(Google)</strong> · <a href="https://arxiv.org/abs/2402.09727">arXiv:2402.09727</a></p>
+<p>Mimics human reading: divide a document into episodes, compress each into a <strong>gist</strong> (short summary), retrieve details on demand. Extends effective context 3.5–20× without retraining.</p>
+</section>
+<section id="cognitive-architectures-for-language-agents-2023" class="level4">
+<h4 class="anchored" data-anchor-id="cognitive-architectures-for-language-agents-2023">Cognitive Architectures for Language Agents (2023)</h4>
+<p><strong>Sumers et al.</strong> · <a href="https://arxiv.org/abs/2309.02427">arXiv:2309.02427</a></p>
+<p>Grounds agent memory in cognitive science. Proposes four-part model (working, procedural, semantic, episodic) with consolidation and retrieval mechanisms.</p>
+</section>
+<section id="a-mem-agentic-memory-system-2025" class="level4">
+<h4 class="anchored" data-anchor-id="a-mem-agentic-memory-system-2025">A-MEM: Agentic Memory System (2025)</h4>
+<p><strong><a href="https://arxiv.org/abs/2502.12110">arXiv:2502.12110</a></strong></p>
+<p>Dynamic memory with Zettelkasten-inspired note organization. Creates interconnected notes with automatic linking and retrieval. Outperforms static memory systems on long-horizon tasks.</p>
+</section>
+<section id="mem0-2024-2025" class="level4">
+<h4 class="anchored" data-anchor-id="mem0-2024-2025">Mem0 (2024-2025)</h4>
+<p><strong><a href="https://mem0.ai">mem0.ai</a></strong> · <a href="https://github.com/mem0ai/mem0">GitHub</a></p>
+<p>Production memory layer for LLM applications. Extracts entities and relationships from conversations, stores them in a hybrid vector + graph database, and retrieves contextually relevant memories. Widely adopted in production agent systems.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="tool-use-function-calling" class="level2">
+<h2 class="anchored" data-anchor-id="tool-use-function-calling">Tool Use &amp; Function Calling</h2>
+<section id="the-tool-use-revolution" class="level3">
+<h3 class="anchored" data-anchor-id="the-tool-use-revolution">The Tool Use Revolution</h3>
+<p>Tools transform agents from text generators into <strong>actors</strong>: they can search the web, execute code, call APIs, query databases, send messages. The ability to use tools is what makes agents actually useful.</p>
+</section>
+<section id="foundational-papers" class="level3">
+<h3 class="anchored" data-anchor-id="foundational-papers">Foundational Papers</h3>
+<section id="toolformer-language-models-can-teach-themselves-to-use-tools-2023" class="level4">
+<h4 class="anchored" data-anchor-id="toolformer-language-models-can-teach-themselves-to-use-tools-2023">Toolformer: Language Models Can Teach Themselves to Use Tools (2023)</h4>
+<p><strong>Schick et al.&nbsp;(Meta AI)</strong> · <a href="https://arxiv.org/abs/2302.04761">arXiv:2302.04761</a></p>
+<p>First paper to show that LLMs can <strong>learn tool use</strong> in a self-supervised manner. The model generates candidate API calls, executes them, and keeps the ones that improve its own predictions. No large annotation dataset needed.</p>
+<ul>
+<li><strong>Tools:</strong> Calculator, search engine, Wikipedia, Q&amp;A system, translator</li>
+<li><strong>Key insight:</strong> Tool use can be bootstrapped from the model itself</li>
+</ul>
+</section>
+<section id="openai-function-calling-june-2023" class="level4">
+<h4 class="anchored" data-anchor-id="openai-function-calling-june-2023">OpenAI Function Calling (June 2023)</h4>
+<p><strong>OpenAI</strong> · <a href="https://platform.openai.com/docs/guides/function-calling">Documentation</a></p>
+<p><strong>The most impactful practical milestone for tool use.</strong> Function calling standardized how LLMs invoke tools: define function schemas in JSON, model outputs structured JSON calls, application executes them. Became the dominant paradigm for production agent tool use.</p>
+<ul>
+<li><strong>Impact:</strong> Every major LLM provider now supports function calling (Claude tool use, Gemini function calling)</li>
+<li><strong>Parallel function calling (2023):</strong> Multiple tools called in a single pass</li>
+</ul>
+</section>
+<section id="gorilla-large-language-model-connected-with-massive-apis-2023" class="level4">
+<h4 class="anchored" data-anchor-id="gorilla-large-language-model-connected-with-massive-apis-2023">Gorilla: Large Language Model Connected with Massive APIs (2023)</h4>
+<p><strong>Patil et al.&nbsp;(UCB)</strong> · <a href="https://arxiv.org/abs/2305.15334">arXiv:2305.15334</a></p>
+<p>Fine-tuned model for API calling across 1,600+ APIs. Uses retrieval-augmented generation to select the right API. Demonstrates that retrieval + generation beats larger models for API calling.</p>
+<ul>
+<li><strong>Key insight:</strong> API calling is a retrieval problem as much as a generation problem</li>
+<li><strong>GitHub:</strong> <a href="https://github.com/ShishirPatil/gorilla">ShishirPatil/gorilla</a></li>
+</ul>
+</section>
+<section id="toolllm-facilitating-llms-to-master-16000-real-world-apis-2023" class="level4">
+<h4 class="anchored" data-anchor-id="toolllm-facilitating-llms-to-master-16000-real-world-apis-2023">ToolLLM: Facilitating LLMs to Master 16000+ Real-World APIs (2023)</h4>
+<p><strong>Qin et al.&nbsp;(Tsinghua)</strong> · <a href="https://arxiv.org/abs/2307.16789">arXiv:2307.16789</a></p>
+<p>Dataset + model for calling 16,000+ RapidAPI endpoints. Introduces DFSDT (depth-first search-based decision tree) for robust tool selection and execution.</p>
+</section>
+<section id="hugginggpt-jarvis-2023" class="level4">
+<h4 class="anchored" data-anchor-id="hugginggpt-jarvis-2023">HuggingGPT / JARVIS (2023)</h4>
+<p><strong>Shen et al.</strong> · <a href="https://arxiv.org/abs/2303.17580">arXiv:2303.17580</a></p>
+<p>Uses ChatGPT to orchestrate hundreds of specialized ML models from HuggingFace Hub as tools. Planning → tool selection → execution → response synthesis.</p>
+</section>
+<section id="restgpt-connecting-llms-with-real-world-restful-apis-2023" class="level4">
+<h4 class="anchored" data-anchor-id="restgpt-connecting-llms-with-real-world-restful-apis-2023">RestGPT: Connecting LLMs with Real-World RESTful APIs (2023)</h4>
+<p><strong>Song et al.</strong> · <a href="https://arxiv.org/abs/2306.06624">arXiv:2306.06624</a></p>
+<p>Addresses the challenge of using real-world REST APIs (with complex schemas, authentication, pagination) from LLM agents.</p>
+</section>
+<section id="large-language-models-as-tool-makers-2023" class="level4">
+<h4 class="anchored" data-anchor-id="large-language-models-as-tool-makers-2023">Large Language Models as Tool Makers (2023)</h4>
+<p><strong>Cai et al.</strong> · <a href="https://arxiv.org/abs/2305.17126">arXiv:2305.17126</a></p>
+<p>Agents can <strong>create their own tools</strong> (as Python functions) and reuse them. Tool-making LLM generates tools; tool-using LLM employs them. Enables building up a library of reusable capabilities.</p>
+</section>
+<section id="anytool-self-reflective-hierarchical-agents-for-tool-use-2024" class="level4">
+<h4 class="anchored" data-anchor-id="anytool-self-reflective-hierarchical-agents-for-tool-use-2024">AnyTool: Self-Reflective, Hierarchical Agents for Tool Use (2024)</h4>
+<p><strong>Du et al.</strong> · <a href="https://arxiv.org/abs/2402.04253">arXiv:2402.04253</a></p>
+<p>Hierarchical tool selection with self-reflection for correcting wrong tool choices. State-of-the-art on ToolBench.</p>
+</section>
+<section id="codeact-executable-code-actions-elicit-better-llm-agents-2024" class="level4">
+<h4 class="anchored" data-anchor-id="codeact-executable-code-actions-elicit-better-llm-agents-2024">CodeAct: Executable Code Actions Elicit Better LLM Agents (2024)</h4>
+<p><strong>Wang et al.</strong> · <a href="https://arxiv.org/abs/2402.01030">arXiv:2402.01030</a></p>
+<p>Uses <strong>executable Python code as the action space</strong> rather than structured JSON tool calls. More flexible, handles complex multi-step logic natively, integrates with execution environments naturally.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="action-spaces" class="level2">
+<h2 class="anchored" data-anchor-id="action-spaces">Action Spaces</h2>
+<section id="web-browsing-agents" class="level3">
+<h3 class="anchored" data-anchor-id="web-browsing-agents">Web Browsing Agents</h3>
+<section id="webgpt-2022" class="level4">
+<h4 class="anchored" data-anchor-id="webgpt-2022">WebGPT (2022)</h4>
+<p><strong>Nakano et al.&nbsp;(OpenAI)</strong> · <a href="https://arxiv.org/abs/2112.09332">arXiv:2112.09332</a></p>
+<p>GPT-3 fine-tuned to browse the web using a text-based interface. Searches, follows links, quotes sources. Trained with RLHF. The ancestor of all web-browsing agents.</p>
+</section>
+<section id="mind2web-towards-a-generalist-agent-for-the-web-2023" class="level4">
+<h4 class="anchored" data-anchor-id="mind2web-towards-a-generalist-agent-for-the-web-2023">Mind2Web: Towards a Generalist Agent for the Web (2023)</h4>
+<p><strong>Deng et al.</strong> · <a href="https://arxiv.org/abs/2306.06070">arXiv:2306.06070</a></p>
+<p>Dataset of 2,000 web tasks across 137 websites. Introduces the challenge of generalizing to new websites and tasks. Models must predict next action (click, type, scroll) from HTML + screenshot.</p>
+</section>
+<section id="webarena-2023" class="level4">
+<h4 class="anchored" data-anchor-id="webarena-2023">WebArena (2023)</h4>
+<p><strong>Zhou et al.</strong> · <a href="https://arxiv.org/abs/2307.13854">arXiv:2307.13854</a></p>
+<p>Fully reproducible web environment with 4 real applications. 812 tasks with executable evaluation. Critical benchmark for web agent progress.</p>
+</section>
+<section id="webagent-google-2023" class="level4">
+<h4 class="anchored" data-anchor-id="webagent-google-2023">WebAgent (Google, 2023)</h4>
+<p><strong>Gur et al.</strong> · <a href="https://arxiv.org/abs/2307.12856">arXiv:2307.12856</a></p>
+<p>Modular web agent: HTML summarization + task grounding + planning. Trained on real websites; demonstrates planning from natural language instructions.</p>
+<hr>
+</section>
+</section>
+<section id="gui-computer-use-agents" class="level3">
+<h3 class="anchored" data-anchor-id="gui-computer-use-agents">GUI &amp; Computer Use Agents</h3>
+<p>The 2024 frontier: agents controlling entire computers, not just browsers.</p>
+<section id="cogagent-a-visual-language-model-for-gui-agents-2024" class="level4">
+<h4 class="anchored" data-anchor-id="cogagent-a-visual-language-model-for-gui-agents-2024">CogAgent: A Visual Language Model for GUI Agents (2024)</h4>
+<p><strong>Hong et al.&nbsp;(Tsinghua)</strong> · <a href="https://arxiv.org/abs/2312.08914">arXiv:2312.08914</a></p>
+<p>18B visual-language model trained on GUI navigation. Understands both screenshots and HTML. State-of-the-art on Mind2Web and AITW (Android in the Wild) benchmarks.</p>
+</section>
+<section id="appagent-multimodal-agents-as-smartphone-users-2023" class="level4">
+<h4 class="anchored" data-anchor-id="appagent-multimodal-agents-as-smartphone-users-2023">AppAgent: Multimodal Agents as Smartphone Users (2023)</h4>
+<p><strong>Zhang et al.&nbsp;(Tencent)</strong> · <a href="https://arxiv.org/abs/2312.13771">arXiv:2312.13771</a></p>
+<p>Autonomous agent for controlling smartphone apps via touch actions. Uses exploration phase (learns app UI) + deployment phase (executes tasks). No app-specific training.</p>
+</section>
+<section id="ufo-a-ui-focused-agent-for-windows-os-interaction-2024" class="level4">
+<h4 class="anchored" data-anchor-id="ufo-a-ui-focused-agent-for-windows-os-interaction-2024">UFO: A UI-Focused Agent for Windows OS Interaction (2024)</h4>
+<p><strong>Zhang et al.&nbsp;(Microsoft)</strong> · <a href="https://arxiv.org/abs/2402.07939">arXiv:2402.07939</a></p>
+<p>Agent for automating Windows OS tasks. Uses dual-agent design: HostAgent (application selection) + AppAgent (in-app navigation). Integrates Windows accessibility tree.</p>
+</section>
+<section id="os-copilot-towards-generalist-computer-agents-on-linux-2024" class="level4">
+<h4 class="anchored" data-anchor-id="os-copilot-towards-generalist-computer-agents-on-linux-2024">OS-Copilot: Towards Generalist Computer Agents on Linux (2024)</h4>
+<p><strong>Wu et al.</strong> · <a href="https://arxiv.org/abs/2402.07456">arXiv:2402.07456</a></p>
+<p>Generalist agent for Linux desktop. Self-directed skill library (FRIDAY); learns new skills through interaction; strong on GAIA and Spider2V benchmarks.</p>
+</section>
+<section id="anthropic-computer-use-october-2024" class="level4">
+<h4 class="anchored" data-anchor-id="anthropic-computer-use-october-2024">Anthropic Computer Use (October 2024)</h4>
+<p><strong>Anthropic</strong> · <a href="https://www.anthropic.com/news/3-5-models-and-computer-use">Blog post</a></p>
+<p>Claude 3.5 Sonnet with native ability to control computers: view screenshots, move mouse, click, type. Raised industry attention to computer-using agents as a near-term product category.</p>
+</section>
+<section id="osworld-benchmark-2024" class="level4">
+<h4 class="anchored" data-anchor-id="osworld-benchmark-2024">OSWorld Benchmark (2024)</h4>
+<p><strong>Xie et al.</strong> · <a href="https://arxiv.org/abs/2404.07972">arXiv:2404.07972</a></p>
+<p>369 real computer tasks across Ubuntu, Windows, macOS. Early systems scored &lt;5%; by early 2025, Claude achieves 72.5%. Most comprehensive desktop agent benchmark.</p>
+<hr>
+</section>
+</section>
+<section id="code-execution-agents" class="level3">
+<h3 class="anchored" data-anchor-id="code-execution-agents">Code Execution Agents</h3>
+<section id="opendevin-openhands-2024" class="level4">
+<h4 class="anchored" data-anchor-id="opendevin-openhands-2024">OpenDevin / OpenHands (2024)</h4>
+<p><strong>All Hands AI</strong> · <a href="https://github.com/All-Hands-AI/OpenHands">github.com/All-Hands-AI/OpenHands</a></p>
+<p>Open-source coding agent with a sandboxed execution environment. Supports web browsing, file editing, code running. Mirrors Devin’s architecture but open-source.</p>
+</section>
+<section id="swe-agent-2024" class="level4">
+<h4 class="anchored" data-anchor-id="swe-agent-2024">SWE-agent (2024)</h4>
+<p><strong>Yang et al.&nbsp;(Princeton)</strong> · <a href="https://arxiv.org/abs/2405.15793">arXiv:2405.15793</a></p>
+<p>GitHub issue resolution agent. Custom <strong>Agent-Computer Interface</strong> (ACI) with file editing, search, execution tools designed specifically for software engineering. 12.29% on SWE-bench.</p>
+<hr>
+</section>
+</section>
+<section id="embodied-robotics-agents" class="level3">
+<h3 class="anchored" data-anchor-id="embodied-robotics-agents">Embodied / Robotics Agents</h3>
+<section id="saycan-grounding-language-in-robotic-affordances-2022" class="level4">
+<h4 class="anchored" data-anchor-id="saycan-grounding-language-in-robotic-affordances-2022">SayCan: Grounding Language in Robotic Affordances (2022)</h4>
+<p><strong>Ahn et al.&nbsp;(Google)</strong> · <a href="https://arxiv.org/abs/2204.01691">arXiv:2204.01691</a></p>
+<p>LLM proposes high-level action plans; affordance model filters to physically feasible actions. Classic example of <strong>language grounding</strong> in robotics.</p>
+</section>
+<section id="palm-e-an-embodied-multimodal-language-model-2023" class="level4">
+<h4 class="anchored" data-anchor-id="palm-e-an-embodied-multimodal-language-model-2023">PaLM-E: An Embodied Multimodal Language Model (2023)</h4>
+<p><strong>Driess et al.&nbsp;(Google)</strong> · <a href="https://arxiv.org/abs/2303.03378">arXiv:2303.03378</a></p>
+<p>562B parameter multimodal model for embodied reasoning. Takes sensor inputs (images, state estimates) and generates text + robot actions. Demonstrates transfer from language tasks to robot control.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="retrieval-augmented-agents-agentic-rag" class="level2">
+<h2 class="anchored" data-anchor-id="retrieval-augmented-agents-agentic-rag">Retrieval-Augmented Agents (Agentic RAG)</h2>
+<p>RAG for agents extends beyond simple document retrieval to <strong>active, query-planning retrieval</strong>:</p>
+<section id="self-rag-learning-to-retrieve-generate-and-critique-2023" class="level4">
+<h4 class="anchored" data-anchor-id="self-rag-learning-to-retrieve-generate-and-critique-2023">Self-RAG: Learning to Retrieve, Generate, and Critique (2023)</h4>
+<p><strong>Asai et al.</strong> · <a href="https://arxiv.org/abs/2310.11511">arXiv:2310.11511</a></p>
+<p>The model decides <strong>when</strong> to retrieve (not on every query), critiques retrieved passages, and generates with inline citations. Four special tokens (Retrieve, ISREL, ISSUP, ISUSE) gate retrieval and quality.</p>
+</section>
+<section id="agentic-rag-patterns-2024" class="level4">
+<h4 class="anchored" data-anchor-id="agentic-rag-patterns-2024">Agentic RAG Patterns (2024)</h4>
+<p>Practitioner pattern: agent loops that decompose queries, retrieve in multiple rounds, verify completeness, and synthesize. Distinguished from basic RAG by active query planning.</p>
+<hr>
+</section>
+</section>
+<section id="timeline-memory-tools-actions" class="level2">
+<h2 class="anchored" data-anchor-id="timeline-memory-tools-actions">Timeline: Memory, Tools &amp; Actions</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Date</th>
+<th>Milestone</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Dec 2021</td>
+<td>WebGPT — LLM + browser</td>
+</tr>
+<tr class="even">
+<td>Apr 2022</td>
+<td>SayCan — language grounded in robot affordances</td>
+</tr>
+<tr class="odd">
+<td>Feb 2023</td>
+<td>Toolformer — self-supervised tool learning</td>
+</tr>
+<tr class="even">
+<td>Mar 2023</td>
+<td>HuggingGPT — LLM orchestrates model hub</td>
+</tr>
+<tr class="odd">
+<td>Apr 2023</td>
+<td>Generative Agents — memory stream + reflection</td>
+</tr>
+<tr class="even">
+<td>Jun 2023</td>
+<td>OpenAI function calling — industry standard</td>
+</tr>
+<tr class="odd">
+<td>Jul 2023</td>
+<td>WebArena — realistic web benchmark</td>
+</tr>
+<tr class="even">
+<td>Aug 2023</td>
+<td>Mind2Web — web navigation dataset</td>
+</tr>
+<tr class="odd">
+<td>Oct 2023</td>
+<td>MemGPT — hierarchical memory management</td>
+</tr>
+<tr class="even">
+<td>Oct 2023</td>
+<td>Self-RAG — adaptive retrieval</td>
+</tr>
+<tr class="odd">
+<td>Dec 2023</td>
+<td>CogAgent — visual GUI agent</td>
+</tr>
+<tr class="even">
+<td>Jan 2024</td>
+<td>CodeAct — code as action space</td>
+</tr>
+<tr class="odd">
+<td>Feb 2024</td>
+<td>ReadAgent — gist memory for documents</td>
+</tr>
+<tr class="even">
+<td>Feb 2024</td>
+<td>UFO — Windows agent (Microsoft)</td>
+</tr>
+<tr class="odd">
+<td>Feb 2024</td>
+<td>OS-Copilot — Linux desktop agent</td>
+</tr>
+<tr class="even">
+<td>Apr 2024</td>
+<td>OSWorld — desktop benchmark</td>
+</tr>
+<tr class="odd">
+<td>May 2024</td>
+<td>SWE-agent — GitHub issue resolution</td>
+</tr>
+<tr class="even">
+<td>Oct 2024</td>
+<td>Anthropic Computer Use — production computer agent</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><em>Continue to <a href="recent.qmd">2024–2026 Frontier →</a></em></p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

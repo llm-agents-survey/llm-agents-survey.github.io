@@ -1,0 +1,41 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "LLM Agents: A Survey (2022–2026)"
+  description: "A thorough review of AI agent architectures, designs, and the evolving landscape of LLM-based agents"
+  favicon: favicon.ico
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: taxonomy.qmd
+        text: Taxonomy
+      - href: foundations.qmd
+        text: Foundations
+      - href: reasoning.qmd
+        text: Reasoning & Planning
+      - href: multiagent.qmd
+        text: Multi-Agent
+      - href: memory-tools.qmd
+        text: Memory & Tools
+      - href: recent.qmd
+        text: 2024–2026
+      - href: resources.qmd
+        text: Resources
+    right:
+      - icon: github
+        href: https://github.com/johnplake/llm-agents-survey
+
+format:
+  html:
+    theme:
+      light: flatly
+      dark: darkly
+    css: styles.css
+    toc: true
+    toc-depth: 3
+    smooth-scroll: true
+    code-fold: true
+    highlight-style: github

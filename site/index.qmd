@@ -1,0 +1,131 @@
+---
+title: "LLM Agents: A Survey of Architectures & Designs (2022–2026)"
+format:
+  html:
+    toc: false
+---
+
+::: {.hero}
+# LLM Agents: A Survey (2022–2026)
+
+A thorough review of the landscape of LLM-based agent architectures, designs, and the evolving ecosystem — covering papers, preprints, frameworks, blog posts, and open-source tools.
+
+*Compiled March 2026 · [View on GitHub](https://github.com/johnplake/llm-agents-survey)*
+:::
+
+## What Is This?
+
+This survey maps the landscape of **Large Language Model (LLM) based agents** — systems where LLMs serve not just as text generators, but as reasoning engines that can plan, use tools, access memory, and take actions in the world.
+
+From 2022 to 2026, the field has exploded. This guide aims to be a **navigable map**: organized by theme, covering both the academic literature and the practitioner ecosystem.
+
+::: {.stats-bar}
+::: {.stat-item}
+::: {.stat-number}
+4+
+:::
+::: {.stat-label}
+Years Covered
+:::
+:::
+::: {.stat-item}
+::: {.stat-number}
+200+
+:::
+::: {.stat-label}
+Papers & Resources
+:::
+:::
+::: {.stat-item}
+::: {.stat-number}
+6
+:::
+::: {.stat-label}
+Major Themes
+:::
+:::
+::: {.stat-item}
+::: {.stat-number}
+2022–2026
+:::
+::: {.stat-label}
+Time Range
+:::
+:::
+:::
+
+## Navigate the Survey
+
+::: {.card-grid}
+
+::: {.survey-card}
+::: {.card-icon}
+🗺️
+:::
+### [Taxonomy & Framework](taxonomy.qmd)
+A conceptual map of the field: how to decompose and categorize LLM agents. The core components, design dimensions, and how the major architectures fit together.
+:::
+
+::: {.survey-card}
+::: {.card-icon}
+🏛️
+:::
+### [Foundations (2022–2023)](foundations.qmd)
+The papers and ideas that established the field. ReAct, Toolformer, HuggingGPT, WebGPT, and the early agent taxonomies.
+:::
+
+::: {.survey-card}
+::: {.card-icon}
+🧠
+:::
+### [Reasoning & Planning](reasoning.qmd)
+How agents think: Chain-of-Thought, Tree of Thoughts, Reflexion, search-based planning, task decomposition, and self-improvement.
+:::
+
+::: {.survey-card}
+::: {.card-icon}
+🤝
+:::
+### [Multi-Agent Systems](multiagent.qmd)
+Multiple agents working together: CAMEL, AutoGen, MetaGPT, ChatDev, role specialization, orchestration patterns, and evaluation benchmarks.
+:::
+
+::: {.survey-card}
+::: {.card-icon}
+🧰
+:::
+### [Memory, Tools & Actions](memory-tools.qmd)
+How agents remember and act: memory architectures, tool use (Toolformer, function calling), action spaces, retrieval-augmented agents, and computer use.
+:::
+
+::: {.survey-card}
+::: {.card-icon}
+🚀
+:::
+### [2024–2026: Frontier](recent.qmd)
+The leading edge: coding agents (SWE-agent, Devin), agentic products (Operator, Computer Use), MCP, o1/o3 implications, safety, and where things are heading.
+:::
+
+:::
+
+## How to Use This Survey
+
+- **New to agents?** Start with [Taxonomy](taxonomy.qmd), then [Foundations](foundations.qmd)
+- **Researcher?** Each section has structured paper entries with links and summaries
+- **Practitioner?** Check [Multi-Agent Systems](multiagent.qmd) for frameworks and [2024–2026](recent.qmd) for the current ecosystem
+- **Looking for resources?** See [Resources & Links](resources.qmd) for a curated reading list
+
+## Scope & Methodology
+
+This survey covers:
+
+- **Papers & preprints** (arXiv, ACL, NeurIPS, ICML, ICLR, etc.)
+- **Technical blog posts** from researchers and practitioners
+- **Open-source frameworks and tools** (GitHub)
+- **Time range:** 2022 through March 2026
+
+The focus is on **LLM-based agents** — systems using large language models as a core reasoning component. We touch on embodied/robotics agents when they are directly relevant, but the primary focus is on digital, language-model-centric work.
+
+---
+
+*This survey was compiled in March 2026. The field moves fast — if you spot a missing reference, [open an issue](https://github.com/johnplake/llm-agents-survey/issues).*

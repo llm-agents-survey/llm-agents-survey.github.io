@@ -1,0 +1,177 @@
+---
+title: "Foundations (2022–2023)"
+subtitle: "The papers and ideas that built the field"
+---
+
+## Overview
+
+The modern LLM agent field traces to a cluster of papers from 2022–2023 that established the core paradigms still in use today. Before these works, LLMs were primarily used as single-shot text generators. This period showed they could **act** — using tools, browsing the web, executing code, and reasoning across multiple steps toward a goal.
+
+The foundational insight: an LLM becomes an agent when you give it a **loop** — the ability to observe outcomes of its actions and decide what to do next.
+
+---
+
+## Survey & Taxonomy Papers
+
+These surveys provide the broadest maps of the field:
+
+### A Survey on Large Language Model based Autonomous Agents (2023)
+**Wang et al.** · [arXiv:2308.11432](https://arxiv.org/abs/2308.11432) · *Frontiers of Computer Science, 2024*
+
+The most comprehensive survey of the field. Covers 200+ papers and presents a **unified framework** decomposing agents into four pillars: Brain (LLM), Perception, Memory, and Action. Analyzes applications across social science, natural science, and engineering. Actively maintained through v7 (March 2025).
+
+- **Key ideas:** Unified architecture spanning majority of prior work; systematic taxonomy by application domain; evaluation methodology discussion
+- **Impact:** De facto reference paper for new entrants to the field
+
+### The Rise and Potential of Large Language Model Based Agents (2023)
+**Xi et al. (30 co-authors)** · [arXiv:2309.07864](https://arxiv.org/abs/2309.07864) · *Science China Information Sciences, 2025*
+
+An 86-page survey tracing agents from philosophical origins through modern AI. Uses a brain-perception-action framework. Explores single-agent, multi-agent, and human-agent cooperation. Discusses agent societies, emergent behaviors, and the path toward AGI.
+
+- **Key ideas:** Historical and philosophical grounding; vision for agent societies; multi-agent coordination patterns
+
+### Agent AI: Surveying the Horizons of Multimodal Interaction (2024)
+**Wang et al.** · [arXiv:2401.03568](https://arxiv.org/abs/2401.03568)
+
+Expands scope to multimodal agents operating across text, vision, and action spaces. Covers gaming, robotics, healthcare, GUI navigation. A useful bridge between language-only and embodied/multimodal agents.
+
+### Large Language Model Agent: A Survey on Methodology, Applications and Challenges (2025)
+**Luo et al.** · [arXiv:2503.21460](https://arxiv.org/abs/2503.21460)
+
+Most recent comprehensive survey (March 2025) with structured taxonomy for LLM agent methodology. Catalogs current applications and synthesizes open challenges.
+
+### Cognitive Architectures for Language Agents (2023)
+**Sumers et al.** · [arXiv:2309.02427](https://arxiv.org/abs/2309.02427)
+
+Grounds LLM agent design in cognitive science. Proposes four-part memory model (working, procedural, semantic, episodic) drawing from ACT-R and SOAR. Essential for understanding memory system design.
+
+---
+
+## Core Foundational Papers
+
+### ReAct: Synergizing Reasoning and Acting in Language Models (2023)
+**Yao et al.** · [arXiv:2210.03629](https://arxiv.org/abs/2210.03629) · *ICLR 2023*
+
+**The most cited and influential agent paper.** Introduces the ReAct paradigm: interleaved reasoning traces and actions. The agent alternates between `Thought:` (reasoning about what to do) and `Action:` (doing it), with `Observation:` feeding back the result. This loop is the skeleton of most modern agent systems.
+
+```
+Thought: I need to find the population of France.
+Action: search("France population 2024")
+Observation: France has a population of approximately 68 million.
+Thought: Now I can answer the question.
+Action: finish("approximately 68 million")
+```
+
+- **Key ideas:** Reasoning and acting are synergistic, not separate; grounding in external feedback reduces hallucination; enables error correction mid-task
+- **Results:** Outperforms pure CoT and pure acting on HotpotQA, FEVER, ALFWorld, WebShop
+
+### Chain-of-Thought Prompting Elicits Reasoning in Large Language Models (2022)
+**Wei et al.** · [arXiv:2201.11903](https://arxiv.org/abs/2201.11903) · *NeurIPS 2022*
+
+The prerequisite to ReAct. Shows that prompting LLMs to generate intermediate reasoning steps dramatically improves performance on arithmetic, commonsense, and symbolic reasoning. Established that **LLMs can reason step-by-step** — the cognitive foundation for all agent work.
+
+- **Key ideas:** Few-shot CoT prompting; emergent capability (most effective at 100B+ params); generalizes across reasoning domains
+
+### Toolformer: Language Models Can Teach Themselves to Use Tools (2023)
+**Schick et al.** · [arXiv:2302.04761](https://arxiv.org/abs/2302.04761)
+
+Shows how to **train** an LLM to use tools in a self-supervised manner. The model learns to insert API calls into its own generated text, execute them, and incorporate results — without large human-annotated datasets.
+
+- **Tools learned:** Calculator, Wikipedia search, calendar, Q&A system, translator
+- **Key ideas:** Self-supervised tool learning; decides which API to call, when, and with what arguments; training signal from self-generated examples
+- **Legacy:** Prefigures the function-calling paradigm now standard in GPT-4, Claude, etc.
+
+### MRKL Systems: A Modular, Neuro-Symbolic Architecture (2022)
+**Karpas et al.** · [arXiv:2205.00445](https://arxiv.org/abs/2205.00445)
+
+Early vision of **modular AI** where an LLM router dispatches to specialized expert modules (calculators, databases, ML models). One of the first papers to articulate the "LLM + tools" architecture.
+
+- **Key ideas:** LLM as orchestrator; discrete symbolic modules for reliable computation; router learns which module is appropriate
+- **Legacy:** Direct ancestor of today's tool-calling agents
+
+### WebGPT: Browser-Assisted Question Answering (2022)
+**Nakano et al.** · [arXiv:2112.09332](https://arxiv.org/abs/2112.09332)
+
+GPT-3 fine-tuned to browse the web to answer questions. Introduced the concept of **browser-using agents** — now a major category. Used RLHF to train the browsing behavior.
+
+- **Key ideas:** Web browsing as an action space; RLHF for agent behavior; long-form question answering with citations
+
+### HuggingGPT / JARVIS (2023)
+**Shen et al.** · [arXiv:2303.17580](https://arxiv.org/abs/2303.17580)
+
+LLM (ChatGPT) as a **task planner** that orchestrates hundreds of specialized ML models from HuggingFace. The LLM parses user requests, selects the right ML models, executes them in sequence, and synthesizes results.
+
+- **Key ideas:** LLM as controller of a model hub; structured task planning; multi-modal capability via model composition
+- **GitHub:** [microsoft/JARVIS](https://github.com/microsoft/JARVIS)
+
+### SayCan: Grounding Language in Robotic Affordances (2022)
+**Ahn et al.** · [arXiv:2204.01691](https://arxiv.org/abs/2204.01691)
+
+Landmark paper combining LLMs with robotics. The LLM generates possible action plans; a learned "affordance" model scores which actions are physically feasible in the current environment. Early example of **embodied agent planning**.
+
+- **Key ideas:** LLM proposes, affordance model filters; language grounding in physical world; "what is both useful AND possible"
+
+### Voyager: An Open-Ended Embodied Agent in Minecraft (2023)
+**Wang et al.** · [arXiv:2305.16291](https://arxiv.org/abs/2305.16291)
+
+GPT-4 playing Minecraft autonomously for indefinite time spans. Features a **procedural skill library** that grows over time, an automatic curriculum for proposing increasingly complex tasks, and iterative skill refinement via execution feedback.
+
+- **Key ideas:** Lifelong learning via skill accumulation; automatic curriculum; code-as-action (skills written as JavaScript); never "forgets" learned skills
+- **Results:** 3× faster at milestones, unlocks tech tree substantially faster than prior methods
+
+### AutoGPT (2023)
+**Riedl et al. (community)** · [GitHub](https://github.com/Significant-Gravitas/AutoGPT)
+
+Not a paper, but arguably the most influential artifact of 2023. AutoGPT showed the world what a **fully autonomous LLM agent** looked like: give it a goal, let it run. It sparked massive public interest and downstream research, despite significant reliability issues.
+
+- **Key ideas:** Autonomous goal pursuit; persistent memory; web search + code execution; iterative task decomposition
+- **Legacy:** Demonstrated demand for autonomous agents; exposed failure modes that drove later research
+
+### BabyAGI (2023)
+**Nakajima** · [GitHub](https://github.com/yoheinakajima/babyagi)
+
+Minimalist task management agent. Maintains a task list, executes tasks with an LLM + web search, and adds new tasks based on results. Showed that a **simple agent loop** could produce surprising emergent behaviors.
+
+---
+
+## Standard Agent Decomposition
+
+Based on the survey literature, the field converged on this standard decomposition:
+
+| Component | Description | Examples |
+|-----------|-------------|---------|
+| **Perception** | Inputs from environment | Text, images, tool outputs, web pages |
+| **Memory** | Information storage & retrieval | In-context, vector DB, key-value stores |
+| **Planning** | Deciding what to do | ReAct, CoT, hierarchical decomposition |
+| **Action** | Executing decisions | Tool calls, web search, code execution |
+| **Learning** | Improving over time | Reflexion, skill libraries, RLHF |
+
+---
+
+## Timeline: 2021–2023
+
+| Date | Milestone |
+|------|-----------|
+| Dec 2021 | WebGPT — first browser-using agent |
+| Feb 2022 | Chain-of-Thought (Wei et al.) — reasoning foundation |
+| Apr 2022 | SayCan — embodied language agents |
+| May 2022 | MRKL — LLM + expert module router |
+| Jul 2022 | Inner Monologue — robot agents with language feedback |
+| Oct 2022 | ReAct — the canonical agent loop |
+| Feb 2023 | Toolformer — self-supervised tool learning |
+| Mar 2023 | HuggingGPT/JARVIS — LLM as model orchestrator |
+| Mar 2023 | CAMEL — multi-agent role-playing |
+| Mar 2023 | AutoGPT goes viral — public awareness of agents |
+| Apr 2023 | Generative Agents (Park et al.) — agent towns with memory |
+| May 2023 | Tree of Thoughts — structured search over thoughts |
+| May 2023 | Voyager — lifelong learning agent in Minecraft |
+| Jun 2023 | OpenAI function calling released — industry standard tool use |
+| Jun 2023 | Lilian Weng's "LLM Powered Autonomous Agents" blog post |
+| Aug 2023 | MetaGPT — software dev multi-agent system |
+| Aug 2023 | AutoGen (Microsoft) — conversable agent framework |
+| Aug 2023 | Major surveys: Wang et al., Xi et al. |
+| Oct 2023 | MemGPT — hierarchical memory for LLM agents |
+
+---
+
+*Continue to [Reasoning & Planning →](reasoning.qmd)*

@@ -1,0 +1,141 @@
+/* LLM Agents Survey - Custom Styles */
+
+/* Hero section on homepage */
+.hero {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  color: white;
+  padding: 4rem 2rem;
+  margin: -1rem -1rem 2rem -1rem;
+  border-radius: 0 0 1rem 1rem;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: white !important;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  max-width: 700px;
+}
+
+/* Category cards */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.survey-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.survey-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+  text-decoration: none;
+}
+
+.survey-card h3 {
+  margin-top: 0.5rem;
+  color: #0f3460;
+}
+
+.card-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Paper entries */
+.paper-entry {
+  border-left: 4px solid #0f3460;
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+  background: #f8f9fa;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.paper-entry h4 {
+  margin: 0 0 0.3rem 0;
+  font-size: 1rem;
+}
+
+.paper-entry .meta {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 0.4rem;
+}
+
+/* Timeline */
+.timeline-item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  align-items: flex-start;
+}
+
+.timeline-date {
+  min-width: 90px;
+  font-weight: 600;
+  color: #0f3460;
+  font-size: 0.9rem;
+  padding-top: 0.15rem;
+}
+
+.timeline-content {
+  flex: 1;
+  border-left: 2px solid #0f3460;
+  padding-left: 1rem;
+}
+
+/* Tags */
+.tag {
+  display: inline-block;
+  background: #e8eef7;
+  color: #0f3460;
+  padding: 0.15rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.8rem;
+  margin: 0.1rem;
+}
+
+/* Callout override */
+.callout {
+  margin: 1.5rem 0;
+}
+
+/* Stats bar */
+.stats-bar {
+  display: flex;
+  gap: 2rem;
+  background: #f0f4f8;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #0f3460;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: #666;
+}

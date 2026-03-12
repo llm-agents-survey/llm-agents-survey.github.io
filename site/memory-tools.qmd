@@ -1,0 +1,263 @@
+---
+title: "Memory, Tools & Actions"
+subtitle: "How agents remember, use tools, and act in the world"
+---
+
+## Overview
+
+Three capabilities transform an LLM from a text generator into an agent: **memory** (persisting information beyond the context window), **tools** (calling external capabilities), and **actions** (operating in digital or physical environments). This section surveys the research landscape for each.
+
+---
+
+## Memory Systems
+
+### The Memory Problem
+
+Standard LLMs have a fixed context window. For short conversations this is fine; for long-running agents tasked with multi-day work, it's a fundamental limitation. Memory research asks: *How do we give agents persistent, organized access to past experience?*
+
+### Memory Taxonomy
+
+Based on cognitive science (ACT-R, SOAR), the literature uses four memory types:
+
+| Type | Description | Stored As | Example |
+|------|-------------|-----------|---------|
+| **Working / In-context** | Current context window | Tokens | Conversation history |
+| **Episodic** | Time-stamped experiences | Natural language | "Yesterday I searched for X and found Y" |
+| **Semantic** | World knowledge and facts | Embeddings / KV store | Entity facts, document summaries |
+| **Procedural** | How-to skills and rules | Code / prompts | Voyager skill library, tool specs |
+
+### Key Papers
+
+#### MemGPT: Towards LLMs as Operating Systems (2023)
+**Packer et al. (UCB)** · [arXiv:2310.08560](https://arxiv.org/abs/2310.08560)
+
+**The canonical memory paper.** Draws analogy to OS virtual memory: a small "main context" (fast, limited) and large "external storage" (slow, vast). MemGPT manages movement between tiers, deciding what to load, store, and evict. Enables indefinite conversation and multi-document analysis.
+
+- **Architecture:** Hierarchical context management; interrupt-driven control flow; memory functions (search, append, update)
+- **Results:** Outperforms baselines on long-document tasks and multi-session conversation
+- **GitHub:** [cpacker/MemGPT](https://github.com/cpacker/MemGPT) → became [Letta](https://github.com/letta-ai/letta)
+
+#### Generative Agents: Interactive Simulacra of Human Behavior (2023)
+**Park et al.** · [arXiv:2304.03442](https://arxiv.org/abs/2304.03442)
+
+Establishes the **memory stream** pattern: continuous natural language log of agent experiences. Three operations: **observation** (record events), **reflection** (synthesize into higher-level insights), **planning** (use memories to plan future actions). Recency, importance, and relevance jointly score which memories to retrieve.
+
+- **Reflection:** "I notice that I've talked to people about the party three times today — it must be important"
+- **Impact:** Most-cited memory architecture for autonomous agents
+
+#### ReadAgent: Gist Memory for Long Documents (2024)
+**Lee et al. (Google)** · [arXiv:2402.09727](https://arxiv.org/abs/2402.09727)
+
+Mimics human reading: divide a document into episodes, compress each into a **gist** (short summary), retrieve details on demand. Extends effective context 3.5–20× without retraining.
+
+#### Cognitive Architectures for Language Agents (2023)
+**Sumers et al.** · [arXiv:2309.02427](https://arxiv.org/abs/2309.02427)
+
+Grounds agent memory in cognitive science. Proposes four-part model (working, procedural, semantic, episodic) with consolidation and retrieval mechanisms.
+
+#### A-MEM: Agentic Memory System (2025)
+**[arXiv:2502.12110](https://arxiv.org/abs/2502.12110)**
+
+Dynamic memory with Zettelkasten-inspired note organization. Creates interconnected notes with automatic linking and retrieval. Outperforms static memory systems on long-horizon tasks.
+
+#### Mem0 (2024-2025)
+**[mem0.ai](https://mem0.ai)** · [GitHub](https://github.com/mem0ai/mem0)
+
+Production memory layer for LLM applications. Extracts entities and relationships from conversations, stores them in a hybrid vector + graph database, and retrieves contextually relevant memories. Widely adopted in production agent systems.
+
+---
+
+## Tool Use & Function Calling
+
+### The Tool Use Revolution
+
+Tools transform agents from text generators into **actors**: they can search the web, execute code, call APIs, query databases, send messages. The ability to use tools is what makes agents actually useful.
+
+### Foundational Papers
+
+#### Toolformer: Language Models Can Teach Themselves to Use Tools (2023)
+**Schick et al. (Meta AI)** · [arXiv:2302.04761](https://arxiv.org/abs/2302.04761)
+
+First paper to show that LLMs can **learn tool use** in a self-supervised manner. The model generates candidate API calls, executes them, and keeps the ones that improve its own predictions. No large annotation dataset needed.
+
+- **Tools:** Calculator, search engine, Wikipedia, Q&A system, translator
+- **Key insight:** Tool use can be bootstrapped from the model itself
+
+#### OpenAI Function Calling (June 2023)
+**OpenAI** · [Documentation](https://platform.openai.com/docs/guides/function-calling)
+
+**The most impactful practical milestone for tool use.** Function calling standardized how LLMs invoke tools: define function schemas in JSON, model outputs structured JSON calls, application executes them. Became the dominant paradigm for production agent tool use.
+
+- **Impact:** Every major LLM provider now supports function calling (Claude tool use, Gemini function calling)
+- **Parallel function calling (2023):** Multiple tools called in a single pass
+
+#### Gorilla: Large Language Model Connected with Massive APIs (2023)
+**Patil et al. (UCB)** · [arXiv:2305.15334](https://arxiv.org/abs/2305.15334)
+
+Fine-tuned model for API calling across 1,600+ APIs. Uses retrieval-augmented generation to select the right API. Demonstrates that retrieval + generation beats larger models for API calling.
+
+- **Key insight:** API calling is a retrieval problem as much as a generation problem
+- **GitHub:** [ShishirPatil/gorilla](https://github.com/ShishirPatil/gorilla)
+
+#### ToolLLM: Facilitating LLMs to Master 16000+ Real-World APIs (2023)
+**Qin et al. (Tsinghua)** · [arXiv:2307.16789](https://arxiv.org/abs/2307.16789)
+
+Dataset + model for calling 16,000+ RapidAPI endpoints. Introduces DFSDT (depth-first search-based decision tree) for robust tool selection and execution.
+
+#### HuggingGPT / JARVIS (2023)
+**Shen et al.** · [arXiv:2303.17580](https://arxiv.org/abs/2303.17580)
+
+Uses ChatGPT to orchestrate hundreds of specialized ML models from HuggingFace Hub as tools. Planning → tool selection → execution → response synthesis.
+
+#### RestGPT: Connecting LLMs with Real-World RESTful APIs (2023)
+**Song et al.** · [arXiv:2306.06624](https://arxiv.org/abs/2306.06624)
+
+Addresses the challenge of using real-world REST APIs (with complex schemas, authentication, pagination) from LLM agents.
+
+#### Large Language Models as Tool Makers (2023)
+**Cai et al.** · [arXiv:2305.17126](https://arxiv.org/abs/2305.17126)
+
+Agents can **create their own tools** (as Python functions) and reuse them. Tool-making LLM generates tools; tool-using LLM employs them. Enables building up a library of reusable capabilities.
+
+#### AnyTool: Self-Reflective, Hierarchical Agents for Tool Use (2024)
+**Du et al.** · [arXiv:2402.04253](https://arxiv.org/abs/2402.04253)
+
+Hierarchical tool selection with self-reflection for correcting wrong tool choices. State-of-the-art on ToolBench.
+
+#### CodeAct: Executable Code Actions Elicit Better LLM Agents (2024)
+**Wang et al.** · [arXiv:2402.01030](https://arxiv.org/abs/2402.01030)
+
+Uses **executable Python code as the action space** rather than structured JSON tool calls. More flexible, handles complex multi-step logic natively, integrates with execution environments naturally.
+
+---
+
+## Action Spaces
+
+### Web Browsing Agents
+
+#### WebGPT (2022)
+**Nakano et al. (OpenAI)** · [arXiv:2112.09332](https://arxiv.org/abs/2112.09332)
+
+GPT-3 fine-tuned to browse the web using a text-based interface. Searches, follows links, quotes sources. Trained with RLHF. The ancestor of all web-browsing agents.
+
+#### Mind2Web: Towards a Generalist Agent for the Web (2023)
+**Deng et al.** · [arXiv:2306.06070](https://arxiv.org/abs/2306.06070)
+
+Dataset of 2,000 web tasks across 137 websites. Introduces the challenge of generalizing to new websites and tasks. Models must predict next action (click, type, scroll) from HTML + screenshot.
+
+#### WebArena (2023)
+**Zhou et al.** · [arXiv:2307.13854](https://arxiv.org/abs/2307.13854)
+
+Fully reproducible web environment with 4 real applications. 812 tasks with executable evaluation. Critical benchmark for web agent progress.
+
+#### WebAgent (Google, 2023)
+**Gur et al.** · [arXiv:2307.12856](https://arxiv.org/abs/2307.12856)
+
+Modular web agent: HTML summarization + task grounding + planning. Trained on real websites; demonstrates planning from natural language instructions.
+
+---
+
+### GUI & Computer Use Agents
+
+The 2024 frontier: agents controlling entire computers, not just browsers.
+
+#### CogAgent: A Visual Language Model for GUI Agents (2024)
+**Hong et al. (Tsinghua)** · [arXiv:2312.08914](https://arxiv.org/abs/2312.08914)
+
+18B visual-language model trained on GUI navigation. Understands both screenshots and HTML. State-of-the-art on Mind2Web and AITW (Android in the Wild) benchmarks.
+
+#### AppAgent: Multimodal Agents as Smartphone Users (2023)
+**Zhang et al. (Tencent)** · [arXiv:2312.13771](https://arxiv.org/abs/2312.13771)
+
+Autonomous agent for controlling smartphone apps via touch actions. Uses exploration phase (learns app UI) + deployment phase (executes tasks). No app-specific training.
+
+#### UFO: A UI-Focused Agent for Windows OS Interaction (2024)
+**Zhang et al. (Microsoft)** · [arXiv:2402.07939](https://arxiv.org/abs/2402.07939)
+
+Agent for automating Windows OS tasks. Uses dual-agent design: HostAgent (application selection) + AppAgent (in-app navigation). Integrates Windows accessibility tree.
+
+#### OS-Copilot: Towards Generalist Computer Agents on Linux (2024)
+**Wu et al.** · [arXiv:2402.07456](https://arxiv.org/abs/2402.07456)
+
+Generalist agent for Linux desktop. Self-directed skill library (FRIDAY); learns new skills through interaction; strong on GAIA and Spider2V benchmarks.
+
+#### Anthropic Computer Use (October 2024)
+**Anthropic** · [Blog post](https://www.anthropic.com/news/3-5-models-and-computer-use)
+
+Claude 3.5 Sonnet with native ability to control computers: view screenshots, move mouse, click, type. Raised industry attention to computer-using agents as a near-term product category.
+
+#### OSWorld Benchmark (2024)
+**Xie et al.** · [arXiv:2404.07972](https://arxiv.org/abs/2404.07972)
+
+369 real computer tasks across Ubuntu, Windows, macOS. Early systems scored <5%; by early 2025, Claude achieves 72.5%. Most comprehensive desktop agent benchmark.
+
+---
+
+### Code Execution Agents
+
+#### OpenDevin / OpenHands (2024)
+**All Hands AI** · [github.com/All-Hands-AI/OpenHands](https://github.com/All-Hands-AI/OpenHands)
+
+Open-source coding agent with a sandboxed execution environment. Supports web browsing, file editing, code running. Mirrors Devin's architecture but open-source.
+
+#### SWE-agent (2024)
+**Yang et al. (Princeton)** · [arXiv:2405.15793](https://arxiv.org/abs/2405.15793)
+
+GitHub issue resolution agent. Custom **Agent-Computer Interface** (ACI) with file editing, search, execution tools designed specifically for software engineering. 12.29% on SWE-bench.
+
+---
+
+### Embodied / Robotics Agents
+
+#### SayCan: Grounding Language in Robotic Affordances (2022)
+**Ahn et al. (Google)** · [arXiv:2204.01691](https://arxiv.org/abs/2204.01691)
+
+LLM proposes high-level action plans; affordance model filters to physically feasible actions. Classic example of **language grounding** in robotics.
+
+#### PaLM-E: An Embodied Multimodal Language Model (2023)
+**Driess et al. (Google)** · [arXiv:2303.03378](https://arxiv.org/abs/2303.03378)
+
+562B parameter multimodal model for embodied reasoning. Takes sensor inputs (images, state estimates) and generates text + robot actions. Demonstrates transfer from language tasks to robot control.
+
+---
+
+## Retrieval-Augmented Agents (Agentic RAG)
+
+RAG for agents extends beyond simple document retrieval to **active, query-planning retrieval**:
+
+#### Self-RAG: Learning to Retrieve, Generate, and Critique (2023)
+**Asai et al.** · [arXiv:2310.11511](https://arxiv.org/abs/2310.11511)
+
+The model decides **when** to retrieve (not on every query), critiques retrieved passages, and generates with inline citations. Four special tokens (Retrieve, ISREL, ISSUP, ISUSE) gate retrieval and quality.
+
+#### Agentic RAG Patterns (2024)
+Practitioner pattern: agent loops that decompose queries, retrieve in multiple rounds, verify completeness, and synthesize. Distinguished from basic RAG by active query planning.
+
+---
+
+## Timeline: Memory, Tools & Actions
+
+| Date | Milestone |
+|------|-----------|
+| Dec 2021 | WebGPT — LLM + browser |
+| Apr 2022 | SayCan — language grounded in robot affordances |
+| Feb 2023 | Toolformer — self-supervised tool learning |
+| Mar 2023 | HuggingGPT — LLM orchestrates model hub |
+| Apr 2023 | Generative Agents — memory stream + reflection |
+| Jun 2023 | OpenAI function calling — industry standard |
+| Jul 2023 | WebArena — realistic web benchmark |
+| Aug 2023 | Mind2Web — web navigation dataset |
+| Oct 2023 | MemGPT — hierarchical memory management |
+| Oct 2023 | Self-RAG — adaptive retrieval |
+| Dec 2023 | CogAgent — visual GUI agent |
+| Jan 2024 | CodeAct — code as action space |
+| Feb 2024 | ReadAgent — gist memory for documents |
+| Feb 2024 | UFO — Windows agent (Microsoft) |
+| Feb 2024 | OS-Copilot — Linux desktop agent |
+| Apr 2024 | OSWorld — desktop benchmark |
+| May 2024 | SWE-agent — GitHub issue resolution |
+| Oct 2024 | Anthropic Computer Use — production computer agent |
+
+---
+
+*Continue to [2024–2026 Frontier →](recent.qmd)*

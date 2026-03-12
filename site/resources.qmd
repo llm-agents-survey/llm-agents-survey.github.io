@@ -1,0 +1,120 @@
+---
+title: "Resources & Reading List"
+subtitle: "Curated entry points into the LLM agents literature"
+---
+
+## Getting Started
+
+If you're new to LLM agents, start with these:
+
+1. **[Lilian Weng — LLM Powered Autonomous Agents](https://lilianweng.github.io/posts/2023-06-23-agent/)** (June 2023)  
+   The most widely cited blog post introduction to the field. Covers planning, memory, tool use with great diagrams.
+
+2. **[ReAct paper](https://arxiv.org/abs/2210.03629)** (Yao et al., 2022)  
+   The canonical agent loop: Reason + Act interleaved. Essential reading.
+
+3. **[A Survey on Large Language Model based Autonomous Agents](https://arxiv.org/abs/2308.11432)** (Wang et al., 2023)  
+   Comprehensive academic survey covering construction, application, and evaluation.
+
+---
+
+## Key Survey Papers
+
+| Title | Authors | Year | Link |
+|-------|---------|------|------|
+| A Survey on Large Language Model based Autonomous Agents | Wang et al. | 2023 | [arXiv](https://arxiv.org/abs/2308.11432) |
+| The Rise and Potential of Large Language Model Based Agents | Xi et al. | 2023 | [arXiv](https://arxiv.org/abs/2309.07864) |
+| Agent AI: Surveying the Horizons of Multimodal Interaction | Wang et al. | 2024 | [arXiv](https://arxiv.org/abs/2401.03568) |
+| Large Language Models as Tool Makers | Cai et al. | 2023 | [arXiv](https://arxiv.org/abs/2305.17126) |
+
+---
+
+## Essential Papers by Category
+
+### Foundations
+- **ReAct** — [arxiv.org/abs/2210.03629](https://arxiv.org/abs/2210.03629)
+- **Toolformer** — [arxiv.org/abs/2302.04761](https://arxiv.org/abs/2302.04761)
+- **Chain-of-Thought Prompting** — [arxiv.org/abs/2201.11903](https://arxiv.org/abs/2201.11903)
+- **MRKL Systems** — [arxiv.org/abs/2205.00445](https://arxiv.org/abs/2205.00445)
+- **WebGPT** — [arxiv.org/abs/2112.09332](https://arxiv.org/abs/2112.09332)
+
+### Reasoning & Planning
+- **Tree of Thoughts** — [arxiv.org/abs/2305.10601](https://arxiv.org/abs/2305.10601)
+- **Reflexion** — [arxiv.org/abs/2303.11366](https://arxiv.org/abs/2303.11366)
+- **Self-Refine** — [arxiv.org/abs/2303.17651](https://arxiv.org/abs/2303.17651)
+
+### Multi-Agent
+- **CAMEL** — [arxiv.org/abs/2303.17760](https://arxiv.org/abs/2303.17760)
+- **MetaGPT** — [arxiv.org/abs/2308.00352](https://arxiv.org/abs/2308.00352)
+- **AutoGen** — [arxiv.org/abs/2308.08155](https://arxiv.org/abs/2308.08155)
+- **Generative Agents** — [arxiv.org/abs/2304.03442](https://arxiv.org/abs/2304.03442)
+- **ChatDev** — [arxiv.org/abs/2307.07924](https://arxiv.org/abs/2307.07924)
+
+### Memory
+- **MemGPT** — [arxiv.org/abs/2310.08560](https://arxiv.org/abs/2310.08560)
+
+### Tools & Actions
+- **HuggingGPT / JARVIS** — [arxiv.org/abs/2303.17580](https://arxiv.org/abs/2303.17580)
+- **Gorilla LLM** — [arxiv.org/abs/2305.15334](https://arxiv.org/abs/2305.15334)
+- **ToolLLM** — [arxiv.org/abs/2307.16789](https://arxiv.org/abs/2307.16789)
+
+### Coding Agents
+- **SWE-agent** — [arxiv.org/abs/2405.15793](https://arxiv.org/abs/2405.15793)
+- **CodeAct** — [arxiv.org/abs/2402.01030](https://arxiv.org/abs/2402.01030)
+- **SWE-bench** — [arxiv.org/abs/2310.06770](https://arxiv.org/abs/2310.06770)
+
+---
+
+## Key Frameworks (GitHub)
+
+| Framework | GitHub | Description |
+|-----------|--------|-------------|
+| LangChain | [github.com/langchain-ai/langchain](https://github.com/langchain-ai/langchain) | Full-stack agent framework |
+| LangGraph | [github.com/langchain-ai/langgraph](https://github.com/langchain-ai/langgraph) | Graph-based agent workflows |
+| AutoGen | [github.com/microsoft/autogen](https://github.com/microsoft/autogen) | Multi-agent conversation |
+| CrewAI | [github.com/joaomdmoura/crewAI](https://github.com/joaomdmoura/crewAI) | Role-based agent crews |
+| SWE-agent | [github.com/princeton-nlp/SWE-agent](https://github.com/princeton-nlp/SWE-agent) | GitHub issue resolution |
+| OpenDevin | [github.com/All-Hands-AI/OpenHands](https://github.com/All-Hands-AI/OpenHands) | Open software dev agent |
+| DSPy | [github.com/stanfordnlp/dspy](https://github.com/stanfordnlp/dspy) | Programming language models |
+| MemGPT | [github.com/cpacker/MemGPT](https://github.com/cpacker/MemGPT) | Agents with long-term memory |
+
+---
+
+## Influential Blog Posts
+
+| Title | Author | Date |
+|-------|--------|------|
+| [LLM Powered Autonomous Agents](https://lilianweng.github.io/posts/2023-06-23-agent/) | Lilian Weng | Jun 2023 |
+| [Emerging Architectures for LLM Applications](https://a16z.com/emerging-architectures-for-llm-applications/) | a16z | Jun 2023 |
+| [The Anatomy of Autonomy](https://www.sequoiacap.com/article/ai-agents-perspective/) | Sequoia Capital | 2023 |
+| [What We Learned from a Year of Building with LLMs](https://applied-llms.org) | Various practitioners | 2024 |
+| [Building effective agents](https://www.anthropic.com/research/building-effective-agents) | Anthropic | Dec 2024 |
+
+---
+
+## Benchmarks & Evaluation
+
+| Benchmark | Focus | Link |
+|-----------|-------|------|
+| SWE-bench | Software engineering tasks | [swebench.com](https://www.swebench.com) |
+| WebArena | Web navigation | [arxiv.org/abs/2307.13854](https://arxiv.org/abs/2307.13854) |
+| AgentBench | Multi-domain agent eval | [arxiv.org/abs/2308.03688](https://arxiv.org/abs/2308.03688) |
+| GAIA | General AI assistant tasks | [arxiv.org/abs/2311.12983](https://arxiv.org/abs/2311.12983) |
+| OSWorld | Desktop GUI tasks | [arxiv.org/abs/2404.07972](https://arxiv.org/abs/2404.07972) |
+
+---
+
+## Courses & Tutorials
+
+- **[DeepLearning.AI — AI Agents in LangGraph](https://www.deeplearning.ai/short-courses/ai-agents-in-langgraph/)** — Harrison Chase + Andrew Ng
+- **[DeepLearning.AI — Multi AI Agent Systems with crewAI](https://www.deeplearning.ai/short-courses/multi-ai-agent-systems-with-crewai/)** — João Moura
+- **[DeepLearning.AI — AI Agentic Design Patterns with AutoGen](https://www.deeplearning.ai/short-courses/ai-agentic-design-patterns-with-autogen/)** — Chi Wang + Qingyun Wu
+- **[Hugging Face — Agents Course](https://huggingface.co/learn/agents-course)** — Free, hands-on
+
+---
+
+## About This Survey
+
+This survey was compiled in **March 2026** by [John P. Lake](https://github.com/johnplake). It covers the LLM agent literature from 2022 through early 2026.
+
+[View source on GitHub](https://github.com/johnplake/llm-agents-survey) · [Report an issue](https://github.com/johnplake/llm-agents-survey/issues)

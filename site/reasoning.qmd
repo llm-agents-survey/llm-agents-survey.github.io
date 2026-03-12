@@ -1,0 +1,252 @@
+---
+title: "Reasoning & Planning"
+subtitle: "How LLM agents think, plan, and improve themselves"
+---
+
+## Overview
+
+Reasoning and planning are the cognitive core of LLM agents. This area has evolved dramatically: from simple chain-of-thought prompting (2022) to structured tree search (2023), to RL-trained reasoning models (2024-2025) that discover reasoning strategies from scratch.
+
+The central questions:
+
+1. **How can LLMs be prompted to reason step-by-step?**
+2. **How can reasoning be structured** (trees, graphs, hierarchies)?
+3. **How can agents self-improve via feedback?**
+4. **How do we scale reasoning** with test-time compute?
+5. **How can agents plan over long horizons?**
+
+---
+
+## Chain-of-Thought: The Foundation
+
+### Chain-of-Thought Prompting (2022)
+**Wei et al.** · [arXiv:2201.11903](https://arxiv.org/abs/2201.11903) · *NeurIPS 2022*
+
+The root of all LLM reasoning work. Providing step-by-step reasoning examples in the prompt dramatically improves performance on arithmetic, commonsense, and symbolic tasks. An emergent capability — most powerful in models ≥100B parameters.
+
+- **Result:** 540B model with 8 CoT examples achieves SOTA on GSM8K math
+
+### Zero-Shot Chain-of-Thought (2022)
+**Kojima et al.** · [arXiv:2205.11916](https://arxiv.org/abs/2205.11916) · *NeurIPS 2022*
+
+Astonishing finding: adding *"Let's think step by step"* to a prompt, with no examples, elicits multi-step reasoning. Simpler than few-shot CoT but often nearly as effective.
+
+### Self-Consistency (2022)
+**Wang et al.** · [arXiv:2203.11171](https://arxiv.org/abs/2203.11171) · *ICLR 2023*
+
+Instead of greedy decoding, sample multiple diverse reasoning paths and take a majority vote. Multiple paths to the same answer increase confidence. Significant gains on arithmetic and commonsense tasks.
+
+### Least-to-Most Prompting (2022)
+**Zhou et al.** · [arXiv:2205.10625](https://arxiv.org/abs/2205.10625)
+
+Decompose a hard problem into easier sub-problems, then solve them sequentially, each building on the previous. Better generalization than standard CoT on compositional tasks.
+
+---
+
+## Structured Reasoning: Trees, Graphs, and Beyond
+
+### Tree of Thoughts (2023)
+**Yao et al.** · [arXiv:2305.10601](https://arxiv.org/abs/2305.10601) · *NeurIPS 2023*
+
+**Major advance over CoT.** Treats problem-solving as tree search. The model generates multiple candidate "thoughts" (intermediate reasoning steps), evaluates each, and uses BFS or DFS to explore promising branches. Enables backtracking and lookahead.
+
+- **Game of 24:** 4% (CoT) → **74%** (ToT)
+- **Key ideas:** Thought decomposition; self-evaluation of intermediate states; deliberate exploration
+- **GitHub:** [princeton-nlp/tree-of-thought-llm](https://github.com/princeton-nlp/tree-of-thought-llm)
+
+### Graph of Thoughts (2023)
+**Besta et al.** · [arXiv:2308.09687](https://arxiv.org/abs/2308.09687) · *AAAI 2024*
+
+Extends Tree of Thoughts to arbitrary graph structures: thoughts can merge (aggregate), loop, or branch in non-tree patterns. More expressive; outperforms ToT on sorting tasks (+62%) with lower compute.
+
+### Algorithm of Thoughts (2023)
+**Sel et al.** · [arXiv:2308.10379](https://arxiv.org/abs/2308.10379)
+
+Encodes classic algorithms (DFS, BFS) directly into the reasoning trace. The LLM follows a structured algorithmic process, improving reliability on search and optimization problems.
+
+### ReAct: Synergizing Reasoning and Acting (2023)
+**Yao et al.** · [arXiv:2210.03629](https://arxiv.org/abs/2210.03629) · *ICLR 2023*
+
+Interleaves reasoning traces with tool-use actions. The model **thinks** about what to do, **acts**, observes results, and thinks again. The canonical agent reasoning loop.
+
+*(See [Foundations](foundations.qmd) for full entry)*
+
+---
+
+## Planning Architectures
+
+### LLM+P: Combining LLMs with Classical Planning (2023)
+**Liu et al.** · [arXiv:2304.11477](https://arxiv.org/abs/2304.11477) · *ICML 2024*
+
+LLMs translate natural language problem descriptions into **PDDL** (formal planning language), then classical planners (guaranteed optimal) solve them. Combines LLM flexibility with planning rigor.
+
+- **Key insight:** LLMs are good at understanding; classical planners are good at optimizing
+
+### Plan-and-Execute Agents (2023)
+**Chase / LangChain** · [Blog post](https://blog.langchain.dev/plan-and-execute-agents/)
+
+Separate the **planner** (generates a high-level multi-step plan) from the **executor** (carries out each step). Cleaner architecture than monolithic ReAct; easier to monitor and debug.
+
+### DEPS: Describe, Explain, Plan and Select (2023)
+**Wang et al.** · [arXiv:2302.01560](https://arxiv.org/abs/2302.01560)
+
+Interactive planning framework for open-world agents (Minecraft). Uses natural language descriptions and explanations to guide selection of sub-tasks, with error recovery.
+
+### Inner Monologue: Embodied Reasoning via Language Feedback (2022)
+**Huang et al.** · [arXiv:2207.05608](https://arxiv.org/abs/2207.05608) · *CoRL 2022*
+
+Robots form "inner monologues" — natural language reasoning about failures, informed by environment feedback. Iterative plan refinement based on real-world observations.
+
+### Reasoning via Planning (RAP) (2023)
+**Hao et al.** · [arXiv:2305.14992](https://arxiv.org/abs/2305.14992)
+
+Uses the LLM as both a **world model** and a **reasoning agent**. Monte Carlo Tree Search over a space of reasoning actions, with the LLM evaluating states. Outperforms CoT and ToT on mathematical reasoning.
+
+### ADaPT: As-Needed Decomposition and Planning (2023)
+**Trivedi et al.** · [arXiv:2311.05772](https://arxiv.org/html/2311.05772v2) · *NAACL 2024*
+
+Recursive decomposition that re-decomposes sub-tasks if they fail. Addresses brittleness of fixed decomposition plans.
+
+### Step-Back Prompting (2023)
+**Zou et al.** · [arXiv:2310.06117](https://arxiv.org/abs/2310.06117) · *ICLR 2024*
+
+Derives high-level abstractions and first principles before solving specific instances. 42.8% improvement on complex multi-hop QA. "Step back, think at the abstract level, then solve."
+
+### Decomposed Prompting (2022)
+**Khot et al.** · [arXiv:2210.02406](https://arxiv.org/abs/2210.02406) · *EMNLP 2022*
+
+Breaks complex tasks into modular sub-prompts, each solving a specific sub-task. Enables debugging and composition.
+
+---
+
+## Reflection & Self-Improvement
+
+A major theme of 2023: agents that **evaluate and improve their own outputs**.
+
+### Reflexion: Language Agents with Verbal Reinforcement Learning (2023)
+**Shinn et al.** · [arXiv:2303.11366](https://arxiv.org/abs/2303.11366) · *NeurIPS 2023*
+
+Agents generate **verbal reflections** on their failures, stored in an episodic memory buffer. On the next attempt, the agent incorporates its own critique. No gradient updates — reinforcement via language alone.
+
+- **Results:** HumanEval coding: 67% → **91%** (GPT-4); WebArena significant improvements
+- **Key ideas:** Verbal reinforcement; episodic memory of failures; trial-and-learn loop
+- **GitHub:** [noahshinn/reflexion](https://github.com/noahshinn/reflexion)
+
+### Self-Refine: Iterative Refinement with Self-Feedback (2023)
+**Madaan et al.** · [arXiv:2303.17651](https://arxiv.org/abs/2303.17651) · *NeurIPS 2023*
+
+Single model generates output, critiques it, then revises it — iteratively. Works across code, dialogue, math, essay writing. No additional training data needed.
+
+- **Key insight:** Same model can generate and critique; iteration improves quality
+
+### CRITIC: Large Language Models Can Self-Correct with Tool-Interactive Critiquing (2023)
+**Gou et al.** · [arXiv:2305.11738](https://arxiv.org/abs/2305.11738) · *ICLR 2024*
+
+Extends self-critique by **grounding verification in tool use** — uses web search, code execution, or calculators to verify claims, then corrects based on evidence.
+
+- **Key insight:** Tool-grounded critique is more reliable than pure self-evaluation
+
+### Constitutional AI / Self-Critique (2022)
+**Bai et al. (Anthropic)** · [arXiv:2212.08073](https://arxiv.org/abs/2212.08073)
+
+Uses a set of principles ("constitution") to guide the model in critiquing and revising its outputs. Foundation for AI alignment work with implications for agent safety.
+
+---
+
+## Search-Based Planning
+
+### Monte Carlo Tree Search for LLM Reasoning (2024)
+Multiple papers explore MCTS over reasoning traces:
+
+- **Scaling LLM Test-Time Compute** (Snell et al., 2024) · [arXiv:2408.03314](https://arxiv.org/abs/2408.03314) — Shows targeted test-time compute scaling outperforms using a larger model
+- **RAP with Monte Carlo** (Hao et al., 2023) — MCTS over world-model states
+- **MCTS+Reflexion** combinations explored in 2024
+
+### Large Language Monkeys: Sampling and Majority Vote (2024)
+**Brown et al.** · [arXiv:2407.21787](https://arxiv.org/abs/2407.21787)
+
+Repeated sampling with majority vote reveals that **coverage** (any correct solution found) scales well with samples, even when individual attempts are low probability. Implications for test-time compute allocation.
+
+---
+
+## Reasoning Models: RL for Reasoning (2024-2025)
+
+A paradigm shift: instead of prompting strategies, **train the model to reason** using reinforcement learning.
+
+### OpenAI o1 / o3 (2024-2025)
+**OpenAI** · [Technical report](https://openai.com/o1)
+
+Models trained with RL to produce long internal "chains of thought" before answering. Dramatically improves performance on math, coding, and scientific reasoning. Marks the transition from "prompting for reasoning" to "models that reason natively."
+
+- **o1 benchmark:** Near-human performance on Olympiad math; 89th percentile on competitive programming
+- **o3:** Solves 25% of FrontierMath problems; high ARC-AGI-1 scores
+- **Implication for agents:** Reasoning capability is now a first-class model feature
+
+### DeepSeek-R1 (2025)
+**DeepSeek AI** · [arXiv:2501.12948](https://arxiv.org/abs/2501.12948)
+
+Open-source reasoning model trained with GRPO (Group Relative Policy Optimization). Shows that RL-based reasoning can be achieved without supervised reasoning traces — the model discovers reasoning strategies from scratch.
+
+- **Key insight:** Reasoning emerges from RL reward; "aha moments" observed in training
+- **Impact:** First open-weight model matching o1-level reasoning on math
+
+### s1: Simple Test-Time Scaling (2025)
+**Muennighoff et al.** · [arXiv:2501.19393](https://arxiv.org/abs/2501.19393)
+
+Shows that even a small, fine-tuned open model can match o1 performance on math reasoning by training on a curated set of 1,000 "hard" reasoning problems. Budget forcing via extended thinking tokens.
+
+---
+
+## World Models for Planning
+
+### Language Models as World Models (2023)
+Research thread exploring LLMs as simulators of environment dynamics for planning purposes.
+
+- **Reasoning via Planning (RAP)** — explicit world model use for tree search
+- **WorldGPT** — generating world simulations for agent planning
+- **Long-horizon planning** remains an open problem; world models help bridge the gap
+
+---
+
+## Benchmarks for Reasoning & Planning
+
+| Benchmark | Focus | Key Papers |
+|-----------|-------|-----------|
+| GSM8K | Grade school math | Cobbe et al. (2021) |
+| MATH | Competition math | Hendrycks et al. (2021) |
+| HumanEval | Code generation | Chen et al. (2021) |
+| Game of 24 | Combinatorial reasoning | Tree of Thoughts (2023) |
+| ALFWorld | Embodied planning | Shridhar et al. (2021) |
+| WebShop | Web navigation + purchasing | Yao et al. (2022) |
+| MuSiQue | Multi-hop QA | Trivedi et al. (2022) |
+| FrontierMath | Research-level math | Glazer et al. (2024) |
+| ARC-AGI | Abstract reasoning | Chollet (2019) |
+
+---
+
+## Key Concepts & Taxonomy
+
+### Reasoning Paradigms
+
+| Paradigm | Description | Strength |
+|----------|-------------|---------|
+| **Chain-of-Thought** | Linear reasoning trace | Simple, widely applicable |
+| **Self-Consistency** | Majority vote over multiple paths | Robustness, reliability |
+| **Tree of Thoughts** | Branching search over thoughts | Complex problems, backtracking |
+| **ReAct** | Interleaved reasoning + action | Tool use, grounded reasoning |
+| **Reflexion** | Verbal RL from failure | Iterative improvement |
+| **RL Reasoning (o1)** | Trained chain-of-thought | Deep, complex reasoning |
+
+### Planning Strategies
+
+| Strategy | When to Use |
+|----------|-------------|
+| **Direct** | Simple tasks, clear actions |
+| **Plan-and-Execute** | Multi-step tasks, need structure |
+| **Hierarchical** | Long-horizon tasks, sub-goal decomposition |
+| **Reflective/Iterative** | Tasks with verifiable outcomes |
+| **Search-Based** | Complex optimization, multiple valid paths |
+
+---
+
+*Continue to [Multi-Agent Systems →](multiagent.qmd)*

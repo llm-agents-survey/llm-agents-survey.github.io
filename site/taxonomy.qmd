@@ -1,0 +1,204 @@
+---
+title: "Taxonomy & Conceptual Framework"
+subtitle: "How to think about LLM agents — a map of the design space"
+---
+
+## What Is an LLM Agent?
+
+An **LLM agent** is a system in which a large language model serves as a central reasoning engine, capable of taking sequences of actions toward a goal — not merely producing a single response. The key distinctions from standard LLM use:
+
+1. **Agency over time**: The model takes multiple steps, observes results, and adapts
+2. **Tool use**: The model can invoke external capabilities (search, code execution, APIs)
+3. **Goal-directedness**: The system pursues an objective, not just answers a question
+4. **Memory beyond context**: The system can store and retrieve information across turns
+
+The canonical formulation (from Wang et al., 2023 survey): an agent has a **Brain** (the LLM), **Perception** (inputs), **Memory** (short- and long-term storage), **Action** (what it can do), and **Planning** (how it decides what to do).
+
+---
+
+## The Core Agent Loop
+
+Most LLM agent architectures implement some version of this loop:
+
+```
+Observe → Think → Act → Observe → ...
+```
+
+This was crystallized in **ReAct** (Yao et al., 2023):
+
+```
+Thought: I need to find X
+Action: search("X")
+Observation: [result]
+Thought: Now I know X, I should do Y
+Action: ...
+```
+
+Variations on this loop form the backbone of nearly every agent system.
+
+---
+
+## Decomposing Agent Design Space
+
+We can decompose the design space of LLM agents along **five key dimensions**:
+
+### 1. 🧠 Reasoning / Planning
+
+How does the agent decide what to do next?
+
+| Approach | Description | Examples |
+|----------|-------------|---------|
+| **Direct** | Single-step action selection | Basic tool-use with function calling |
+| **Chain-of-Thought** | Linear reasoning trace | ReAct, CoT prompting |
+| **Tree/Graph Search** | Branching exploration | Tree of Thoughts, MCTS agents |
+| **Hierarchical** | Decompose → solve subgoals | Plan-and-Execute, HierAgent |
+| **Reflective** | Evaluate → revise plans | Reflexion, Self-Refine, CRITIC |
+
+### 2. 💾 Memory Architecture
+
+What information can the agent access and how?
+
+| Type | Description | Examples |
+|------|-------------|---------|
+| **In-context** | Everything in the prompt window | Standard LLM, short conversations |
+| **External (vector)** | Retrieved from embedding store | RAG, MemGPT external storage |
+| **Episodic** | Record of past events | MemGPT, Generative Agents diary |
+| **Semantic** | Facts about the world | Knowledge graph integration |
+| **Procedural** | How-to skills, code | Voyager skill library |
+
+### 3. 🔧 Action Space
+
+What can the agent actually do?
+
+| Category | Examples |
+|----------|---------|
+| **Search/Web** | Google search, web browsing, Wikipedia |
+| **Code execution** | Python REPL, shell, Jupyter |
+| **API calls** | REST APIs, function calling |
+| **File I/O** | Read/write files |
+| **GUI/Computer** | Click, type, screenshot |
+| **Agent spawning** | Spawn sub-agents, delegate tasks |
+| **Communication** | Send messages, emails |
+
+### 4. 🤝 Agent Multiplicity
+
+Is the system a single agent or multiple?
+
+| Pattern | Description | Examples |
+|---------|-------------|---------|
+| **Single** | One LLM does everything | Standard ReAct agents |
+| **Specialist pipeline** | Sequential specialization | HuggingGPT, modular agents |
+| **Peer collaboration** | Agents debate and refine | CAMEL, SPP |
+| **Hierarchical** | Manager + workers | AutoGen, MetaGPT, ChatDev |
+| **Society** | Many autonomous agents | Generative Agents, AgentVerse |
+
+### 5. 🎯 Degree of Autonomy
+
+How much human oversight is in the loop?
+
+| Level | Description |
+|-------|-------------|
+| **Tool-augmented** | LLM with tools, human-in-the-loop |
+| **Semi-autonomous** | Agent acts, human approves key steps |
+| **Fully autonomous** | Agent runs until task complete |
+| **Multi-hop autonomous** | Long-horizon, fully unsupervised |
+
+---
+
+## A Taxonomy of Agent Architectures
+
+Based on the literature, we can identify several major architectural families:
+
+### Family 1: Tool-Augmented LLMs
+*"Give the LLM tools to call"*
+
+The simplest agent pattern. A single LLM is given a set of callable tools. It reasons about which tool to call and synthesizes results. The focus is on **tool integration** more than autonomous goal-pursuit.
+
+Key papers: Toolformer, MRKL, OpenAI function calling, Claude tool use
+Key frameworks: LangChain tools, OpenAI Assistants
+
+### Family 2: ReAct-Style Agents
+*"Interleave reasoning and acting"*
+
+The agent alternates between **Thought** (reasoning about what to do) and **Action** (doing it). The observation from the action feeds back into the next thought. This is the dominant pattern for task-solving agents.
+
+Key papers: ReAct, DEPS, Inner Monologue
+Key frameworks: LangChain agents, LlamaIndex agents
+
+### Family 3: Plan-Then-Execute
+*"Make a plan, then execute it"*
+
+A **planner** agent generates a high-level plan, then an **executor** carries out each step. Allows more structured task decomposition and is easier to monitor.
+
+Key papers: Plan-and-Execute (Chase, 2023), LLM+P, DEPS
+Key frameworks: LangGraph, LangChain Plan-and-Execute
+
+### Family 4: Reflective / Self-Improving Agents
+*"Learn from mistakes within a task"*
+
+Agents that evaluate their own performance and update their approach. Introduces a **critic** or **reflection** component.
+
+Key papers: Reflexion, Self-Refine, CRITIC, Constitutional AI
+Key frameworks: AutoGen (with feedback), LangGraph with loops
+
+### Family 5: Multi-Agent Systems
+*"Specialized agents collaborating"*
+
+Multiple LLM instances with different roles (planner, coder, critic, etc.) communicate and collaborate to solve complex tasks.
+
+Key papers: CAMEL, MetaGPT, ChatDev, AutoGen, AgentVerse
+Key frameworks: AutoGen, CrewAI, LangGraph multi-agent
+
+### Family 6: Memory-Augmented Agents
+*"Agents with persistent, structured memory"*
+
+Go beyond the context window with external memory systems: vector databases, structured stores, memory hierarchies modeled after cognitive architectures.
+
+Key papers: MemGPT, Generative Agents, A-MEM, ReadAgent
+Key frameworks: MemGPT, LangChain Memory
+
+### Family 7: Embodied / Action Agents
+*"Agents that act in the physical or digital world"*
+
+Agents that control computers (GUI agents), robots (embodied agents), or execute code. The action space is rich and grounded.
+
+Key papers: SayCan, RT-2, CogAgent, UFO, OS-Copilot, SWE-agent
+Key products: Devin, Claude Computer Use, OpenAI Operator
+
+---
+
+## Key Design Tensions
+
+The literature reveals several recurring tensions that different systems resolve differently:
+
+| Tension | Tradeoff |
+|---------|----------|
+| **Autonomy vs. Oversight** | More autonomy = more capability, more risk |
+| **Generality vs. Specialization** | Specialist agents perform better, general agents are more flexible |
+| **In-context vs. External memory** | Context is fast but limited; external is vast but retrieval is lossy |
+| **Natural language vs. Structured** | Natural language is flexible; structured is reliable |
+| **Single vs. Multi-agent** | Multi-agent enables specialization; single-agent is simpler to debug |
+| **Plan-first vs. Interleave** | Planning enables lookahead; interleaving enables reactivity |
+
+---
+
+## How the Field Has Evolved
+
+| Era | Dominant Pattern | Key Innovation |
+|-----|-----------------|----------------|
+| **2022** | Tool-augmented LLMs | MRKL, WebGPT, SayCan — LLMs + specialized modules |
+| **Early 2023** | ReAct agents | Interleaved reasoning + action; Toolformer |
+| **Mid 2023** | Autonomous agents | AutoGPT, BabyAGI — long-horizon goal pursuit |
+| **Late 2023** | Multi-agent + Memory | MetaGPT, AutoGen, MemGPT, Generative Agents |
+| **2024** | Coding agents + Infra | SWE-agent, Devin; LangGraph, CrewAI |
+| **2025-2026** | Agentic products + MCP | Claude Computer Use, Operator; model-native tooling |
+
+---
+
+## Further Reading
+
+- [Foundations (2022–2023)](foundations.qmd) — The papers that built the field
+- [Reasoning & Planning](reasoning.qmd) — Deep dive on how agents think
+- [Multi-Agent Systems](multiagent.qmd) — Collaborative architectures
+- [Memory, Tools & Actions](memory-tools.qmd) — The building blocks
+- [2024–2026 Frontier](recent.qmd) — Where the field is now

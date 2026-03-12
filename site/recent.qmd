@@ -1,0 +1,273 @@
+---
+title: "2024–2026: The Frontier"
+subtitle: "Coding agents, agentic products, safety, and where the field is heading"
+---
+
+## Overview
+
+2024–2025 transformed LLM agents from a research curiosity into a production category. The key shifts:
+
+- **Coding agents became the killer app** — measurable, automated benchmarks drove rapid progress
+- **Major labs shipped agentic products** — Computer Use, Operator, Copilot Workspace
+- **Frameworks matured** — LangGraph v1.0, AutoGen production, MCP standardization
+- **Safety concerns became urgent** — prompt injection, alignment, sandboxing
+- **RL reasoning models** (o1, DeepSeek-R1) changed what "agent reasoning" means
+
+---
+
+## Coding & Software Engineering Agents
+
+The most concrete test of agent capability: can it resolve real GitHub issues?
+
+### SWE-bench: The Software Engineering Benchmark (2023)
+**Jimenez et al. (Princeton)** · [arXiv:2310.06770](https://arxiv.org/abs/2310.06770)
+
+2,294 real GitHub issues from 12 popular Python repos. An agent must read the codebase, understand the bug, edit files, and pass the repo's test suite. Human developers resolve ~94%; early agents: 2-3%.
+
+**SWE-bench Verified (2024):** Curated subset of 500 verified tasks. Fairer evaluation.
+
+**Progress on SWE-bench:**
+
+| Model / System | Date | Score |
+|---------------|------|-------|
+| Early GPT-4 baselines | 2023 | 1-3% |
+| SWE-agent + GPT-4 | May 2024 | 12.3% |
+| Devin (Cognition) | Mar 2024 | ~13% |
+| SWE-agent + Claude 3.5 | 2024 | 22.1% |
+| Agentless + Claude | 2024 | 27.3% |
+| Claude 3.5 Sonnet (SWE-bench V) | 2025 | 49.0% |
+| o3 / frontier | Mar 2025 | ~70%+ |
+
+### SWE-agent (2024)
+**Yang et al. (Princeton NLP)** · [arXiv:2405.15793](https://arxiv.org/abs/2405.15793)
+
+Dedicated software engineering agent with a custom **Agent-Computer Interface (ACI)** — carefully designed file editing, navigation, and execution tools optimized for software tasks. ReAct-style reasoning over a repository.
+
+- **Key insight:** Interface design matters as much as the model — the ACI dramatically improves performance vs. raw bash
+- **GitHub:** [princeton-nlp/SWE-agent](https://github.com/princeton-nlp/SWE-agent) · 15k+ stars
+
+### Devin: The First AI Software Engineer (March 2024)
+**Cognition AI** · [cognition.ai](https://cognition.ai)
+
+The product that put AI software engineering on the map. Devin is a proprietary coding agent with a full IDE environment, terminal, and web browser. Claimed ~13% on SWE-bench at launch — remarkable at the time.
+
+- **Impact:** Demonstrated commercial viability of autonomous coding; triggered massive VC investment in the space
+- **Technical details:** Proprietary; no published paper
+
+### OpenHands (formerly OpenDevin) (2024)
+**All Hands AI** · [github.com/All-Hands-AI/OpenHands](https://github.com/All-Hands-AI/OpenHands) · 35k+ stars
+
+The open-source answer to Devin. Sandboxed execution, web browser, file system, multiple LLM backends. Active community with enterprise adoption.
+
+- **Architecture:** Containerized sandbox; event-driven agent loop; supports any LLM via LiteLLM
+
+### Aider: AI Pair Programming in Your Terminal (2023-2025)
+**Paul Gauthier** · [aider.chat](https://aider.chat) · [github.com/paul-gauthier/aider](https://github.com/paul-gauthier/aider)
+
+Mature, pragmatic open-source coding assistant. Human-in-the-loop by design — shows diffs before applying, handles git commits. Supports Claude, GPT-4, local models. Among the most widely-used coding tools by developers who want control.
+
+- **Key differentiator:** Transparency and control over full autonomy
+
+### CodeAct: Code as the Universal Action Space (2024)
+**Wang et al.** · [arXiv:2402.01030](https://arxiv.org/abs/2402.01030)
+
+Uses **executable Python code** as the agent's action space. Instead of structured JSON tool calls, the agent writes code. More flexible, handles complex multi-step logic, better error recovery.
+
+### GitHub Copilot Workspace (2024)
+**GitHub / Microsoft** · [Blog](https://github.blog/2024-04-29-github-copilot-workspace/)
+
+GitHub's foray into agentic coding: plan → implement → test within GitHub's ecosystem. Integration with Issues, PRs, and GitHub Actions.
+
+---
+
+## Key 2024–2025 Papers
+
+### OSWorld: Benchmarking Multimodal Agents on Desktop Computers (2024)
+**Xie et al.** · [arXiv:2404.07972](https://arxiv.org/abs/2404.07972)
+
+Real computer tasks across Ubuntu, Windows, macOS with screenshots. 369 tasks in 9 domains. Early systems: <5%; Claude 3.7 Sonnet (early 2025): **72.5%**.
+
+### GAIA: A Benchmark for General AI Assistants (2023)
+**Mialon et al. (Meta AI / HuggingFace)** · [arXiv:2311.12983](https://arxiv.org/abs/2311.12983)
+
+Deceptively hard tasks requiring multi-step web search, file analysis, and reasoning. 3 difficulty levels; humans score 92%; early GPT-4 scored 15%. Leaderboard shows rapid progress through 2024-2025.
+
+### WorkArena: Workplace Task Automation (2024)
+**Drouin et al. (ServiceNow)** · ServiceNow Research
+
+Enterprise workflow automation in ServiceNow. WorkArena++: 682 compositional tasks requiring understanding of business software. Benchmarks agent capability in realistic enterprise settings.
+
+### AgentHarm: Evaluating Agent Safety (2024)
+**Andriushchenko et al.** · [arXiv:2410.09024](https://arxiv.org/abs/2410.09024)
+
+Benchmark for evaluating harmful agent behaviors. Tests whether agents can be manipulated into violating safety guidelines through indirect channels.
+
+### WASP: Wiretapping Agents via Subconscious Persuasion (2024)
+**Xu et al.**
+
+Studies how adversarial prompts embedded in tool outputs (indirect prompt injection) can subvert agent behavior. Important for understanding real-world agent vulnerability.
+
+### Tau-bench: Tool-Agent-User Benchmark (2024)
+**Yao et al.** · [arXiv:2406.12045](https://arxiv.org/abs/2406.12045)
+
+Benchmarks agents on multi-turn, tool-using conversations with simulated users. Evaluates both task completion and user satisfaction. Addresses gap in single-turn evaluation.
+
+---
+
+## Agentic AI Products & Trends
+
+### OpenAI
+
+**GPTs (November 2023):** Custom ChatGPT configurations with tools and knowledge. First mass-market agentic product — millions created.
+
+**Assistants API (2023):** Developer API for building agents with threads, tools (code interpreter, retrieval, function calling), and file handling.
+
+**o1 / o1-mini (September 2024):** RL-trained reasoning model. Internal "chain of thought" before answering. Dramatically improves on math, coding, science.
+
+**o3 (December 2024 / early 2025):** Next-generation reasoning. Solves 25.2% of FrontierMath (vs. 2% for prior models); high ARC-AGI-1 scores.
+
+**Operator (January 2025):** Browser-using agent for automating web tasks (shopping, forms, reservations). First OpenAI product where the model directly controls a web browser.
+
+**Implication for agents:** RL reasoning changes what "reasoning" means — it's now a first-class model capability, not just a prompting trick.
+
+### Anthropic
+
+**Claude Tool Use (2023):** Function calling for Claude — standardized tool integration.
+
+**Computer Use (October 2024):** Claude 3.5 Sonnet can view screenshots, move mouse, click, type. Marks the shift from "calling APIs" to "using computers."
+
+**Model Context Protocol / MCP (November 2024):** Open standard for LLM-tool-data integration. Rapidly adopted across the ecosystem (Cursor, VS Code, dozens of tools). Potentially the USB-C of LLM integrations.
+- [MCP Specification](https://modelcontextprotocol.io/)
+- [MCP GitHub](https://github.com/modelcontextprotocol)
+
+**Claude Code (2025):** Agentic coding tool in the terminal. Reads and writes files, runs commands, creates PRs. Competes directly with Cursor and Aider.
+
+### Google
+
+**Project Astra (2024):** Research preview of a real-time multimodal assistant that sees and remembers the environment continuously.
+
+**Gemini 2.0 (December 2024):** Multimodal model with native tool use, code execution, and extended context (2M tokens). First-party agentic features via Google DeepMind.
+
+**Vertex AI Agents (2024):** Enterprise-grade agent infrastructure on Google Cloud. Grounding, tool calling, evaluation.
+
+**NotebookLM (2024):** AI research assistant with agent-like document synthesis. Audio overviews feature became widely used.
+
+### OpenAI Swarm (October 2024)
+**[github.com/openai/swarm](https://github.com/openai/swarm)** · Experimental
+
+Lightweight, educational multi-agent framework. Two primitives: **agents** (LLM + instructions + tools) and **handoffs** (transfer control to another agent). Minimal abstraction, designed for clarity.
+
+---
+
+## Agent Safety & Reliability
+
+Safety became a serious research topic as agents were deployed in production.
+
+### Prompt Injection
+
+**The core vulnerability:** An agent processes data from the environment (web pages, emails, documents). Adversarial content in that data can contain instructions that override the agent's intended behavior.
+
+**Indirect Prompt Injection (2023)**  
+**Greshake et al.** · [arXiv:2302.12173](https://arxiv.org/abs/2302.12173)  
+First systematic study. Demonstrates attacks via web pages, emails, documents. Shows real risk for deployed agents.
+
+**InjecAgent: Benchmarking Indirect Injection (2024)**  
+**Zhan et al.** · [arXiv:2403.02691](https://arxiv.org/abs/2403.02691)  
+Benchmark with 1,054 test cases. GPT-4: 24% attack success rate. Shows agents are frequently vulnerable.
+
+**AgentDojo (2024)**  
+**Debenedetti et al.** · [arXiv:2406.13352](https://arxiv.org/abs/2406.13352)  
+Framework for evaluating agent security. Tests prompt injection defenses against utility tradeoffs.
+
+### Mitigation Approaches
+
+- **Sandboxing:** Isolate agent actions (containerized execution, read-only environments)
+- **Confirmation steps:** Require human approval for irreversible actions
+- **Privilege separation:** Limit what information agents can access and exfiltrate
+- **Prompt hardening:** Instructions that resist injection (partially effective)
+- **Constitutional approaches:** Monitor agent behavior against a set of principles
+
+### Anthropic: Building Effective Agents (December 2024)
+**Anthropic** · [Blog post](https://www.anthropic.com/research/building-effective-agents)
+
+Practitioner guide from the frontier lab. Key lessons:
+- **Augmented LLMs > complex frameworks** for most tasks
+- **Workflows over agents** when the problem is well-defined
+- **Parallelization** as a key multi-agent pattern
+- **Simple is better**: start with the minimal architecture
+
+---
+
+## Open Source Ecosystem
+
+### GitHub Repository Landscape (as of early 2026)
+
+| Repository | Stars | Description |
+|-----------|-------|-------------|
+| [langchain-ai/langchain](https://github.com/langchain-ai/langchain) | 100k+ | General-purpose agent framework |
+| [All-Hands-AI/OpenHands](https://github.com/All-Hands-AI/OpenHands) | 35k+ | Open-source software engineering agent |
+| [microsoft/autogen](https://github.com/microsoft/autogen) | 40k+ | Multi-agent conversation framework |
+| [geekan/MetaGPT](https://github.com/geekan/MetaGPT) | 50k+ | Software dev multi-agent system |
+| [joaomdmoura/crewAI](https://github.com/joaomdmoura/crewAI) | 25k+ | Role-based agent crews |
+| [langchain-ai/langgraph](https://github.com/langchain-ai/langgraph) | 15k+ | Graph-based agent workflows |
+| [princeton-nlp/SWE-agent](https://github.com/princeton-nlp/SWE-agent) | 15k+ | GitHub issue resolution |
+| [cpacker/MemGPT](https://github.com/cpacker/MemGPT) | 14k+ | Long-term memory for agents |
+| [openai/swarm](https://github.com/openai/swarm) | 18k+ | Lightweight multi-agent framework |
+| [stanfordnlp/dspy](https://github.com/stanfordnlp/dspy) | 20k+ | LM programming framework |
+
+### Key Practical Resources
+
+**[Lilian Weng — LLM Powered Autonomous Agents](https://lilianweng.github.io/posts/2023-06-23-agent/)** (June 2023)  
+The most widely linked blog post introduction to the field. Covers planning, memory, tool use with excellent diagrams. Essential reading.
+
+**[Anthropic — Building Effective Agents](https://www.anthropic.com/research/building-effective-agents)** (December 2024)  
+Production lessons from a frontier lab. Covers workflow patterns, multi-agent design, safety.
+
+**[What We Learned from a Year of Building with LLMs](https://applied-llms.org)** (2024)  
+Practitioner synthesis from 6 ML engineers. Practical lessons on prompting, evaluation, deployment.
+
+**[a16z — Emerging Architectures for LLM Applications](https://a16z.com/emerging-architectures-for-llm-applications/)** (June 2023)  
+VC perspective on the LLM app stack. Introduced now-standard terminology.
+
+**[Eugene Yan — Patterns for Building LLM Applications](https://eugeneyan.com/writing/llm-patterns/)** (2023)  
+Systematic survey of engineering patterns: evals, RAG, finetuning, caching, guardrails.
+
+---
+
+## Timeline: 2024–March 2026
+
+| Date | Milestone |
+|------|-----------|
+| Jan 2024 | CodeAct: code as universal action space |
+| Feb 2024 | ReadAgent, OS-Copilot, UFO (Windows) |
+| Mar 2024 | Devin announced — AI software engineer |
+| Apr 2024 | OSWorld benchmark; GitHub Copilot Workspace |
+| May 2024 | SWE-agent paper; Claude 3.5 Sonnet released |
+| Jun 2024 | tau-bench, AgentDojo |
+| Sep 2024 | OpenAI o1 — RL reasoning model |
+| Oct 2024 | Anthropic Computer Use; OpenAI Swarm; InjecAgent |
+| Nov 2024 | Model Context Protocol (MCP) by Anthropic |
+| Dec 2024 | Anthropic "Building effective agents" guide; Gemini 2.0 |
+| Dec 2024 | OpenAI o3 preview |
+| Jan 2025 | OpenAI Operator (browser agent product) |
+| Jan 2025 | DeepSeek-R1 — open reasoning model |
+| Feb 2025 | LangGraph v1.0 production release |
+| Mar 2025 | Claude 3.7 Sonnet: 72.5% on OSWorld |
+| Mar 2025 | Claude Code agentic coding tool |
+
+---
+
+## Open Questions & Future Directions
+
+1. **Long-horizon reliability** — How do we prevent error accumulation over 100+ step tasks?
+2. **Evaluation** — How do we evaluate open-ended, creative agent behavior?
+3. **Safety at deployment scale** — Prompt injection remains unsolved; trust hierarchies unclear
+4. **Cost-efficiency** — Multi-agent systems with frontier models are expensive; how to scale down?
+5. **Verification** — How does an agent (or human) verify that a complex task was correctly completed?
+6. **Memory consolidation** — Episodic → semantic → procedural: still largely manual or hand-coded
+7. **Multi-agent coordination** — Communication protocol standardization (MCP is a start)
+8. **Embodied + digital convergence** — Desktop agents + robot agents converging in capability
+
+---
+
+*Back to [Taxonomy & Framework →](taxonomy.qmd) | See [Resources →](resources.qmd) for reading list*
