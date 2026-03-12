@@ -199,16 +199,6 @@ If you're new to LLM agents, start with these:
 - **One Human + One Agent + One Browser** — emsh.cat (2026) — [emsh.cat/one-human-one-agent-one-browser/](https://emsh.cat/one-human-one-agent-one-browser/)
 - **OpenAI Harness Engineering** — OpenAI (2025) — [openai.com/index/harness-engineering/](https://openai.com/index/harness-engineering/)
 
-### Frameworks & Tools
-- **LangChain** — [github.com/langchain-ai/langchain](https://github.com/langchain-ai/langchain)
-- **LangGraph** — [github.com/langchain-ai/langgraph](https://github.com/langchain-ai/langgraph)
-- **AutoGen** — [github.com/microsoft/autogen](https://github.com/microsoft/autogen)
-- **CrewAI** — [github.com/joaomdmoura/crewAI](https://github.com/joaomdmoura/crewAI)
-- **SWE-agent** — [github.com/princeton-nlp/SWE-agent](https://github.com/princeton-nlp/SWE-agent)
-- **OpenDevin / OpenHands** — [github.com/All-Hands-AI/OpenHands](https://github.com/All-Hands-AI/OpenHands)
-- **DSPy** — [github.com/stanfordnlp/dspy](https://github.com/stanfordnlp/dspy)
-- **MemGPT** — [github.com/cpacker/MemGPT](https://github.com/cpacker/MemGPT)
-
 ### Courses & Educational Resources
 - **DeepLearning.AI — AI Agents in LangGraph** — [deeplearning.ai/short-courses/ai-agents-in-langgraph/](https://www.deeplearning.ai/short-courses/ai-agents-in-langgraph/)
 - **DeepLearning.AI — Multi AI Agent Systems with crewAI** — [deeplearning.ai/short-courses/multi-ai-agent-systems-with-crewai/](https://www.deeplearning.ai/short-courses/multi-ai-agent-systems-with-crewai/)
