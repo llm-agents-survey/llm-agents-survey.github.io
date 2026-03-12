@@ -54,6 +54,11 @@ Variations on this loop form the backbone of nearly every agent system.
 
 ## Decomposing Agent Design Space
 
+::: {.callout-note}
+## Editorial synthesis
+The five dimensions below are an editorial synthesis for this survey, not a taxonomy from a single source. They draw primarily from [Wang et al. (2023)](https://arxiv.org/abs/2308.11432) (Brain/Perception/Memory/Action/Planning), [Plaat et al. (2025)](https://arxiv.org/abs/2503.23037) (Reason/Act/Interact), and [Sumers et al. (2023)](https://arxiv.org/abs/2309.02427) (cognitive memory architecture), combined with common framings in the practitioner literature. The goal is a practical map of design choices rather than a formal taxonomy.
+:::
+
 We can decompose the design space of LLM agents along **five key dimensions**:
 
 ### 1. 🧠 Reasoning / Planning
