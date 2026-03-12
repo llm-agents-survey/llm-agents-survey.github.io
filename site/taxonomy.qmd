@@ -128,7 +128,7 @@ Based on the literature, we can identify several major architectural families:
 
 The simplest agent pattern. A single LLM is given a set of callable tools. It reasons about which tool to call and synthesizes results. The focus is on **tool integration** more than autonomous goal-pursuit.
 
-Key papers: [Toolformer](https://arxiv.org/abs/2302.04761), [MRKL Systems](https://arxiv.org/abs/2205.00445), OpenAI function calling, Claude tool use
+Key papers: [Toolformer](https://arxiv.org/abs/2302.04761), [MRKL Systems](https://arxiv.org/abs/2205.00445), [OpenAI function calling](https://openai.com/blog/function-calling-and-other-api-updates), [Claude tool use](https://docs.anthropic.com/en/docs/build-with-claude/tool-use)
 Key frameworks: LangChain tools, OpenAI Assistants
 
 ### Family 2: ReAct-Style Agents
@@ -144,7 +144,7 @@ Key frameworks: LangChain agents, LlamaIndex agents
 
 A **planner** agent generates a high-level plan, then an **executor** carries out each step. Allows more structured task decomposition and is easier to monitor.
 
-Key papers: [Plan-and-Execute](https://arxiv.org/abs/2305.04091) (Chase, 2023), [LLM+P](https://arxiv.org/abs/2305.04091), [DEPS](https://arxiv.org/abs/2302.01846)
+Key papers: [Plan-and-Execute](https://blog.langchain.dev/plan-and-execute-agents/) (Chase, 2023), [LLM+P](https://arxiv.org/abs/2304.11477), [DEPS](https://arxiv.org/abs/2302.01846)
 Key frameworks: LangGraph, LangChain Plan-and-Execute
 
 ### Family 4: Reflective / Self-Improving Agents
@@ -152,7 +152,7 @@ Key frameworks: LangGraph, LangChain Plan-and-Execute
 
 Agents that evaluate their own performance and update their approach. Introduces a **critic** or **reflection** component.
 
-Key papers: [Reflexion](https://arxiv.org/abs/2303.11366), [Self-Refine](https://arxiv.org/abs/2305.00633), [CRITIC](https://arxiv.org/abs/2305.11738), [Constitutional AI](https://arxiv.org/abs/2212.08073)
+Key papers: [Reflexion](https://arxiv.org/abs/2303.11366), [Self-Refine](https://arxiv.org/abs/2303.17651), [CRITIC](https://arxiv.org/abs/2305.11738), [Constitutional AI](https://arxiv.org/abs/2212.08073)
 Key frameworks: AutoGen (with feedback), LangGraph with loops
 
 ### Family 5: Multi-Agent Systems
@@ -176,7 +176,7 @@ Key frameworks: MemGPT, LangChain Memory
 
 Agents that control computers (GUI agents), robots (embodied agents), or execute code. The action space is rich and grounded.
 
-Key papers: [SayCan](https://arxiv.org/abs/2204.00598), [RT-2](https://arxiv.org/abs/2307.15818), [CogAgent](https://arxiv.org/abs/2305.04364), [UFO](https://arxiv.org/abs/2402.07939), [OS-Copilot](https://arxiv.org/abs/2402.07939), [SWE-agent](https://arxiv.org/abs/2405.15793)
+Key papers: [SayCan](https://arxiv.org/abs/2204.01691), [RT-2](https://arxiv.org/abs/2307.15818), [CogAgent](https://arxiv.org/abs/2312.08914), [UFO](https://arxiv.org/abs/2402.07939), [OS-Copilot](https://arxiv.org/abs/2402.07456), [SWE-agent](https://arxiv.org/abs/2405.15793)
 Key products: Devin, Claude Computer Use, OpenAI Operator
 
 ---
