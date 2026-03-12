@@ -660,7 +660,7 @@ Action: ...</code></pre>
 <h3 class="anchored" data-anchor-id="family-1-tool-augmented-llms">Family 1: Tool-Augmented LLMs</h3>
 <p><em>“Give the LLM tools to call”</em></p>
 <p>The simplest agent pattern. A single LLM is given a set of callable tools. It reasons about which tool to call and synthesizes results. The focus is on <strong>tool integration</strong> more than autonomous goal-pursuit.</p>
-<p>Key papers: <a href="https://arxiv.org/abs/2302.04761">Toolformer</a>, <a href="https://arxiv.org/abs/2205.00445">MRKL Systems</a>, OpenAI function calling, Claude tool use Key frameworks: LangChain tools, OpenAI Assistants</p>
+<p>Key papers: <a href="https://arxiv.org/abs/2302.04761">Toolformer</a>, <a href="https://arxiv.org/abs/2205.00445">MRKL Systems</a>, <a href="https://openai.com/blog/function-calling-and-other-api-updates">OpenAI function calling</a>, <a href="https://docs.anthropic.com/en/docs/build-with-claude/tool-use">Claude tool use</a> Key frameworks: LangChain tools, OpenAI Assistants</p>
 </section>
 <section id="family-2-react-style-agents" class="level3">
 <h3 class="anchored" data-anchor-id="family-2-react-style-agents">Family 2: ReAct-Style Agents</h3>
@@ -672,13 +672,13 @@ Action: ...</code></pre>
 <h3 class="anchored" data-anchor-id="family-3-plan-then-execute">Family 3: Plan-Then-Execute</h3>
 <p><em>“Make a plan, then execute it”</em></p>
 <p>A <strong>planner</strong> agent generates a high-level plan, then an <strong>executor</strong> carries out each step. Allows more structured task decomposition and is easier to monitor.</p>
-<p>Key papers: <a href="https://arxiv.org/abs/2305.04091">Plan-and-Execute</a> (Chase, 2023), <a href="https://arxiv.org/abs/2305.04091">LLM+P</a>, <a href="https://arxiv.org/abs/2302.01846">DEPS</a> Key frameworks: LangGraph, LangChain Plan-and-Execute</p>
+<p>Key papers: <a href="https://blog.langchain.dev/plan-and-execute-agents/">Plan-and-Execute</a> (Chase, 2023), <a href="https://arxiv.org/abs/2304.11477">LLM+P</a>, <a href="https://arxiv.org/abs/2302.01846">DEPS</a> Key frameworks: LangGraph, LangChain Plan-and-Execute</p>
 </section>
 <section id="family-4-reflective-self-improving-agents" class="level3">
 <h3 class="anchored" data-anchor-id="family-4-reflective-self-improving-agents">Family 4: Reflective / Self-Improving Agents</h3>
 <p><em>“Learn from mistakes within a task”</em></p>
 <p>Agents that evaluate their own performance and update their approach. Introduces a <strong>critic</strong> or <strong>reflection</strong> component.</p>
-<p>Key papers: <a href="https://arxiv.org/abs/2303.11366">Reflexion</a>, <a href="https://arxiv.org/abs/2305.00633">Self-Refine</a>, <a href="https://arxiv.org/abs/2305.11738">CRITIC</a>, <a href="https://arxiv.org/abs/2212.08073">Constitutional AI</a> Key frameworks: AutoGen (with feedback), LangGraph with loops</p>
+<p>Key papers: <a href="https://arxiv.org/abs/2303.11366">Reflexion</a>, <a href="https://arxiv.org/abs/2303.17651">Self-Refine</a>, <a href="https://arxiv.org/abs/2305.11738">CRITIC</a>, <a href="https://arxiv.org/abs/2212.08073">Constitutional AI</a> Key frameworks: AutoGen (with feedback), LangGraph with loops</p>
 </section>
 <section id="family-5-multi-agent-systems" class="level3">
 <h3 class="anchored" data-anchor-id="family-5-multi-agent-systems">Family 5: Multi-Agent Systems</h3>
@@ -696,7 +696,7 @@ Action: ...</code></pre>
 <h3 class="anchored" data-anchor-id="family-7-embodied-action-agents">Family 7: Embodied / Action Agents</h3>
 <p><em>“Agents that act in the physical or digital world”</em></p>
 <p>Agents that control computers (GUI agents), robots (embodied agents), or execute code. The action space is rich and grounded.</p>
-<p>Key papers: <a href="https://arxiv.org/abs/2204.00598">SayCan</a>, <a href="https://arxiv.org/abs/2307.15818">RT-2</a>, <a href="https://arxiv.org/abs/2305.04364">CogAgent</a>, <a href="https://arxiv.org/abs/2402.07939">UFO</a>, <a href="https://arxiv.org/abs/2402.07939">OS-Copilot</a>, <a href="https://arxiv.org/abs/2405.15793">SWE-agent</a> Key products: Devin, Claude Computer Use, OpenAI Operator</p>
+<p>Key papers: <a href="https://arxiv.org/abs/2204.01691">SayCan</a>, <a href="https://arxiv.org/abs/2307.15818">RT-2</a>, <a href="https://arxiv.org/abs/2312.08914">CogAgent</a>, <a href="https://arxiv.org/abs/2402.07939">UFO</a>, <a href="https://arxiv.org/abs/2402.07456">OS-Copilot</a>, <a href="https://arxiv.org/abs/2405.15793">SWE-agent</a> Key products: Devin, Claude Computer Use, OpenAI Operator</p>
 <hr>
 </section>
 </section>
