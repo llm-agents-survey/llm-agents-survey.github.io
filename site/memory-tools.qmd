@@ -122,7 +122,7 @@ The most consequential practical milestone in agent tooling. Released June 2023,
 
 - Enabled the entire LangChain/AutoGen/CrewAI ecosystem to mature rapidly
 
-### Gorilla LLM: Large Language Model Connected with APIs (2023)
+### Gorilla: Large Language Model Connected with Massive APIs (2023)
 **Patil et al.** · [arXiv:2305.15334](https://arxiv.org/abs/2305.15334)
 
 Fine-tuned LLMs specifically for API calling with reduced hallucination. Introduced APIBench for evaluation. Showed that fine-tuning for tool use substantially outperforms prompting alone.
@@ -180,7 +180,7 @@ Visual language model fine-tuned for GUI understanding and navigation.
 **AppAgent** (2023) · [arXiv:2312.13771](https://arxiv.org/abs/2312.13771)  
 Smartphone GUI agent using screenshots + XML accessibility trees.
 
-**UFO / UFO²** (Microsoft) · [arXiv:2402.07456](https://arxiv.org/abs/2402.07456)  
+**UFO / UFO²** (Microsoft) · [arXiv:2402.07939](https://arxiv.org/abs/2402.07939)  
 Windows desktop agent using UI Automation framework.
 
 **OS-Copilot** (2024) · [arXiv:2402.07456](https://arxiv.org/abs/2402.07456)  
