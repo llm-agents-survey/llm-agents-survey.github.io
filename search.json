@@ -1,0 +1,436 @@
+[
+  {
+    "objectID": "resources.html",
+    "href": "resources.html",
+    "title": "Resources & Reading List",
+    "section": "",
+    "text": "If you’re new to LLM agents, start with these:\n\nLilian Weng — LLM Powered Autonomous Agents (June 2023)\nThe most widely cited blog post introduction to the field. Covers planning, memory, tool use with great diagrams.\nReAct paper (Yao et al., 2022)\nThe canonical agent loop: Reason + Act interleaved. Essential reading.\nA Survey on Large Language Model based Autonomous Agents (Wang et al., 2023)\nComprehensive academic survey covering construction, application, and evaluation."
+  },
+  {
+    "objectID": "resources.html#getting-started",
+    "href": "resources.html#getting-started",
+    "title": "Resources & Reading List",
+    "section": "",
+    "text": "If you’re new to LLM agents, start with these:\n\nLilian Weng — LLM Powered Autonomous Agents (June 2023)\nThe most widely cited blog post introduction to the field. Covers planning, memory, tool use with great diagrams.\nReAct paper (Yao et al., 2022)\nThe canonical agent loop: Reason + Act interleaved. Essential reading.\nA Survey on Large Language Model based Autonomous Agents (Wang et al., 2023)\nComprehensive academic survey covering construction, application, and evaluation."
+  },
+  {
+    "objectID": "resources.html#key-survey-papers",
+    "href": "resources.html#key-survey-papers",
+    "title": "Resources & Reading List",
+    "section": "Key Survey Papers",
+    "text": "Key Survey Papers\n\n\n\nTitle\nAuthors\nYear\nLink\n\n\n\n\nA Survey on Large Language Model based Autonomous Agents\nWang et al.\n2023\narXiv\n\n\nThe Rise and Potential of Large Language Model Based Agents\nXi et al.\n2023\narXiv\n\n\nAgent AI: Surveying the Horizons of Multimodal Interaction\nWang et al.\n2024\narXiv\n\n\nLarge Language Models as Tool Makers\nCai et al.\n2023\narXiv"
+  },
+  {
+    "objectID": "resources.html#essential-papers-by-category",
+    "href": "resources.html#essential-papers-by-category",
+    "title": "Resources & Reading List",
+    "section": "Essential Papers by Category",
+    "text": "Essential Papers by Category\n\nFoundations\n\nReAct — arxiv.org/abs/2210.03629\nToolformer — arxiv.org/abs/2302.04761\nChain-of-Thought Prompting — arxiv.org/abs/2201.11903\nMRKL Systems — arxiv.org/abs/2205.00445\nWebGPT — arxiv.org/abs/2112.09332\n\n\n\nReasoning & Planning\n\nTree of Thoughts — arxiv.org/abs/2305.10601\nReflexion — arxiv.org/abs/2303.11366\nSelf-Refine — arxiv.org/abs/2303.17651\n\n\n\nMulti-Agent\n\nCAMEL — arxiv.org/abs/2303.17760\nMetaGPT — arxiv.org/abs/2308.00352\nAutoGen — arxiv.org/abs/2308.08155\nGenerative Agents — arxiv.org/abs/2304.03442\nChatDev — arxiv.org/abs/2307.07924\n\n\n\nMemory\n\nMemGPT — arxiv.org/abs/2310.08560\n\n\n\nTools & Actions\n\nHuggingGPT / JARVIS — arxiv.org/abs/2303.17580\nGorilla LLM — arxiv.org/abs/2305.15334\nToolLLM — arxiv.org/abs/2307.16789\n\n\n\nCoding Agents\n\nSWE-agent — arxiv.org/abs/2405.15793\nCodeAct — arxiv.org/abs/2402.01030\nSWE-bench — arxiv.org/abs/2310.06770"
+  },
+  {
+    "objectID": "resources.html#key-frameworks-github",
+    "href": "resources.html#key-frameworks-github",
+    "title": "Resources & Reading List",
+    "section": "Key Frameworks (GitHub)",
+    "text": "Key Frameworks (GitHub)\n\n\n\nFramework\nGitHub\nDescription\n\n\n\n\nLangChain\ngithub.com/langchain-ai/langchain\nFull-stack agent framework\n\n\nLangGraph\ngithub.com/langchain-ai/langgraph\nGraph-based agent workflows\n\n\nAutoGen\ngithub.com/microsoft/autogen\nMulti-agent conversation\n\n\nCrewAI\ngithub.com/joaomdmoura/crewAI\nRole-based agent crews\n\n\nSWE-agent\ngithub.com/princeton-nlp/SWE-agent\nGitHub issue resolution\n\n\nOpenDevin\ngithub.com/All-Hands-AI/OpenHands\nOpen software dev agent\n\n\nDSPy\ngithub.com/stanfordnlp/dspy\nProgramming language models\n\n\nMemGPT\ngithub.com/cpacker/MemGPT\nAgents with long-term memory"
+  },
+  {
+    "objectID": "resources.html#influential-blog-posts",
+    "href": "resources.html#influential-blog-posts",
+    "title": "Resources & Reading List",
+    "section": "Influential Blog Posts",
+    "text": "Influential Blog Posts\n\n\n\nTitle\nAuthor\nDate\n\n\n\n\nLLM Powered Autonomous Agents\nLilian Weng\nJun 2023\n\n\nEmerging Architectures for LLM Applications\na16z\nJun 2023\n\n\nThe Anatomy of Autonomy\nSequoia Capital\n2023\n\n\nWhat We Learned from a Year of Building with LLMs\nVarious practitioners\n2024\n\n\nBuilding effective agents\nAnthropic\nDec 2024"
+  },
+  {
+    "objectID": "resources.html#benchmarks-evaluation",
+    "href": "resources.html#benchmarks-evaluation",
+    "title": "Resources & Reading List",
+    "section": "Benchmarks & Evaluation",
+    "text": "Benchmarks & Evaluation\n\n\n\nBenchmark\nFocus\nLink\n\n\n\n\nSWE-bench\nSoftware engineering tasks\nswebench.com\n\n\nWebArena\nWeb navigation\narxiv.org/abs/2307.13854\n\n\nAgentBench\nMulti-domain agent eval\narxiv.org/abs/2308.03688\n\n\nGAIA\nGeneral AI assistant tasks\narxiv.org/abs/2311.12983\n\n\nOSWorld\nDesktop GUI tasks\narxiv.org/abs/2404.07972"
+  },
+  {
+    "objectID": "resources.html#courses-tutorials",
+    "href": "resources.html#courses-tutorials",
+    "title": "Resources & Reading List",
+    "section": "Courses & Tutorials",
+    "text": "Courses & Tutorials\n\nDeepLearning.AI — AI Agents in LangGraph — Harrison Chase + Andrew Ng\nDeepLearning.AI — Multi AI Agent Systems with crewAI — João Moura\nDeepLearning.AI — AI Agentic Design Patterns with AutoGen — Chi Wang + Qingyun Wu\nHugging Face — Agents Course — Free, hands-on"
+  },
+  {
+    "objectID": "resources.html#about-this-survey",
+    "href": "resources.html#about-this-survey",
+    "title": "Resources & Reading List",
+    "section": "About This Survey",
+    "text": "About This Survey\nThis survey was compiled in March 2026 by John P. Lake. It covers the LLM agent literature from 2022 through early 2026.\nView source on GitHub · Report an issue"
+  },
+  {
+    "objectID": "memory-tools.html",
+    "href": "memory-tools.html",
+    "title": "Memory, Tools & Actions",
+    "section": "",
+    "text": "Three capabilities transform an LLM from a text generator into an agent: memory (persisting information beyond the context window), tools (calling external capabilities), and actions (operating in digital or physical environments). This section surveys the research landscape for each."
+  },
+  {
+    "objectID": "memory-tools.html#overview",
+    "href": "memory-tools.html#overview",
+    "title": "Memory, Tools & Actions",
+    "section": "",
+    "text": "Three capabilities transform an LLM from a text generator into an agent: memory (persisting information beyond the context window), tools (calling external capabilities), and actions (operating in digital or physical environments). This section surveys the research landscape for each."
+  },
+  {
+    "objectID": "memory-tools.html#memory-systems",
+    "href": "memory-tools.html#memory-systems",
+    "title": "Memory, Tools & Actions",
+    "section": "Memory Systems",
+    "text": "Memory Systems\n\nThe Memory Problem\nStandard LLMs have a fixed context window. For short conversations this is fine; for long-running agents tasked with multi-day work, it’s a fundamental limitation. Memory research asks: How do we give agents persistent, organized access to past experience?\n\n\nMemory Taxonomy\nBased on cognitive science (ACT-R, SOAR), the literature uses four memory types:\n\n\n\n\n\n\n\n\n\nType\nDescription\nStored As\nExample\n\n\n\n\nWorking / In-context\nCurrent context window\nTokens\nConversation history\n\n\nEpisodic\nTime-stamped experiences\nNatural language\n“Yesterday I searched for X and found Y”\n\n\nSemantic\nWorld knowledge and facts\nEmbeddings / KV store\nEntity facts, document summaries\n\n\nProcedural\nHow-to skills and rules\nCode / prompts\nVoyager skill library, tool specs\n\n\n\n\n\nKey Papers\n\nMemGPT: Towards LLMs as Operating Systems (2023)\nPacker et al. (UCB) · arXiv:2310.08560\nThe canonical memory paper. Draws analogy to OS virtual memory: a small “main context” (fast, limited) and large “external storage” (slow, vast). MemGPT manages movement between tiers, deciding what to load, store, and evict. Enables indefinite conversation and multi-document analysis.\n\nArchitecture: Hierarchical context management; interrupt-driven control flow; memory functions (search, append, update)\nResults: Outperforms baselines on long-document tasks and multi-session conversation\nGitHub: cpacker/MemGPT → became Letta\n\n\n\nGenerative Agents: Interactive Simulacra of Human Behavior (2023)\nPark et al. · arXiv:2304.03442\nEstablishes the memory stream pattern: continuous natural language log of agent experiences. Three operations: observation (record events), reflection (synthesize into higher-level insights), planning (use memories to plan future actions). Recency, importance, and relevance jointly score which memories to retrieve.\n\nReflection: “I notice that I’ve talked to people about the party three times today — it must be important”\nImpact: Most-cited memory architecture for autonomous agents\n\n\n\nReadAgent: Gist Memory for Long Documents (2024)\nLee et al. (Google) · arXiv:2402.09727\nMimics human reading: divide a document into episodes, compress each into a gist (short summary), retrieve details on demand. Extends effective context 3.5–20× without retraining.\n\n\nCognitive Architectures for Language Agents (2023)\nSumers et al. · arXiv:2309.02427\nGrounds agent memory in cognitive science. Proposes four-part model (working, procedural, semantic, episodic) with consolidation and retrieval mechanisms.\n\n\nA-MEM: Agentic Memory System (2025)\narXiv:2502.12110\nDynamic memory with Zettelkasten-inspired note organization. Creates interconnected notes with automatic linking and retrieval. Outperforms static memory systems on long-horizon tasks.\n\n\nMem0 (2024-2025)\nmem0.ai · GitHub\nProduction memory layer for LLM applications. Extracts entities and relationships from conversations, stores them in a hybrid vector + graph database, and retrieves contextually relevant memories. Widely adopted in production agent systems."
+  },
+  {
+    "objectID": "memory-tools.html#tool-use-function-calling",
+    "href": "memory-tools.html#tool-use-function-calling",
+    "title": "Memory, Tools & Actions",
+    "section": "Tool Use & Function Calling",
+    "text": "Tool Use & Function Calling\n\nThe Tool Use Revolution\nTools transform agents from text generators into actors: they can search the web, execute code, call APIs, query databases, send messages. The ability to use tools is what makes agents actually useful.\n\n\nFoundational Papers\n\nToolformer: Language Models Can Teach Themselves to Use Tools (2023)\nSchick et al. (Meta AI) · arXiv:2302.04761\nFirst paper to show that LLMs can learn tool use in a self-supervised manner. The model generates candidate API calls, executes them, and keeps the ones that improve its own predictions. No large annotation dataset needed.\n\nTools: Calculator, search engine, Wikipedia, Q&A system, translator\nKey insight: Tool use can be bootstrapped from the model itself\n\n\n\nOpenAI Function Calling (June 2023)\nOpenAI · Documentation\nThe most impactful practical milestone for tool use. Function calling standardized how LLMs invoke tools: define function schemas in JSON, model outputs structured JSON calls, application executes them. Became the dominant paradigm for production agent tool use.\n\nImpact: Every major LLM provider now supports function calling (Claude tool use, Gemini function calling)\nParallel function calling (2023): Multiple tools called in a single pass\n\n\n\nGorilla: Large Language Model Connected with Massive APIs (2023)\nPatil et al. (UCB) · arXiv:2305.15334\nFine-tuned model for API calling across 1,600+ APIs. Uses retrieval-augmented generation to select the right API. Demonstrates that retrieval + generation beats larger models for API calling.\n\nKey insight: API calling is a retrieval problem as much as a generation problem\nGitHub: ShishirPatil/gorilla\n\n\n\nToolLLM: Facilitating LLMs to Master 16000+ Real-World APIs (2023)\nQin et al. (Tsinghua) · arXiv:2307.16789\nDataset + model for calling 16,000+ RapidAPI endpoints. Introduces DFSDT (depth-first search-based decision tree) for robust tool selection and execution.\n\n\nHuggingGPT / JARVIS (2023)\nShen et al. · arXiv:2303.17580\nUses ChatGPT to orchestrate hundreds of specialized ML models from HuggingFace Hub as tools. Planning → tool selection → execution → response synthesis.\n\n\nRestGPT: Connecting LLMs with Real-World RESTful APIs (2023)\nSong et al. · arXiv:2306.06624\nAddresses the challenge of using real-world REST APIs (with complex schemas, authentication, pagination) from LLM agents.\n\n\nLarge Language Models as Tool Makers (2023)\nCai et al. · arXiv:2305.17126\nAgents can create their own tools (as Python functions) and reuse them. Tool-making LLM generates tools; tool-using LLM employs them. Enables building up a library of reusable capabilities.\n\n\nAnyTool: Self-Reflective, Hierarchical Agents for Tool Use (2024)\nDu et al. · arXiv:2402.04253\nHierarchical tool selection with self-reflection for correcting wrong tool choices. State-of-the-art on ToolBench.\n\n\nCodeAct: Executable Code Actions Elicit Better LLM Agents (2024)\nWang et al. · arXiv:2402.01030\nUses executable Python code as the action space rather than structured JSON tool calls. More flexible, handles complex multi-step logic natively, integrates with execution environments naturally."
+  },
+  {
+    "objectID": "memory-tools.html#action-spaces",
+    "href": "memory-tools.html#action-spaces",
+    "title": "Memory, Tools & Actions",
+    "section": "Action Spaces",
+    "text": "Action Spaces\n\nWeb Browsing Agents\n\nWebGPT (2022)\nNakano et al. (OpenAI) · arXiv:2112.09332\nGPT-3 fine-tuned to browse the web using a text-based interface. Searches, follows links, quotes sources. Trained with RLHF. The ancestor of all web-browsing agents.\n\n\nMind2Web: Towards a Generalist Agent for the Web (2023)\nDeng et al. · arXiv:2306.06070\nDataset of 2,000 web tasks across 137 websites. Introduces the challenge of generalizing to new websites and tasks. Models must predict next action (click, type, scroll) from HTML + screenshot.\n\n\nWebArena (2023)\nZhou et al. · arXiv:2307.13854\nFully reproducible web environment with 4 real applications. 812 tasks with executable evaluation. Critical benchmark for web agent progress.\n\n\nWebAgent (Google, 2023)\nGur et al. · arXiv:2307.12856\nModular web agent: HTML summarization + task grounding + planning. Trained on real websites; demonstrates planning from natural language instructions.\n\n\n\n\nGUI & Computer Use Agents\nThe 2024 frontier: agents controlling entire computers, not just browsers.\n\nCogAgent: A Visual Language Model for GUI Agents (2024)\nHong et al. (Tsinghua) · arXiv:2312.08914\n18B visual-language model trained on GUI navigation. Understands both screenshots and HTML. State-of-the-art on Mind2Web and AITW (Android in the Wild) benchmarks.\n\n\nAppAgent: Multimodal Agents as Smartphone Users (2023)\nZhang et al. (Tencent) · arXiv:2312.13771\nAutonomous agent for controlling smartphone apps via touch actions. Uses exploration phase (learns app UI) + deployment phase (executes tasks). No app-specific training.\n\n\nUFO: A UI-Focused Agent for Windows OS Interaction (2024)\nZhang et al. (Microsoft) · arXiv:2402.07939\nAgent for automating Windows OS tasks. Uses dual-agent design: HostAgent (application selection) + AppAgent (in-app navigation). Integrates Windows accessibility tree.\n\n\nOS-Copilot: Towards Generalist Computer Agents on Linux (2024)\nWu et al. · arXiv:2402.07456\nGeneralist agent for Linux desktop. Self-directed skill library (FRIDAY); learns new skills through interaction; strong on GAIA and Spider2V benchmarks.\n\n\nAnthropic Computer Use (October 2024)\nAnthropic · Blog post\nClaude 3.5 Sonnet with native ability to control computers: view screenshots, move mouse, click, type. Raised industry attention to computer-using agents as a near-term product category.\n\n\nOSWorld Benchmark (2024)\nXie et al. · arXiv:2404.07972\n369 real computer tasks across Ubuntu, Windows, macOS. Early systems scored &lt;5%; by early 2025, Claude achieves 72.5%. Most comprehensive desktop agent benchmark.\n\n\n\n\nCode Execution Agents\n\nOpenDevin / OpenHands (2024)\nAll Hands AI · github.com/All-Hands-AI/OpenHands\nOpen-source coding agent with a sandboxed execution environment. Supports web browsing, file editing, code running. Mirrors Devin’s architecture but open-source.\n\n\nSWE-agent (2024)\nYang et al. (Princeton) · arXiv:2405.15793\nGitHub issue resolution agent. Custom Agent-Computer Interface (ACI) with file editing, search, execution tools designed specifically for software engineering. 12.29% on SWE-bench.\n\n\n\n\nEmbodied / Robotics Agents\n\nSayCan: Grounding Language in Robotic Affordances (2022)\nAhn et al. (Google) · arXiv:2204.01691\nLLM proposes high-level action plans; affordance model filters to physically feasible actions. Classic example of language grounding in robotics.\n\n\nPaLM-E: An Embodied Multimodal Language Model (2023)\nDriess et al. (Google) · arXiv:2303.03378\n562B parameter multimodal model for embodied reasoning. Takes sensor inputs (images, state estimates) and generates text + robot actions. Demonstrates transfer from language tasks to robot control."
+  },
+  {
+    "objectID": "memory-tools.html#retrieval-augmented-agents-agentic-rag",
+    "href": "memory-tools.html#retrieval-augmented-agents-agentic-rag",
+    "title": "Memory, Tools & Actions",
+    "section": "Retrieval-Augmented Agents (Agentic RAG)",
+    "text": "Retrieval-Augmented Agents (Agentic RAG)\nRAG for agents extends beyond simple document retrieval to active, query-planning retrieval:\n\nSelf-RAG: Learning to Retrieve, Generate, and Critique (2023)\nAsai et al. · arXiv:2310.11511\nThe model decides when to retrieve (not on every query), critiques retrieved passages, and generates with inline citations. Four special tokens (Retrieve, ISREL, ISSUP, ISUSE) gate retrieval and quality.\n\n\nAgentic RAG Patterns (2024)\nPractitioner pattern: agent loops that decompose queries, retrieve in multiple rounds, verify completeness, and synthesize. Distinguished from basic RAG by active query planning."
+  },
+  {
+    "objectID": "memory-tools.html#timeline-memory-tools-actions",
+    "href": "memory-tools.html#timeline-memory-tools-actions",
+    "title": "Memory, Tools & Actions",
+    "section": "Timeline: Memory, Tools & Actions",
+    "text": "Timeline: Memory, Tools & Actions\n\n\n\nDate\nMilestone\n\n\n\n\nDec 2021\nWebGPT — LLM + browser\n\n\nApr 2022\nSayCan — language grounded in robot affordances\n\n\nFeb 2023\nToolformer — self-supervised tool learning\n\n\nMar 2023\nHuggingGPT — LLM orchestrates model hub\n\n\nApr 2023\nGenerative Agents — memory stream + reflection\n\n\nJun 2023\nOpenAI function calling — industry standard\n\n\nJul 2023\nWebArena — realistic web benchmark\n\n\nAug 2023\nMind2Web — web navigation dataset\n\n\nOct 2023\nMemGPT — hierarchical memory management\n\n\nOct 2023\nSelf-RAG — adaptive retrieval\n\n\nDec 2023\nCogAgent — visual GUI agent\n\n\nJan 2024\nCodeAct — code as action space\n\n\nFeb 2024\nReadAgent — gist memory for documents\n\n\nFeb 2024\nUFO — Windows agent (Microsoft)\n\n\nFeb 2024\nOS-Copilot — Linux desktop agent\n\n\nApr 2024\nOSWorld — desktop benchmark\n\n\nMay 2024\nSWE-agent — GitHub issue resolution\n\n\nOct 2024\nAnthropic Computer Use — production computer agent\n\n\n\n\nContinue to 2024–2026 Frontier →"
+  },
+  {
+    "objectID": "reasoning.html",
+    "href": "reasoning.html",
+    "title": "Reasoning & Planning",
+    "section": "",
+    "text": "Reasoning and planning are the cognitive core of LLM agents. This area has evolved dramatically: from simple chain-of-thought prompting (2022) to structured tree search (2023), to RL-trained reasoning models (2024-2025) that discover reasoning strategies from scratch.\nThe central questions:\n\nHow can LLMs be prompted to reason step-by-step?\nHow can reasoning be structured (trees, graphs, hierarchies)?\nHow can agents self-improve via feedback?\nHow do we scale reasoning with test-time compute?\nHow can agents plan over long horizons?"
+  },
+  {
+    "objectID": "reasoning.html#overview",
+    "href": "reasoning.html#overview",
+    "title": "Reasoning & Planning",
+    "section": "",
+    "text": "Reasoning and planning are the cognitive core of LLM agents. This area has evolved dramatically: from simple chain-of-thought prompting (2022) to structured tree search (2023), to RL-trained reasoning models (2024-2025) that discover reasoning strategies from scratch.\nThe central questions:\n\nHow can LLMs be prompted to reason step-by-step?\nHow can reasoning be structured (trees, graphs, hierarchies)?\nHow can agents self-improve via feedback?\nHow do we scale reasoning with test-time compute?\nHow can agents plan over long horizons?"
+  },
+  {
+    "objectID": "reasoning.html#chain-of-thought-the-foundation",
+    "href": "reasoning.html#chain-of-thought-the-foundation",
+    "title": "Reasoning & Planning",
+    "section": "Chain-of-Thought: The Foundation",
+    "text": "Chain-of-Thought: The Foundation\n\nChain-of-Thought Prompting (2022)\nWei et al. · arXiv:2201.11903 · NeurIPS 2022\nThe root of all LLM reasoning work. Providing step-by-step reasoning examples in the prompt dramatically improves performance on arithmetic, commonsense, and symbolic tasks. An emergent capability — most powerful in models ≥100B parameters.\n\nResult: 540B model with 8 CoT examples achieves SOTA on GSM8K math\n\n\n\nZero-Shot Chain-of-Thought (2022)\nKojima et al. · arXiv:2205.11916 · NeurIPS 2022\nAstonishing finding: adding “Let’s think step by step” to a prompt, with no examples, elicits multi-step reasoning. Simpler than few-shot CoT but often nearly as effective.\n\n\nSelf-Consistency (2022)\nWang et al. · arXiv:2203.11171 · ICLR 2023\nInstead of greedy decoding, sample multiple diverse reasoning paths and take a majority vote. Multiple paths to the same answer increase confidence. Significant gains on arithmetic and commonsense tasks.\n\n\nLeast-to-Most Prompting (2022)\nZhou et al. · arXiv:2205.10625\nDecompose a hard problem into easier sub-problems, then solve them sequentially, each building on the previous. Better generalization than standard CoT on compositional tasks."
+  },
+  {
+    "objectID": "reasoning.html#structured-reasoning-trees-graphs-and-beyond",
+    "href": "reasoning.html#structured-reasoning-trees-graphs-and-beyond",
+    "title": "Reasoning & Planning",
+    "section": "Structured Reasoning: Trees, Graphs, and Beyond",
+    "text": "Structured Reasoning: Trees, Graphs, and Beyond\n\nTree of Thoughts (2023)\nYao et al. · arXiv:2305.10601 · NeurIPS 2023\nMajor advance over CoT. Treats problem-solving as tree search. The model generates multiple candidate “thoughts” (intermediate reasoning steps), evaluates each, and uses BFS or DFS to explore promising branches. Enables backtracking and lookahead.\n\nGame of 24: 4% (CoT) → 74% (ToT)\nKey ideas: Thought decomposition; self-evaluation of intermediate states; deliberate exploration\nGitHub: princeton-nlp/tree-of-thought-llm\n\n\n\nGraph of Thoughts (2023)\nBesta et al. · arXiv:2308.09687 · AAAI 2024\nExtends Tree of Thoughts to arbitrary graph structures: thoughts can merge (aggregate), loop, or branch in non-tree patterns. More expressive; outperforms ToT on sorting tasks (+62%) with lower compute.\n\n\nAlgorithm of Thoughts (2023)\nSel et al. · arXiv:2308.10379\nEncodes classic algorithms (DFS, BFS) directly into the reasoning trace. The LLM follows a structured algorithmic process, improving reliability on search and optimization problems.\n\n\nReAct: Synergizing Reasoning and Acting (2023)\nYao et al. · arXiv:2210.03629 · ICLR 2023\nInterleaves reasoning traces with tool-use actions. The model thinks about what to do, acts, observes results, and thinks again. The canonical agent reasoning loop.\n(See Foundations for full entry)"
+  },
+  {
+    "objectID": "reasoning.html#planning-architectures",
+    "href": "reasoning.html#planning-architectures",
+    "title": "Reasoning & Planning",
+    "section": "Planning Architectures",
+    "text": "Planning Architectures\n\nLLM+P: Combining LLMs with Classical Planning (2023)\nLiu et al. · arXiv:2304.11477 · ICML 2024\nLLMs translate natural language problem descriptions into PDDL (formal planning language), then classical planners (guaranteed optimal) solve them. Combines LLM flexibility with planning rigor.\n\nKey insight: LLMs are good at understanding; classical planners are good at optimizing\n\n\n\nPlan-and-Execute Agents (2023)\nChase / LangChain · Blog post\nSeparate the planner (generates a high-level multi-step plan) from the executor (carries out each step). Cleaner architecture than monolithic ReAct; easier to monitor and debug.\n\n\nDEPS: Describe, Explain, Plan and Select (2023)\nWang et al. · arXiv:2302.01560\nInteractive planning framework for open-world agents (Minecraft). Uses natural language descriptions and explanations to guide selection of sub-tasks, with error recovery.\n\n\nInner Monologue: Embodied Reasoning via Language Feedback (2022)\nHuang et al. · arXiv:2207.05608 · CoRL 2022\nRobots form “inner monologues” — natural language reasoning about failures, informed by environment feedback. Iterative plan refinement based on real-world observations.\n\n\nReasoning via Planning (RAP) (2023)\nHao et al. · arXiv:2305.14992\nUses the LLM as both a world model and a reasoning agent. Monte Carlo Tree Search over a space of reasoning actions, with the LLM evaluating states. Outperforms CoT and ToT on mathematical reasoning.\n\n\nADaPT: As-Needed Decomposition and Planning (2023)\nTrivedi et al. · arXiv:2311.05772 · NAACL 2024\nRecursive decomposition that re-decomposes sub-tasks if they fail. Addresses brittleness of fixed decomposition plans.\n\n\nStep-Back Prompting (2023)\nZou et al. · arXiv:2310.06117 · ICLR 2024\nDerives high-level abstractions and first principles before solving specific instances. 42.8% improvement on complex multi-hop QA. “Step back, think at the abstract level, then solve.”\n\n\nDecomposed Prompting (2022)\nKhot et al. · arXiv:2210.02406 · EMNLP 2022\nBreaks complex tasks into modular sub-prompts, each solving a specific sub-task. Enables debugging and composition."
+  },
+  {
+    "objectID": "reasoning.html#reflection-self-improvement",
+    "href": "reasoning.html#reflection-self-improvement",
+    "title": "Reasoning & Planning",
+    "section": "Reflection & Self-Improvement",
+    "text": "Reflection & Self-Improvement\nA major theme of 2023: agents that evaluate and improve their own outputs.\n\nReflexion: Language Agents with Verbal Reinforcement Learning (2023)\nShinn et al. · arXiv:2303.11366 · NeurIPS 2023\nAgents generate verbal reflections on their failures, stored in an episodic memory buffer. On the next attempt, the agent incorporates its own critique. No gradient updates — reinforcement via language alone.\n\nResults: HumanEval coding: 67% → 91% (GPT-4); WebArena significant improvements\nKey ideas: Verbal reinforcement; episodic memory of failures; trial-and-learn loop\nGitHub: noahshinn/reflexion\n\n\n\nSelf-Refine: Iterative Refinement with Self-Feedback (2023)\nMadaan et al. · arXiv:2303.17651 · NeurIPS 2023\nSingle model generates output, critiques it, then revises it — iteratively. Works across code, dialogue, math, essay writing. No additional training data needed.\n\nKey insight: Same model can generate and critique; iteration improves quality\n\n\n\nCRITIC: Large Language Models Can Self-Correct with Tool-Interactive Critiquing (2023)\nGou et al. · arXiv:2305.11738 · ICLR 2024\nExtends self-critique by grounding verification in tool use — uses web search, code execution, or calculators to verify claims, then corrects based on evidence.\n\nKey insight: Tool-grounded critique is more reliable than pure self-evaluation\n\n\n\nConstitutional AI / Self-Critique (2022)\nBai et al. (Anthropic) · arXiv:2212.08073\nUses a set of principles (“constitution”) to guide the model in critiquing and revising its outputs. Foundation for AI alignment work with implications for agent safety."
+  },
+  {
+    "objectID": "reasoning.html#search-based-planning",
+    "href": "reasoning.html#search-based-planning",
+    "title": "Reasoning & Planning",
+    "section": "Search-Based Planning",
+    "text": "Search-Based Planning\n\nMonte Carlo Tree Search for LLM Reasoning (2024)\nMultiple papers explore MCTS over reasoning traces:\n\nScaling LLM Test-Time Compute (Snell et al., 2024) · arXiv:2408.03314 — Shows targeted test-time compute scaling outperforms using a larger model\nRAP with Monte Carlo (Hao et al., 2023) — MCTS over world-model states\nMCTS+Reflexion combinations explored in 2024\n\n\n\nLarge Language Monkeys: Sampling and Majority Vote (2024)\nBrown et al. · arXiv:2407.21787\nRepeated sampling with majority vote reveals that coverage (any correct solution found) scales well with samples, even when individual attempts are low probability. Implications for test-time compute allocation."
+  },
+  {
+    "objectID": "reasoning.html#reasoning-models-rl-for-reasoning-2024-2025",
+    "href": "reasoning.html#reasoning-models-rl-for-reasoning-2024-2025",
+    "title": "Reasoning & Planning",
+    "section": "Reasoning Models: RL for Reasoning (2024-2025)",
+    "text": "Reasoning Models: RL for Reasoning (2024-2025)\nA paradigm shift: instead of prompting strategies, train the model to reason using reinforcement learning.\n\nOpenAI o1 / o3 (2024-2025)\nOpenAI · Technical report\nModels trained with RL to produce long internal “chains of thought” before answering. Dramatically improves performance on math, coding, and scientific reasoning. Marks the transition from “prompting for reasoning” to “models that reason natively.”\n\no1 benchmark: Near-human performance on Olympiad math; 89th percentile on competitive programming\no3: Solves 25% of FrontierMath problems; high ARC-AGI-1 scores\nImplication for agents: Reasoning capability is now a first-class model feature\n\n\n\nDeepSeek-R1 (2025)\nDeepSeek AI · arXiv:2501.12948\nOpen-source reasoning model trained with GRPO (Group Relative Policy Optimization). Shows that RL-based reasoning can be achieved without supervised reasoning traces — the model discovers reasoning strategies from scratch.\n\nKey insight: Reasoning emerges from RL reward; “aha moments” observed in training\nImpact: First open-weight model matching o1-level reasoning on math\n\n\n\ns1: Simple Test-Time Scaling (2025)\nMuennighoff et al. · arXiv:2501.19393\nShows that even a small, fine-tuned open model can match o1 performance on math reasoning by training on a curated set of 1,000 “hard” reasoning problems. Budget forcing via extended thinking tokens."
+  },
+  {
+    "objectID": "reasoning.html#world-models-for-planning",
+    "href": "reasoning.html#world-models-for-planning",
+    "title": "Reasoning & Planning",
+    "section": "World Models for Planning",
+    "text": "World Models for Planning\n\nLanguage Models as World Models (2023)\nResearch thread exploring LLMs as simulators of environment dynamics for planning purposes.\n\nReasoning via Planning (RAP) — explicit world model use for tree search\nWorldGPT — generating world simulations for agent planning\nLong-horizon planning remains an open problem; world models help bridge the gap"
+  },
+  {
+    "objectID": "reasoning.html#benchmarks-for-reasoning-planning",
+    "href": "reasoning.html#benchmarks-for-reasoning-planning",
+    "title": "Reasoning & Planning",
+    "section": "Benchmarks for Reasoning & Planning",
+    "text": "Benchmarks for Reasoning & Planning\n\n\n\nBenchmark\nFocus\nKey Papers\n\n\n\n\nGSM8K\nGrade school math\nCobbe et al. (2021)\n\n\nMATH\nCompetition math\nHendrycks et al. (2021)\n\n\nHumanEval\nCode generation\nChen et al. (2021)\n\n\nGame of 24\nCombinatorial reasoning\nTree of Thoughts (2023)\n\n\nALFWorld\nEmbodied planning\nShridhar et al. (2021)\n\n\nWebShop\nWeb navigation + purchasing\nYao et al. (2022)\n\n\nMuSiQue\nMulti-hop QA\nTrivedi et al. (2022)\n\n\nFrontierMath\nResearch-level math\nGlazer et al. (2024)\n\n\nARC-AGI\nAbstract reasoning\nChollet (2019)"
+  },
+  {
+    "objectID": "reasoning.html#key-concepts-taxonomy",
+    "href": "reasoning.html#key-concepts-taxonomy",
+    "title": "Reasoning & Planning",
+    "section": "Key Concepts & Taxonomy",
+    "text": "Key Concepts & Taxonomy\n\nReasoning Paradigms\n\n\n\n\n\n\n\n\nParadigm\nDescription\nStrength\n\n\n\n\nChain-of-Thought\nLinear reasoning trace\nSimple, widely applicable\n\n\nSelf-Consistency\nMajority vote over multiple paths\nRobustness, reliability\n\n\nTree of Thoughts\nBranching search over thoughts\nComplex problems, backtracking\n\n\nReAct\nInterleaved reasoning + action\nTool use, grounded reasoning\n\n\nReflexion\nVerbal RL from failure\nIterative improvement\n\n\nRL Reasoning (o1)\nTrained chain-of-thought\nDeep, complex reasoning\n\n\n\n\n\nPlanning Strategies\n\n\n\nStrategy\nWhen to Use\n\n\n\n\nDirect\nSimple tasks, clear actions\n\n\nPlan-and-Execute\nMulti-step tasks, need structure\n\n\nHierarchical\nLong-horizon tasks, sub-goal decomposition\n\n\nReflective/Iterative\nTasks with verifiable outcomes\n\n\nSearch-Based\nComplex optimization, multiple valid paths\n\n\n\n\nContinue to Multi-Agent Systems →"
+  },
+  {
+    "objectID": "taxonomy.html",
+    "href": "taxonomy.html",
+    "title": "Taxonomy & Conceptual Framework",
+    "section": "",
+    "text": "An LLM agent is a system in which a large language model serves as a central reasoning engine, capable of taking sequences of actions toward a goal — not merely producing a single response. The key distinctions from standard LLM use:\n\nAgency over time: The model takes multiple steps, observes results, and adapts\nTool use: The model can invoke external capabilities (search, code execution, APIs)\nGoal-directedness: The system pursues an objective, not just answers a question\nMemory beyond context: The system can store and retrieve information across turns\n\nThe canonical formulation (from Wang et al., 2023 survey): an agent has a Brain (the LLM), Perception (inputs), Memory (short- and long-term storage), Action (what it can do), and Planning (how it decides what to do)."
+  },
+  {
+    "objectID": "taxonomy.html#what-is-an-llm-agent",
+    "href": "taxonomy.html#what-is-an-llm-agent",
+    "title": "Taxonomy & Conceptual Framework",
+    "section": "",
+    "text": "An LLM agent is a system in which a large language model serves as a central reasoning engine, capable of taking sequences of actions toward a goal — not merely producing a single response. The key distinctions from standard LLM use:\n\nAgency over time: The model takes multiple steps, observes results, and adapts\nTool use: The model can invoke external capabilities (search, code execution, APIs)\nGoal-directedness: The system pursues an objective, not just answers a question\nMemory beyond context: The system can store and retrieve information across turns\n\nThe canonical formulation (from Wang et al., 2023 survey): an agent has a Brain (the LLM), Perception (inputs), Memory (short- and long-term storage), Action (what it can do), and Planning (how it decides what to do)."
+  },
+  {
+    "objectID": "taxonomy.html#the-core-agent-loop",
+    "href": "taxonomy.html#the-core-agent-loop",
+    "title": "Taxonomy & Conceptual Framework",
+    "section": "The Core Agent Loop",
+    "text": "The Core Agent Loop\nMost LLM agent architectures implement some version of this loop:\nObserve → Think → Act → Observe → ...\nThis was crystallized in ReAct (Yao et al., 2023):\nThought: I need to find X\nAction: search(\"X\")\nObservation: [result]\nThought: Now I know X, I should do Y\nAction: ...\nVariations on this loop form the backbone of nearly every agent system."
+  },
+  {
+    "objectID": "taxonomy.html#decomposing-agent-design-space",
+    "href": "taxonomy.html#decomposing-agent-design-space",
+    "title": "Taxonomy & Conceptual Framework",
+    "section": "Decomposing Agent Design Space",
+    "text": "Decomposing Agent Design Space\nWe can decompose the design space of LLM agents along five key dimensions:\n\n1. 🧠 Reasoning / Planning\nHow does the agent decide what to do next?\n\n\n\n\n\n\n\n\nApproach\nDescription\nExamples\n\n\n\n\nDirect\nSingle-step action selection\nBasic tool-use with function calling\n\n\nChain-of-Thought\nLinear reasoning trace\nReAct, CoT prompting\n\n\nTree/Graph Search\nBranching exploration\nTree of Thoughts, MCTS agents\n\n\nHierarchical\nDecompose → solve subgoals\nPlan-and-Execute, HierAgent\n\n\nReflective\nEvaluate → revise plans\nReflexion, Self-Refine, CRITIC\n\n\n\n\n\n2. 💾 Memory Architecture\nWhat information can the agent access and how?\n\n\n\n\n\n\n\n\nType\nDescription\nExamples\n\n\n\n\nIn-context\nEverything in the prompt window\nStandard LLM, short conversations\n\n\nExternal (vector)\nRetrieved from embedding store\nRAG, MemGPT external storage\n\n\nEpisodic\nRecord of past events\nMemGPT, Generative Agents diary\n\n\nSemantic\nFacts about the world\nKnowledge graph integration\n\n\nProcedural\nHow-to skills, code\nVoyager skill library\n\n\n\n\n\n3. 🔧 Action Space\nWhat can the agent actually do?\n\n\n\nCategory\nExamples\n\n\n\n\nSearch/Web\nGoogle search, web browsing, Wikipedia\n\n\nCode execution\nPython REPL, shell, Jupyter\n\n\nAPI calls\nREST APIs, function calling\n\n\nFile I/O\nRead/write files\n\n\nGUI/Computer\nClick, type, screenshot\n\n\nAgent spawning\nSpawn sub-agents, delegate tasks\n\n\nCommunication\nSend messages, emails\n\n\n\n\n\n4. 🤝 Agent Multiplicity\nIs the system a single agent or multiple?\n\n\n\n\n\n\n\n\nPattern\nDescription\nExamples\n\n\n\n\nSingle\nOne LLM does everything\nStandard ReAct agents\n\n\nSpecialist pipeline\nSequential specialization\nHuggingGPT, modular agents\n\n\nPeer collaboration\nAgents debate and refine\nCAMEL, SPP\n\n\nHierarchical\nManager + workers\nAutoGen, MetaGPT, ChatDev\n\n\nSociety\nMany autonomous agents\nGenerative Agents, AgentVerse\n\n\n\n\n\n5. 🎯 Degree of Autonomy\nHow much human oversight is in the loop?\n\n\n\nLevel\nDescription\n\n\n\n\nTool-augmented\nLLM with tools, human-in-the-loop\n\n\nSemi-autonomous\nAgent acts, human approves key steps\n\n\nFully autonomous\nAgent runs until task complete\n\n\nMulti-hop autonomous\nLong-horizon, fully unsupervised"
+  },
+  {
+    "objectID": "taxonomy.html#a-taxonomy-of-agent-architectures",
+    "href": "taxonomy.html#a-taxonomy-of-agent-architectures",
+    "title": "Taxonomy & Conceptual Framework",
+    "section": "A Taxonomy of Agent Architectures",
+    "text": "A Taxonomy of Agent Architectures\nBased on the literature, we can identify several major architectural families:\n\nFamily 1: Tool-Augmented LLMs\n“Give the LLM tools to call”\nThe simplest agent pattern. A single LLM is given a set of callable tools. It reasons about which tool to call and synthesizes results. The focus is on tool integration more than autonomous goal-pursuit.\nKey papers: Toolformer, MRKL, OpenAI function calling, Claude tool use Key frameworks: LangChain tools, OpenAI Assistants\n\n\nFamily 2: ReAct-Style Agents\n“Interleave reasoning and acting”\nThe agent alternates between Thought (reasoning about what to do) and Action (doing it). The observation from the action feeds back into the next thought. This is the dominant pattern for task-solving agents.\nKey papers: ReAct, DEPS, Inner Monologue Key frameworks: LangChain agents, LlamaIndex agents\n\n\nFamily 3: Plan-Then-Execute\n“Make a plan, then execute it”\nA planner agent generates a high-level plan, then an executor carries out each step. Allows more structured task decomposition and is easier to monitor.\nKey papers: Plan-and-Execute (Chase, 2023), LLM+P, DEPS Key frameworks: LangGraph, LangChain Plan-and-Execute\n\n\nFamily 4: Reflective / Self-Improving Agents\n“Learn from mistakes within a task”\nAgents that evaluate their own performance and update their approach. Introduces a critic or reflection component.\nKey papers: Reflexion, Self-Refine, CRITIC, Constitutional AI Key frameworks: AutoGen (with feedback), LangGraph with loops\n\n\nFamily 5: Multi-Agent Systems\n“Specialized agents collaborating”\nMultiple LLM instances with different roles (planner, coder, critic, etc.) communicate and collaborate to solve complex tasks.\nKey papers: CAMEL, MetaGPT, ChatDev, AutoGen, AgentVerse Key frameworks: AutoGen, CrewAI, LangGraph multi-agent\n\n\nFamily 6: Memory-Augmented Agents\n“Agents with persistent, structured memory”\nGo beyond the context window with external memory systems: vector databases, structured stores, memory hierarchies modeled after cognitive architectures.\nKey papers: MemGPT, Generative Agents, A-MEM, ReadAgent Key frameworks: MemGPT, LangChain Memory\n\n\nFamily 7: Embodied / Action Agents\n“Agents that act in the physical or digital world”\nAgents that control computers (GUI agents), robots (embodied agents), or execute code. The action space is rich and grounded.\nKey papers: SayCan, RT-2, CogAgent, UFO, OS-Copilot, SWE-agent Key products: Devin, Claude Computer Use, OpenAI Operator"
+  },
+  {
+    "objectID": "taxonomy.html#key-design-tensions",
+    "href": "taxonomy.html#key-design-tensions",
+    "title": "Taxonomy & Conceptual Framework",
+    "section": "Key Design Tensions",
+    "text": "Key Design Tensions\nThe literature reveals several recurring tensions that different systems resolve differently:\n\n\n\n\n\n\n\nTension\nTradeoff\n\n\n\n\nAutonomy vs. Oversight\nMore autonomy = more capability, more risk\n\n\nGenerality vs. Specialization\nSpecialist agents perform better, general agents are more flexible\n\n\nIn-context vs. External memory\nContext is fast but limited; external is vast but retrieval is lossy\n\n\nNatural language vs. Structured\nNatural language is flexible; structured is reliable\n\n\nSingle vs. Multi-agent\nMulti-agent enables specialization; single-agent is simpler to debug\n\n\nPlan-first vs. Interleave\nPlanning enables lookahead; interleaving enables reactivity"
+  },
+  {
+    "objectID": "taxonomy.html#how-the-field-has-evolved",
+    "href": "taxonomy.html#how-the-field-has-evolved",
+    "title": "Taxonomy & Conceptual Framework",
+    "section": "How the Field Has Evolved",
+    "text": "How the Field Has Evolved\n\n\n\n\n\n\n\n\nEra\nDominant Pattern\nKey Innovation\n\n\n\n\n2022\nTool-augmented LLMs\nMRKL, WebGPT, SayCan — LLMs + specialized modules\n\n\nEarly 2023\nReAct agents\nInterleaved reasoning + action; Toolformer\n\n\nMid 2023\nAutonomous agents\nAutoGPT, BabyAGI — long-horizon goal pursuit\n\n\nLate 2023\nMulti-agent + Memory\nMetaGPT, AutoGen, MemGPT, Generative Agents\n\n\n2024\nCoding agents + Infra\nSWE-agent, Devin; LangGraph, CrewAI\n\n\n2025-2026\nAgentic products + MCP\nClaude Computer Use, Operator; model-native tooling"
+  },
+  {
+    "objectID": "taxonomy.html#further-reading",
+    "href": "taxonomy.html#further-reading",
+    "title": "Taxonomy & Conceptual Framework",
+    "section": "Further Reading",
+    "text": "Further Reading\n\nFoundations (2022–2023) — The papers that built the field\nReasoning & Planning — Deep dive on how agents think\nMulti-Agent Systems — Collaborative architectures\nMemory, Tools & Actions — The building blocks\n2024–2026 Frontier — Where the field is now"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "LLM Agents: A Survey of Architectures & Designs (2022–2026)",
+    "section": "",
+    "text": "A thorough review of the landscape of LLM-based agent architectures, designs, and the evolving ecosystem — covering papers, preprints, frameworks, blog posts, and open-source tools.\nCompiled March 2026 · View on GitHub"
+  },
+  {
+    "objectID": "index.html#what-is-this",
+    "href": "index.html#what-is-this",
+    "title": "LLM Agents: A Survey of Architectures & Designs (2022–2026)",
+    "section": "What Is This?",
+    "text": "What Is This?\nThis survey maps the landscape of Large Language Model (LLM) based agents — systems where LLMs serve not just as text generators, but as reasoning engines that can plan, use tools, access memory, and take actions in the world.\nFrom 2022 to 2026, the field has exploded. This guide aims to be a navigable map: organized by theme, covering both the academic literature and the practitioner ecosystem.\n\n\n\n4+\n\n\nYears Covered\n\n\n\n\n200+\n\n\nPapers & Resources\n\n\n\n\n6\n\n\nMajor Themes\n\n\n\n\n2022–2026\n\n\nTime Range"
+  },
+  {
+    "objectID": "index.html#navigate-the-survey",
+    "href": "index.html#navigate-the-survey",
+    "title": "LLM Agents: A Survey of Architectures & Designs (2022–2026)",
+    "section": "Navigate the Survey",
+    "text": "Navigate the Survey\n\n\n\n🗺️\n\n\nTaxonomy & Framework\nA conceptual map of the field: how to decompose and categorize LLM agents. The core components, design dimensions, and how the major architectures fit together.\n\n\n\n\n🏛️\n\n\nFoundations (2022–2023)\nThe papers and ideas that established the field. ReAct, Toolformer, HuggingGPT, WebGPT, and the early agent taxonomies.\n\n\n\n\n🧠\n\n\nReasoning & Planning\nHow agents think: Chain-of-Thought, Tree of Thoughts, Reflexion, search-based planning, task decomposition, and self-improvement.\n\n\n\n\n🤝\n\n\nMulti-Agent Systems\nMultiple agents working together: CAMEL, AutoGen, MetaGPT, ChatDev, role specialization, orchestration patterns, and evaluation benchmarks.\n\n\n\n\n🧰\n\n\nMemory, Tools & Actions\nHow agents remember and act: memory architectures, tool use (Toolformer, function calling), action spaces, retrieval-augmented agents, and computer use.\n\n\n\n\n🚀\n\n\n2024–2026: Frontier\nThe leading edge: coding agents (SWE-agent, Devin), agentic products (Operator, Computer Use), MCP, o1/o3 implications, safety, and where things are heading."
+  },
+  {
+    "objectID": "index.html#how-to-use-this-survey",
+    "href": "index.html#how-to-use-this-survey",
+    "title": "LLM Agents: A Survey of Architectures & Designs (2022–2026)",
+    "section": "How to Use This Survey",
+    "text": "How to Use This Survey\n\nNew to agents? Start with Taxonomy, then Foundations\nResearcher? Each section has structured paper entries with links and summaries\nPractitioner? Check Multi-Agent Systems for frameworks and 2024–2026 for the current ecosystem\nLooking for resources? See Resources & Links for a curated reading list"
+  },
+  {
+    "objectID": "index.html#scope-methodology",
+    "href": "index.html#scope-methodology",
+    "title": "LLM Agents: A Survey of Architectures & Designs (2022–2026)",
+    "section": "Scope & Methodology",
+    "text": "Scope & Methodology\nThis survey covers:\n\nPapers & preprints (arXiv, ACL, NeurIPS, ICML, ICLR, etc.)\nTechnical blog posts from researchers and practitioners\nOpen-source frameworks and tools (GitHub)\nTime range: 2022 through March 2026\n\nThe focus is on LLM-based agents — systems using large language models as a core reasoning component. We touch on embodied/robotics agents when they are directly relevant, but the primary focus is on digital, language-model-centric work.\n\nThis survey was compiled in March 2026. The field moves fast — if you spot a missing reference, open an issue."
+  },
+  {
+    "objectID": "foundations.html",
+    "href": "foundations.html",
+    "title": "Foundations (2022–2023)",
+    "section": "",
+    "text": "The modern LLM agent field traces to a cluster of papers from 2022–2023 that established the core paradigms still in use today. Before these works, LLMs were primarily used as single-shot text generators. This period showed they could act — using tools, browsing the web, executing code, and reasoning across multiple steps toward a goal.\nThe foundational insight: an LLM becomes an agent when you give it a loop — the ability to observe outcomes of its actions and decide what to do next."
+  },
+  {
+    "objectID": "foundations.html#overview",
+    "href": "foundations.html#overview",
+    "title": "Foundations (2022–2023)",
+    "section": "",
+    "text": "The modern LLM agent field traces to a cluster of papers from 2022–2023 that established the core paradigms still in use today. Before these works, LLMs were primarily used as single-shot text generators. This period showed they could act — using tools, browsing the web, executing code, and reasoning across multiple steps toward a goal.\nThe foundational insight: an LLM becomes an agent when you give it a loop — the ability to observe outcomes of its actions and decide what to do next."
+  },
+  {
+    "objectID": "foundations.html#survey-taxonomy-papers",
+    "href": "foundations.html#survey-taxonomy-papers",
+    "title": "Foundations (2022–2023)",
+    "section": "Survey & Taxonomy Papers",
+    "text": "Survey & Taxonomy Papers\nThese surveys provide the broadest maps of the field:\n\nA Survey on Large Language Model based Autonomous Agents (2023)\nWang et al. · arXiv:2308.11432 · Frontiers of Computer Science, 2024\nThe most comprehensive survey of the field. Covers 200+ papers and presents a unified framework decomposing agents into four pillars: Brain (LLM), Perception, Memory, and Action. Analyzes applications across social science, natural science, and engineering. Actively maintained through v7 (March 2025).\n\nKey ideas: Unified architecture spanning majority of prior work; systematic taxonomy by application domain; evaluation methodology discussion\nImpact: De facto reference paper for new entrants to the field\n\n\n\nThe Rise and Potential of Large Language Model Based Agents (2023)\nXi et al. (30 co-authors) · arXiv:2309.07864 · Science China Information Sciences, 2025\nAn 86-page survey tracing agents from philosophical origins through modern AI. Uses a brain-perception-action framework. Explores single-agent, multi-agent, and human-agent cooperation. Discusses agent societies, emergent behaviors, and the path toward AGI.\n\nKey ideas: Historical and philosophical grounding; vision for agent societies; multi-agent coordination patterns\n\n\n\nAgent AI: Surveying the Horizons of Multimodal Interaction (2024)\nWang et al. · arXiv:2401.03568\nExpands scope to multimodal agents operating across text, vision, and action spaces. Covers gaming, robotics, healthcare, GUI navigation. A useful bridge between language-only and embodied/multimodal agents.\n\n\nLarge Language Model Agent: A Survey on Methodology, Applications and Challenges (2025)\nLuo et al. · arXiv:2503.21460\nMost recent comprehensive survey (March 2025) with structured taxonomy for LLM agent methodology. Catalogs current applications and synthesizes open challenges.\n\n\nCognitive Architectures for Language Agents (2023)\nSumers et al. · arXiv:2309.02427\nGrounds LLM agent design in cognitive science. Proposes four-part memory model (working, procedural, semantic, episodic) drawing from ACT-R and SOAR. Essential for understanding memory system design."
+  },
+  {
+    "objectID": "foundations.html#core-foundational-papers",
+    "href": "foundations.html#core-foundational-papers",
+    "title": "Foundations (2022–2023)",
+    "section": "Core Foundational Papers",
+    "text": "Core Foundational Papers\n\nReAct: Synergizing Reasoning and Acting in Language Models (2023)\nYao et al. · arXiv:2210.03629 · ICLR 2023\nThe most cited and influential agent paper. Introduces the ReAct paradigm: interleaved reasoning traces and actions. The agent alternates between Thought: (reasoning about what to do) and Action: (doing it), with Observation: feeding back the result. This loop is the skeleton of most modern agent systems.\nThought: I need to find the population of France.\nAction: search(\"France population 2024\")\nObservation: France has a population of approximately 68 million.\nThought: Now I can answer the question.\nAction: finish(\"approximately 68 million\")\n\nKey ideas: Reasoning and acting are synergistic, not separate; grounding in external feedback reduces hallucination; enables error correction mid-task\nResults: Outperforms pure CoT and pure acting on HotpotQA, FEVER, ALFWorld, WebShop\n\n\n\nChain-of-Thought Prompting Elicits Reasoning in Large Language Models (2022)\nWei et al. · arXiv:2201.11903 · NeurIPS 2022\nThe prerequisite to ReAct. Shows that prompting LLMs to generate intermediate reasoning steps dramatically improves performance on arithmetic, commonsense, and symbolic reasoning. Established that LLMs can reason step-by-step — the cognitive foundation for all agent work.\n\nKey ideas: Few-shot CoT prompting; emergent capability (most effective at 100B+ params); generalizes across reasoning domains\n\n\n\nToolformer: Language Models Can Teach Themselves to Use Tools (2023)\nSchick et al. · arXiv:2302.04761\nShows how to train an LLM to use tools in a self-supervised manner. The model learns to insert API calls into its own generated text, execute them, and incorporate results — without large human-annotated datasets.\n\nTools learned: Calculator, Wikipedia search, calendar, Q&A system, translator\nKey ideas: Self-supervised tool learning; decides which API to call, when, and with what arguments; training signal from self-generated examples\nLegacy: Prefigures the function-calling paradigm now standard in GPT-4, Claude, etc.\n\n\n\nMRKL Systems: A Modular, Neuro-Symbolic Architecture (2022)\nKarpas et al. · arXiv:2205.00445\nEarly vision of modular AI where an LLM router dispatches to specialized expert modules (calculators, databases, ML models). One of the first papers to articulate the “LLM + tools” architecture.\n\nKey ideas: LLM as orchestrator; discrete symbolic modules for reliable computation; router learns which module is appropriate\nLegacy: Direct ancestor of today’s tool-calling agents\n\n\n\nWebGPT: Browser-Assisted Question Answering (2022)\nNakano et al. · arXiv:2112.09332\nGPT-3 fine-tuned to browse the web to answer questions. Introduced the concept of browser-using agents — now a major category. Used RLHF to train the browsing behavior.\n\nKey ideas: Web browsing as an action space; RLHF for agent behavior; long-form question answering with citations\n\n\n\nHuggingGPT / JARVIS (2023)\nShen et al. · arXiv:2303.17580\nLLM (ChatGPT) as a task planner that orchestrates hundreds of specialized ML models from HuggingFace. The LLM parses user requests, selects the right ML models, executes them in sequence, and synthesizes results.\n\nKey ideas: LLM as controller of a model hub; structured task planning; multi-modal capability via model composition\nGitHub: microsoft/JARVIS\n\n\n\nSayCan: Grounding Language in Robotic Affordances (2022)\nAhn et al. · arXiv:2204.01691\nLandmark paper combining LLMs with robotics. The LLM generates possible action plans; a learned “affordance” model scores which actions are physically feasible in the current environment. Early example of embodied agent planning.\n\nKey ideas: LLM proposes, affordance model filters; language grounding in physical world; “what is both useful AND possible”\n\n\n\nVoyager: An Open-Ended Embodied Agent in Minecraft (2023)\nWang et al. · arXiv:2305.16291\nGPT-4 playing Minecraft autonomously for indefinite time spans. Features a procedural skill library that grows over time, an automatic curriculum for proposing increasingly complex tasks, and iterative skill refinement via execution feedback.\n\nKey ideas: Lifelong learning via skill accumulation; automatic curriculum; code-as-action (skills written as JavaScript); never “forgets” learned skills\nResults: 3× faster at milestones, unlocks tech tree substantially faster than prior methods\n\n\n\nAutoGPT (2023)\nRiedl et al. (community) · GitHub\nNot a paper, but arguably the most influential artifact of 2023. AutoGPT showed the world what a fully autonomous LLM agent looked like: give it a goal, let it run. It sparked massive public interest and downstream research, despite significant reliability issues.\n\nKey ideas: Autonomous goal pursuit; persistent memory; web search + code execution; iterative task decomposition\nLegacy: Demonstrated demand for autonomous agents; exposed failure modes that drove later research\n\n\n\nBabyAGI (2023)\nNakajima · GitHub\nMinimalist task management agent. Maintains a task list, executes tasks with an LLM + web search, and adds new tasks based on results. Showed that a simple agent loop could produce surprising emergent behaviors."
+  },
+  {
+    "objectID": "foundations.html#standard-agent-decomposition",
+    "href": "foundations.html#standard-agent-decomposition",
+    "title": "Foundations (2022–2023)",
+    "section": "Standard Agent Decomposition",
+    "text": "Standard Agent Decomposition\nBased on the survey literature, the field converged on this standard decomposition:\n\n\n\n\n\n\n\n\nComponent\nDescription\nExamples\n\n\n\n\nPerception\nInputs from environment\nText, images, tool outputs, web pages\n\n\nMemory\nInformation storage & retrieval\nIn-context, vector DB, key-value stores\n\n\nPlanning\nDeciding what to do\nReAct, CoT, hierarchical decomposition\n\n\nAction\nExecuting decisions\nTool calls, web search, code execution\n\n\nLearning\nImproving over time\nReflexion, skill libraries, RLHF"
+  },
+  {
+    "objectID": "foundations.html#timeline-20212023",
+    "href": "foundations.html#timeline-20212023",
+    "title": "Foundations (2022–2023)",
+    "section": "Timeline: 2021–2023",
+    "text": "Timeline: 2021–2023\n\n\n\n\n\n\n\nDate\nMilestone\n\n\n\n\nDec 2021\nWebGPT — first browser-using agent\n\n\nFeb 2022\nChain-of-Thought (Wei et al.) — reasoning foundation\n\n\nApr 2022\nSayCan — embodied language agents\n\n\nMay 2022\nMRKL — LLM + expert module router\n\n\nJul 2022\nInner Monologue — robot agents with language feedback\n\n\nOct 2022\nReAct — the canonical agent loop\n\n\nFeb 2023\nToolformer — self-supervised tool learning\n\n\nMar 2023\nHuggingGPT/JARVIS — LLM as model orchestrator\n\n\nMar 2023\nCAMEL — multi-agent role-playing\n\n\nMar 2023\nAutoGPT goes viral — public awareness of agents\n\n\nApr 2023\nGenerative Agents (Park et al.) — agent towns with memory\n\n\nMay 2023\nTree of Thoughts — structured search over thoughts\n\n\nMay 2023\nVoyager — lifelong learning agent in Minecraft\n\n\nJun 2023\nOpenAI function calling released — industry standard tool use\n\n\nJun 2023\nLilian Weng’s “LLM Powered Autonomous Agents” blog post\n\n\nAug 2023\nMetaGPT — software dev multi-agent system\n\n\nAug 2023\nAutoGen (Microsoft) — conversable agent framework\n\n\nAug 2023\nMajor surveys: Wang et al., Xi et al.\n\n\nOct 2023\nMemGPT — hierarchical memory for LLM agents\n\n\n\n\nContinue to Reasoning & Planning →"
+  },
+  {
+    "objectID": "multiagent.html",
+    "href": "multiagent.html",
+    "title": "Multi-Agent Systems & Frameworks",
+    "section": "",
+    "text": "When a single LLM agent reaches its limits — context length, expertise breadth, task complexity — multi-agent systems offer a solution: multiple specialized agents that collaborate, critique, and coordinate. This area exploded in 2023 and matured into production-ready infrastructure by 2025.\nKey themes: - Role specialization: Planner, Executor, Critic, Coder, Tester — each agent does what it’s best at - Communication protocols: Natural language messages → structured schemas → MCP - Framework consolidation: From dozens of early frameworks to a handful of dominant players - Emergent behaviors: Both positive (division of labor) and negative (groupthink, error propagation)"
+  },
+  {
+    "objectID": "multiagent.html#overview",
+    "href": "multiagent.html#overview",
+    "title": "Multi-Agent Systems & Frameworks",
+    "section": "",
+    "text": "When a single LLM agent reaches its limits — context length, expertise breadth, task complexity — multi-agent systems offer a solution: multiple specialized agents that collaborate, critique, and coordinate. This area exploded in 2023 and matured into production-ready infrastructure by 2025.\nKey themes: - Role specialization: Planner, Executor, Critic, Coder, Tester — each agent does what it’s best at - Communication protocols: Natural language messages → structured schemas → MCP - Framework consolidation: From dozens of early frameworks to a handful of dominant players - Emergent behaviors: Both positive (division of labor) and negative (groupthink, error propagation)"
+  },
+  {
+    "objectID": "multiagent.html#foundational-multi-agent-papers",
+    "href": "multiagent.html#foundational-multi-agent-papers",
+    "title": "Multi-Agent Systems & Frameworks",
+    "section": "Foundational Multi-Agent Papers",
+    "text": "Foundational Multi-Agent Papers\n\nGenerative Agents: Interactive Simulacra of Human Behavior (2023)\nPark et al. (Stanford) · arXiv:2304.03442 · UIST 2023 Best Paper\nThe landmark demonstration: 25 LLM agents inhabiting a simulated town (“Smallville”), forming relationships, planning their days, and exhibiting emergent social behaviors. Each agent has a memory stream (natural language records of experiences), reflection (synthesizing higher-level insights), and planning (daily schedules, goal-directed behavior).\n\nEmergent behaviors: Spontaneous party planning, rumor spreading, relationship formation\nMemory architecture: Observation → memory stream → reflection → planning\nKey insight: Rich social behaviors emerge from individual memory + reflection + planning\nImpact: Established the template for memory-rich multi-agent systems\n\n\n\nCAMEL: Communicative Agents for “Mind” Exploration (2023)\nLi et al. (KAUST) · arXiv:2303.17760 · NeurIPS 2023\nProposes role-playing as the mechanism for multi-agent cooperation. Two agents (user and assistant) are given roles and an objective; they converse autonomously without human input. Introduces inception prompting to initialize and maintain role coherence.\n\nKey ideas: Autonomous role-playing; inception prompting; generates high-quality conversation datasets\nGitHub: camel-ai/camel\n\n\n\nMetaGPT: Meta Programming for a Generalizable Agent System (2023)\nHong et al. · arXiv:2308.00352 · ICLR 2024\nApplies software engineering best practices to multi-agent coordination. Agents play roles from a software company (Product Manager, Architect, Engineer, QA). They work from shared documents (PRD, architecture, API spec), reducing miscommunication.\n\nKey ideas: Structured document-based coordination; SOP (standard operating procedures) for agents; shared workspace; role → deliverable mapping\nResults: Outperforms prior SOTA on HumanEval and MBPP; lower cost per task\nGitHub: geekan/MetaGPT · 50k+ stars\n\n\n\nChatDev: Communicative Agents for Software Development (2023)\nQian et al. (Tsinghua) · arXiv:2307.07924 · ACL 2024\nSimulates a full software development company with specialized agents (CEO, CTO, Programmer, Reviewer, Tester). Communication uses both natural language and code. Demonstrates that structured agent communication produces better software than single-agent generation.\n\nKey ideas: Phase-gated development (design → coding → testing → documentation); role-based SOPs; communicative hallucination detection\nGitHub: OpenBMB/ChatDev\n\n\n\nAutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation (2023)\nWu et al. (Microsoft) · arXiv:2308.08155\nMost widely adopted multi-agent framework. Introduces conversable agents: any two agents can converse, with rich customization of termination conditions, human-in-the-loop integration, and tool use. Defines a flexible conversation topology that supports many multi-agent patterns.\n\nKey ideas: Conversable agent abstraction; flexible conversation patterns; code execution integration; GroupChat for multi-party conversations\nGitHub: microsoft/autogen · 40k+ stars\n\n\n\nAgentVerse: Facilitating Multi-Agent Collaboration (2023)\nChen et al. (Tsinghua) · arXiv:2308.10848\nPlatform for studying emergent behaviors in multi-agent systems. Systematically investigates both positive (division of labor, complementary expertise) and negative (groupthink, error amplification) emergent phenomena.\n\nGitHub: OpenBMB/AgentVerse\n\n\n\nDyLAN: Dynamic LLM-Powered Agent Network (2023)\nLiu et al. · arXiv:2310.02170\nDynamic multi-agent network where agent connectivity evolves based on task requirements. Introduces agent importance scoring and dynamic team formation.\n\n\nSolo Performance Prompting (SPP) (2023)\nWang et al. · arXiv:2307.05300\nSimulates multi-agent collaboration with a single LLM: the model plays multiple personas sequentially. Achieves similar benefits to actual multi-agent systems with lower cost.\n\nKey insight: Multiple perspectives from a single model improve factuality and reasoning\n\n\n\nAgentScope (2024)\nAlibaba · arXiv:2402.14034 · GitHub\nProduction-grade multi-agent platform from Alibaba. Focuses on fault tolerance, distributed execution, and scalability. Designed for real-world deployment with hundreds of concurrent agents."
+  },
+  {
+    "objectID": "multiagent.html#open-source-frameworks",
+    "href": "multiagent.html#open-source-frameworks",
+    "title": "Multi-Agent Systems & Frameworks",
+    "section": "Open-Source Frameworks",
+    "text": "Open-Source Frameworks\n\nLangChain\ngithub.com/langchain-ai/langchain · 100k+ stars\nThe dominant general-purpose agent framework. Provides abstractions for agents, tools, memory, chains, and retrieval. Agent module supports ReAct, structured chat, function-calling, and custom agents. Huge ecosystem of integrations.\n\nArchitecture: Chain-based composition; LCEL (LangChain Expression Language) for declarative pipelines; extensive tool library\nBest for: Rapid prototyping; connecting to many data sources and APIs\n\n\n\nLangGraph\ngithub.com/langchain-ai/langgraph · 15k+ stars\nGraph-based agent workflow framework built on LangChain. Agents are nodes; state flows along edges. Supports cycles (essential for iterative agent loops), conditional branching, and persistent state across steps.\n\nArchitecture: Stateful graph; explicit control flow; checkpointing; human-in-the-loop support\nBest for: Complex multi-step agents; workflows needing explicit state management; production deployment\nv1.0 released: November 2025\n\n\n\nAutoGen\ngithub.com/microsoft/autogen · 40k+ stars\nMicrosoft’s multi-agent conversation framework. Define agents with roles and capabilities; they converse to solve tasks. Supports GroupChat (multiple agents), code execution, and human proxy agents.\n\nArchitecture: Conversable agent base class; message-passing; human-in-the-loop via proxy agent\nBest for: Multi-agent conversations; research; code-executing agents\n\n\n\nCrewAI\ngithub.com/joaomdmoura/crewAI · 25k+ stars\nRole-based agent framework. Define a crew of agents, each with a role, goal, and backstory. Assign tasks; agents collaborate sequentially or in parallel.\n\nArchitecture: Agent → Task → Crew; clean role abstractions; process types (sequential, hierarchical)\nBest for: Business-oriented multi-agent workflows; readable, maintainable crew definitions\n\n\n\nDSPy\ngithub.com/stanfordnlp/dspy · 20k+ stars\nProgramming model for LLMs. Instead of writing prompts, you write modules with signatures. DSPy optimizes prompts/few-shot examples automatically. Includes agent-capable modules (ReAct, Chain-of-Thought).\n\nArchitecture: Modules with typed signatures; compilers that optimize prompts; separation of logic from prompting\nBest for: Systematic prompt optimization; research; building reliable LM pipelines\n\n\n\nSemantic Kernel\ngithub.com/microsoft/semantic-kernel · 22k+ stars\nMicrosoft’s enterprise-grade agent SDK. Supports .NET, Python, Java. Strong focus on plugin architecture (tools as plugins) and integration with Azure AI services.\n\nBest for: Enterprise .NET/Azure environments; production-grade tool integration\n\n\n\nHaystack\ngithub.com/deepset-ai/haystack · 17k+ stars\nProduction-focused NLP framework with strong RAG + agent support. Component-based pipeline architecture. Excellent for document-heavy agent applications.\n\n\nOpenAI Swarm (2024)\ngithub.com/openai/swarm · experimental\nOpenAI’s lightweight multi-agent framework. Minimal abstraction: agents + handoffs. Designed for clarity and educational purposes."
+  },
+  {
+    "objectID": "multiagent.html#orchestration-patterns",
+    "href": "multiagent.html#orchestration-patterns",
+    "title": "Multi-Agent Systems & Frameworks",
+    "section": "Orchestration Patterns",
+    "text": "Orchestration Patterns\nThe literature reveals recurring multi-agent patterns:\n\n\n\n\n\n\n\n\nPattern\nDescription\nExample Frameworks\n\n\n\n\nSequential pipeline\nAgents execute one after another\nLangGraph, CrewAI sequential\n\n\nPlanner-Executor\nOne agent plans, another executes\nPlan-and-Execute in LangChain\n\n\nPlanner-Executor-Critic\nThird agent reviews\nAutoGen with feedback\n\n\nHub-and-Spoke\nCentral orchestrator, peripheral specialists\nHuggingGPT, MetaGPT\n\n\nPeer debate\nAgents argue toward consensus\nSociety of Mind, debate papers\n\n\nHierarchical tree\nManager agents spawn sub-agents\nAutoGen with nested chats\n\n\nDynamic team\nTeam composition evolves with task\nDyLAN, AgentScope"
+  },
+  {
+    "objectID": "multiagent.html#communication-protocols",
+    "href": "multiagent.html#communication-protocols",
+    "title": "Multi-Agent Systems & Frameworks",
+    "section": "Communication Protocols",
+    "text": "Communication Protocols\nHow agents communicate has evolved significantly:\n2022–2023: Natural language Agents communicate via free-form text messages. Flexible but unreliable — agents misunderstand each other.\n2023–2024: Structured schemas Agents use JSON or typed outputs. Tools like LangGraph add explicit state types.\n2024: Model Context Protocol (MCP) Anthropic released MCP (November 2024) — an open standard for how LLMs connect to tools, data sources, and other agents. Gaining rapid adoption as a universal agent communication standard.\n\nMCP Specification\nSupported by: Claude, Cursor, dozens of IDE integrations\nProvides: Standardized tool definition, resource access, context management"
+  },
+  {
+    "objectID": "multiagent.html#evaluation-benchmarks",
+    "href": "multiagent.html#evaluation-benchmarks",
+    "title": "Multi-Agent Systems & Frameworks",
+    "section": "Evaluation Benchmarks",
+    "text": "Evaluation Benchmarks\n\nAgentBench (2023)\nLiu et al. (THU) · arXiv:2308.03688\nFirst comprehensive multi-domain benchmark for agent evaluation. 8 environments: OS, database, knowledge graph, digital card game, lateral thinking puzzle, HouseHolding, web browsing, web shopping.\n\n\nWebArena (2023)\nZhou et al. · arXiv:2307.13854\nRealistic web navigation benchmark with 4 web apps (Reddit, GitLab, e-commerce, maps). 812 tasks. As of 2023, best agents scored ~14%; by 2025, top systems exceed 50%.\n\n\nGAIA: General AI Assistants Benchmark (2023)\nMialon et al. (Meta AI) · arXiv:2311.12983\nTests “real-world” task completion requiring web search, file reading, coding. Humans score 92%; early GPT-4 agents scored 15%. Designed to require multi-step reasoning with tools.\n\n\nOSWorld (2024)\nXie et al. · arXiv:2404.07972\nDesktop GUI task benchmark (Ubuntu, Windows, macOS). 369 tasks across real applications. As of launch, best agents scored &lt;10%; by early 2025, Claude achieves 72.5%.\n\n\nSWE-bench (2023)\nJimenez et al. · arXiv:2310.06770\nGitHub issue resolution benchmark. 2,294 tasks requiring understanding codebases, editing files, passing tests. Early agents: 2-3%; SWE-agent: 12%; Claude-based systems: 40%+.\n\n\nWorkArena / WorkArena++ (2024)\nDrouin et al. · ServiceNow Research\nEnterprise workflow automation benchmark. Tests agents on realistic business software tasks (ServiceNow). WorkArena++: 682 multi-step tasks requiring deep tool use.\n\nContinue to Memory, Tools & Actions →"
+  },
+  {
+    "objectID": "recent.html",
+    "href": "recent.html",
+    "title": "2024–2026: The Frontier",
+    "section": "",
+    "text": "2024–2025 transformed LLM agents from a research curiosity into a production category. The key shifts:\n\nCoding agents became the killer app — measurable, automated benchmarks drove rapid progress\nMajor labs shipped agentic products — Computer Use, Operator, Copilot Workspace\nFrameworks matured — LangGraph v1.0, AutoGen production, MCP standardization\nSafety concerns became urgent — prompt injection, alignment, sandboxing\nRL reasoning models (o1, DeepSeek-R1) changed what “agent reasoning” means"
+  },
+  {
+    "objectID": "recent.html#overview",
+    "href": "recent.html#overview",
+    "title": "2024–2026: The Frontier",
+    "section": "",
+    "text": "2024–2025 transformed LLM agents from a research curiosity into a production category. The key shifts:\n\nCoding agents became the killer app — measurable, automated benchmarks drove rapid progress\nMajor labs shipped agentic products — Computer Use, Operator, Copilot Workspace\nFrameworks matured — LangGraph v1.0, AutoGen production, MCP standardization\nSafety concerns became urgent — prompt injection, alignment, sandboxing\nRL reasoning models (o1, DeepSeek-R1) changed what “agent reasoning” means"
+  },
+  {
+    "objectID": "recent.html#coding-software-engineering-agents",
+    "href": "recent.html#coding-software-engineering-agents",
+    "title": "2024–2026: The Frontier",
+    "section": "Coding & Software Engineering Agents",
+    "text": "Coding & Software Engineering Agents\nThe most concrete test of agent capability: can it resolve real GitHub issues?\n\nSWE-bench: The Software Engineering Benchmark (2023)\nJimenez et al. (Princeton) · arXiv:2310.06770\n2,294 real GitHub issues from 12 popular Python repos. An agent must read the codebase, understand the bug, edit files, and pass the repo’s test suite. Human developers resolve ~94%; early agents: 2-3%.\nSWE-bench Verified (2024): Curated subset of 500 verified tasks. Fairer evaluation.\nProgress on SWE-bench:\n\n\n\nModel / System\nDate\nScore\n\n\n\n\nEarly GPT-4 baselines\n2023\n1-3%\n\n\nSWE-agent + GPT-4\nMay 2024\n12.3%\n\n\nDevin (Cognition)\nMar 2024\n~13%\n\n\nSWE-agent + Claude 3.5\n2024\n22.1%\n\n\nAgentless + Claude\n2024\n27.3%\n\n\nClaude 3.5 Sonnet (SWE-bench V)\n2025\n49.0%\n\n\no3 / frontier\nMar 2025\n~70%+\n\n\n\n\n\nSWE-agent (2024)\nYang et al. (Princeton NLP) · arXiv:2405.15793\nDedicated software engineering agent with a custom Agent-Computer Interface (ACI) — carefully designed file editing, navigation, and execution tools optimized for software tasks. ReAct-style reasoning over a repository.\n\nKey insight: Interface design matters as much as the model — the ACI dramatically improves performance vs. raw bash\nGitHub: princeton-nlp/SWE-agent · 15k+ stars\n\n\n\nDevin: The First AI Software Engineer (March 2024)\nCognition AI · cognition.ai\nThe product that put AI software engineering on the map. Devin is a proprietary coding agent with a full IDE environment, terminal, and web browser. Claimed ~13% on SWE-bench at launch — remarkable at the time.\n\nImpact: Demonstrated commercial viability of autonomous coding; triggered massive VC investment in the space\nTechnical details: Proprietary; no published paper\n\n\n\nOpenHands (formerly OpenDevin) (2024)\nAll Hands AI · github.com/All-Hands-AI/OpenHands · 35k+ stars\nThe open-source answer to Devin. Sandboxed execution, web browser, file system, multiple LLM backends. Active community with enterprise adoption.\n\nArchitecture: Containerized sandbox; event-driven agent loop; supports any LLM via LiteLLM\n\n\n\nAider: AI Pair Programming in Your Terminal (2023-2025)\nPaul Gauthier · aider.chat · github.com/paul-gauthier/aider\nMature, pragmatic open-source coding assistant. Human-in-the-loop by design — shows diffs before applying, handles git commits. Supports Claude, GPT-4, local models. Among the most widely-used coding tools by developers who want control.\n\nKey differentiator: Transparency and control over full autonomy\n\n\n\nCodeAct: Code as the Universal Action Space (2024)\nWang et al. · arXiv:2402.01030\nUses executable Python code as the agent’s action space. Instead of structured JSON tool calls, the agent writes code. More flexible, handles complex multi-step logic, better error recovery.\n\n\nGitHub Copilot Workspace (2024)\nGitHub / Microsoft · Blog\nGitHub’s foray into agentic coding: plan → implement → test within GitHub’s ecosystem. Integration with Issues, PRs, and GitHub Actions."
+  },
+  {
+    "objectID": "recent.html#key-20242025-papers",
+    "href": "recent.html#key-20242025-papers",
+    "title": "2024–2026: The Frontier",
+    "section": "Key 2024–2025 Papers",
+    "text": "Key 2024–2025 Papers\n\nOSWorld: Benchmarking Multimodal Agents on Desktop Computers (2024)\nXie et al. · arXiv:2404.07972\nReal computer tasks across Ubuntu, Windows, macOS with screenshots. 369 tasks in 9 domains. Early systems: &lt;5%; Claude 3.7 Sonnet (early 2025): 72.5%.\n\n\nGAIA: A Benchmark for General AI Assistants (2023)\nMialon et al. (Meta AI / HuggingFace) · arXiv:2311.12983\nDeceptively hard tasks requiring multi-step web search, file analysis, and reasoning. 3 difficulty levels; humans score 92%; early GPT-4 scored 15%. Leaderboard shows rapid progress through 2024-2025.\n\n\nWorkArena: Workplace Task Automation (2024)\nDrouin et al. (ServiceNow) · ServiceNow Research\nEnterprise workflow automation in ServiceNow. WorkArena++: 682 compositional tasks requiring understanding of business software. Benchmarks agent capability in realistic enterprise settings.\n\n\nAgentHarm: Evaluating Agent Safety (2024)\nAndriushchenko et al. · arXiv:2410.09024\nBenchmark for evaluating harmful agent behaviors. Tests whether agents can be manipulated into violating safety guidelines through indirect channels.\n\n\nWASP: Wiretapping Agents via Subconscious Persuasion (2024)\nXu et al.\nStudies how adversarial prompts embedded in tool outputs (indirect prompt injection) can subvert agent behavior. Important for understanding real-world agent vulnerability.\n\n\nTau-bench: Tool-Agent-User Benchmark (2024)\nYao et al. · arXiv:2406.12045\nBenchmarks agents on multi-turn, tool-using conversations with simulated users. Evaluates both task completion and user satisfaction. Addresses gap in single-turn evaluation."
+  },
+  {
+    "objectID": "recent.html#agentic-ai-products-trends",
+    "href": "recent.html#agentic-ai-products-trends",
+    "title": "2024–2026: The Frontier",
+    "section": "Agentic AI Products & Trends",
+    "text": "Agentic AI Products & Trends\n\nOpenAI\nGPTs (November 2023): Custom ChatGPT configurations with tools and knowledge. First mass-market agentic product — millions created.\nAssistants API (2023): Developer API for building agents with threads, tools (code interpreter, retrieval, function calling), and file handling.\no1 / o1-mini (September 2024): RL-trained reasoning model. Internal “chain of thought” before answering. Dramatically improves on math, coding, science.\no3 (December 2024 / early 2025): Next-generation reasoning. Solves 25.2% of FrontierMath (vs. 2% for prior models); high ARC-AGI-1 scores.\nOperator (January 2025): Browser-using agent for automating web tasks (shopping, forms, reservations). First OpenAI product where the model directly controls a web browser.\nImplication for agents: RL reasoning changes what “reasoning” means — it’s now a first-class model capability, not just a prompting trick.\n\n\nAnthropic\nClaude Tool Use (2023): Function calling for Claude — standardized tool integration.\nComputer Use (October 2024): Claude 3.5 Sonnet can view screenshots, move mouse, click, type. Marks the shift from “calling APIs” to “using computers.”\nModel Context Protocol / MCP (November 2024): Open standard for LLM-tool-data integration. Rapidly adopted across the ecosystem (Cursor, VS Code, dozens of tools). Potentially the USB-C of LLM integrations. - MCP Specification - MCP GitHub\nClaude Code (2025): Agentic coding tool in the terminal. Reads and writes files, runs commands, creates PRs. Competes directly with Cursor and Aider.\n\n\nGoogle\nProject Astra (2024): Research preview of a real-time multimodal assistant that sees and remembers the environment continuously.\nGemini 2.0 (December 2024): Multimodal model with native tool use, code execution, and extended context (2M tokens). First-party agentic features via Google DeepMind.\nVertex AI Agents (2024): Enterprise-grade agent infrastructure on Google Cloud. Grounding, tool calling, evaluation.\nNotebookLM (2024): AI research assistant with agent-like document synthesis. Audio overviews feature became widely used.\n\n\nOpenAI Swarm (October 2024)\ngithub.com/openai/swarm · Experimental\nLightweight, educational multi-agent framework. Two primitives: agents (LLM + instructions + tools) and handoffs (transfer control to another agent). Minimal abstraction, designed for clarity."
+  },
+  {
+    "objectID": "recent.html#agent-safety-reliability",
+    "href": "recent.html#agent-safety-reliability",
+    "title": "2024–2026: The Frontier",
+    "section": "Agent Safety & Reliability",
+    "text": "Agent Safety & Reliability\nSafety became a serious research topic as agents were deployed in production.\n\nPrompt Injection\nThe core vulnerability: An agent processes data from the environment (web pages, emails, documents). Adversarial content in that data can contain instructions that override the agent’s intended behavior.\nIndirect Prompt Injection (2023)\nGreshake et al. · arXiv:2302.12173\nFirst systematic study. Demonstrates attacks via web pages, emails, documents. Shows real risk for deployed agents.\nInjecAgent: Benchmarking Indirect Injection (2024)\nZhan et al. · arXiv:2403.02691\nBenchmark with 1,054 test cases. GPT-4: 24% attack success rate. Shows agents are frequently vulnerable.\nAgentDojo (2024)\nDebenedetti et al. · arXiv:2406.13352\nFramework for evaluating agent security. Tests prompt injection defenses against utility tradeoffs.\n\n\nMitigation Approaches\n\nSandboxing: Isolate agent actions (containerized execution, read-only environments)\nConfirmation steps: Require human approval for irreversible actions\nPrivilege separation: Limit what information agents can access and exfiltrate\nPrompt hardening: Instructions that resist injection (partially effective)\nConstitutional approaches: Monitor agent behavior against a set of principles\n\n\n\nAnthropic: Building Effective Agents (December 2024)\nAnthropic · Blog post\nPractitioner guide from the frontier lab. Key lessons: - Augmented LLMs &gt; complex frameworks for most tasks - Workflows over agents when the problem is well-defined - Parallelization as a key multi-agent pattern - Simple is better: start with the minimal architecture"
+  },
+  {
+    "objectID": "recent.html#open-source-ecosystem",
+    "href": "recent.html#open-source-ecosystem",
+    "title": "2024–2026: The Frontier",
+    "section": "Open Source Ecosystem",
+    "text": "Open Source Ecosystem\n\nGitHub Repository Landscape (as of early 2026)\n\n\n\nRepository\nStars\nDescription\n\n\n\n\nlangchain-ai/langchain\n100k+\nGeneral-purpose agent framework\n\n\nAll-Hands-AI/OpenHands\n35k+\nOpen-source software engineering agent\n\n\nmicrosoft/autogen\n40k+\nMulti-agent conversation framework\n\n\ngeekan/MetaGPT\n50k+\nSoftware dev multi-agent system\n\n\njoaomdmoura/crewAI\n25k+\nRole-based agent crews\n\n\nlangchain-ai/langgraph\n15k+\nGraph-based agent workflows\n\n\nprinceton-nlp/SWE-agent\n15k+\nGitHub issue resolution\n\n\ncpacker/MemGPT\n14k+\nLong-term memory for agents\n\n\nopenai/swarm\n18k+\nLightweight multi-agent framework\n\n\nstanfordnlp/dspy\n20k+\nLM programming framework\n\n\n\n\n\nKey Practical Resources\nLilian Weng — LLM Powered Autonomous Agents (June 2023)\nThe most widely linked blog post introduction to the field. Covers planning, memory, tool use with excellent diagrams. Essential reading.\nAnthropic — Building Effective Agents (December 2024)\nProduction lessons from a frontier lab. Covers workflow patterns, multi-agent design, safety.\nWhat We Learned from a Year of Building with LLMs (2024)\nPractitioner synthesis from 6 ML engineers. Practical lessons on prompting, evaluation, deployment.\na16z — Emerging Architectures for LLM Applications (June 2023)\nVC perspective on the LLM app stack. Introduced now-standard terminology.\nEugene Yan — Patterns for Building LLM Applications (2023)\nSystematic survey of engineering patterns: evals, RAG, finetuning, caching, guardrails."
+  },
+  {
+    "objectID": "recent.html#timeline-2024march-2026",
+    "href": "recent.html#timeline-2024march-2026",
+    "title": "2024–2026: The Frontier",
+    "section": "Timeline: 2024–March 2026",
+    "text": "Timeline: 2024–March 2026\n\n\n\nDate\nMilestone\n\n\n\n\nJan 2024\nCodeAct: code as universal action space\n\n\nFeb 2024\nReadAgent, OS-Copilot, UFO (Windows)\n\n\nMar 2024\nDevin announced — AI software engineer\n\n\nApr 2024\nOSWorld benchmark; GitHub Copilot Workspace\n\n\nMay 2024\nSWE-agent paper; Claude 3.5 Sonnet released\n\n\nJun 2024\ntau-bench, AgentDojo\n\n\nSep 2024\nOpenAI o1 — RL reasoning model\n\n\nOct 2024\nAnthropic Computer Use; OpenAI Swarm; InjecAgent\n\n\nNov 2024\nModel Context Protocol (MCP) by Anthropic\n\n\nDec 2024\nAnthropic “Building effective agents” guide; Gemini 2.0\n\n\nDec 2024\nOpenAI o3 preview\n\n\nJan 2025\nOpenAI Operator (browser agent product)\n\n\nJan 2025\nDeepSeek-R1 — open reasoning model\n\n\nFeb 2025\nLangGraph v1.0 production release\n\n\nMar 2025\nClaude 3.7 Sonnet: 72.5% on OSWorld\n\n\nMar 2025\nClaude Code agentic coding tool"
+  },
+  {
+    "objectID": "recent.html#open-questions-future-directions",
+    "href": "recent.html#open-questions-future-directions",
+    "title": "2024–2026: The Frontier",
+    "section": "Open Questions & Future Directions",
+    "text": "Open Questions & Future Directions\n\nLong-horizon reliability — How do we prevent error accumulation over 100+ step tasks?\nEvaluation — How do we evaluate open-ended, creative agent behavior?\nSafety at deployment scale — Prompt injection remains unsolved; trust hierarchies unclear\nCost-efficiency — Multi-agent systems with frontier models are expensive; how to scale down?\nVerification — How does an agent (or human) verify that a complex task was correctly completed?\nMemory consolidation — Episodic → semantic → procedural: still largely manual or hand-coded\nMulti-agent coordination — Communication protocol standardization (MCP is a start)\nEmbodied + digital convergence — Desktop agents + robot agents converging in capability\n\n\nBack to Taxonomy & Framework → | See Resources → for reading list"
+  }
+]

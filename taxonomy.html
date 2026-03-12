@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Taxonomy &amp; Conceptual Framework – LLM Agents: A Survey (2022–2026)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-254a3ef50811769e7b813971395bbfc6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-31e29ad2a3d1e7985534403fb9b8ee74.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-254a3ef50811769e7b813971395bbfc6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">LLM Agents: A Survey (2022–2026)</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./taxonomy.html" aria-current="page"> 
+<span class="menu-text">Taxonomy</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./foundations.html"> 
+<span class="menu-text">Foundations</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./reasoning.html"> 
+<span class="menu-text">Reasoning &amp; Planning</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./multiagent.html"> 
+<span class="menu-text">Multi-Agent</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./memory-tools.html"> 
+<span class="menu-text">Memory &amp; Tools</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./recent.html"> 
+<span class="menu-text">2024–2026</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/johnplake/llm-agents-survey"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-is-an-llm-agent" id="toc-what-is-an-llm-agent" class="nav-link active" data-scroll-target="#what-is-an-llm-agent">What Is an LLM Agent?</a></li>
+  <li><a href="#the-core-agent-loop" id="toc-the-core-agent-loop" class="nav-link" data-scroll-target="#the-core-agent-loop">The Core Agent Loop</a></li>
+  <li><a href="#decomposing-agent-design-space" id="toc-decomposing-agent-design-space" class="nav-link" data-scroll-target="#decomposing-agent-design-space">Decomposing Agent Design Space</a>
+  <ul class="collapse">
+  <li><a href="#reasoning-planning" id="toc-reasoning-planning" class="nav-link" data-scroll-target="#reasoning-planning">1. 🧠 Reasoning / Planning</a></li>
+  <li><a href="#memory-architecture" id="toc-memory-architecture" class="nav-link" data-scroll-target="#memory-architecture">2. 💾 Memory Architecture</a></li>
+  <li><a href="#action-space" id="toc-action-space" class="nav-link" data-scroll-target="#action-space">3. 🔧 Action Space</a></li>
+  <li><a href="#agent-multiplicity" id="toc-agent-multiplicity" class="nav-link" data-scroll-target="#agent-multiplicity">4. 🤝 Agent Multiplicity</a></li>
+  <li><a href="#degree-of-autonomy" id="toc-degree-of-autonomy" class="nav-link" data-scroll-target="#degree-of-autonomy">5. 🎯 Degree of Autonomy</a></li>
+  </ul></li>
+  <li><a href="#a-taxonomy-of-agent-architectures" id="toc-a-taxonomy-of-agent-architectures" class="nav-link" data-scroll-target="#a-taxonomy-of-agent-architectures">A Taxonomy of Agent Architectures</a>
+  <ul class="collapse">
+  <li><a href="#family-1-tool-augmented-llms" id="toc-family-1-tool-augmented-llms" class="nav-link" data-scroll-target="#family-1-tool-augmented-llms">Family 1: Tool-Augmented LLMs</a></li>
+  <li><a href="#family-2-react-style-agents" id="toc-family-2-react-style-agents" class="nav-link" data-scroll-target="#family-2-react-style-agents">Family 2: ReAct-Style Agents</a></li>
+  <li><a href="#family-3-plan-then-execute" id="toc-family-3-plan-then-execute" class="nav-link" data-scroll-target="#family-3-plan-then-execute">Family 3: Plan-Then-Execute</a></li>
+  <li><a href="#family-4-reflective-self-improving-agents" id="toc-family-4-reflective-self-improving-agents" class="nav-link" data-scroll-target="#family-4-reflective-self-improving-agents">Family 4: Reflective / Self-Improving Agents</a></li>
+  <li><a href="#family-5-multi-agent-systems" id="toc-family-5-multi-agent-systems" class="nav-link" data-scroll-target="#family-5-multi-agent-systems">Family 5: Multi-Agent Systems</a></li>
+  <li><a href="#family-6-memory-augmented-agents" id="toc-family-6-memory-augmented-agents" class="nav-link" data-scroll-target="#family-6-memory-augmented-agents">Family 6: Memory-Augmented Agents</a></li>
+  <li><a href="#family-7-embodied-action-agents" id="toc-family-7-embodied-action-agents" class="nav-link" data-scroll-target="#family-7-embodied-action-agents">Family 7: Embodied / Action Agents</a></li>
+  </ul></li>
+  <li><a href="#key-design-tensions" id="toc-key-design-tensions" class="nav-link" data-scroll-target="#key-design-tensions">Key Design Tensions</a></li>
+  <li><a href="#how-the-field-has-evolved" id="toc-how-the-field-has-evolved" class="nav-link" data-scroll-target="#how-the-field-has-evolved">How the Field Has Evolved</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further Reading</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Taxonomy &amp; Conceptual Framework</h1>
+<p class="subtitle lead">How to think about LLM agents — a map of the design space</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="what-is-an-llm-agent" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-an-llm-agent">What Is an LLM Agent?</h2>
+<p>An <strong>LLM agent</strong> is a system in which a large language model serves as a central reasoning engine, capable of taking sequences of actions toward a goal — not merely producing a single response. The key distinctions from standard LLM use:</p>
+<ol type="1">
+<li><strong>Agency over time</strong>: The model takes multiple steps, observes results, and adapts</li>
+<li><strong>Tool use</strong>: The model can invoke external capabilities (search, code execution, APIs)</li>
+<li><strong>Goal-directedness</strong>: The system pursues an objective, not just answers a question</li>
+<li><strong>Memory beyond context</strong>: The system can store and retrieve information across turns</li>
+</ol>
+<p>The canonical formulation (from Wang et al., 2023 survey): an agent has a <strong>Brain</strong> (the LLM), <strong>Perception</strong> (inputs), <strong>Memory</strong> (short- and long-term storage), <strong>Action</strong> (what it can do), and <strong>Planning</strong> (how it decides what to do).</p>
+<hr>
+</section>
+<section id="the-core-agent-loop" class="level2">
+<h2 class="anchored" data-anchor-id="the-core-agent-loop">The Core Agent Loop</h2>
+<p>Most LLM agent architectures implement some version of this loop:</p>
+<pre><code>Observe → Think → Act → Observe → ...</code></pre>
+<p>This was crystallized in <strong>ReAct</strong> (Yao et al., 2023):</p>
+<pre><code>Thought: I need to find X
+Action: search("X")
+Observation: [result]
+Thought: Now I know X, I should do Y
+Action: ...</code></pre>
+<p>Variations on this loop form the backbone of nearly every agent system.</p>
+<hr>
+</section>
+<section id="decomposing-agent-design-space" class="level2">
+<h2 class="anchored" data-anchor-id="decomposing-agent-design-space">Decomposing Agent Design Space</h2>
+<p>We can decompose the design space of LLM agents along <strong>five key dimensions</strong>:</p>
+<section id="reasoning-planning" class="level3">
+<h3 class="anchored" data-anchor-id="reasoning-planning">1. 🧠 Reasoning / Planning</h3>
+<p>How does the agent decide what to do next?</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 31%">
+<col style="width: 40%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Approach</th>
+<th>Description</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Direct</strong></td>
+<td>Single-step action selection</td>
+<td>Basic tool-use with function calling</td>
+</tr>
+<tr class="even">
+<td><strong>Chain-of-Thought</strong></td>
+<td>Linear reasoning trace</td>
+<td>ReAct, CoT prompting</td>
+</tr>
+<tr class="odd">
+<td><strong>Tree/Graph Search</strong></td>
+<td>Branching exploration</td>
+<td>Tree of Thoughts, MCTS agents</td>
+</tr>
+<tr class="even">
+<td><strong>Hierarchical</strong></td>
+<td>Decompose → solve subgoals</td>
+<td>Plan-and-Execute, HierAgent</td>
+</tr>
+<tr class="odd">
+<td><strong>Reflective</strong></td>
+<td>Evaluate → revise plans</td>
+<td>Reflexion, Self-Refine, CRITIC</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="memory-architecture" class="level3">
+<h3 class="anchored" data-anchor-id="memory-architecture">2. 💾 Memory Architecture</h3>
+<p>What information can the agent access and how?</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 46%">
+<col style="width: 32%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Description</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>In-context</strong></td>
+<td>Everything in the prompt window</td>
+<td>Standard LLM, short conversations</td>
+</tr>
+<tr class="even">
+<td><strong>External (vector)</strong></td>
+<td>Retrieved from embedding store</td>
+<td>RAG, MemGPT external storage</td>
+</tr>
+<tr class="odd">
+<td><strong>Episodic</strong></td>
+<td>Record of past events</td>
+<td>MemGPT, Generative Agents diary</td>
+</tr>
+<tr class="even">
+<td><strong>Semantic</strong></td>
+<td>Facts about the world</td>
+<td>Knowledge graph integration</td>
+</tr>
+<tr class="odd">
+<td><strong>Procedural</strong></td>
+<td>How-to skills, code</td>
+<td>Voyager skill library</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="action-space" class="level3">
+<h3 class="anchored" data-anchor-id="action-space">3. 🔧 Action Space</h3>
+<p>What can the agent actually do?</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Category</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Search/Web</strong></td>
+<td>Google search, web browsing, Wikipedia</td>
+</tr>
+<tr class="even">
+<td><strong>Code execution</strong></td>
+<td>Python REPL, shell, Jupyter</td>
+</tr>
+<tr class="odd">
+<td><strong>API calls</strong></td>
+<td>REST APIs, function calling</td>
+</tr>
+<tr class="even">
+<td><strong>File I/O</strong></td>
+<td>Read/write files</td>
+</tr>
+<tr class="odd">
+<td><strong>GUI/Computer</strong></td>
+<td>Click, type, screenshot</td>
+</tr>
+<tr class="even">
+<td><strong>Agent spawning</strong></td>
+<td>Spawn sub-agents, delegate tasks</td>
+</tr>
+<tr class="odd">
+<td><strong>Communication</strong></td>
+<td>Send messages, emails</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="agent-multiplicity" class="level3">
+<h3 class="anchored" data-anchor-id="agent-multiplicity">4. 🤝 Agent Multiplicity</h3>
+<p>Is the system a single agent or multiple?</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 41%">
+<col style="width: 29%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pattern</th>
+<th>Description</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Single</strong></td>
+<td>One LLM does everything</td>
+<td>Standard ReAct agents</td>
+</tr>
+<tr class="even">
+<td><strong>Specialist pipeline</strong></td>
+<td>Sequential specialization</td>
+<td>HuggingGPT, modular agents</td>
+</tr>
+<tr class="odd">
+<td><strong>Peer collaboration</strong></td>
+<td>Agents debate and refine</td>
+<td>CAMEL, SPP</td>
+</tr>
+<tr class="even">
+<td><strong>Hierarchical</strong></td>
+<td>Manager + workers</td>
+<td>AutoGen, MetaGPT, ChatDev</td>
+</tr>
+<tr class="odd">
+<td><strong>Society</strong></td>
+<td>Many autonomous agents</td>
+<td>Generative Agents, AgentVerse</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="degree-of-autonomy" class="level3">
+<h3 class="anchored" data-anchor-id="degree-of-autonomy">5. 🎯 Degree of Autonomy</h3>
+<p>How much human oversight is in the loop?</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Level</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Tool-augmented</strong></td>
+<td>LLM with tools, human-in-the-loop</td>
+</tr>
+<tr class="even">
+<td><strong>Semi-autonomous</strong></td>
+<td>Agent acts, human approves key steps</td>
+</tr>
+<tr class="odd">
+<td><strong>Fully autonomous</strong></td>
+<td>Agent runs until task complete</td>
+</tr>
+<tr class="even">
+<td><strong>Multi-hop autonomous</strong></td>
+<td>Long-horizon, fully unsupervised</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="a-taxonomy-of-agent-architectures" class="level2">
+<h2 class="anchored" data-anchor-id="a-taxonomy-of-agent-architectures">A Taxonomy of Agent Architectures</h2>
+<p>Based on the literature, we can identify several major architectural families:</p>
+<section id="family-1-tool-augmented-llms" class="level3">
+<h3 class="anchored" data-anchor-id="family-1-tool-augmented-llms">Family 1: Tool-Augmented LLMs</h3>
+<p><em>“Give the LLM tools to call”</em></p>
+<p>The simplest agent pattern. A single LLM is given a set of callable tools. It reasons about which tool to call and synthesizes results. The focus is on <strong>tool integration</strong> more than autonomous goal-pursuit.</p>
+<p>Key papers: Toolformer, MRKL, OpenAI function calling, Claude tool use Key frameworks: LangChain tools, OpenAI Assistants</p>
+</section>
+<section id="family-2-react-style-agents" class="level3">
+<h3 class="anchored" data-anchor-id="family-2-react-style-agents">Family 2: ReAct-Style Agents</h3>
+<p><em>“Interleave reasoning and acting”</em></p>
+<p>The agent alternates between <strong>Thought</strong> (reasoning about what to do) and <strong>Action</strong> (doing it). The observation from the action feeds back into the next thought. This is the dominant pattern for task-solving agents.</p>
+<p>Key papers: ReAct, DEPS, Inner Monologue Key frameworks: LangChain agents, LlamaIndex agents</p>
+</section>
+<section id="family-3-plan-then-execute" class="level3">
+<h3 class="anchored" data-anchor-id="family-3-plan-then-execute">Family 3: Plan-Then-Execute</h3>
+<p><em>“Make a plan, then execute it”</em></p>
+<p>A <strong>planner</strong> agent generates a high-level plan, then an <strong>executor</strong> carries out each step. Allows more structured task decomposition and is easier to monitor.</p>
+<p>Key papers: Plan-and-Execute (Chase, 2023), LLM+P, DEPS Key frameworks: LangGraph, LangChain Plan-and-Execute</p>
+</section>
+<section id="family-4-reflective-self-improving-agents" class="level3">
+<h3 class="anchored" data-anchor-id="family-4-reflective-self-improving-agents">Family 4: Reflective / Self-Improving Agents</h3>
+<p><em>“Learn from mistakes within a task”</em></p>
+<p>Agents that evaluate their own performance and update their approach. Introduces a <strong>critic</strong> or <strong>reflection</strong> component.</p>
+<p>Key papers: Reflexion, Self-Refine, CRITIC, Constitutional AI Key frameworks: AutoGen (with feedback), LangGraph with loops</p>
+</section>
+<section id="family-5-multi-agent-systems" class="level3">
+<h3 class="anchored" data-anchor-id="family-5-multi-agent-systems">Family 5: Multi-Agent Systems</h3>
+<p><em>“Specialized agents collaborating”</em></p>
+<p>Multiple LLM instances with different roles (planner, coder, critic, etc.) communicate and collaborate to solve complex tasks.</p>
+<p>Key papers: CAMEL, MetaGPT, ChatDev, AutoGen, AgentVerse Key frameworks: AutoGen, CrewAI, LangGraph multi-agent</p>
+</section>
+<section id="family-6-memory-augmented-agents" class="level3">
+<h3 class="anchored" data-anchor-id="family-6-memory-augmented-agents">Family 6: Memory-Augmented Agents</h3>
+<p><em>“Agents with persistent, structured memory”</em></p>
+<p>Go beyond the context window with external memory systems: vector databases, structured stores, memory hierarchies modeled after cognitive architectures.</p>
+<p>Key papers: MemGPT, Generative Agents, A-MEM, ReadAgent Key frameworks: MemGPT, LangChain Memory</p>
+</section>
+<section id="family-7-embodied-action-agents" class="level3">
+<h3 class="anchored" data-anchor-id="family-7-embodied-action-agents">Family 7: Embodied / Action Agents</h3>
+<p><em>“Agents that act in the physical or digital world”</em></p>
+<p>Agents that control computers (GUI agents), robots (embodied agents), or execute code. The action space is rich and grounded.</p>
+<p>Key papers: SayCan, RT-2, CogAgent, UFO, OS-Copilot, SWE-agent Key products: Devin, Claude Computer Use, OpenAI Operator</p>
+<hr>
+</section>
+</section>
+<section id="key-design-tensions" class="level2">
+<h2 class="anchored" data-anchor-id="key-design-tensions">Key Design Tensions</h2>
+<p>The literature reveals several recurring tensions that different systems resolve differently:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 47%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tension</th>
+<th>Tradeoff</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Autonomy vs.&nbsp;Oversight</strong></td>
+<td>More autonomy = more capability, more risk</td>
+</tr>
+<tr class="even">
+<td><strong>Generality vs.&nbsp;Specialization</strong></td>
+<td>Specialist agents perform better, general agents are more flexible</td>
+</tr>
+<tr class="odd">
+<td><strong>In-context vs.&nbsp;External memory</strong></td>
+<td>Context is fast but limited; external is vast but retrieval is lossy</td>
+</tr>
+<tr class="even">
+<td><strong>Natural language vs.&nbsp;Structured</strong></td>
+<td>Natural language is flexible; structured is reliable</td>
+</tr>
+<tr class="odd">
+<td><strong>Single vs.&nbsp;Multi-agent</strong></td>
+<td>Multi-agent enables specialization; single-agent is simpler to debug</td>
+</tr>
+<tr class="even">
+<td><strong>Plan-first vs.&nbsp;Interleave</strong></td>
+<td>Planning enables lookahead; interleaving enables reactivity</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="how-the-field-has-evolved" class="level2">
+<h2 class="anchored" data-anchor-id="how-the-field-has-evolved">How the Field Has Evolved</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 44%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Era</th>
+<th>Dominant Pattern</th>
+<th>Key Innovation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>2022</strong></td>
+<td>Tool-augmented LLMs</td>
+<td>MRKL, WebGPT, SayCan — LLMs + specialized modules</td>
+</tr>
+<tr class="even">
+<td><strong>Early 2023</strong></td>
+<td>ReAct agents</td>
+<td>Interleaved reasoning + action; Toolformer</td>
+</tr>
+<tr class="odd">
+<td><strong>Mid 2023</strong></td>
+<td>Autonomous agents</td>
+<td>AutoGPT, BabyAGI — long-horizon goal pursuit</td>
+</tr>
+<tr class="even">
+<td><strong>Late 2023</strong></td>
+<td>Multi-agent + Memory</td>
+<td>MetaGPT, AutoGen, MemGPT, Generative Agents</td>
+</tr>
+<tr class="odd">
+<td><strong>2024</strong></td>
+<td>Coding agents + Infra</td>
+<td>SWE-agent, Devin; LangGraph, CrewAI</td>
+</tr>
+<tr class="even">
+<td><strong>2025-2026</strong></td>
+<td>Agentic products + MCP</td>
+<td>Claude Computer Use, Operator; model-native tooling</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="further-reading">Further Reading</h2>
+<ul>
+<li><a href="./foundations.html">Foundations (2022–2023)</a> — The papers that built the field</li>
+<li><a href="./reasoning.html">Reasoning &amp; Planning</a> — Deep dive on how agents think</li>
+<li><a href="./multiagent.html">Multi-Agent Systems</a> — Collaborative architectures</li>
+<li><a href="./memory-tools.html">Memory, Tools &amp; Actions</a> — The building blocks</li>
+<li><a href="./recent.html">2024–2026 Frontier</a> — Where the field is now</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/johnplake\.github\.io\/llm-agents-survey\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

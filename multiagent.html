@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Multi-Agent Systems &amp; Frameworks – LLM Agents: A Survey (2022–2026)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-254a3ef50811769e7b813971395bbfc6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-31e29ad2a3d1e7985534403fb9b8ee74.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-254a3ef50811769e7b813971395bbfc6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">LLM Agents: A Survey (2022–2026)</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./taxonomy.html"> 
+<span class="menu-text">Taxonomy</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./foundations.html"> 
+<span class="menu-text">Foundations</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./reasoning.html"> 
+<span class="menu-text">Reasoning &amp; Planning</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./multiagent.html" aria-current="page"> 
+<span class="menu-text">Multi-Agent</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./memory-tools.html"> 
+<span class="menu-text">Memory &amp; Tools</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./recent.html"> 
+<span class="menu-text">2024–2026</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/johnplake/llm-agents-survey"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#foundational-multi-agent-papers" id="toc-foundational-multi-agent-papers" class="nav-link" data-scroll-target="#foundational-multi-agent-papers">Foundational Multi-Agent Papers</a>
+  <ul class="collapse">
+  <li><a href="#generative-agents-interactive-simulacra-of-human-behavior-2023" id="toc-generative-agents-interactive-simulacra-of-human-behavior-2023" class="nav-link" data-scroll-target="#generative-agents-interactive-simulacra-of-human-behavior-2023">Generative Agents: Interactive Simulacra of Human Behavior (2023)</a></li>
+  <li><a href="#camel-communicative-agents-for-mind-exploration-2023" id="toc-camel-communicative-agents-for-mind-exploration-2023" class="nav-link" data-scroll-target="#camel-communicative-agents-for-mind-exploration-2023">CAMEL: Communicative Agents for “Mind” Exploration (2023)</a></li>
+  <li><a href="#metagpt-meta-programming-for-a-generalizable-agent-system-2023" id="toc-metagpt-meta-programming-for-a-generalizable-agent-system-2023" class="nav-link" data-scroll-target="#metagpt-meta-programming-for-a-generalizable-agent-system-2023">MetaGPT: Meta Programming for a Generalizable Agent System (2023)</a></li>
+  <li><a href="#chatdev-communicative-agents-for-software-development-2023" id="toc-chatdev-communicative-agents-for-software-development-2023" class="nav-link" data-scroll-target="#chatdev-communicative-agents-for-software-development-2023">ChatDev: Communicative Agents for Software Development (2023)</a></li>
+  <li><a href="#autogen-enabling-next-gen-llm-applications-via-multi-agent-conversation-2023" id="toc-autogen-enabling-next-gen-llm-applications-via-multi-agent-conversation-2023" class="nav-link" data-scroll-target="#autogen-enabling-next-gen-llm-applications-via-multi-agent-conversation-2023">AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation (2023)</a></li>
+  <li><a href="#agentverse-facilitating-multi-agent-collaboration-2023" id="toc-agentverse-facilitating-multi-agent-collaboration-2023" class="nav-link" data-scroll-target="#agentverse-facilitating-multi-agent-collaboration-2023">AgentVerse: Facilitating Multi-Agent Collaboration (2023)</a></li>
+  <li><a href="#dylan-dynamic-llm-powered-agent-network-2023" id="toc-dylan-dynamic-llm-powered-agent-network-2023" class="nav-link" data-scroll-target="#dylan-dynamic-llm-powered-agent-network-2023">DyLAN: Dynamic LLM-Powered Agent Network (2023)</a></li>
+  <li><a href="#solo-performance-prompting-spp-2023" id="toc-solo-performance-prompting-spp-2023" class="nav-link" data-scroll-target="#solo-performance-prompting-spp-2023">Solo Performance Prompting (SPP) (2023)</a></li>
+  <li><a href="#agentscope-2024" id="toc-agentscope-2024" class="nav-link" data-scroll-target="#agentscope-2024">AgentScope (2024)</a></li>
+  </ul></li>
+  <li><a href="#open-source-frameworks" id="toc-open-source-frameworks" class="nav-link" data-scroll-target="#open-source-frameworks">Open-Source Frameworks</a>
+  <ul class="collapse">
+  <li><a href="#langchain" id="toc-langchain" class="nav-link" data-scroll-target="#langchain">LangChain</a></li>
+  <li><a href="#langgraph" id="toc-langgraph" class="nav-link" data-scroll-target="#langgraph">LangGraph</a></li>
+  <li><a href="#autogen" id="toc-autogen" class="nav-link" data-scroll-target="#autogen">AutoGen</a></li>
+  <li><a href="#crewai" id="toc-crewai" class="nav-link" data-scroll-target="#crewai">CrewAI</a></li>
+  <li><a href="#dspy" id="toc-dspy" class="nav-link" data-scroll-target="#dspy">DSPy</a></li>
+  <li><a href="#semantic-kernel" id="toc-semantic-kernel" class="nav-link" data-scroll-target="#semantic-kernel">Semantic Kernel</a></li>
+  <li><a href="#haystack" id="toc-haystack" class="nav-link" data-scroll-target="#haystack">Haystack</a></li>
+  <li><a href="#openai-swarm-2024" id="toc-openai-swarm-2024" class="nav-link" data-scroll-target="#openai-swarm-2024">OpenAI Swarm (2024)</a></li>
+  </ul></li>
+  <li><a href="#orchestration-patterns" id="toc-orchestration-patterns" class="nav-link" data-scroll-target="#orchestration-patterns">Orchestration Patterns</a></li>
+  <li><a href="#communication-protocols" id="toc-communication-protocols" class="nav-link" data-scroll-target="#communication-protocols">Communication Protocols</a></li>
+  <li><a href="#evaluation-benchmarks" id="toc-evaluation-benchmarks" class="nav-link" data-scroll-target="#evaluation-benchmarks">Evaluation Benchmarks</a>
+  <ul class="collapse">
+  <li><a href="#agentbench-2023" id="toc-agentbench-2023" class="nav-link" data-scroll-target="#agentbench-2023">AgentBench (2023)</a></li>
+  <li><a href="#webarena-2023" id="toc-webarena-2023" class="nav-link" data-scroll-target="#webarena-2023">WebArena (2023)</a></li>
+  <li><a href="#gaia-general-ai-assistants-benchmark-2023" id="toc-gaia-general-ai-assistants-benchmark-2023" class="nav-link" data-scroll-target="#gaia-general-ai-assistants-benchmark-2023">GAIA: General AI Assistants Benchmark (2023)</a></li>
+  <li><a href="#osworld-2024" id="toc-osworld-2024" class="nav-link" data-scroll-target="#osworld-2024">OSWorld (2024)</a></li>
+  <li><a href="#swe-bench-2023" id="toc-swe-bench-2023" class="nav-link" data-scroll-target="#swe-bench-2023">SWE-bench (2023)</a></li>
+  <li><a href="#workarena-workarena-2024" id="toc-workarena-workarena-2024" class="nav-link" data-scroll-target="#workarena-workarena-2024">WorkArena / WorkArena++ (2024)</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Multi-Agent Systems &amp; Frameworks</h1>
+<p class="subtitle lead">Multiple LLMs collaborating: architectures, frameworks, and benchmarks</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>When a single LLM agent reaches its limits — context length, expertise breadth, task complexity — multi-agent systems offer a solution: multiple specialized agents that collaborate, critique, and coordinate. This area exploded in 2023 and matured into production-ready infrastructure by 2025.</p>
+<p><strong>Key themes:</strong> - <strong>Role specialization:</strong> Planner, Executor, Critic, Coder, Tester — each agent does what it’s best at - <strong>Communication protocols:</strong> Natural language messages → structured schemas → MCP - <strong>Framework consolidation:</strong> From dozens of early frameworks to a handful of dominant players - <strong>Emergent behaviors:</strong> Both positive (division of labor) and negative (groupthink, error propagation)</p>
+<hr>
+</section>
+<section id="foundational-multi-agent-papers" class="level2">
+<h2 class="anchored" data-anchor-id="foundational-multi-agent-papers">Foundational Multi-Agent Papers</h2>
+<section id="generative-agents-interactive-simulacra-of-human-behavior-2023" class="level3">
+<h3 class="anchored" data-anchor-id="generative-agents-interactive-simulacra-of-human-behavior-2023">Generative Agents: Interactive Simulacra of Human Behavior (2023)</h3>
+<p><strong>Park et al.&nbsp;(Stanford)</strong> · <a href="https://arxiv.org/abs/2304.03442">arXiv:2304.03442</a> · <em>UIST 2023 Best Paper</em></p>
+<p>The landmark demonstration: 25 LLM agents inhabiting a simulated town (“Smallville”), forming relationships, planning their days, and exhibiting emergent social behaviors. Each agent has a <strong>memory stream</strong> (natural language records of experiences), <strong>reflection</strong> (synthesizing higher-level insights), and <strong>planning</strong> (daily schedules, goal-directed behavior).</p>
+<ul>
+<li><strong>Emergent behaviors:</strong> Spontaneous party planning, rumor spreading, relationship formation</li>
+<li><strong>Memory architecture:</strong> Observation → memory stream → reflection → planning</li>
+<li><strong>Key insight:</strong> Rich social behaviors emerge from individual memory + reflection + planning</li>
+<li><strong>Impact:</strong> Established the template for memory-rich multi-agent systems</li>
+</ul>
+</section>
+<section id="camel-communicative-agents-for-mind-exploration-2023" class="level3">
+<h3 class="anchored" data-anchor-id="camel-communicative-agents-for-mind-exploration-2023">CAMEL: Communicative Agents for “Mind” Exploration (2023)</h3>
+<p><strong>Li et al.&nbsp;(KAUST)</strong> · <a href="https://arxiv.org/abs/2303.17760">arXiv:2303.17760</a> · <em>NeurIPS 2023</em></p>
+<p>Proposes <strong>role-playing</strong> as the mechanism for multi-agent cooperation. Two agents (user and assistant) are given roles and an objective; they converse autonomously without human input. Introduces <strong>inception prompting</strong> to initialize and maintain role coherence.</p>
+<ul>
+<li><strong>Key ideas:</strong> Autonomous role-playing; inception prompting; generates high-quality conversation datasets</li>
+<li><strong>GitHub:</strong> <a href="https://github.com/camel-ai/camel">camel-ai/camel</a></li>
+</ul>
+</section>
+<section id="metagpt-meta-programming-for-a-generalizable-agent-system-2023" class="level3">
+<h3 class="anchored" data-anchor-id="metagpt-meta-programming-for-a-generalizable-agent-system-2023">MetaGPT: Meta Programming for a Generalizable Agent System (2023)</h3>
+<p><strong>Hong et al.</strong> · <a href="https://arxiv.org/abs/2308.00352">arXiv:2308.00352</a> · <em>ICLR 2024</em></p>
+<p>Applies software engineering best practices to multi-agent coordination. Agents play roles from a software company (Product Manager, Architect, Engineer, QA). They work from <strong>shared documents</strong> (PRD, architecture, API spec), reducing miscommunication.</p>
+<ul>
+<li><strong>Key ideas:</strong> Structured document-based coordination; SOP (standard operating procedures) for agents; shared workspace; role → deliverable mapping</li>
+<li><strong>Results:</strong> Outperforms prior SOTA on HumanEval and MBPP; lower cost per task</li>
+<li><strong>GitHub:</strong> <a href="https://github.com/geekan/MetaGPT">geekan/MetaGPT</a> · 50k+ stars</li>
+</ul>
+</section>
+<section id="chatdev-communicative-agents-for-software-development-2023" class="level3">
+<h3 class="anchored" data-anchor-id="chatdev-communicative-agents-for-software-development-2023">ChatDev: Communicative Agents for Software Development (2023)</h3>
+<p><strong>Qian et al.&nbsp;(Tsinghua)</strong> · <a href="https://arxiv.org/abs/2307.07924">arXiv:2307.07924</a> · <em>ACL 2024</em></p>
+<p>Simulates a full software development company with specialized agents (CEO, CTO, Programmer, Reviewer, Tester). Communication uses both natural language and code. Demonstrates that <strong>structured agent communication</strong> produces better software than single-agent generation.</p>
+<ul>
+<li><strong>Key ideas:</strong> Phase-gated development (design → coding → testing → documentation); role-based SOPs; communicative hallucination detection</li>
+<li><strong>GitHub:</strong> <a href="https://github.com/OpenBMB/ChatDev">OpenBMB/ChatDev</a></li>
+</ul>
+</section>
+<section id="autogen-enabling-next-gen-llm-applications-via-multi-agent-conversation-2023" class="level3">
+<h3 class="anchored" data-anchor-id="autogen-enabling-next-gen-llm-applications-via-multi-agent-conversation-2023">AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation (2023)</h3>
+<p><strong>Wu et al.&nbsp;(Microsoft)</strong> · <a href="https://arxiv.org/abs/2308.08155">arXiv:2308.08155</a></p>
+<p><strong>Most widely adopted multi-agent framework.</strong> Introduces <strong>conversable agents</strong>: any two agents can converse, with rich customization of termination conditions, human-in-the-loop integration, and tool use. Defines a flexible conversation topology that supports many multi-agent patterns.</p>
+<ul>
+<li><strong>Key ideas:</strong> Conversable agent abstraction; flexible conversation patterns; code execution integration; GroupChat for multi-party conversations</li>
+<li><strong>GitHub:</strong> <a href="https://github.com/microsoft/autogen">microsoft/autogen</a> · 40k+ stars</li>
+</ul>
+</section>
+<section id="agentverse-facilitating-multi-agent-collaboration-2023" class="level3">
+<h3 class="anchored" data-anchor-id="agentverse-facilitating-multi-agent-collaboration-2023">AgentVerse: Facilitating Multi-Agent Collaboration (2023)</h3>
+<p><strong>Chen et al.&nbsp;(Tsinghua)</strong> · <a href="https://arxiv.org/abs/2308.10848">arXiv:2308.10848</a></p>
+<p>Platform for studying emergent behaviors in multi-agent systems. Systematically investigates both <strong>positive</strong> (division of labor, complementary expertise) and <strong>negative</strong> (groupthink, error amplification) emergent phenomena.</p>
+<ul>
+<li><strong>GitHub:</strong> <a href="https://github.com/OpenBMB/AgentVerse">OpenBMB/AgentVerse</a></li>
+</ul>
+</section>
+<section id="dylan-dynamic-llm-powered-agent-network-2023" class="level3">
+<h3 class="anchored" data-anchor-id="dylan-dynamic-llm-powered-agent-network-2023">DyLAN: Dynamic LLM-Powered Agent Network (2023)</h3>
+<p><strong>Liu et al.</strong> · <a href="https://arxiv.org/abs/2310.02170">arXiv:2310.02170</a></p>
+<p>Dynamic multi-agent network where agent connectivity evolves based on task requirements. Introduces agent importance scoring and dynamic team formation.</p>
+</section>
+<section id="solo-performance-prompting-spp-2023" class="level3">
+<h3 class="anchored" data-anchor-id="solo-performance-prompting-spp-2023">Solo Performance Prompting (SPP) (2023)</h3>
+<p><strong>Wang et al.</strong> · <a href="https://arxiv.org/abs/2307.05300">arXiv:2307.05300</a></p>
+<p>Simulates multi-agent collaboration with a <strong>single LLM</strong>: the model plays multiple personas sequentially. Achieves similar benefits to actual multi-agent systems with lower cost.</p>
+<ul>
+<li><strong>Key insight:</strong> Multiple perspectives from a single model improve factuality and reasoning</li>
+</ul>
+</section>
+<section id="agentscope-2024" class="level3">
+<h3 class="anchored" data-anchor-id="agentscope-2024">AgentScope (2024)</h3>
+<p><strong>Alibaba</strong> · <a href="https://arxiv.org/abs/2402.14034">arXiv:2402.14034</a> · <a href="https://github.com/modelscope/agentscope">GitHub</a></p>
+<p>Production-grade multi-agent platform from Alibaba. Focuses on fault tolerance, distributed execution, and scalability. Designed for real-world deployment with hundreds of concurrent agents.</p>
+<hr>
+</section>
+</section>
+<section id="open-source-frameworks" class="level2">
+<h2 class="anchored" data-anchor-id="open-source-frameworks">Open-Source Frameworks</h2>
+<section id="langchain" class="level3">
+<h3 class="anchored" data-anchor-id="langchain">LangChain</h3>
+<p><strong><a href="https://github.com/langchain-ai/langchain">github.com/langchain-ai/langchain</a></strong> · 100k+ stars</p>
+<p>The dominant general-purpose agent framework. Provides abstractions for agents, tools, memory, chains, and retrieval. Agent module supports ReAct, structured chat, function-calling, and custom agents. Huge ecosystem of integrations.</p>
+<ul>
+<li><strong>Architecture:</strong> Chain-based composition; LCEL (LangChain Expression Language) for declarative pipelines; extensive tool library</li>
+<li><strong>Best for:</strong> Rapid prototyping; connecting to many data sources and APIs</li>
+</ul>
+</section>
+<section id="langgraph" class="level3">
+<h3 class="anchored" data-anchor-id="langgraph">LangGraph</h3>
+<p><strong><a href="https://github.com/langchain-ai/langgraph">github.com/langchain-ai/langgraph</a></strong> · 15k+ stars</p>
+<p>Graph-based agent workflow framework built on LangChain. Agents are nodes; state flows along edges. Supports <strong>cycles</strong> (essential for iterative agent loops), conditional branching, and persistent state across steps.</p>
+<ul>
+<li><strong>Architecture:</strong> Stateful graph; explicit control flow; checkpointing; human-in-the-loop support</li>
+<li><strong>Best for:</strong> Complex multi-step agents; workflows needing explicit state management; production deployment</li>
+<li><strong>v1.0 released:</strong> November 2025</li>
+</ul>
+</section>
+<section id="autogen" class="level3">
+<h3 class="anchored" data-anchor-id="autogen">AutoGen</h3>
+<p><strong><a href="https://github.com/microsoft/autogen">github.com/microsoft/autogen</a></strong> · 40k+ stars</p>
+<p>Microsoft’s multi-agent conversation framework. Define agents with roles and capabilities; they converse to solve tasks. Supports GroupChat (multiple agents), code execution, and human proxy agents.</p>
+<ul>
+<li><strong>Architecture:</strong> Conversable agent base class; message-passing; human-in-the-loop via proxy agent</li>
+<li><strong>Best for:</strong> Multi-agent conversations; research; code-executing agents</li>
+</ul>
+</section>
+<section id="crewai" class="level3">
+<h3 class="anchored" data-anchor-id="crewai">CrewAI</h3>
+<p><strong><a href="https://github.com/joaomdmoura/crewAI">github.com/joaomdmoura/crewAI</a></strong> · 25k+ stars</p>
+<p>Role-based agent framework. Define a <strong>crew</strong> of agents, each with a role, goal, and backstory. Assign tasks; agents collaborate sequentially or in parallel.</p>
+<ul>
+<li><strong>Architecture:</strong> Agent → Task → Crew; clean role abstractions; process types (sequential, hierarchical)</li>
+<li><strong>Best for:</strong> Business-oriented multi-agent workflows; readable, maintainable crew definitions</li>
+</ul>
+</section>
+<section id="dspy" class="level3">
+<h3 class="anchored" data-anchor-id="dspy">DSPy</h3>
+<p><strong><a href="https://github.com/stanfordnlp/dspy">github.com/stanfordnlp/dspy</a></strong> · 20k+ stars</p>
+<p>Programming model for LLMs. Instead of writing prompts, you write <strong>modules</strong> with signatures. DSPy optimizes prompts/few-shot examples automatically. Includes agent-capable modules (ReAct, Chain-of-Thought).</p>
+<ul>
+<li><strong>Architecture:</strong> Modules with typed signatures; compilers that optimize prompts; separation of logic from prompting</li>
+<li><strong>Best for:</strong> Systematic prompt optimization; research; building reliable LM pipelines</li>
+</ul>
+</section>
+<section id="semantic-kernel" class="level3">
+<h3 class="anchored" data-anchor-id="semantic-kernel">Semantic Kernel</h3>
+<p><strong><a href="https://github.com/microsoft/semantic-kernel">github.com/microsoft/semantic-kernel</a></strong> · 22k+ stars</p>
+<p>Microsoft’s enterprise-grade agent SDK. Supports .NET, Python, Java. Strong focus on <strong>plugin architecture</strong> (tools as plugins) and integration with Azure AI services.</p>
+<ul>
+<li><strong>Best for:</strong> Enterprise .NET/Azure environments; production-grade tool integration</li>
+</ul>
+</section>
+<section id="haystack" class="level3">
+<h3 class="anchored" data-anchor-id="haystack">Haystack</h3>
+<p><strong><a href="https://github.com/deepset-ai/haystack">github.com/deepset-ai/haystack</a></strong> · 17k+ stars</p>
+<p>Production-focused NLP framework with strong RAG + agent support. Component-based pipeline architecture. Excellent for document-heavy agent applications.</p>
+</section>
+<section id="openai-swarm-2024" class="level3">
+<h3 class="anchored" data-anchor-id="openai-swarm-2024">OpenAI Swarm (2024)</h3>
+<p><strong><a href="https://github.com/openai/swarm">github.com/openai/swarm</a></strong> · experimental</p>
+<p>OpenAI’s lightweight multi-agent framework. Minimal abstraction: agents + handoffs. Designed for clarity and educational purposes.</p>
+<hr>
+</section>
+</section>
+<section id="orchestration-patterns" class="level2">
+<h2 class="anchored" data-anchor-id="orchestration-patterns">Orchestration Patterns</h2>
+<p>The literature reveals recurring multi-agent patterns:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 31%">
+<col style="width: 46%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pattern</th>
+<th>Description</th>
+<th>Example Frameworks</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Sequential pipeline</strong></td>
+<td>Agents execute one after another</td>
+<td>LangGraph, CrewAI sequential</td>
+</tr>
+<tr class="even">
+<td><strong>Planner-Executor</strong></td>
+<td>One agent plans, another executes</td>
+<td>Plan-and-Execute in LangChain</td>
+</tr>
+<tr class="odd">
+<td><strong>Planner-Executor-Critic</strong></td>
+<td>Third agent reviews</td>
+<td>AutoGen with feedback</td>
+</tr>
+<tr class="even">
+<td><strong>Hub-and-Spoke</strong></td>
+<td>Central orchestrator, peripheral specialists</td>
+<td>HuggingGPT, MetaGPT</td>
+</tr>
+<tr class="odd">
+<td><strong>Peer debate</strong></td>
+<td>Agents argue toward consensus</td>
+<td>Society of Mind, debate papers</td>
+</tr>
+<tr class="even">
+<td><strong>Hierarchical tree</strong></td>
+<td>Manager agents spawn sub-agents</td>
+<td>AutoGen with nested chats</td>
+</tr>
+<tr class="odd">
+<td><strong>Dynamic team</strong></td>
+<td>Team composition evolves with task</td>
+<td>DyLAN, AgentScope</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="communication-protocols" class="level2">
+<h2 class="anchored" data-anchor-id="communication-protocols">Communication Protocols</h2>
+<p>How agents communicate has evolved significantly:</p>
+<p><strong>2022–2023: Natural language</strong> Agents communicate via free-form text messages. Flexible but unreliable — agents misunderstand each other.</p>
+<p><strong>2023–2024: Structured schemas</strong> Agents use JSON or typed outputs. Tools like LangGraph add explicit state types.</p>
+<p><strong>2024: Model Context Protocol (MCP)</strong> Anthropic released <strong>MCP</strong> (November 2024) — an open standard for how LLMs connect to tools, data sources, and other agents. Gaining rapid adoption as a universal agent communication standard.</p>
+<ul>
+<li><a href="https://modelcontextprotocol.io/">MCP Specification</a></li>
+<li>Supported by: Claude, Cursor, dozens of IDE integrations</li>
+<li>Provides: Standardized tool definition, resource access, context management</li>
+</ul>
+<hr>
+</section>
+<section id="evaluation-benchmarks" class="level2">
+<h2 class="anchored" data-anchor-id="evaluation-benchmarks">Evaluation Benchmarks</h2>
+<section id="agentbench-2023" class="level3">
+<h3 class="anchored" data-anchor-id="agentbench-2023">AgentBench (2023)</h3>
+<p><strong>Liu et al.&nbsp;(THU)</strong> · <a href="https://arxiv.org/abs/2308.03688">arXiv:2308.03688</a></p>
+<p>First comprehensive multi-domain benchmark for agent evaluation. 8 environments: OS, database, knowledge graph, digital card game, lateral thinking puzzle, HouseHolding, web browsing, web shopping.</p>
+</section>
+<section id="webarena-2023" class="level3">
+<h3 class="anchored" data-anchor-id="webarena-2023">WebArena (2023)</h3>
+<p><strong>Zhou et al.</strong> · <a href="https://arxiv.org/abs/2307.13854">arXiv:2307.13854</a></p>
+<p>Realistic web navigation benchmark with 4 web apps (Reddit, GitLab, e-commerce, maps). 812 tasks. As of 2023, best agents scored ~14%; by 2025, top systems exceed 50%.</p>
+</section>
+<section id="gaia-general-ai-assistants-benchmark-2023" class="level3">
+<h3 class="anchored" data-anchor-id="gaia-general-ai-assistants-benchmark-2023">GAIA: General AI Assistants Benchmark (2023)</h3>
+<p><strong>Mialon et al.&nbsp;(Meta AI)</strong> · <a href="https://arxiv.org/abs/2311.12983">arXiv:2311.12983</a></p>
+<p>Tests “real-world” task completion requiring web search, file reading, coding. Humans score 92%; early GPT-4 agents scored 15%. Designed to require multi-step reasoning with tools.</p>
+</section>
+<section id="osworld-2024" class="level3">
+<h3 class="anchored" data-anchor-id="osworld-2024">OSWorld (2024)</h3>
+<p><strong>Xie et al.</strong> · <a href="https://arxiv.org/abs/2404.07972">arXiv:2404.07972</a></p>
+<p>Desktop GUI task benchmark (Ubuntu, Windows, macOS). 369 tasks across real applications. As of launch, best agents scored &lt;10%; by early 2025, Claude achieves 72.5%.</p>
+</section>
+<section id="swe-bench-2023" class="level3">
+<h3 class="anchored" data-anchor-id="swe-bench-2023">SWE-bench (2023)</h3>
+<p><strong>Jimenez et al.</strong> · <a href="https://arxiv.org/abs/2310.06770">arXiv:2310.06770</a></p>
+<p>GitHub issue resolution benchmark. 2,294 tasks requiring understanding codebases, editing files, passing tests. Early agents: 2-3%; SWE-agent: 12%; Claude-based systems: 40%+.</p>
+</section>
+<section id="workarena-workarena-2024" class="level3">
+<h3 class="anchored" data-anchor-id="workarena-workarena-2024">WorkArena / WorkArena++ (2024)</h3>
+<p><strong>Drouin et al.</strong> · ServiceNow Research</p>
+<p>Enterprise workflow automation benchmark. Tests agents on realistic business software tasks (ServiceNow). WorkArena++: 682 multi-step tasks requiring deep tool use.</p>
+<hr>
+<p><em>Continue to <a href="./memory-tools.html">Memory, Tools &amp; Actions →</a></em></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/johnplake\.github\.io\/llm-agents-survey\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

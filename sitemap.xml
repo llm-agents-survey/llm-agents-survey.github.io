@@ -1,3 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://johnplake.github.io/llm-agents-survey/resources.html</loc>
+    <lastmod>2026-03-12T20:34:02.055Z</lastmod>
+  </url>
+  <url>
+    <loc>https://johnplake.github.io/llm-agents-survey/memory-tools.html</loc>
+    <lastmod>2026-03-12T20:34:02.018Z</lastmod>
+  </url>
+  <url>
+    <loc>https://johnplake.github.io/llm-agents-survey/reasoning.html</loc>
+    <lastmod>2026-03-12T20:34:02.038Z</lastmod>
+  </url>
+  <url>
+    <loc>https://johnplake.github.io/llm-agents-survey/taxonomy.html</loc>
+    <lastmod>2026-03-12T20:34:02.064Z</lastmod>
+  </url>
+  <url>
+    <loc>https://johnplake.github.io/llm-agents-survey/index.html</loc>
+    <lastmod>2026-03-12T20:34:02.007Z</lastmod>
+  </url>
+  <url>
+    <loc>https://johnplake.github.io/llm-agents-survey/foundations.html</loc>
+    <lastmod>2026-03-12T20:34:01.998Z</lastmod>
+  </url>
+  <url>
+    <loc>https://johnplake.github.io/llm-agents-survey/multiagent.html</loc>
+    <lastmod>2026-03-12T20:34:02.027Z</lastmod>
+  </url>
+  <url>
+    <loc>https://johnplake.github.io/llm-agents-survey/recent.html</loc>
+    <lastmod>2026-03-12T20:34:02.048Z</lastmod>
+  </url>
 </urlset>
