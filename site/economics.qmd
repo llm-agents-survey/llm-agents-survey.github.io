@@ -67,13 +67,13 @@ A cluster of recent papers uses reinforcement learning to train models that adap
 
 **L1 / Length Controlled Policy Optimization (LCPO)** ([arXiv:2503.04697](https://arxiv.org/abs/2503.04697), CMU, 2025) trains reasoning models via RL to satisfy user-specified length constraints. L1 smoothly trades off compute and accuracy and uncovers "Short Reasoning Models" (SRMs) that match full-length models at a fraction of the token budget.
 
-**SelfBudgeter** ([arXiv:2505.11274](https://arxiv.org/abs/2505.11274), 2025) trains reasoning models to self-estimate the required token budget per query, then uses budget-guided GRPO reinforcement learning to maintain accuracy while shrinking output length. Result: **61% average response length compression** on math reasoning benchmarks for a 1.5B model, 48% for a 7B model *(as reported in paper)*.
+**SelfBudgeter** ([arXiv:2505.11274](https://arxiv.org/abs/2505.11274), 2025) trains reasoning models to self-estimate the required token budget per query, then uses budget-guided GRPO reinforcement learning to maintain accuracy while shrinking output length. Result: **61% average response length compression** on math reasoning benchmarks for a 1.5B model, 48% for a 7B model.
 
 **BudgetThinker** ([arXiv:2508.17196](https://arxiv.org/abs/2508.17196), 2025) inserts special control tokens during inference to continuously inform the model of its remaining token budget, using a two-stage pipeline (SFT + curriculum-based RL with length-aware reward). It significantly surpasses baselines in maintaining performance across varied reasoning budgets.
 
-**AdaptThink** ([arXiv:2505.13417](https://arxiv.org/abs/2505.13417), 2025) demonstrates that skipping chain-of-thought ("NoThinking") outperforms thinking on simple problems in both performance and efficiency. Its RL algorithm with constrained optimization encourages the model to use NoThinking where it suffices, reducing average response length of DeepSeek-R1-Distill-Qwen-1.5B by **53% while improving accuracy by 2.4%** across three math datasets *(as reported in paper)*.
+**AdaptThink** ([arXiv:2505.13417](https://arxiv.org/abs/2505.13417), 2025) demonstrates that skipping chain-of-thought ("NoThinking") outperforms thinking on simple problems in both performance and efficiency. Its RL algorithm with constrained optimization encourages the model to use NoThinking where it suffices, reducing average response length of DeepSeek-R1-Distill-Qwen-1.5B by **53% while improving accuracy by 2.4%** across three math datasets.
 
-**HBPO** ([arXiv:2507.15844](https://arxiv.org/abs/2507.15844), 2025) assigns reasoning budgets hierarchically based on problem difficulty. Applied to DeepSeek-R1-Distill-Qwen-1.5B, it improves average accuracy from 56.3% to 59.4% while **reducing token usage by 60.6%** (from 7,921 to 3,120 tokens on average) *(as reported in paper)*.
+**HBPO** ([arXiv:2507.15844](https://arxiv.org/abs/2507.15844), 2025) assigns reasoning budgets hierarchically based on problem difficulty. Applied to DeepSeek-R1-Distill-Qwen-1.5B, it **reduces average token usage by up to 60.6% while improving accuracy by 3.14%** across four reasoning benchmarks.
 
 ### Budget-Aware Tool Use and Agent Scaling
 
@@ -209,7 +209,7 @@ FrugalGPT demonstrates that a learned cascade can **match GPT-4 performance with
 
 **Mixture-of-Agents (MoA)** ([arXiv:2406.04692](https://arxiv.org/abs/2406.04692), Wang et al., Together AI, 2024) proposes a layered architecture where multiple LLM agents per layer each receive all outputs from the previous layer as auxiliary context. The "collaborativeness" phenomenon: LLMs generate better responses when given outputs from other models, even weaker ones. MoA using only open-source LLMs achieves **65.1% LC win rate** on AlpacaEval 2.0, surpassing GPT-4 Omni's 57.5%. **LLM-Blender** ([arXiv:2306.02561](https://arxiv.org/abs/2306.02561), Lin et al., ACL 2023) takes a pairwise ranking approach: PairRanker filters poor outputs, then GenFuser merges top-ranked candidates — establishing that the optimal LLM varies significantly per example and motivating ensemble routing.
 
-**Plan-and-Act** ([arXiv:2503.09572](https://arxiv.org/abs/2503.09572), Lee et al., 2025) separates high-level planning from low-level execution into distinct Planner and Executor models, recognizing that different agent roles benefit from different specialized training. It achieves 57.58% success on WebArena-Lite and 81.36% on WebVoyager (text-only SOTA) *(as reported in paper)*, validating the expensive-planner/cheap-executor architecture pattern.
+**Plan-and-Act** ([arXiv:2503.09572](https://arxiv.org/abs/2503.09572), Lee et al., 2025) separates high-level planning from low-level execution into distinct Planner and Executor models, recognizing that different agent roles benefit from different specialized training. It achieves 57.58% success on WebArena-Lite and 81.36% on WebVoyager (text-only SOTA), validating the expensive-planner/cheap-executor architecture pattern.
 
 ### Commercial Routing Infrastructure
 
