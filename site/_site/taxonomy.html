@@ -30,6 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./favicon.svg" rel="icon" type="image/svg+xml">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -593,11 +594,6 @@ Action: ...</code></pre>
 <h3 class="anchored" data-anchor-id="agent-multiplicity">4. 🤝 Agent Multiplicity</h3>
 <p>Is the system a single agent or multiple?</p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 29%">
-<col style="width: 41%">
-<col style="width: 29%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Pattern</th>
@@ -609,7 +605,7 @@ Action: ...</code></pre>
 <tr class="odd">
 <td><strong>Single</strong></td>
 <td>One LLM does everything</td>
-<td>Standard ReAct agents</td>
+<td>Standard <a href="https://arxiv.org/abs/2210.03629">ReAct</a> agents</td>
 </tr>
 <tr class="even">
 <td><strong>Specialist pipeline</strong></td>
@@ -619,17 +615,17 @@ Action: ...</code></pre>
 <tr class="odd">
 <td><strong>Peer collaboration</strong></td>
 <td>Agents debate and refine</td>
-<td>CAMEL, SPP</td>
+<td><a href="https://arxiv.org/abs/2303.17760">CAMEL</a>, SPP</td>
 </tr>
 <tr class="even">
 <td><strong>Hierarchical</strong></td>
 <td>Manager + workers</td>
-<td>AutoGen, MetaGPT, ChatDev</td>
+<td><a href="https://arxiv.org/abs/2308.08155">AutoGen</a>, <a href="https://arxiv.org/abs/2308.00352">MetaGPT</a>, <a href="https://arxiv.org/abs/2307.07924">ChatDev</a></td>
 </tr>
 <tr class="odd">
 <td><strong>Society</strong></td>
 <td>Many autonomous agents</td>
-<td>Generative Agents, AgentVerse</td>
+<td><a href="https://arxiv.org/abs/2304.03442">Generative Agents</a>, <a href="https://arxiv.org/abs/2308.10848">AgentVerse</a></td>
 </tr>
 </tbody>
 </table>
@@ -685,7 +681,7 @@ Action: ...</code></pre>
 <h3 class="anchored" data-anchor-id="family-3-plan-then-execute">Family 3: Plan-Then-Execute</h3>
 <p><em>“Make a plan, then execute it”</em></p>
 <p>A <strong>planner</strong> agent generates a high-level plan, then an <strong>executor</strong> carries out each step. Allows more structured task decomposition and is easier to monitor.</p>
-<p>Key papers: <a href="https://blog.langchain.dev/plan-and-execute-agents/">Plan-and-Execute</a> (Chase, 2023), <a href="https://arxiv.org/abs/2304.11477">LLM+P</a>, <a href="https://arxiv.org/abs/2302.01846">DEPS</a> Key frameworks: LangGraph, LangChain Plan-and-Execute</p>
+<p>Key papers: <a href="https://arxiv.org/abs/2305.04091">Plan-and-Execute</a> (Chase, 2023; <a href="https://blog.langchain.dev/plan-and-execute-agents/">blog post</a>), <a href="https://arxiv.org/abs/2304.11477">LLM+P</a>, <a href="https://arxiv.org/abs/2302.01846">DEPS</a> Key frameworks: LangGraph, LangChain Plan-and-Execute</p>
 </section>
 <section id="family-4-reflective-self-improving-agents" class="level3">
 <h3 class="anchored" data-anchor-id="family-4-reflective-self-improving-agents">Family 4: Reflective / Self-Improving Agents</h3>

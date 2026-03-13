@@ -34,6 +34,14 @@ Prompt injection, trust hierarchies, sandboxing, reversibility, the transparency
 FutureHouse Platform, Google AI Co-Scientist, PaperCoder, SkyRL, METR, and the frontier of agents built specifically for scientific discovery.
 :::
 
+::: {.survey-card}
+::: {.card-icon}
+🪞
+:::
+### [Personalization & Digital Twins](personalization.qmd)
+How agents learn about users, adopt personas, and represent identities — plus digital twins, evaluation benchmarks (LaMP, PersonaGym), and adversarial attacks including DAN jailbreaks, memory poisoning, and system prompt leakage.
+:::
+
 :::
 
 ---

@@ -14,6 +14,7 @@ project:
     - evaluation.qmd
     - safety.qmd
     - science-agents.qmd
+    - personalization.qmd
     - community.qmd
     - resources.qmd
 
@@ -52,6 +53,8 @@ website:
             text: Safety & Alignment
           - href: science-agents.qmd
             text: Science & Research Agents
+          - href: personalization.qmd
+            text: Personalization & Digital Twins
       - href: community.qmd
         text: Community
       - href: resources.qmd
