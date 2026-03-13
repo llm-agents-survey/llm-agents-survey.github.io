@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Agent Economics – LLM Agents: A Survey (2022–2026)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./favicon.svg" rel="icon" type="image/svg+xml">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-254a3ef50811769e7b813971395bbfc6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-31e29ad2a3d1e7985534403fb9b8ee74.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-254a3ef50811769e7b813971395bbfc6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">LLM Agents: A Survey (2022–2026)</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./taxonomy.html"> 
+<span class="menu-text">Taxonomy</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./timeline.html"> 
+<span class="menu-text">Timeline</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./foundations.html"> 
+<span class="menu-text">2022–2023</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./recent.html"> 
+<span class="menu-text">2024–2026</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-deep-dives" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Deep Dives</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-deep-dives">    
+        <li>
+    <a class="dropdown-item" href="./reasoning.html">
+ <span class="dropdown-text">Reasoning &amp; Planning</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./multiagent.html">
+ <span class="dropdown-text">Multi-Agent Systems</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./memory-tools.html">
+ <span class="dropdown-text">Memory, Tools &amp; Actions</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-topics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Topics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-topics">    
+        <li>
+    <a class="dropdown-item" href="./topics.html">
+ <span class="dropdown-text">Topics Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./evaluation.html">
+ <span class="dropdown-text">Evaluation &amp; Benchmarks</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./safety.html">
+ <span class="dropdown-text">Safety &amp; Alignment</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./science-agents.html">
+ <span class="dropdown-text">Science &amp; Research Agents</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./personalization.html">
+ <span class="dropdown-text">Personalization &amp; Digital Twins</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./infrastructure.html">
+ <span class="dropdown-text">Infrastructure &amp; Protocols</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./human-agent.html">
+ <span class="dropdown-text">Human-Agent Interaction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./economics.html">
+ <span class="dropdown-text">Agent Economics</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./community.html"> 
+<span class="menu-text">Community</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/johnplake/llm-agents-survey"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#cost-structure-of-agent-systems" id="toc-cost-structure-of-agent-systems" class="nav-link" data-scroll-target="#cost-structure-of-agent-systems">1. Cost Structure of Agent Systems</a>
+  <ul class="collapse">
+  <li><a href="#anatomy-of-agent-costs" id="toc-anatomy-of-agent-costs" class="nav-link" data-scroll-target="#anatomy-of-agent-costs">Anatomy of Agent Costs</a></li>
+  <li><a href="#how-much-does-a-task-cost" id="toc-how-much-does-a-task-cost" class="nav-link" data-scroll-target="#how-much-does-a-task-cost">How Much Does a Task Cost?</a></li>
+  <li><a href="#the-token-paradox-cheaper-per-token-more-expensive-in-total" id="toc-the-token-paradox-cheaper-per-token-more-expensive-in-total" class="nav-link" data-scroll-target="#the-token-paradox-cheaper-per-token-more-expensive-in-total">The Token Paradox: Cheaper Per Token, More Expensive in Total</a></li>
+  <li><a href="#prompt-caching-a-structural-discount" id="toc-prompt-caching-a-structural-discount" class="nav-link" data-scroll-target="#prompt-caching-a-structural-discount">Prompt Caching: A Structural Discount</a></li>
+  </ul></li>
+  <li><a href="#budget-constrained-agent-execution" id="toc-budget-constrained-agent-execution" class="nav-link" data-scroll-target="#budget-constrained-agent-execution">2. Budget-Constrained Agent Execution ⭐</a>
+  <ul class="collapse">
+  <li><a href="#token-budget-aware-reasoning" id="toc-token-budget-aware-reasoning" class="nav-link" data-scroll-target="#token-budget-aware-reasoning">Token-Budget-Aware Reasoning</a></li>
+  <li><a href="#the-thinking-budget-explicit-api-controls" id="toc-the-thinking-budget-explicit-api-controls" class="nav-link" data-scroll-target="#the-thinking-budget-explicit-api-controls">The Thinking Budget: Explicit API Controls</a></li>
+  <li><a href="#rl-driven-reasoning-compression" id="toc-rl-driven-reasoning-compression" class="nav-link" data-scroll-target="#rl-driven-reasoning-compression">RL-Driven Reasoning Compression</a></li>
+  <li><a href="#budget-aware-tool-use-and-agent-scaling" id="toc-budget-aware-tool-use-and-agent-scaling" class="nav-link" data-scroll-target="#budget-aware-tool-use-and-agent-scaling">Budget-Aware Tool Use and Agent Scaling</a></li>
+  <li><a href="#test-time-compute-scaling-when-more-thinking-helps" id="toc-test-time-compute-scaling-when-more-thinking-helps" class="nav-link" data-scroll-target="#test-time-compute-scaling-when-more-thinking-helps">Test-Time Compute Scaling: When More Thinking Helps</a></li>
+  <li><a href="#early-stopping-and-good-enough-thresholds" id="toc-early-stopping-and-good-enough-thresholds" class="nav-link" data-scroll-target="#early-stopping-and-good-enough-thresholds">Early Stopping and “Good Enough” Thresholds</a></li>
+  <li><a href="#token-budget-allocation-across-sub-tasks" id="toc-token-budget-allocation-across-sub-tasks" class="nav-link" data-scroll-target="#token-budget-allocation-across-sub-tasks">Token Budget Allocation Across Sub-Tasks</a></li>
+  </ul></li>
+  <li><a href="#token-efficiency-strategies-heuristics" id="toc-token-efficiency-strategies-heuristics" class="nav-link" data-scroll-target="#token-efficiency-strategies-heuristics">3. Token Efficiency Strategies &amp; Heuristics ⭐</a>
+  <ul class="collapse">
+  <li><a href="#for-system-designers" id="toc-for-system-designers" class="nav-link" data-scroll-target="#for-system-designers">For System Designers</a></li>
+  <li><a href="#for-agents-themselves" id="toc-for-agents-themselves" class="nav-link" data-scroll-target="#for-agents-themselves">For Agents Themselves</a></li>
+  <li><a href="#automated-prompt-compression" id="toc-automated-prompt-compression" class="nav-link" data-scroll-target="#automated-prompt-compression">Automated Prompt Compression</a></li>
+  <li><a href="#rag-vs.-long-context-the-cost-tradeoff" id="toc-rag-vs.-long-context-the-cost-tradeoff" class="nav-link" data-scroll-target="#rag-vs.-long-context-the-cost-tradeoff">RAG vs.&nbsp;Long Context: The Cost Tradeoff</a></li>
+  <li><a href="#context-compression-for-agentic-trajectories" id="toc-context-compression-for-agentic-trajectories" class="nav-link" data-scroll-target="#context-compression-for-agentic-trajectories">Context Compression for Agentic Trajectories</a></li>
+  <li><a href="#in-context-distillation" id="toc-in-context-distillation" class="nav-link" data-scroll-target="#in-context-distillation">In-Context Distillation</a></li>
+  </ul></li>
+  <li><a href="#model-routing-cascading" id="toc-model-routing-cascading" class="nav-link" data-scroll-target="#model-routing-cascading">4. Model Routing &amp; Cascading ⭐</a>
+  <ul class="collapse">
+  <li><a href="#frugalgpt-cascading-llm-strategies" id="toc-frugalgpt-cascading-llm-strategies" class="nav-link" data-scroll-target="#frugalgpt-cascading-llm-strategies">FrugalGPT: Cascading LLM Strategies</a></li>
+  <li><a href="#routellm-learned-routers-from-preference-data" id="toc-routellm-learned-routers-from-preference-data" class="nav-link" data-scroll-target="#routellm-learned-routers-from-preference-data">RouteLLM: Learned Routers from Preference Data</a></li>
+  <li><a href="#hybrid-llm-quality-controlled-routing" id="toc-hybrid-llm-quality-controlled-routing" class="nav-link" data-scroll-target="#hybrid-llm-quality-controlled-routing">Hybrid LLM: Quality-Controlled Routing</a></li>
+  <li><a href="#automix-self-verificationbased-model-mixing" id="toc-automix-self-verificationbased-model-mixing" class="nav-link" data-scroll-target="#automix-self-verificationbased-model-mixing">AutoMix: Self-Verification–Based Model Mixing</a></li>
+  <li><a href="#unified-routing-and-cascading" id="toc-unified-routing-and-cascading" class="nav-link" data-scroll-target="#unified-routing-and-cascading">Unified Routing and Cascading</a></li>
+  <li><a href="#routerbench-and-embedllm" id="toc-routerbench-and-embedllm" class="nav-link" data-scroll-target="#routerbench-and-embedllm">RouterBench and EmbedLLM</a></li>
+  <li><a href="#disrouter-distributed-self-routing" id="toc-disrouter-distributed-self-routing" class="nav-link" data-scroll-target="#disrouter-distributed-self-routing">DiSRouter: Distributed Self-Routing</a></li>
+  <li><a href="#router-r1-multi-round-rl-based-routing" id="toc-router-r1-multi-round-rl-based-routing" class="nav-link" data-scroll-target="#router-r1-multi-round-rl-based-routing">Router-R1: Multi-Round RL-Based Routing</a></li>
+  <li><a href="#multi-model-ensemble-architectures" id="toc-multi-model-ensemble-architectures" class="nav-link" data-scroll-target="#multi-model-ensemble-architectures">Multi-Model Ensemble Architectures</a></li>
+  <li><a href="#commercial-routing-infrastructure" id="toc-commercial-routing-infrastructure" class="nav-link" data-scroll-target="#commercial-routing-infrastructure">Commercial Routing Infrastructure</a></li>
+  <li><a href="#quality-cost-tradeoffs-what-does-routing-actually-cost-in-quality" id="toc-quality-cost-tradeoffs-what-does-routing-actually-cost-in-quality" class="nav-link" data-scroll-target="#quality-cost-tradeoffs-what-does-routing-actually-cost-in-quality">Quality-Cost Tradeoffs: What Does Routing Actually Cost in Quality?</a></li>
+  </ul></li>
+  <li><a href="#enterprise-adoption-roi" id="toc-enterprise-adoption-roi" class="nav-link" data-scroll-target="#enterprise-adoption-roi">5. Enterprise Adoption &amp; ROI</a>
+  <ul class="collapse">
+  <li><a href="#the-break-even-calculation" id="toc-the-break-even-calculation" class="nav-link" data-scroll-target="#the-break-even-calculation">The Break-Even Calculation</a></li>
+  <li><a href="#the-clear-framework-beyond-accuracy" id="toc-the-clear-framework-beyond-accuracy" class="nav-link" data-scroll-target="#the-clear-framework-beyond-accuracy">The CLEAR Framework: Beyond Accuracy</a></li>
+  <li><a href="#adoption-metrics-and-the-value-capture-gap" id="toc-adoption-metrics-and-the-value-capture-gap" class="nav-link" data-scroll-target="#adoption-metrics-and-the-value-capture-gap">Adoption Metrics and the Value Capture Gap</a></li>
+  <li><a href="#the-human-oversight-reality" id="toc-the-human-oversight-reality" class="nav-link" data-scroll-target="#the-human-oversight-reality">The Human Oversight Reality</a></li>
+  <li><a href="#enterprise-deployment-patterns" id="toc-enterprise-deployment-patterns" class="nav-link" data-scroll-target="#enterprise-deployment-patterns">Enterprise Deployment Patterns</a></li>
+  <li><a href="#the-hidden-costs-of-agent-deployment" id="toc-the-hidden-costs-of-agent-deployment" class="nav-link" data-scroll-target="#the-hidden-costs-of-agent-deployment">The Hidden Costs of Agent Deployment</a></li>
+  </ul></li>
+  <li><a href="#open-problems" id="toc-open-problems" class="nav-link" data-scroll-target="#open-problems">6. Open Problems</a>
+  <ul class="collapse">
+  <li><a href="#dynamic-pricing-and-budget-uncertainty" id="toc-dynamic-pricing-and-budget-uncertainty" class="nav-link" data-scroll-target="#dynamic-pricing-and-budget-uncertainty">Dynamic Pricing and Budget Uncertainty</a></li>
+  <li><a href="#the-race-to-the-bottom-in-model-pricing" id="toc-the-race-to-the-bottom-in-model-pricing" class="nav-link" data-scroll-target="#the-race-to-the-bottom-in-model-pricing">The Race to the Bottom in Model Pricing</a></li>
+  <li><a href="#cost-of-errors-when-mistakes-are-expensive" id="toc-cost-of-errors-when-mistakes-are-expensive" class="nav-link" data-scroll-target="#cost-of-errors-when-mistakes-are-expensive">Cost of Errors: When Mistakes Are Expensive</a></li>
+  <li><a href="#environmental-and-energy-costs" id="toc-environmental-and-energy-costs" class="nav-link" data-scroll-target="#environmental-and-energy-costs">Environmental and Energy Costs</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a>
+  <ul class="collapse">
+  <li><a href="#papers" id="toc-papers" class="nav-link" data-scroll-target="#papers">Papers</a></li>
+  <li><a href="#blog-posts-resources" id="toc-blog-posts-resources" class="nav-link" data-scroll-target="#blog-posts-resources">Blog Posts &amp; Resources</a></li>
+  <li><a href="#code-projects" id="toc-code-projects" class="nav-link" data-scroll-target="#code-projects">Code &amp; Projects</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Agent Economics</h1>
+<p class="subtitle lead">Cost structures, token efficiency, model routing, and the economics of agent deployment</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>Deploying LLM agents at scale is expensive in ways that are easy to miss until the invoice arrives. A single-turn chatbot call costs a few cents at most. But an agent solving a multi-step task — planning, retrieving, writing, verifying, retrying — can consume dozens of LLM calls and thousands of tokens, pushing the cost of a single task into the dollar range or higher. When that agent runs thousands of times per day, economics becomes the central engineering constraint.</p>
+<p>The gap between demo economics and production economics is one of the defining tensions in applied AI right now. Demos showcase capability; production demands cost-efficiency. A coding agent that resolves GitHub issues at $5 per issue might be a bargain for complex bugs and a disaster for routine formatting tasks. Researchers and engineers are therefore building a new sub-discipline: not just making agents <em>capable</em>, but making them <em>economically rational</em> — aware of their own resource consumption, adaptive to budget constraints, and composed to route tasks to the cheapest model that can handle them.</p>
+<p>This page surveys the research and engineering landscape: what makes agents expensive, how to constrain and optimize their resource usage, and how model routing is emerging as a key infrastructure layer for cost-efficient deployment.</p>
+<hr>
+</section>
+<section id="cost-structure-of-agent-systems" class="level2">
+<h2 class="anchored" data-anchor-id="cost-structure-of-agent-systems">1. Cost Structure of Agent Systems</h2>
+<section id="anatomy-of-agent-costs" class="level3">
+<h3 class="anchored" data-anchor-id="anatomy-of-agent-costs">Anatomy of Agent Costs</h3>
+<p>Unlike a single LLM call, an agentic pipeline incurs costs at every step:</p>
+<ul>
+<li><strong>Input token costs</strong> — the prompt (system instructions, tool descriptions, conversation history, retrieved context) is priced per input token. In long-running agents, the context window grows with each step, so input costs compound over a trajectory.</li>
+<li><strong>Output token costs</strong> — typically priced at 3–5× input rates. Every reasoning step, tool call argument, and final response adds to this.</li>
+<li><strong>Tool call overhead</strong> — each tool invocation typically requires: (1) prompt construction including tool schema definitions, (2) LLM output parsing, (3) the tool’s own execution cost (API call, compute, latency), (4) feeding results back into the next prompt.</li>
+<li><strong>Multi-step amplification</strong> — a 10-step ReAct agent doesn’t cost 10× a single LLM call: it costs 10 full-context LLM calls, each including the accumulated history of all prior steps. Cost scales quadratically with context length in token-priced APIs.</li>
+<li><strong>Retry overhead</strong> — agents that verify and retry failed steps can multiply costs by 2–3× for hard tasks.</li>
+</ul>
+</section>
+<section id="how-much-does-a-task-cost" class="level3">
+<h3 class="anchored" data-anchor-id="how-much-does-a-task-cost">How Much Does a Task Cost?</h3>
+<p>Real benchmarks provide grounding. The <strong>SWE-bench</strong> family — which evaluates agents on resolving real GitHub issues — provides documented cost data. With SWE-agent + Claude 3.7 Sonnet and a <strong>$2.50 cost limit per task</strong>, agents correctly resolve 43% of multilingual tasks (as reported on <a href="https://www.swebench.com/multilingual.html">SWE-bench Multilingual</a>). At $2.50 per attempt, even a 43% resolution rate implies roughly $5.80 effective cost per successfully resolved issue — before accounting for human review of proposed patches. High-performing agents on SWE-bench Verified frequently cost $5–15 per task.</p>
+<p>Real-world cost data from production tools is illuminating. <strong>Agentless</strong> (<a href="https://arxiv.org/abs/2407.01489">arXiv:2407.01489</a>) achieves a 32% resolve rate on SWE-bench Lite at just <strong>$0.70 per task on average</strong> — demonstrating that simple, non-agentic approaches can undercut complex agent frameworks on cost without sacrificing performance. By contrast, a real <strong>Claude Code</strong> session costs roughly <strong>$3.10</strong> for a moderate coding task (383 lines added/removed over ~16 minutes, per Anthropic’s published cost examples). The gap reflects design choices — Agentless uses a targeted 3-phase pipeline rather than an open-ended agentic loop.</p>
+<p><strong>CostBench</strong> (<a href="https://arxiv.org/abs/2511.02734">arXiv:2511.02734</a>, Liu et al., 2025) provides a dedicated benchmark for evaluating agents’ <em>cost-aware planning</em> abilities — not just whether they solve tasks, but whether they do so at minimal cost. Its findings reveal significant gaps: current frontier models show poor ability to reason about tool costs and adapt plans when cost conditions change dynamically.</p>
+</section>
+<section id="the-token-paradox-cheaper-per-token-more-expensive-in-total" class="level3">
+<h3 class="anchored" data-anchor-id="the-token-paradox-cheaper-per-token-more-expensive-in-total">The Token Paradox: Cheaper Per Token, More Expensive in Total</h3>
+<p>Token pricing has dropped dramatically — LLM inference prices for comparable capability have fallen at rates between 9× and 900× per year depending on the benchmark (<a href="https://epoch.ai/data-insights/llm-inference-price-trends">Epoch AI</a>). GPT-4-class performance that cost ~$60/million tokens in 2023 costs under $3/million tokens by 2025. Yet enterprise AI bills are <em>rising</em>, not falling. Token consumption per task has jumped <strong>10×–100× since 2023</strong> as agentic workflows proliferate — each adding planning steps, retrieval, tool calls, retry loops, and multi-agent coordination. <strong>Multi-agent teams consume roughly 7× more tokens than single-agent sessions</strong> because each sub-agent maintains its own full context window. The per-task cost now depends more on agent chain design and thinking budgets than on list prices. This “token paradox” — cheaper tokens, higher total bills — is the defining economic tension of the current era.</p>
+<p><strong>“The Emerging Market for Intelligence”</strong> (<a href="https://www.nber.org/papers/w34608">NBER Working Paper 34608</a>, Demirer, Fradkin, Tadelis, Peng, December 2025) documents the supply and demand dynamics empirically using Microsoft Azure API and OpenRouter data. With over 600 models available by late 2025 and prices increasingly heterogeneous, the LLM market has shifted from near-monopoly to intense competition — but consumption patterns are simultaneously accelerating due to agentic deployment.</p>
+</section>
+<section id="prompt-caching-a-structural-discount" class="level3">
+<h3 class="anchored" data-anchor-id="prompt-caching-a-structural-discount">Prompt Caching: A Structural Discount</h3>
+<p>Both Anthropic and OpenAI offer <strong>prompt caching</strong> — the ability to cache the static prefix of prompts (system instructions, tool descriptions, shared context) so that repeated calls don’t re-pay input token costs for unchanged content. Cached tokens are billed at roughly 10–50% of standard input rates, dramatically changing the economics of agents with stable system prompts. For agents serving many users with a shared system configuration, prompt caching is often the single largest cost lever available. See <a href="https://www.anthropic.com/news/prompt-caching">Anthropic’s announcement</a> and <a href="https://openrouter.ai/docs/guides/best-practices/prompt-caching">OpenRouter’s caching guide</a>.</p>
+<hr>
+</section>
+</section>
+<section id="budget-constrained-agent-execution" class="level2">
+<h2 class="anchored" data-anchor-id="budget-constrained-agent-execution">2. Budget-Constrained Agent Execution ⭐</h2>
+<p>A key question for production agent deployments: <em>can agents be made cost-aware?</em> Can they reason about token budgets, decide when “good enough” is good enough, and gracefully degrade quality rather than escalating cost?</p>
+<p>This is harder than it sounds. A standard agent prompted to “solve this task” will use as many steps and tokens as it needs — or thinks it needs. Making an agent budget-aware requires it to model its own resource consumption, reason about diminishing returns, and trade off quality against efficiency.</p>
+<section id="token-budget-aware-reasoning" class="level3">
+<h3 class="anchored" data-anchor-id="token-budget-aware-reasoning">Token-Budget-Aware Reasoning</h3>
+<p><strong>Token-Budget-Aware LLM Reasoning (TALE)</strong> (<a href="https://arxiv.org/abs/2412.18547">arXiv:2412.18547</a>, Han et al., ACL Findings 2025) takes a direct approach: include a token budget in the prompt itself, and train the model to adjust reasoning verbosity to that budget. The key empirical finding is that LLM reasoning is <em>systematically over-verbose</em> — current models (including o1-style models) generate far more reasoning tokens than necessary for most problems. TALE dynamically estimates the complexity of each problem and allocates a budget accordingly, achieving substantial token savings with only slight accuracy degradation. <strong>GitHub:</strong> <a href="https://github.com/GeniusHTX/TALE">GeniusHTX/TALE</a></p>
+<p>Separately, <strong>“Increasing the Thinking Budget is Not All You Need”</strong> (<a href="https://arxiv.org/abs/2512.19585">arXiv:2512.19585</a>, 2025) shows empirically that simply allocating more thinking budget doesn’t reliably improve performance — and that most tasks achieve optimal results at 256–512 thinking tokens, with smaller models benefiting more from extended thinking than larger ones. This reframes the thinking budget as an allocation problem, not just an upper bound.</p>
+</section>
+<section id="the-thinking-budget-explicit-api-controls" class="level3">
+<h3 class="anchored" data-anchor-id="the-thinking-budget-explicit-api-controls">The Thinking Budget: Explicit API Controls</h3>
+<p>Anthropic’s Claude API exposes this directly: the <code>thinking</code> parameter in API calls takes a <code>budget_tokens</code> value specifying the maximum tokens Claude may spend on internal reasoning. Systems builders can therefore implement explicit per-task thinking budgets — allocating more tokens to complex reasoning tasks and less to simple retrieval or formatting tasks. This is the first mainstream API that makes inference-time compute allocation a first-class design parameter for agent developers. See <a href="https://docs.claude.com/en/docs/build-with-claude/extended-thinking">Claude Extended Thinking documentation</a>.</p>
+</section>
+<section id="rl-driven-reasoning-compression" class="level3">
+<h3 class="anchored" data-anchor-id="rl-driven-reasoning-compression">RL-Driven Reasoning Compression</h3>
+<p>A cluster of recent papers uses reinforcement learning to train models that adaptively compress their own reasoning, achieving dramatic token reductions without accuracy loss:</p>
+<p><strong>L1 / Length Controlled Policy Optimization (LCPO)</strong> (<a href="https://arxiv.org/abs/2503.04697">arXiv:2503.04697</a>, CMU, 2025) trains reasoning models via RL to satisfy user-specified length constraints. L1 smoothly trades off compute and accuracy and uncovers “Short Reasoning Models” (SRMs) that match full-length models at a fraction of the token budget.</p>
+<p><strong>SelfBudgeter</strong> (<a href="https://arxiv.org/abs/2505.11274">arXiv:2505.11274</a>, 2025) trains reasoning models to self-estimate the required token budget per query, then uses budget-guided GRPO reinforcement learning to maintain accuracy while shrinking output length. Result: <strong>61% average response length compression</strong> on math reasoning benchmarks for a 1.5B model, 48% for a 7B model.</p>
+<p><strong>BudgetThinker</strong> (<a href="https://arxiv.org/abs/2508.17196">arXiv:2508.17196</a>, 2025) inserts special control tokens during inference to continuously inform the model of its remaining token budget, using a two-stage pipeline (SFT + curriculum-based RL with length-aware reward). It significantly surpasses baselines in maintaining performance across varied reasoning budgets.</p>
+<p><strong>AdaptThink</strong> (<a href="https://arxiv.org/abs/2505.13417">arXiv:2505.13417</a>, 2025) demonstrates that skipping chain-of-thought (“NoThinking”) outperforms thinking on simple problems in both performance and efficiency. Its RL algorithm with constrained optimization encourages the model to use NoThinking where it suffices, reducing average response length of DeepSeek-R1-Distill-Qwen-1.5B by <strong>53% while improving accuracy by 2.4%</strong> across three math datasets.</p>
+<p><strong>HBPO</strong> (<a href="https://arxiv.org/abs/2507.15844">arXiv:2507.15844</a>, 2025) assigns reasoning budgets hierarchically based on problem difficulty. Applied to DeepSeek-R1-Distill-Qwen-1.5B, it improves average accuracy from 56.3% to 59.4% while <strong>reducing token usage by 60.6%</strong> (from 7,921 to 3,120 tokens on average).</p>
+</section>
+<section id="budget-aware-tool-use-and-agent-scaling" class="level3">
+<h3 class="anchored" data-anchor-id="budget-aware-tool-use-and-agent-scaling">Budget-Aware Tool Use and Agent Scaling</h3>
+<p><strong>Budget-Aware Tool-Use Enables Effective Agent Scaling (BATS)</strong> (<a href="https://arxiv.org/abs/2511.17006">arXiv:2511.17006</a>, Liu et al., 2025) addresses a surprising failure mode: simply giving agents a larger tool-call budget — more allowed API calls, more environment interactions — <em>fails to improve performance</em>, because agents without budget awareness spend their budget inefficiently. BATS introduces a <strong>budget tracker</strong> component that informs the agent of its remaining budget at each step, enabling it to reason about when to explore vs.&nbsp;commit. The key insight: budget awareness is not just about limiting cost, it’s about <em>allocating</em> resources effectively within a fixed envelope. With budget awareness, agents scale substantially better as the tool-call budget increases.</p>
+<p><strong>INTENT</strong> (<a href="https://arxiv.org/abs/2602.11541">arXiv:2602.11541</a>, 2026) formalizes budget-constrained tool-augmented agents as sequential decision making with <em>priced and stochastic tool executions</em>. Its intention-aware hierarchical world model anticipates future tool usage and risk-calibrated costs, strictly enforcing hard budget feasibility while improving task success over baselines on cost-augmented StableToolBench.</p>
+<p><strong>CoRL</strong> (<a href="https://arxiv.org/abs/2511.02755">arXiv:2511.02755</a>, 2025) introduces a centralized multi-LLM framework where a controller LLM selectively coordinates a pool of expert models cost-efficiently, formulating coordination as RL with dual objectives: maximize task performance while minimizing inference cost. The result: a single system can surpass the best individual expert LLM under high-budget settings while remaining strong under tight budgets.</p>
+</section>
+<section id="test-time-compute-scaling-when-more-thinking-helps" class="level3">
+<h3 class="anchored" data-anchor-id="test-time-compute-scaling-when-more-thinking-helps">Test-Time Compute Scaling: When More Thinking Helps</h3>
+<p><strong>Scaling LLM Test-Time Compute Optimally</strong> (<a href="https://arxiv.org/abs/2408.03314">arXiv:2408.03314</a>, Snell, Lee, Xu, Kumar, 2024) establishes the theoretical foundation: scaling inference-time computation can be more effective than scaling model parameters for many tasks. The paper shows that compute-optimal inference — allocating more computation to harder problems and less to easier ones — can match larger models at lower overall cost. For agents, this suggests a tiered approach: use cheap/fast models for routine sub-tasks, allocate expensive extended thinking only to the bottleneck steps that actually require it.</p>
+<p><strong>Inference Scaling Laws</strong> (<a href="https://arxiv.org/abs/2408.00724">arXiv:2408.00724</a>, 2024) extends this empirically, studying scaling laws across model sizes and inference strategies (greedy search, majority voting, best-of-n, tree search). Key finding: <strong>smaller models with advanced inference algorithms offer Pareto-optimal cost-performance tradeoffs</strong> — e.g., Llemma-7B with a novel tree search consistently outperforms Llemma-34B across all inference strategies. A larger model is not always the cost-efficient choice.</p>
+<p><strong>Compute-Optimal Multi-Stage Agents</strong> (<a href="https://arxiv.org/abs/2508.00890">arXiv:2508.00890</a>, 2025) investigates test-time compute scaling in multi-stage complex tasks, proposing an LLM agent that learns compute-optimal allocation strategies across stages. It addresses the challenge that TTS benefits are uneven across task stages, requiring intelligent budget redistribution rather than uniform allocation.</p>
+</section>
+<section id="early-stopping-and-good-enough-thresholds" class="level3">
+<h3 class="anchored" data-anchor-id="early-stopping-and-good-enough-thresholds">Early Stopping and “Good Enough” Thresholds</h3>
+<p>Budget-constrained execution requires knowing when to stop. Research on early stopping for LLM agents is still nascent, but the pattern is clear from adjacent work on speculative decoding and best-of-N sampling: there are diminishing returns to additional computation, and the inflection point is task-dependent. <strong>Self-consistency</strong> approaches (run the agent multiple times, aggregate) are themselves a form of compute budgeting — you run as many samples as your budget allows, not as many as would be theoretically optimal.</p>
+</section>
+<section id="token-budget-allocation-across-sub-tasks" class="level3">
+<h3 class="anchored" data-anchor-id="token-budget-allocation-across-sub-tasks">Token Budget Allocation Across Sub-Tasks</h3>
+<p>In multi-agent systems, token budgets can be hierarchically allocated: a budget-aware orchestrator allocates sub-budgets to specialized sub-agents, monitors spending, and can interrupt or reroute if a sub-task is taking too many tokens. <strong>SLIM</strong> (Yen et al., 2025), referenced in the BATS paper, uses <em>periodic summarization</em> to manage context growth in long-horizon agents — a practical instantiation of budget-aware context management.</p>
+<p><strong>Quantifying the Accuracy and Cost Impact of Design Decisions in Budget-Constrained Agentic LLM Search</strong> (<a href="https://arxiv.org/abs/2603.08877">arXiv:2603.08877</a>, 2025) directly evaluates how architectural choices in agentic search pipelines affect the cost-accuracy tradeoff, providing empirical guidance for practitioners designing budget-constrained systems.</p>
+<hr>
+</section>
+</section>
+<section id="token-efficiency-strategies-heuristics" class="level2">
+<h2 class="anchored" data-anchor-id="token-efficiency-strategies-heuristics">3. Token Efficiency Strategies &amp; Heuristics ⭐</h2>
+<p>Token efficiency is the engineering discipline of getting the most task completion per token spent. It operates at two levels: <em>how humans design agent systems</em> and <em>how agents manage their own token use</em>.</p>
+<section id="for-system-designers" class="level3">
+<h3 class="anchored" data-anchor-id="for-system-designers">For System Designers</h3>
+<p><strong>Prompt engineering for conciseness.</strong> System prompts are often a significant fraction of total token spend — and they’re paid on every call. Trimming verbose system prompts, removing redundant instructions, and structuring prompts to place cacheable content at the start are all high-leverage interventions. Tool descriptions are particularly wasteful: a verbose JSON schema description for a rarely-used tool consumes tokens on every call regardless of whether that tool is needed.</p>
+<p><strong>Context window management.</strong> What you include in context matters enormously. Agents that naively concatenate all prior tool outputs can quickly fill a 128K context window with raw HTML, JSON blobs, and verbose error messages. Best practice: summarize tool outputs before appending to context; truncate long results to task-relevant excerpts; use a dedicated summarization step for long agent histories.</p>
+<p><strong>Retrieval over stuffing.</strong> Retrieval-Augmented Generation (RAG) is a token efficiency strategy: retrieve only the 3–5 most relevant chunks instead of stuffing the entire knowledge base into context. The token cost of over-retrieval is quadratic in long-context models (due to attention computation), making RAG not just a quality improvement but an economic one.</p>
+<p><strong>Structured outputs.</strong> Requiring agents to output structured formats (JSON, Markdown tables) rather than free-form prose reduces parsing overhead — which would otherwise require additional LLM calls — and constrains output length. OpenAI’s Structured Outputs API and similar features directly reduce token waste in tool-call responses.</p>
+<p><strong>Batching related queries.</strong> If multiple related questions can be answered in a single LLM call, batching them avoids per-call prompt overhead. This is especially useful for agents doing parallel information gathering.</p>
+<p><strong>Caching strategies.</strong> Beyond prompt caching for static prefixes, result caching — storing the output of expensive tool calls or LLM calls so they needn’t be repeated for identical inputs — can dramatically reduce costs in agents that repeatedly query the same external APIs or documents.</p>
+</section>
+<section id="for-agents-themselves" class="level3">
+<h3 class="anchored" data-anchor-id="for-agents-themselves">For Agents Themselves</h3>
+<p><strong>Self-monitoring token usage.</strong> Agents can be given tools or system instructions that make them aware of their current context length. An agent that sees “you have used 80K of 128K context tokens” can proactively summarize or prune before the context window fills.</p>
+<p><strong>Compact tool use.</strong> Rather than fetching raw, verbose tool output, agents can request only the fields they need: <code>get_issue(id=123, fields=['title', 'body', 'labels'])</code> rather than the full API response. This requires tools to support selective output — a design consideration for tool authors.</p>
+<p><strong>Choosing tools vs.&nbsp;reasoning.</strong> A well-calibrated agent doesn’t invoke a web search tool for questions it can answer from training knowledge. Developing agents that correctly estimate their own knowledge boundaries — and only reach for external tools when necessary — is both a capability and an efficiency goal.</p>
+<p><strong>Summarizing long contexts.</strong> Rather than passing a 5,000-word document verbatim to the next agent step, an agent can summarize it to the 200-word excerpt relevant to the current sub-task. This is a fundamental efficiency maneuver for long-horizon agents.</p>
+</section>
+<section id="automated-prompt-compression" class="level3">
+<h3 class="anchored" data-anchor-id="automated-prompt-compression">Automated Prompt Compression</h3>
+<p><strong>LLMLingua</strong> (<a href="https://arxiv.org/abs/2310.05736">arXiv:2310.05736</a>, Jiang et al., EMNLP 2023) introduces a coarse-to-fine prompt compression method that uses a small language model to iteratively remove tokens from long prompts while maintaining semantic integrity. It achieves <strong>up to 20× compression</strong> with modest performance loss on a range of benchmarks including GSM8K and BBH. A budget controller governs the overall compression ratio, and a token preservation algorithm protects numerically critical content. <strong>GitHub:</strong> <a href="https://github.com/microsoft/LLMLingua">microsoft/LLMLingua</a></p>
+<p><strong>LLMLingua-2</strong> (<a href="https://arxiv.org/abs/2403.12968">arXiv:2403.12968</a>, Pan et al., 2024) improves on the original with a data distillation approach that makes prompt compression task-agnostic and faster — the compressed model learns from a teacher’s compression decisions rather than running iterative token-level compression at inference time. The result is significantly lower compression latency, making it practical for production pipelines.</p>
+<p><strong>LongLLMLingua</strong> (<a href="https://arxiv.org/abs/2310.06839">arXiv:2310.06839</a>, ACL 2024) extends LLMLingua to long-context scenarios, improving perception of key information to address computational cost, position bias, and performance degradation in long prompts. On NaturalQuestions, it boosts performance by <strong>up to 21.4% with ~4× fewer tokens</strong> (GPT-3.5-Turbo), achieving a <strong>94.0% cost reduction</strong> on LooGLE. Compressing 10k-token prompts at 2×–6× ratios accelerates end-to-end latency by 1.4×–2.6×.</p>
+<p><strong>Selective Context</strong> (<a href="https://arxiv.org/abs/2304.12102">arXiv:2304.12102</a>, 2023) uses <strong>self-information</strong> (perplexity-based scoring) to filter out less informative content from long inputs without model fine-tuning. An early and influential approach to context length management, demonstrating effectiveness on summarization and QA across diverse document types.</p>
+<p><strong>RECOMP</strong> (<a href="https://arxiv.org/abs/2310.04408">arXiv:2310.04408</a>, 2023) targets RAG specifically: it compresses retrieved documents into summaries before in-context integration, offering both an extractive compressor (contrastive learning) and an abstractive compressor (distilled from GPT-4). RECOMP can return an empty string when documents are irrelevant — implementing selective augmentation — reducing token cost while improving QA performance.</p>
+<p>A comprehensive survey of prompt compression techniques is available at <strong>“Prompt Compression for Large Language Models: A Survey”</strong> (<a href="https://arxiv.org/abs/2410.12388">arXiv:2410.12388</a>, 2024), covering token-dropping, soft-prompt, and distillation-based approaches.</p>
+</section>
+<section id="rag-vs.-long-context-the-cost-tradeoff" class="level3">
+<h3 class="anchored" data-anchor-id="rag-vs.-long-context-the-cost-tradeoff">RAG vs.&nbsp;Long Context: The Cost Tradeoff</h3>
+<p><strong>Self-Route</strong> (<a href="https://arxiv.org/abs/2407.16833">arXiv:2407.16833</a>, EMNLP 2024) benchmarks RAG vs.&nbsp;long-context (LC) LLMs across diverse datasets using Gemini-1.5-Pro, GPT-3.5-Turbo, and GPT-4O. Key finding: LC consistently outperforms RAG when resources are sufficient, but <strong>RAG’s significantly lower cost remains a distinct advantage</strong>. Self-Route addresses this by routing queries to RAG or LC based on model self-reflection — maintaining LC-comparable performance at much lower cost. This is a practical template for cost-adaptive context strategy.</p>
+</section>
+<section id="context-compression-for-agentic-trajectories" class="level3">
+<h3 class="anchored" data-anchor-id="context-compression-for-agentic-trajectories">Context Compression for Agentic Trajectories</h3>
+<p>Prompt compression techniques developed for single-turn settings require adaptation for agents, where the context includes not just instructions but a growing history of actions and observations. <strong>ACON (Agent Context Optimization)</strong> (<a href="https://arxiv.org/abs/2510.00615">arXiv:2510.00615</a>, Microsoft Research, 2025) specifically addresses this: it learns to compress both environment observations and interaction histories for long-horizon agents. Using failure analysis to refine compression guidelines, ACON reduces peak token usage by <strong>26–54%</strong> across benchmarks (AppWorld, OfficeBench) while largely preserving task performance. Critically, the trained compressor can be <strong>distilled into a smaller model</strong> — preserving 95% of accuracy at a fraction of the cost. <strong>GitHub:</strong> <a href="https://github.com/microsoft/acon">microsoft/acon</a></p>
+<p><strong>Context-Folding</strong> (<a href="https://arxiv.org/abs/2510.11967">arXiv:2510.11967</a>, 2025) takes a structural approach: agents branch into sub-trajectories for subtasks, then “fold” them upon completion — collapsing intermediate steps to a concise summary. Using end-to-end RL (FoldGRPO) to make folding learnable, Context-Folding matches or outperforms ReAct on Deep Research and SWE benchmarks while using <strong>10× smaller active context</strong> and significantly outperforming summarization-based baselines.</p>
+</section>
+<section id="in-context-distillation" class="level3">
+<h3 class="anchored" data-anchor-id="in-context-distillation">In-Context Distillation</h3>
+<p><strong>In-Context Distillation with Self-Consistency Cascades</strong> (<a href="https://arxiv.org/abs/2512.02543">arXiv:2512.02543</a>, 2025) takes a different angle: rather than compressing inputs, it adapts knowledge distillation to an in-context learning setting. A cheap “student” model is adapted to mimic a more expensive “teacher” model’s behavior via in-context examples, reducing per-query cost while maintaining task performance. This is training-free: no gradient updates required.</p>
+<hr>
+</section>
+</section>
+<section id="model-routing-cascading" class="level2">
+<h2 class="anchored" data-anchor-id="model-routing-cascading">4. Model Routing &amp; Cascading ⭐</h2>
+<p>The routing problem is deceptively simple: <em>given a query, which model should answer it?</em> The naive answer — always use the best model — is economically untenable at scale. The sophisticated answer — always use the cheapest model — sacrifices quality. Routing tries to thread the needle: use cheap models where they’re sufficient, escalate to expensive models only when needed.</p>
+<p>This is now one of the most active research areas in applied LLM systems, with both academic papers and production commercial products. Two recent surveys map the space: <strong>“Dynamic Model Routing and Cascading for Efficient LLM Inference”</strong> (<a href="https://arxiv.org/abs/2603.04445">arXiv:2603.04445</a>, Moslem et al., 2026) organizes paradigms across three dimensions — <em>when</em> decisions are made, <em>what</em> information is used, and <em>how</em> they are computed — and finds that well-designed routing systems can outperform even the most powerful individual models. <strong>“Towards Efficient Multi-LLM Inference”</strong> (<a href="https://arxiv.org/abs/2506.06579">arXiv:2506.06579</a>, Behera et al., 2025) focuses specifically on routing vs.&nbsp;cascading as complementary strategies.</p>
+<section id="frugalgpt-cascading-llm-strategies" class="level3">
+<h3 class="anchored" data-anchor-id="frugalgpt-cascading-llm-strategies">FrugalGPT: Cascading LLM Strategies</h3>
+<p><strong>FrugalGPT</strong> (<a href="https://arxiv.org/abs/2305.05176">arXiv:2305.05176</a>, Chen, Zaharia, Zou, 2023) is the foundational paper in this space. It surveys the cost landscape across LLM APIs (noting fees differ by <em>two orders of magnitude</em>), then outlines three classes of cost-reduction strategies:</p>
+<ol type="1">
+<li><strong>Prompt adaptation</strong> — modifying how the prompt is constructed to elicit shorter or more direct responses</li>
+<li><strong>LLM approximation</strong> — replacing expensive model calls with smaller fine-tuned approximations for common query patterns</li>
+<li><strong>LLM cascade</strong> — trying a sequence of models starting with the cheapest, escalating only when the cheaper model’s confidence is low or its answer is deemed insufficient</li>
+</ol>
+<p>FrugalGPT demonstrates that a learned cascade can <strong>match GPT-4 performance with up to 98% cost reduction</strong>, or <strong>improve accuracy over GPT-4 by 4%</strong> at equivalent cost.</p>
+</section>
+<section id="routellm-learned-routers-from-preference-data" class="level3">
+<h3 class="anchored" data-anchor-id="routellm-learned-routers-from-preference-data">RouteLLM: Learned Routers from Preference Data</h3>
+<p><strong>RouteLLM</strong> (<a href="https://arxiv.org/abs/2406.18665">arXiv:2406.18665</a>, Ong et al., LM-SYS/LMSYS, 2024) operationalizes the routing idea with a training framework that learns routers from human preference data. Rather than heuristic confidence thresholds, RouteLLM trains classifiers that predict whether a given query will benefit from a stronger model vs.&nbsp;a weaker one — directly optimizing the cost-quality tradeoff. Key results: <strong>over 2× cost reduction</strong> without compromising response quality on standard benchmarks. Notably, the trained routers show <strong>transfer learning</strong> capability — they generalize to new model pairs not seen during training. <strong>GitHub:</strong> <a href="https://github.com/lm-sys/RouteLLM">lm-sys/RouteLLM</a></p>
+</section>
+<section id="hybrid-llm-quality-controlled-routing" class="level3">
+<h3 class="anchored" data-anchor-id="hybrid-llm-quality-controlled-routing">Hybrid LLM: Quality-Controlled Routing</h3>
+<p><strong>Hybrid LLM</strong> (<a href="https://arxiv.org/abs/2404.14618">arXiv:2404.14618</a>, Ding et al., Microsoft, ICLR 2024) proposes a router that assigns queries to small or large models based on predicted query difficulty and a desired quality level — where the quality threshold can be tuned dynamically at test time. Key result: <strong>up to 40% fewer calls to the large model</strong> with no drop in response quality. One of the first ICLR-published papers in this space, it established the quality-threshold tuning pattern that subsequent work builds on.</p>
+</section>
+<section id="automix-self-verificationbased-model-mixing" class="level3">
+<h3 class="anchored" data-anchor-id="automix-self-verificationbased-model-mixing">AutoMix: Self-Verification–Based Model Mixing</h3>
+<p><strong>AutoMix</strong> (<a href="https://arxiv.org/abs/2310.12963">arXiv:2310.12963</a>, Aggarwal, Madaan et al., NeurIPS 2024) addresses a key challenge for cascade systems: how do you know when a cheap model’s answer is good enough without calling the expensive model to check? AutoMix’s answer is <strong>self-verification</strong>: the small model generates an answer <em>and</em> evaluates its own confidence in that answer. If confidence is above a threshold, the answer is returned; if not, the query escalates to a larger model. AutoMix works with black-box API access only — no access to model logprobs required — making it deployable with any commercial LLM provider. <strong>GitHub:</strong> <a href="https://github.com/automix-llm/automix">automix-llm/automix</a></p>
+</section>
+<section id="unified-routing-and-cascading" class="level3">
+<h3 class="anchored" data-anchor-id="unified-routing-and-cascading">Unified Routing and Cascading</h3>
+<p><strong>A Unified Approach to Routing and Cascading for LLMs</strong> (<a href="https://arxiv.org/abs/2410.10347">arXiv:2410.10347</a>, Dekoninck, Baader, Vechev, ETH Zurich, ICML 2025) derives the <em>optimal</em> strategy for cascading with formal proofs and proves optimality of an existing routing approach. Its “cascade routing” framework integrates routing and cascading into a theoretically optimal unified strategy and identifies <strong>good quality estimators as the critical factor</strong> for model selection — consistently outperforming individual approaches by a large margin.</p>
+</section>
+<section id="routerbench-and-embedllm" class="level3">
+<h3 class="anchored" data-anchor-id="routerbench-and-embedllm">RouterBench and EmbedLLM</h3>
+<p><strong>RouterBench</strong> (<a href="https://arxiv.org/abs/2403.12031">arXiv:2403.12031</a>, Hu et al., Martian/Berkeley, 2024) establishes a standardized evaluation framework for LLM routing systems, with a comprehensive dataset of over <strong>405,000 inference outcomes</strong> from representative LLMs. It provides the empirical foundation for comparing routing approaches and sets a standard for router assessment. <strong>EmbedLLM</strong> (<a href="https://arxiv.org/abs/2410.02223">arXiv:2410.02223</a>, Zhuang et al., Stanford, 2024) takes a complementary approach: learning compact vector embeddings of LLMs themselves (capturing characteristics like coding specialization) that enable downstream routing via a simple linear head — outperforming prior routing methods in both accuracy and latency, and enabling model selection without additional inference cost.</p>
+</section>
+<section id="disrouter-distributed-self-routing" class="level3">
+<h3 class="anchored" data-anchor-id="disrouter-distributed-self-routing">DiSRouter: Distributed Self-Routing</h3>
+<p><strong>DiSRouter</strong> (<a href="https://arxiv.org/abs/2510.19208">arXiv:2510.19208</a>, Zheng et al., SJTU, 2025) introduces a paradigm shift from centralized external routers to distributed routing. Each LLM agent independently decides whether to answer or route to another agent based on <em>self-awareness</em> — the model’s own assessment of its competence. DiSRouter uses a two-stage Self-Awareness Training pipeline and demonstrates strong generalization to out-of-domain tasks, validating self-assessment as more effective than external scoring for modular multi-agent systems.</p>
+</section>
+<section id="router-r1-multi-round-rl-based-routing" class="level3">
+<h3 class="anchored" data-anchor-id="router-r1-multi-round-rl-based-routing">Router-R1: Multi-Round RL-Based Routing</h3>
+<p><strong>Router-R1</strong> (<a href="https://arxiv.org/abs/2506.09033">arXiv:2506.09033</a>, 2025) extends the routing paradigm to multi-round, multi-model aggregation. Where prior routers assign each query to a single model in isolation, Router-R1 frames routing as a <strong>sequential decision process</strong> trained with reinforcement learning — allowing it to selectively query multiple models, aggregate their outputs, and learn complex routing policies for tasks requiring complementary model strengths.</p>
+</section>
+<section id="multi-model-ensemble-architectures" class="level3">
+<h3 class="anchored" data-anchor-id="multi-model-ensemble-architectures">Multi-Model Ensemble Architectures</h3>
+<p><strong>Mixture-of-Agents (MoA)</strong> (<a href="https://arxiv.org/abs/2406.04692">arXiv:2406.04692</a>, Wang et al., Together AI, 2024) proposes a layered architecture where multiple LLM agents per layer each receive all outputs from the previous layer as auxiliary context. The “collaborativeness” phenomenon: LLMs generate better responses when given outputs from other models, even weaker ones. MoA using only open-source LLMs achieves <strong>65.1% LC win rate</strong> on AlpacaEval 2.0, surpassing GPT-4 Omni’s 57.5%. <strong>LLM-Blender</strong> (<a href="https://arxiv.org/abs/2306.02561">arXiv:2306.02561</a>, Lin et al., ACL 2023) takes a pairwise ranking approach: PairRanker filters poor outputs, then GenFuser merges top-ranked candidates — establishing that the optimal LLM varies significantly per example and motivating ensemble routing.</p>
+<p><strong>Plan-and-Act</strong> (<a href="https://arxiv.org/abs/2503.09572">arXiv:2503.09572</a>, Lee et al., ICML 2025) separates high-level planning from low-level execution into distinct Planner and Executor models, recognizing that different agent roles benefit from different specialized training. It achieves 57.58% success on WebArena-Lite and 81.36% on WebVoyager (text-only SOTA), validating the expensive-planner/cheap-executor architecture pattern.</p>
+</section>
+<section id="commercial-routing-infrastructure" class="level3">
+<h3 class="anchored" data-anchor-id="commercial-routing-infrastructure">Commercial Routing Infrastructure</h3>
+<p>Academic routing ideas have translated quickly into commercial products:</p>
+<p><strong><a href="https://withmartian.com">Martian</a></strong> — an LLM routing startup that analyzes each request in real time and routes to the cost-performance optimal model. Martian’s router is a drop-in replacement for direct API calls and supports customizable cost/quality tradeoff parameters. Accenture invested in Martian in 2024 to integrate its routing capabilities into enterprise AI deployments.</p>
+<p><strong><a href="https://openrouter.ai">OpenRouter</a></strong> — a unified API gateway that aggregates access to 400+ models from different providers. OpenRouter handles routing, prompt caching, fallback on provider outages, and usage analytics. Its Auto Router (<code>:auto</code>) selects the appropriate model per query based on cost/quality preferences.</p>
+<p><strong><a href="https://unify.ai">Unify.ai</a></strong> — focuses on the optimization layer: given a quality threshold, find the cheapest model/provider combination that meets it. Unify tracks performance benchmarks across providers in real time and routes accordingly.</p>
+</section>
+<section id="quality-cost-tradeoffs-what-does-routing-actually-cost-in-quality" class="level3">
+<h3 class="anchored" data-anchor-id="quality-cost-tradeoffs-what-does-routing-actually-cost-in-quality">Quality-Cost Tradeoffs: What Does Routing Actually Cost in Quality?</h3>
+<p>The empirical picture is nuanced. Quality degradation from routing to cheaper models is <strong>highly task-dependent</strong>:</p>
+<ul>
+<li>For well-specified, structured tasks (format conversion, simple classification, template filling): small models (GPT-4o-mini, Claude Haiku, Gemma-3-9B) are often within a few percentage points of frontier models.</li>
+<li>For ambiguous, creative, or knowledge-intensive tasks: quality gaps can be dramatic — 20%+ accuracy difference on harder benchmarks.</li>
+<li>For multi-step agent tasks: error compounding is the key concern. A 5% per-step error rate from a cheap model compounds to 40% error rate over 10 steps; the same calculation for a 2% rate gives 18%. Routing needs to account for this compounding effect, not just per-call quality.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="enterprise-adoption-roi" class="level2">
+<h2 class="anchored" data-anchor-id="enterprise-adoption-roi">5. Enterprise Adoption &amp; ROI</h2>
+<section id="the-break-even-calculation" class="level3">
+<h3 class="anchored" data-anchor-id="the-break-even-calculation">The Break-Even Calculation</h3>
+<p>The economics of agent deployment ultimately reduce to a comparison: <em>what does the agent cost per task, and what does the human alternative cost?</em> For routine, high-volume tasks, the math often works clearly:</p>
+<ul>
+<li>A junior developer spending 2 hours on a bug ($50–100 in labor) vs.&nbsp;a coding agent at $5–15 per resolved issue</li>
+<li>A customer service representative handling a query ($3–8 per interaction) vs.&nbsp;an agent at $0.10–0.50</li>
+</ul>
+<p>But this calculation has crucial qualifiers. Human workers have flexibility, contextual judgment, and accountability. Agents that are 90% accurate still need human review of the 10% they get wrong — and in high-stakes domains (legal, medical, financial), that review overhead can negate the cost savings entirely. This is the <strong>last-mile problem</strong>: you need a human in the loop, which means you’re paying both the agent cost <em>and</em> the human review cost, not replacing one with the other.</p>
+</section>
+<section id="the-clear-framework-beyond-accuracy" class="level3">
+<h3 class="anchored" data-anchor-id="the-clear-framework-beyond-accuracy">The CLEAR Framework: Beyond Accuracy</h3>
+<p><strong>“Beyond Accuracy: A Multi-Dimensional Framework for Evaluating Enterprise Agentic AI Systems”</strong> (<a href="https://arxiv.org/abs/2511.14136">arXiv:2511.14136</a>, 2025) proposes the CLEAR framework (Cost, Latency, Efficacy, Assurance, Reliability) and delivers a sobering empirical finding: current benchmarks show <strong>up to 50× cost variation</strong> for agents with similar accuracy. Agent performance drops from 60% accuracy (single run) to just 25% in 8-run consistency tests — revealing that reliability in multi-run production environments is dramatically worse than single-benchmark scores suggest. Optimizing for accuracy alone yields agents that are <strong>4.4–10.8× more expensive</strong> than cost-aware alternatives with comparable performance. Expert evaluation (N=15 practitioners) confirms CLEAR predicts production success (ρ=0.83) versus accuracy-only metrics (ρ=0.41).</p>
+</section>
+<section id="adoption-metrics-and-the-value-capture-gap" class="level3">
+<h3 class="anchored" data-anchor-id="adoption-metrics-and-the-value-capture-gap">Adoption Metrics and the Value Capture Gap</h3>
+<p><strong>McKinsey’s “State of AI 2025”</strong> finds that <strong>88% of organizations</strong> use AI in at least one function — yet <strong>only ~6%</strong> are actually capturing meaningful enterprise value. Most organizations remain in early experimentation or pilot phases. Leaders who do capture value treat AI as a catalyst to transform organizational workflows, not merely an efficiency tool layered onto existing processes.</p>
+<p><strong>Gartner</strong> projects that enterprise apps with task-specific AI agents will grow from <strong>less than 5% in 2025 to 40% by 2026</strong> — a remarkable near-term adoption curve driven by improved reliability and lower per-task costs. Gartner also predicts that by 2028, 33% of enterprise software applications will include agentic AI, enabling 15% of day-to-day work decisions to be made autonomously.</p>
+<p><strong>Microsoft Copilot’s Forrester TEI study</strong> shows an enterprise ROI of <strong>116% NPV over 3 years</strong> ($36.8M benefits vs.&nbsp;$17.1M costs), with SMB deployments achieving <strong>132–353% ROI</strong> over the same period. These figures apply to productivity-augmentation tools rather than fully autonomous agents, setting an upper bound for what human-in-the-loop deployments can return.</p>
+</section>
+<section id="the-human-oversight-reality" class="level3">
+<h3 class="anchored" data-anchor-id="the-human-oversight-reality">The Human Oversight Reality</h3>
+<p><strong>Anthropic’s “Measuring AI Agent Autonomy in Practice”</strong> (2026) analyzed millions of real human-agent interactions across Claude Code and Anthropic’s public API, finding that the “set it and forget it” vision of autonomous agents is still rare in practice:</p>
+<ul>
+<li><strong>73% of tool calls appear to have a human in the loop</strong> in some form (restricted permissions or approval gates)</li>
+<li><strong>Only 0.8% of actions appear to be irreversible</strong> (e.g., sending emails, deleting files)</li>
+<li>Software engineering accounts for ~50% of all tool calls on their API</li>
+<li>Among longest-running sessions, agent-initiated stops for clarification occur more than twice as often as human interruptions — agents are self-limiting more than users think</li>
+</ul>
+<p>This empirical baseline matters enormously for enterprise ROI calculations: if 73% of tool calls involve human oversight, the cost of human time in the loop is a major component of total deployment cost.</p>
+</section>
+<section id="enterprise-deployment-patterns" class="level3">
+<h3 class="anchored" data-anchor-id="enterprise-deployment-patterns">Enterprise Deployment Patterns</h3>
+<p>Enterprise deployments follow a predictable pattern of task selection:</p>
+<ol type="1">
+<li><strong>First wave: clearly bounded, high-volume, low-stakes tasks</strong> — data extraction, document classification, FAQ answering, email triage. These have clear ground truth (easy to measure quality), high volume (cost savings scale with usage), and low error cost (mistakes are recoverable).</li>
+<li><strong>Second wave: knowledge work with human review</strong> — code generation, research synthesis, report drafting. Agents provide drafts; humans review and approve. Productivity gain without full automation risk.</li>
+<li><strong>Third wave (emerging): autonomous decision-making in constrained domains</strong> — agents that close support tickets, approve routine purchase orders, or manage inventory without per-action human review. These require high accuracy thresholds and robust failure detection.</li>
+</ol>
+</section>
+<section id="the-hidden-costs-of-agent-deployment" class="level3">
+<h3 class="anchored" data-anchor-id="the-hidden-costs-of-agent-deployment">The Hidden Costs of Agent Deployment</h3>
+<p>Enterprise ROI calculations often miss indirect costs:</p>
+<ul>
+<li><strong>Prompt engineering and maintenance</strong> — keeping system prompts updated as products and policies change is ongoing labor</li>
+<li><strong>Evaluation infrastructure</strong> — measuring agent quality at scale requires evaluation pipelines that themselves require compute</li>
+<li><strong>Error remediation</strong> — catching and fixing agent mistakes, especially in domains where errors compound (financial reconciliation, code that goes to production)</li>
+<li><strong>Observability tooling</strong> — tracing which agent step went wrong requires logging infrastructure</li>
+<li><strong>Model dependency risk</strong> — when the underlying model changes, agent behavior can shift in subtle ways that require re-evaluation</li>
+</ul>
+<p>Operational costs dominate enterprise AI agent TCO: empirical data from 60+ real implementations shows operational costs represent <strong>65–75% of total 3-year spending</strong>, vastly exceeding initial build costs.</p>
+<hr>
+</section>
+</section>
+<section id="open-problems" class="level2">
+<h2 class="anchored" data-anchor-id="open-problems">6. Open Problems</h2>
+<section id="dynamic-pricing-and-budget-uncertainty" class="level3">
+<h3 class="anchored" data-anchor-id="dynamic-pricing-and-budget-uncertainty">Dynamic Pricing and Budget Uncertainty</h3>
+<p>Agent cost forecasting is hard because LLM pricing is volatile. A workflow designed around GPT-4 pricing in Q1 may have very different economics in Q3 after a price change. Production systems need cost budgets and circuit breakers — the ability to detect when per-task cost is exceeding thresholds and halt or reroute. This is a systems engineering problem with no clean solution today.</p>
+</section>
+<section id="the-race-to-the-bottom-in-model-pricing" class="level3">
+<h3 class="anchored" data-anchor-id="the-race-to-the-bottom-in-model-pricing">The Race to the Bottom in Model Pricing</h3>
+<p>As open-source models improve rapidly (Llama-3, Gemma-3, Qwen-2.5, DeepSeek V3), and inference providers compete aggressively on price, there is a systemic pressure toward lower model pricing. DeepSeek’s aggressive pricing reset competitive baselines with 90%+ lower costs than Western incumbents for comparable reasoning capability. This is beneficial for agent economics in the long run, but creates short-term challenges: commercial providers have less revenue per token, which may reduce investment in safety infrastructure, specialized fine-tuning, and reliability SLAs.</p>
+</section>
+<section id="cost-of-errors-when-mistakes-are-expensive" class="level3">
+<h3 class="anchored" data-anchor-id="cost-of-errors-when-mistakes-are-expensive">Cost of Errors: When Mistakes Are Expensive</h3>
+<p>The token cost of an agent call is the <em>floor</em> of its true cost, not the ceiling. When an agent makes a consequential error — deletes the wrong file, sends an embarrassing email, makes an incorrect API call in a production system — the remediation cost can dwarf the original token cost by orders of magnitude. Error cost is highly asymmetric and domain-dependent, and current economic analyses of agent deployment rarely account for it properly. This is a major open problem in the responsible deployment of autonomous agents.</p>
+</section>
+<section id="environmental-and-energy-costs" class="level3">
+<h3 class="anchored" data-anchor-id="environmental-and-energy-costs">Environmental and Energy Costs</h3>
+<p>LLM inference is energy-intensive. <strong>“Quantifying the Energy Consumption and Carbon Emissions of LLM Inference via Simulations”</strong> (<a href="https://arxiv.org/abs/2507.11417">arXiv:2507.11417</a>, 2025) develops simulation tools for estimating power consumption and carbon emissions of LLM inference workloads. The environmental cost of agents running at scale — thousands of multi-step tasks per day — is non-trivial and not yet well-integrated into the economics literature. Carbon-aware scheduling (running inference workloads during low-carbon-intensity grid periods) is an emerging mitigation strategy, but adoption in agent infrastructure is nascent. As agentic AI scales toward Gartner’s predicted 40% enterprise penetration by 2026, the energy footprint of agent workloads will become a significant policy and engineering concern.</p>
+<hr>
+</section>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<section id="papers" class="level3">
+<h3 class="anchored" data-anchor-id="papers">Papers</h3>
+<ul>
+<li><strong>FrugalGPT: How to Use Large Language Models While Reducing Cost and Improving Performance</strong> (Chen, Zaharia, Zou, 2023) — <a href="https://arxiv.org/abs/2305.05176">arXiv:2305.05176</a> <em>(three strategies: prompt adaptation, LLM approximation, LLM cascade; up to 98% cost reduction matching GPT-4)</em></li>
+<li><strong>RouteLLM: Learning to Route LLMs with Preference Data</strong> (Ong et al., LMSYS, 2024) — <a href="https://arxiv.org/abs/2406.18665">arXiv:2406.18665</a> <em>(learned routers from human preference data; 2× cost reduction; transfer learning across model pairs)</em></li>
+<li><strong>AutoMix: Automatically Mixing Language Models</strong> (Aggarwal, Madaan et al., NeurIPS 2024) — <a href="https://arxiv.org/abs/2310.12963">arXiv:2310.12963</a> <em>(self-verification–based cascade; black-box API compatible)</em></li>
+<li><strong>Hybrid LLM: Cost-Efficient and Quality-Aware Query Routing</strong> (Ding et al., Microsoft, ICLR 2024) — <a href="https://arxiv.org/abs/2404.14618">arXiv:2404.14618</a> <em>(40% fewer large model calls; tunable quality threshold at test time)</em></li>
+<li><strong>A Unified Approach to Routing and Cascading for LLMs</strong> (Dekoninck, Baader, Vechev, ETH Zurich, ICML 2025) — <a href="https://arxiv.org/abs/2410.10347">arXiv:2410.10347</a> <em>(theoretically optimal cascade routing; quality estimator is the critical factor)</em></li>
+<li><strong>RouterBench: A Benchmark for Multi-LLM Routing System</strong> (Hu et al., Martian/Berkeley, 2024) — <a href="https://arxiv.org/abs/2403.12031">arXiv:2403.12031</a> <em>(405K inference outcomes; standardized routing evaluation)</em></li>
+<li><strong>EmbedLLM: Learning Compact Representations of Large Language Models</strong> (Zhuang et al., Stanford, 2024) — <a href="https://arxiv.org/abs/2410.02223">arXiv:2410.02223</a> <em>(LLM embeddings for routing; outperforms prior methods in accuracy and latency)</em></li>
+<li><strong>DiSRouter: Distributed Self-Routing for LLM Selections</strong> (Zheng et al., SJTU, 2025) — <a href="https://arxiv.org/abs/2510.19208">arXiv:2510.19208</a> <em>(distributed self-aware routing; models self-assess competence)</em></li>
+<li><strong>Router-R1: Teaching LLMs Multi-Round Routing and Aggregation via Reinforcement Learning</strong> (2025) — <a href="https://arxiv.org/abs/2506.09033">arXiv:2506.09033</a> <em>(multi-round RL-based routing and aggregation as sequential decision process)</em></li>
+<li><strong>Dynamic Model Routing and Cascading for Efficient LLM Inference: A Survey</strong> (Moslem et al., 2026) — <a href="https://arxiv.org/abs/2603.04445">arXiv:2603.04445</a> <em>(comprehensive routing survey; 3-dimensional framework)</em></li>
+<li><strong>Towards Efficient Multi-LLM Inference: Routing and Hierarchical Techniques</strong> (Behera et al., 2025) — <a href="https://arxiv.org/abs/2506.06579">arXiv:2506.06579</a> <em>(survey of routing vs.&nbsp;cascading as complementary strategies)</em></li>
+<li><strong>Mixture-of-Agents Enhances Large Language Model Capabilities</strong> (Wang et al., Together AI, 2024) — <a href="https://arxiv.org/abs/2406.04692">arXiv:2406.04692</a> <em>(layered multi-LLM ensembling; 65.1% AlpacaEval win rate, beating GPT-4 Omni)</em></li>
+<li><strong>LLM-Blender: Ensembling LLMs with Pairwise Ranking and Generative Fusion</strong> (Lin et al., ACL 2023) — <a href="https://arxiv.org/abs/2306.02561">arXiv:2306.02561</a> <em>(PairRanker + GenFuser ensemble; optimal LLM varies per example)</em></li>
+<li><strong>Plan-and-Act: Improving Planning of Agents for Long-Horizon Tasks</strong> (Lee et al., ICML 2025) — <a href="https://arxiv.org/abs/2503.09572">arXiv:2503.09572</a> <em>(separate Planner and Executor models; 57.58% WebArena-Lite, 81.36% WebVoyager)</em></li>
+<li><strong>Token-Budget-Aware LLM Reasoning (TALE)</strong> (Han et al., ACL Findings 2025) — <a href="https://arxiv.org/abs/2412.18547">arXiv:2412.18547</a> <em>(dynamically adjusts reasoning token count per problem; CoT reasoning is over-verbose)</em></li>
+<li><strong>Budget-Aware Tool-Use Enables Effective Agent Scaling (BATS)</strong> (Liu, Wang et al., 2025) — <a href="https://arxiv.org/abs/2511.17006">arXiv:2511.17006</a> <em>(scaling tool-call budget requires budget awareness; budget tracker enables effective agent scaling)</em></li>
+<li><strong>INTENT: Intention-Based Planning for Costly Tool Use</strong> (2026) — <a href="https://arxiv.org/abs/2602.11541">arXiv:2602.11541</a> <em>(intention-aware hierarchical world model for monetary tool budget enforcement)</em></li>
+<li><strong>CoRL: Controlling Performance and Budget of Multi-agent LLM Systems with RL</strong> (2025) — <a href="https://arxiv.org/abs/2511.02755">arXiv:2511.02755</a> <em>(RL-based multi-LLM cost-performance control; surpasses best individual expert under high budget)</em></li>
+<li><strong>Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters</strong> (Snell, Lee, Xu, Kumar, 2024) — <a href="https://arxiv.org/abs/2408.03314">arXiv:2408.03314</a> <em>(compute-optimal inference as an alternative to model scaling)</em></li>
+<li><strong>Inference Scaling Laws: Compute-Optimal Inference for Problem-Solving</strong> (2024) — <a href="https://arxiv.org/abs/2408.00724">arXiv:2408.00724</a> <em>(smaller models + advanced search = Pareto-optimal cost-performance)</em></li>
+<li><strong>Compute-Optimal Multi-Stage Agents</strong> (2025) — <a href="https://arxiv.org/abs/2508.00890">arXiv:2508.00890</a> <em>(LLM agent learns compute-optimal allocation across multi-stage task phases)</em></li>
+<li><strong>L1: Controlling Reasoning Length with Reinforcement Learning / LCPO</strong> (CMU, 2025) — <a href="https://arxiv.org/abs/2503.04697">arXiv:2503.04697</a> <em>(RL-trained length control; uncovers Short Reasoning Models)</em></li>
+<li><strong>SelfBudgeter: Adaptive Token Allocation for Efficient LLM Reasoning</strong> (2025) — <a href="https://arxiv.org/abs/2505.11274">arXiv:2505.11274</a> <em>(61% response length compression; budget-guided GRPO reinforcement learning)</em></li>
+<li><strong>BudgetThinker: Budget-aware LLM Reasoning with Control Tokens</strong> (2025) — <a href="https://arxiv.org/abs/2508.17196">arXiv:2508.17196</a> <em>(control tokens for budget awareness; curriculum-based RL training)</em></li>
+<li><strong>AdaptThink: Reasoning Models Can Learn When to Think</strong> (2025) — <a href="https://arxiv.org/abs/2505.13417">arXiv:2505.13417</a> <em>(53% response length reduction + 2.4% accuracy gain; NoThinking vs Thinking selection)</em></li>
+<li><strong>HBPO: Hierarchical Budget Policy Optimization for Adaptive Reasoning</strong> (2025) — <a href="https://arxiv.org/abs/2507.15844">arXiv:2507.15844</a> <em>(60.6% token reduction; difficulty-based budget assignment)</em></li>
+<li><strong>ACON: Agent Context Optimization</strong> (Microsoft Research, 2025) — <a href="https://arxiv.org/abs/2510.00615">arXiv:2510.00615</a> <em>(26–54% peak token reduction for long-horizon agents; distillable to smaller compressors)</em></li>
+<li><strong>Scaling Long-Horizon LLM Agent via Context-Folding</strong> (2025) — <a href="https://arxiv.org/abs/2510.11967">arXiv:2510.11967</a> <em>(10× smaller active context via learnable sub-trajectory folding)</em></li>
+<li><strong>LLMLingua: Compressing Prompts for Accelerated Inference of Large Language Models</strong> (Jiang et al., EMNLP 2023) — <a href="https://arxiv.org/abs/2310.05736">arXiv:2310.05736</a> <em>(up to 20× prompt compression with budget controller and token-level iterative algorithm)</em></li>
+<li><strong>LLMLingua-2: Data Distillation for Efficient and Faithful Task-Agnostic Prompt Compression</strong> (Pan et al., 2024) — <a href="https://arxiv.org/abs/2403.12968">arXiv:2403.12968</a> <em>(task-agnostic, faster compression via data distillation)</em></li>
+<li><strong>LongLLMLingua: Accelerating and Enhancing LLMs in Long Context Scenarios</strong> (ACL 2024) — <a href="https://arxiv.org/abs/2310.06839">arXiv:2310.06839</a> <em>(94% cost reduction on LooGLE; 21.4% performance boost with 4× fewer tokens)</em></li>
+<li><strong>Selective Context: Self-Information-Based Content Filtering</strong> (2023) — <a href="https://arxiv.org/abs/2304.12102">arXiv:2304.12102</a> <em>(perplexity-based context filtering; no fine-tuning required)</em></li>
+<li><strong>RECOMP: Improving RAG with Compression and Selective Augmentation</strong> (2023) — <a href="https://arxiv.org/abs/2310.04408">arXiv:2310.04408</a> <em>(extractive and abstractive RAG document compression; selective augmentation)</em></li>
+<li><strong>Self-Route: RAG or Long-Context LLMs?</strong> (EMNLP 2024) — <a href="https://arxiv.org/abs/2407.16833">arXiv:2407.16833</a> <em>(RAG vs.&nbsp;LC cost tradeoff; self-reflection routing for cost-adaptive context strategy)</em></li>
+<li><strong>Prompt Compression for Large Language Models: A Survey</strong> (2024) — <a href="https://arxiv.org/abs/2410.12388">arXiv:2410.12388</a> <em>(comprehensive survey of token-dropping, soft-prompt, and distillation-based compression)</em></li>
+<li><strong>CostBench: Evaluating Cost-Optimal Planning for LLM Tool-Use Agents</strong> (Liu et al., 2025) — <a href="https://arxiv.org/abs/2511.02734">arXiv:2511.02734</a> <em>(benchmark for cost-aware agent planning; reveals significant gaps in current models)</em></li>
+<li><strong>In-Context Distillation with Self-Consistency Cascades</strong> (2025) — <a href="https://arxiv.org/abs/2512.02543">arXiv:2512.02543</a> <em>(adapts knowledge distillation to in-context learning; training-free cost reduction)</em></li>
+<li><strong>Increasing the Thinking Budget is Not All You Need</strong> (2025) — <a href="https://arxiv.org/abs/2512.19585">arXiv:2512.19585</a> <em>(most tasks optimal at 256–512 thinking tokens; smaller models benefit more)</em></li>
+<li><strong>Quantifying the Accuracy and Cost Impact of Design Decisions in Budget-Constrained Agentic LLM Search</strong> (2025) — <a href="https://arxiv.org/abs/2603.08877">arXiv:2603.08877</a> <em>(empirical cost-accuracy tradeoff analysis for budget-constrained agent search)</em></li>
+<li><strong>Beyond Accuracy: The CLEAR Framework for Enterprise Agentic AI</strong> (2025) — <a href="https://arxiv.org/abs/2511.14136">arXiv:2511.14136</a> <em>(50× cost variation at same accuracy; 4.4–10.8× savings from cost-aware design)</em></li>
+<li><strong>Agentless: Demystifying LLM-based Software Engineering Agents</strong> (2024) — <a href="https://arxiv.org/abs/2407.01489">arXiv:2407.01489</a> <em>(32% SWE-bench Lite resolve rate at $0.70/task avg)</em></li>
+<li><strong>The Emerging Market for Intelligence: Pricing, Supply, and Demand for LLMs</strong> (Demirer, Fradkin, Tadelis, Peng, 2025) — <a href="https://www.nber.org/papers/w34608">NBER WP 34608</a> <em>(600+ models by late 2025; LLM market shifts to intense price competition)</em></li>
+<li><strong>Quantifying the Energy Consumption and Carbon Emissions of LLM Inference via Simulations</strong> (2025) — <a href="https://arxiv.org/abs/2507.11417">arXiv:2507.11417</a> <em>(GPU power model for LLM inference; carbon-aware scheduling analysis)</em></li>
+</ul>
+</section>
+<section id="blog-posts-resources" class="level3">
+<h3 class="anchored" data-anchor-id="blog-posts-resources">Blog Posts &amp; Resources</h3>
+<ul>
+<li><strong>Prompt Caching with Claude</strong> (Anthropic, 2024) — <a href="https://www.anthropic.com/news/prompt-caching">anthropic.com/news/prompt-caching</a> <em>(automatic caching of static prompt prefixes; ~90% reduction on cached input tokens)</em></li>
+<li><strong>Measuring AI Agent Autonomy in Practice</strong> (Anthropic, 2026) — <a href="https://www.anthropic.com/research/measuring-agent-autonomy">anthropic.com/research/measuring-agent-autonomy</a> <em>(73% of tool calls have human oversight; 0.8% irreversible; empirical autonomy data)</em></li>
+<li><strong>McKinsey State of AI 2025</strong> — <a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-ai">mckinsey.com</a> <em>(88% of organizations use AI; ~6% capture meaningful value)</em></li>
+<li><strong>Gartner: 40% of Enterprise Apps Will Feature AI Agents by 2026</strong> (August 2025) — <a href="https://www.gartner.com/en/newsroom/press-releases/2025-08-26-gartner-predicts-40-percent-of-enterprise-apps-will-feature-task-specific-ai-agents-by-2026-up-from-less-than-5-percent-in-2025">gartner.com</a></li>
+<li><strong>Forrester TEI: Microsoft 365 Copilot</strong> (Forrester/Microsoft, 2024) — 116% enterprise ROI; 132–353% SMB ROI over 3 years — <a href="https://tei.forrester.com/go/microsoft/M365Copilot/">tei.forrester.com/go/microsoft/M365Copilot</a></li>
+<li><strong>LLM Inference Prices Have Fallen Rapidly But Unequally Across Tasks</strong> (Epoch AI) — <a href="https://epoch.ai/data-insights/llm-inference-price-trends">epoch.ai/data-insights/llm-inference-price-trends</a> <em>(9×–900× price decline per year depending on benchmark)</em></li>
+<li><strong>SWE-bench Multilingual</strong> (swebench.com) — <a href="https://www.swebench.com/multilingual.html">swebench.com/multilingual.html</a> <em>($2.50 cost limit per task; 43% resolution rate with Claude 3.7 Sonnet)</em></li>
+<li><strong>Claude Code Costs Documentation</strong> — <a href="https://code.claude.com/docs/en/costs">code.claude.com/docs/en/costs</a> <em>(multi-agent teams use ~7× more tokens; $3.10 typical session example)</em></li>
+<li><strong>Building with Extended Thinking</strong> (Claude Docs) — <a href="https://docs.claude.com/en/docs/build-with-claude/extended-thinking">docs.claude.com/en/docs/build-with-claude/extended-thinking</a></li>
+<li><strong>OpenRouter Prompt Caching Guide</strong> — <a href="https://openrouter.ai/docs/guides/best-practices/prompt-caching">openrouter.ai/docs/guides/best-practices/prompt-caching</a></li>
+</ul>
+</section>
+<section id="code-projects" class="level3">
+<h3 class="anchored" data-anchor-id="code-projects">Code &amp; Projects</h3>
+<ul>
+<li><strong>RouteLLM</strong> (LMSYS; learned router framework with 4 router architectures) — <a href="https://github.com/lm-sys/RouteLLM">github.com/lm-sys/RouteLLM</a></li>
+<li><strong>AutoMix</strong> (self-verification–based automatic model mixing) — <a href="https://github.com/automix-llm/automix">github.com/automix-llm/automix</a></li>
+<li><strong>LLMLingua</strong> (Microsoft; prompt compression up to 20×) — <a href="https://github.com/microsoft/LLMLingua">github.com/microsoft/LLMLingua</a></li>
+<li><strong>ACON</strong> (Microsoft Research; agent context compression for long-horizon tasks) — <a href="https://github.com/microsoft/acon">github.com/microsoft/acon</a></li>
+<li><strong>TALE</strong> (token-budget-aware reasoning) — <a href="https://github.com/GeniusHTX/TALE">github.com/GeniusHTX/TALE</a></li>
+<li><strong>CostBench</strong> (cost-aware agent planning benchmark) — <a href="https://github.com/JiayuJeff/CostBench">github.com/JiayuJeff/CostBench</a></li>
+<li><strong>RouterBench</strong> (Martian; 405K inference outcomes benchmark) — <a href="https://github.com/withmartian/routerbench">github.com/withmartian/routerbench</a></li>
+<li><strong>Martian</strong> (commercial LLM router; dynamic cost-performance routing) — <a href="https://withmartian.com">withmartian.com</a></li>
+<li><strong>OpenRouter</strong> (unified LLM API gateway; 400+ models; prompt caching; routing) — <a href="https://openrouter.ai">openrouter.ai</a></li>
+<li><strong>Unify.ai</strong> (cost-optimal model/provider selection given quality threshold) — <a href="https://unify.ai">unify.ai</a></li>
+<li><strong>LLMLingua project site</strong> — <a href="https://llmlingua.com">llmlingua.com</a></li>
+</ul>
+<hr>
+<p><em>Back to <a href="./topics.html">Topics →</a> · See also: <a href="./infrastructure.html">Infrastructure &amp; Protocols →</a> · <a href="./memory-tools.html">Memory, Tools &amp; Actions →</a></em></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/johnplake\.github\.io\/llm-agents-survey\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
