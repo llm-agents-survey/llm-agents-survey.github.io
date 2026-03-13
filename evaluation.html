@@ -369,7 +369,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#webarena-2023" id="toc-webarena-2023" class="nav-link" data-scroll-target="#webarena-2023">WebArena (2023)</a></li>
   <li><a href="#mind2web-2023" id="toc-mind2web-2023" class="nav-link" data-scroll-target="#mind2web-2023">Mind2Web (2023)</a></li>
   <li><a href="#osworld-2024" id="toc-osworld-2024" class="nav-link" data-scroll-target="#osworld-2024">OSWorld (2024)</a></li>
-  <li><a href="#screenspot-pro-2025" id="toc-screenspot-pro-2025" class="nav-link" data-scroll-target="#screenspot-pro-2025">ScreenSpot Pro (2025)</a></li>
+  <li><a href="#screenspot-pro-2025" id="toc-screenspot-pro-2025" class="nav-link" data-scroll-target="#screenspot-pro-2025">ScreenSpot-Pro (2025)</a></li>
   </ul></li>
   <li><a href="#general-capability-benchmarks" id="toc-general-capability-benchmarks" class="nav-link" data-scroll-target="#general-capability-benchmarks">General Capability Benchmarks</a>
   <ul class="collapse">
@@ -454,7 +454,7 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Jimenez et al.</strong> · <a href="https://arxiv.org/abs/2310.06770">arXiv:2310.06770</a> · <a href="https://www.swebench.com">swebench.com</a></p>
 <p>The dominant coding agent benchmark. Agents resolve real GitHub issues from 12 popular Python repositories (Django, scikit-learn, Flask, etc.). Tested against actual unit tests from the repos.</p>
 <p><strong>Variants:</strong> - <strong>SWE-bench Full</strong> — 2,294 issues; original benchmark - <strong>SWE-bench Verified</strong> — 500 manually verified high-quality issues; the standard leaderboard - <strong>SWE-bench Lite</strong> — 300 issues; faster/cheaper evaluation</p>
-<p><strong>Progress over time</strong> (early scores are on SWE-bench Full/Lite; SWE-bench Verified was released Aug 2024 and became the standard leaderboard):</p>
+<p><strong>Progress over time</strong> (early scores are on SWE-bench Full/subsets; SWE-bench Verified was released Aug 2024 and became the standard leaderboard):</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 18%">
@@ -480,7 +480,7 @@ ul.task-list li input[type="checkbox"] {
 <tr class="even">
 <td>Mar 2024</td>
 <td>Devin (Cognition AI)</td>
-<td>Lite (570 tasks)</td>
+<td>Full subset (570 tasks)</td>
 <td>13.86%</td>
 </tr>
 <tr class="odd">
@@ -503,6 +503,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<blockquote class="blockquote">
+<p><strong>Note on Devin’s 13.86%:</strong> Cognition AI ran Devin on a 570-task subset drawn from the SWE-bench Full set — not SWE-bench Lite (which is the officially defined 300-task subset released separately). They resolved 79 of 570 issues = 13.86%.</p>
+</blockquote>
 <p><strong>Contamination concern:</strong> By late 2025, SWE-bench Verified showed signs of saturation and training data leakage. Models scoring 70%+ on the public Verified set drop to ~15-25% on SWE-bench Pro (Scale AI’s private-codebase variant, released 2025).</p>
 </section>
 <section id="swe-bench-pro-sep-2025" class="level3">
@@ -527,17 +530,17 @@ ul.task-list li input[type="checkbox"] {
 <section id="webarena-2023" class="level3">
 <h3 class="anchored" data-anchor-id="webarena-2023">WebArena (2023)</h3>
 <p><strong>Zhou et al.</strong> · <a href="https://arxiv.org/abs/2307.13854">arXiv:2307.13854</a></p>
-<p>5 functional websites (e-commerce, Reddit, GitLab, CMS, map) plus Wikipedia as a reference resource. 812 long-horizon tasks. Baseline GPT-4: ~14% (exact: 14.41%). Realistic web tasks that require multi-step navigation, form filling, and information retrieval.</p>
+<p>5 functional websites (e-commerce, Reddit, GitLab, CMS, map) plus Wikipedia as a reference resource. 812 long-horizon tasks. Baseline GPT-4: ~14% (exact: 14.41%); human performance: 78.24%. Realistic web tasks that require multi-step navigation, form filling, and information retrieval.</p>
 </section>
 <section id="mind2web-2023" class="level3">
 <h3 class="anchored" data-anchor-id="mind2web-2023">Mind2Web (2023)</h3>
 <p><strong>Deng et al.</strong> · <a href="https://arxiv.org/abs/2306.06070">arXiv:2306.06070</a></p>
-<p>Dataset of 2,350 tasks across 137 real websites. Tests generalization to unseen sites. More diverse than WebArena but less dynamic (static task descriptions).</p>
+<p>Dataset of over 2,000 tasks (approximately 2,350) across 137 real websites spanning 31 domains. Tests generalization to unseen sites. More diverse than WebArena but less dynamic (static task descriptions).</p>
 </section>
 <section id="osworld-2024" class="level3">
 <h3 class="anchored" data-anchor-id="osworld-2024">OSWorld (2024)</h3>
 <p><strong>Xie et al.</strong> · <a href="https://arxiv.org/abs/2404.07972">arXiv:2404.07972</a></p>
-<p>Desktop GUI tasks across real applications on Windows, macOS, and Linux. 369 tasks requiring interaction with actual installed software (spreadsheets, code editors, file managers).</p>
+<p>Desktop GUI tasks across real applications on Ubuntu, Windows, and macOS. 369 tasks requiring interaction with actual installed software (spreadsheets, code editors, file managers).</p>
 <p>Human expert baseline: <strong>72.36%</strong></p>
 <table class="caption-top table">
 <thead>
@@ -567,8 +570,9 @@ ul.task-list li input[type="checkbox"] {
 </table>
 </section>
 <section id="screenspot-pro-2025" class="level3">
-<h3 class="anchored" data-anchor-id="screenspot-pro-2025">ScreenSpot Pro (2025)</h3>
-<p>High-resolution GUI grounding benchmark with tiny target icons. OmniParser V2 + GPT-4o achieves 39.6% <em>(source needed)</em>; raw GPT-4o achieves 0.8% <em>(source needed)</em> — showing the importance of specialized screen parsing.</p>
+<h3 class="anchored" data-anchor-id="screenspot-pro-2025">ScreenSpot-Pro (2025)</h3>
+<p><strong>Li et al.</strong> · <a href="https://arxiv.org/abs/2504.07981">arXiv:2504.07981</a></p>
+<p>High-resolution GUI grounding benchmark for professional applications, spanning 23 applications across five industries and three operating systems. Targets tiny UI elements in complex, high-resolution professional displays. At time of publication, the best model (without search augmentation) achieved only 18.9%. OmniParser V2 + GPT-4o reaches 39.6% on the benchmark leaderboard; raw GPT-4o achieves 0.8% — showing the critical importance of specialized screen parsing. The authors’ ScreenSeekeR method achieves 48.1%.</p>
 <hr>
 </section>
 </section>
@@ -582,15 +586,17 @@ ul.task-list li input[type="checkbox"] {
 <section id="agentbench-2023" class="level3">
 <h3 class="anchored" data-anchor-id="agentbench-2023">AgentBench (2023)</h3>
 <p><strong>Liu et al.</strong> · <a href="https://arxiv.org/abs/2308.03688">arXiv:2308.03688</a></p>
-<p>8-environment benchmark: operating system, database, knowledge graph, digital card game, lateral thinking puzzles, web shopping, web browsing. First systematic multi-domain agent evaluation. Revealed large gap between GPT-4 and open-source models.</p>
+<p>8-environment benchmark: operating system, database, knowledge graph, digital card game, lateral thinking puzzles, house-holding (ALFWorld), web shopping, web browsing. First systematic multi-domain agent evaluation. Revealed large gap between GPT-4 and open-source models.</p>
 </section>
 <section id="tau-bench-2024" class="level3">
 <h3 class="anchored" data-anchor-id="tau-bench-2024">tau-bench (2024)</h3>
-<p>Tests agent reliability in customer service and retail domains. Focuses on multi-turn conversation with tool use and policy compliance.</p>
+<p><strong>Yao et al.</strong> · <a href="https://arxiv.org/abs/2406.12045">arXiv:2406.12045</a></p>
+<p>Tests agent reliability in retail and airline customer service domains via dynamic simulated conversations. Focuses on multi-turn conversation with tool use and policy compliance. Introduces the pass^k metric to measure behavioral consistency across repeated trials. Even state-of-the-art agents (e.g.&nbsp;GPT-4o) succeed on fewer than 50% of tasks and show high inconsistency (pass^8 &lt;25% in retail).</p>
 </section>
 <section id="workarena-2024" class="level3">
 <h3 class="anchored" data-anchor-id="workarena-2024">WorkArena (2024)</h3>
-<p>Enterprise software agent benchmark using ServiceNow. Tests agents on realistic business workflows.</p>
+<p><strong>Drouin et al.&nbsp;(ServiceNow)</strong> · <a href="https://arxiv.org/abs/2403.07718">arXiv:2403.07718</a></p>
+<p>Enterprise software agent benchmark using the ServiceNow platform. Tests agents on realistic business workflows covering knowledge work tasks. Also introduces BrowserGym, an environment for designing and evaluating web agents.</p>
 <hr>
 </section>
 </section>
@@ -667,12 +673,13 @@ ul.task-list li input[type="checkbox"] {
 <section id="core-benchmarks-papers" class="level3">
 <h3 class="anchored" data-anchor-id="core-benchmarks-papers">Core Benchmarks &amp; Papers</h3>
 <ul>
-<li><strong>SWE-bench: Resolving Real-World GitHub Issues</strong> (Jimenez et al., 2023) — <a href="https://arxiv.org/abs/2310.06770">arXiv:2310.06770</a> · <a href="https://www.swebench.com">swebench.com</a></li>
+<li><strong>SWE-bench: Can Language Models Resolve Real-World GitHub Issues?</strong> (Jimenez et al., 2023) — <a href="https://arxiv.org/abs/2310.06770">arXiv:2310.06770</a> · <a href="https://www.swebench.com">swebench.com</a> · ICLR 2024</li>
 <li><strong>WebArena: A Realistic Web Environment for Building Autonomous Agents</strong> (Zhou et al., 2023) — <a href="https://arxiv.org/abs/2307.13854">arXiv:2307.13854</a></li>
-<li><strong>Mind2Web: Towards a Generalist Agent for the Web</strong> (Deng et al., 2023) — <a href="https://arxiv.org/abs/2306.06070">arXiv:2306.06070</a></li>
+<li><strong>Mind2Web: Towards a Generalist Agent for the Web</strong> (Deng et al., 2023) — <a href="https://arxiv.org/abs/2306.06070">arXiv:2306.06070</a> · NeurIPS 2023</li>
 <li><strong>OSWorld: Benchmarking Multimodal Agents for Open-Ended Tasks in Real Computer Environments</strong> (Xie et al., 2024) — <a href="https://arxiv.org/abs/2404.07972">arXiv:2404.07972</a></li>
 <li><strong>GAIA: A Benchmark for General AI Assistants</strong> (Mialon et al., 2023, Meta AI) — <a href="https://arxiv.org/abs/2311.12983">arXiv:2311.12983</a> · ICLR 2024</li>
-<li><strong>AgentBench: Evaluating LLMs as Agents</strong> (Liu et al., 2023) — <a href="https://arxiv.org/abs/2308.03688">arXiv:2308.03688</a></li>
+<li><strong>AgentBench: Evaluating LLMs as Agents</strong> (Liu et al., 2023) — <a href="https://arxiv.org/abs/2308.03688">arXiv:2308.03688</a> · ICLR 2024</li>
+<li><strong>ScreenSpot-Pro: GUI Grounding for Professional High-Resolution Computer Use</strong> (Li et al., 2025) — <a href="https://arxiv.org/abs/2504.07981">arXiv:2504.07981</a></li>
 </ul>
 </section>
 <section id="long-horizon-time-based-evaluation" class="level3">
@@ -701,8 +708,8 @@ ul.task-list li input[type="checkbox"] {
 <section id="domain-specific-benchmarks" class="level3">
 <h3 class="anchored" data-anchor-id="domain-specific-benchmarks">Domain-Specific Benchmarks</h3>
 <ul>
-<li><strong>tau-bench</strong> (2024) — Customer service and retail domain tasks</li>
-<li><strong>WorkArena</strong> (2024) — Enterprise software agent benchmark using ServiceNow</li>
+<li><strong>τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains</strong> (Yao et al., 2024) — <a href="https://arxiv.org/abs/2406.12045">arXiv:2406.12045</a> — Retail and airline customer service domains</li>
+<li><strong>WorkArena: How Capable Are Web Agents at Solving Common Knowledge Work Tasks?</strong> (Drouin et al., ServiceNow, 2024) — <a href="https://arxiv.org/abs/2403.07718">arXiv:2403.07718</a></li>
 </ul>
 </section>
 <section id="practitioner-resources" class="level3">

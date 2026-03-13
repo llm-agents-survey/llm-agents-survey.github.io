@@ -427,7 +427,7 @@ ul.task-list li input[type="checkbox"] {
 <p>A growing sub-field is building agents specifically for <strong>scientific research</strong> — not general-purpose assistants, but systems designed to navigate the scientific literature, form hypotheses, design experiments, and accelerate discovery. These agents operate in domains where the “correctness” criterion is not a benchmark score but scientific validity.</p>
 <p>Key challenges unique to scientific agents:</p>
 <ul>
-<li>Literature is vast (38M+ papers on PubMed) and growing faster than any human can read</li>
+<li>Literature is vast (39M+ papers on PubMed) and growing faster than any human can read</li>
 <li>Knowledge is specialized: a general LLM may hallucinate domain-specific facts</li>
 <li>Discovery requires synthesis <em>across</em> disciplines, not just within them</li>
 <li>Hypotheses must be novel <em>and</em> grounded in prior evidence</li>
@@ -523,7 +523,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="inference-time-hyper-scaling-with-kv-cache-compression-neurips-2025" class="level2">
 <h2 class="anchored" data-anchor-id="inference-time-hyper-scaling-with-kv-cache-compression-neurips-2025">Inference-Time Hyper-Scaling with KV Cache Compression (NeurIPS 2025)</h2>
-<p><strong>NeurIPS 2025</strong> · <a href="https://neurips.cc/virtual/2025/loc/san-diego/poster/119605">neurips.cc poster</a></p>
+<p><strong>Łańcucki et al.&nbsp;(NVIDIA / Edinburgh)</strong> · <a href="https://arxiv.org/abs/2506.05345">arXiv:2506.05345</a> · <a href="https://neurips.cc/virtual/2025/loc/san-diego/poster/119605">neurips.cc poster</a></p>
 <p>Introduces <strong>Dynamic Memory Sparsification (DMS)</strong> — a method for compressing KV caches in Transformer LLMs, enabling 8× compression in just 1K training steps while maintaining accuracy.</p>
 <p><strong>Why relevant to agents:</strong> Inference-time scaling (generating more tokens for harder tasks) is bottlenecked by KV cache size, not flops. By compressing the cache, agents can reason over longer horizons within a fixed compute budget. Demonstrated on Qwen-R1 32B and other reasoning models.</p>
 <p><strong>Key insight:</strong> “Inference-time hyper-scaling” — compress the cache to fit more tokens, rather than scaling model size.</p>
@@ -608,12 +608,12 @@ ul.task-list li input[type="checkbox"] {
 <section id="papers" class="level3">
 <h3 class="anchored" data-anchor-id="papers">Papers</h3>
 <ul>
-<li><strong>Search-R1++: Advancing Deep Retrieval-Augmented Reasoning Systems</strong> (Xu et al., 2026) — <a href="https://arxiv.org/abs/2602.19526">arXiv:2602.19526</a></li>
+<li><strong>How to Train Your Deep Research Agent? Prompt, Reward, and Policy Optimization in Search-R1</strong> (Xu et al., 2026) — <a href="https://arxiv.org/abs/2602.19526">arXiv:2602.19526</a></li>
 <li><strong>METR: Measuring AI Ability to Complete Long Tasks</strong> (Model Evaluation &amp; Threat Research, 2025) — <a href="https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/">metr.org/blog/2025-03-19</a> | <a href="https://metr.org/time-horizons/">Time Horizons</a></li>
-<li><strong>Inference-Time Hyper-Scaling with KV Cache Compression: Dynamic Memory Sparsification</strong> (NeurIPS 2025) — <a href="https://neurips.cc/virtual/2025/loc/san-diego/poster/119605">neurips.cc/virtual/2025</a></li>
+<li><strong>Inference-Time Hyper-Scaling with KV Cache Compression: Dynamic Memory Sparsification</strong> (Łańcucki et al., 2025) — <a href="https://arxiv.org/abs/2506.05345">arXiv:2506.05345</a> | <a href="https://neurips.cc/virtual/2025/loc/san-diego/poster/119605">neurips.cc/virtual/2025</a></li>
 <li><strong>Towards a Science of Scaling Agent Systems</strong> (Google Research, 2025) — <a href="https://arxiv.org/abs/2512.08296">arXiv:2512.08296</a> | <a href="https://research.google/blog/towards-a-science-of-scaling-agent-systems-when-and-why-agent-systems-work/">research.google/blog</a></li>
-<li><strong>AgentEvolver: Self-Evolving Agent Systems via Curious Self-Questioning, Navigation and Attribution</strong> (Zhai et al., 2025) — <a href="https://arxiv.org/abs/2511.10395">arXiv:2511.10395</a></li>
-<li><strong>From Vibe Coding to Agentic Engineering with GLM-5</strong> (GLM-5-Team, Zhipu AI, 2026) — <a href="https://arxiv.org/abs/2602.15763">arXiv:2602.15763</a></li>
+<li><strong>AgentEvolver: Towards Efficient Self-Evolving Agent System</strong> (Zhai et al., 2025) — <a href="https://arxiv.org/abs/2511.10395">arXiv:2511.10395</a></li>
+<li><strong>from Vibe Coding to Agentic Engineering</strong> (GLM-5-Team, Zhipu AI, 2026) — <a href="https://arxiv.org/abs/2602.15763">arXiv:2602.15763</a></li>
 <li><strong>PaperCoder: Transforming ML Papers into Executable Code</strong> (Seo et al., ICLR 2026) — <a href="https://arxiv.org/abs/2504.17192">arXiv:2504.17192</a></li>
 </ul>
 </section>

@@ -437,8 +437,8 @@ ul.task-list li input[type="checkbox"] {
 Benchmark for indirect prompt injection attacks on tool-calling agents. Evaluates 30 LLM-based agents across 17 user tools and 62 attacker tools. Most models are highly vulnerable, especially to indirect attacks embedded in tool outputs.</p>
 <p><strong>AgentDojo</strong> (2024) · <a href="https://arxiv.org/abs/2406.13352">arXiv:2406.13352</a><br>
 Security benchmark with realistic agentic tasks (email management, travel booking) and adversarial injections. Baseline attack success rates are alarmingly high; defenses are limited.</p>
-<p><strong>AgentHarm</strong> (2024) · <a href="https://arxiv.org/abs/2410.09024">arXiv:2410.09024</a><br>
-Evaluates how often agents comply with harmful requests, directly or indirectly. Reveals that even safety-tuned models can be steered toward harmful actions via multi-step agentic flows.</p>
+<p><strong>AgentHarm</strong> (2025) · <a href="https://arxiv.org/abs/2410.09024">arXiv:2410.09024</a><br>
+Benchmark of 110 explicitly malicious agent tasks (440 with augmentations) across 11 harm categories (fraud, cybercrime, harassment, etc.). Key finding: leading LLMs are <strong>surprisingly compliant with malicious agent requests even without jailbreaking</strong>. Additionally, simple universal jailbreak templates can be adapted to effectively jailbreak agents for coherent multi-step harmful behavior. Accepted at ICLR 2025.</p>
 </section>
 </section>
 <section id="privilege-escalation-trust-confusion" class="level3">
@@ -489,13 +489,13 @@ Evaluates how often agents comply with harmful requests, directly or indirectly.
 <h2 class="anchored" data-anchor-id="monitoring-transparency">Monitoring &amp; Transparency</h2>
 <section id="mit-ai-agent-index-2025" class="level3">
 <h3 class="anchored" data-anchor-id="mit-ai-agent-index-2025">MIT AI Agent Index (2025)</h3>
-<p><strong><a href="https://aiagentindex.mit.edu">aiagentindex.mit.edu</a></strong> · <a href="https://arxiv.org/html/2602.17753v1">arXiv:2602.17753</a></p>
+<p><strong><a href="https://aiagentindex.mit.edu">aiagentindex.mit.edu</a></strong> · <a href="https://arxiv.org/abs/2602.17753">arXiv:2602.17753</a></p>
 <p>The most systematic public audit of deployed agents. Key safety findings from studying 30 prominent agents:</p>
 <ul>
 <li>Of 13 agents with frontier-level autonomy, <strong>only 4 disclose any agentic safety evaluations</strong></li>
 <li><strong>25/30 agents disclose no internal safety results</strong></li>
 <li><strong>23/30 have no third-party safety testing</strong></li>
-<li>9/30 report capability benchmarks but lack corresponding safety data</li>
+<li>9/30 report capability benchmarks but lack corresponding safety data <em>(unverified — not confirmed in paper excerpts)</em></li>
 <li>Some agents explicitly designed to <strong>bypass anti-bot protections</strong></li>
 <li>No established standards for agent behavior on the web</li>
 </ul>
@@ -537,11 +537,6 @@ Evaluates how often agents comply with harmful requests, directly or indirectly.
 <section id="safety-benchmarks-summary" class="level2">
 <h2 class="anchored" data-anchor-id="safety-benchmarks-summary">Safety Benchmarks Summary</h2>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 35%">
-<col style="width: 22%">
-<col style="width: 41%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Benchmark</th>
@@ -566,9 +561,9 @@ Evaluates how often agents comply with harmful requests, directly or indirectly.
 <td>Safety-tuned models can still be steered</td>
 </tr>
 <tr class="even">
-<td><strong>ST-WebAgentBench</strong></td>
-<td>Safety instruction following in web tasks</td>
-<td>Agents often violate safety instructions</td>
+<td><strong>ST-WebAgentBench</strong> · <a href="https://arxiv.org/abs/2410.06703">arXiv:2410.06703</a></td>
+<td>Safety instruction following in web tasks (222 tasks, CuP metric)</td>
+<td>Average CuP &lt; 2/3 of nominal completion rate; critical safety gaps exposed</td>
 </tr>
 <tr class="odd">
 <td><strong>Gartner Prediction (2025)</strong></td>
@@ -596,11 +591,11 @@ Evaluates how often agents comply with harmful requests, directly or indirectly.
 <section id="papers" class="level3">
 <h3 class="anchored" data-anchor-id="papers">Papers</h3>
 <ul>
-<li><strong>InjecAgent: Shedding Light on LLM Agent Vulnerability to Indirect Prompt Injection</strong> (Qi et al., 2024) — <a href="https://arxiv.org/abs/2403.02691">arXiv:2403.02691</a></li>
-<li><strong>AgentDojo: A Benchmark for LLM-based Agents</strong> (Fang et al., 2024) — <a href="https://arxiv.org/abs/2406.13352">arXiv:2406.13352</a></li>
-<li><strong>AgentHarm: Evaluating the Vulnerability of LLM Agents Against Adversarial Attacks</strong> (Qi et al., 2024) — <a href="https://arxiv.org/abs/2410.09024">arXiv:2410.09024</a></li>
+<li><strong>InjecAgent: Benchmarking Indirect Prompt Injections in Tool-Integrated Large Language Model Agents</strong> (Zhan et al., 2024) — <a href="https://arxiv.org/abs/2403.02691">arXiv:2403.02691</a></li>
+<li><strong>AgentDojo: A Dynamic Environment to Evaluate Prompt Injection Attacks and Defenses for LLM Agents</strong> (Debenedetti et al., 2024) — <a href="https://arxiv.org/abs/2406.13352">arXiv:2406.13352</a></li>
+<li><strong>AgentHarm: A Benchmark for Measuring Harmfulness of LLM Agents</strong> (Andriushchenko et al., 2025) — <a href="https://arxiv.org/abs/2410.09024">arXiv:2410.09024</a></li>
 <li><strong>Constitutional AI: Harmlessness from AI Feedback</strong> (Bai et al., Anthropic, 2022) — <a href="https://arxiv.org/abs/2212.08073">arXiv:2212.08073</a></li>
-<li><strong>MIT AI Agent Index 2025</strong> — <a href="https://arxiv.org/html/2602.17753v1">arXiv:2602.17753</a></li>
+<li><strong>The 2025 AI Agent Index: Documenting Technical and Safety Features of Deployed Agentic AI Systems</strong> (Staufer et al., 2025) — <a href="https://arxiv.org/abs/2602.17753">arXiv:2602.17753</a></li>
 </ul>
 </section>
 <section id="blog-posts-resources" class="level3">

@@ -526,13 +526,13 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<p>A separate harder benchmark, <strong>SWE-bench Pro</strong> (Scale Labs), tests generalization on never-before-seen private codebases. GPT-5 and Claude Opus 4.1 both score only ~23% there <em>(approximate; source needed)</em> vs.&nbsp;70%+ on Verified, revealing substantial overfitting to public repos.</p>
+<p>A separate harder benchmark, <strong>SWE-bench Pro</strong> (Scale Labs), tests generalization on never-before-seen private codebases. GPT-5 scores <strong>23.3%</strong> and Claude Opus 4.1 scores <strong>23.1%</strong> there (<a href="https://labs.scale.com/leaderboard/swe_bench_pro_public">Scale Labs leaderboard</a>) vs.&nbsp;70%+ on Verified, revealing substantial overfitting to public repos.</p>
 <p><strong>Key takeaway:</strong> The progress is real but benchmarks are being saturated. Evaluation is moving to harder, less contaminated tasks.</p>
 </section>
 <section id="swe-agent-2024" class="level3">
 <h3 class="anchored" data-anchor-id="swe-agent-2024">SWE-agent (2024)</h3>
 <p><strong>Yang et al.&nbsp;(Princeton NLP)</strong> · <a href="https://arxiv.org/abs/2405.15793">arXiv:2405.15793</a></p>
-<p>The benchmark-setting open-source coding agent. Uses Agent-Computer Interface (ACI) — a carefully designed shell environment for agents, with tools optimized for code understanding and editing. Achieved ~12% on SWE-bench full at release; seminal for the field.</p>
+<p>The benchmark-setting open-source coding agent. Uses Agent-Computer Interface (ACI) — a carefully designed shell environment for agents, with tools optimized for code understanding and editing. Achieved 12.5% on SWE-bench full at release (12.47% per the official leaderboard); seminal for the field.</p>
 <ul>
 <li><strong>GitHub:</strong> <a href="https://github.com/princeton-nlp/SWE-agent">princeton-nlp/SWE-agent</a> — 15k+ stars</li>
 </ul>
@@ -600,7 +600,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="manus-ai-mar-2025-acquired-by-meta-dec-2025" class="level3">
 <h3 class="anchored" data-anchor-id="manus-ai-mar-2025-acquired-by-meta-dec-2025">Manus AI (Mar 2025 → Acquired by Meta, Dec 2025)</h3>
-<p><strong>Butterfly Effect / Monica.im (China)</strong> · <a href="https://manus.im">manus.im</a> · <a href="https://arxiv.org/html/2505.02024v1">arXiv:2505.02024</a></p>
+<p><strong>Butterfly Effect / Monica.im (Singapore, Chinese-founded)</strong> · <a href="https://manus.im">manus.im</a> · <a href="https://arxiv.org/html/2505.02024v1">arXiv:2505.02024</a></p>
 <p>Launched March 2025 as a general-purpose autonomous agent capable of completing complex real-world tasks with minimal human intervention — writing and deploying code, conducting research, managing files. Described as a “turning point” in AI development for its fully autonomous operation. Acquired by Meta in December 2025.</p>
 </section>
 <section id="google-adk-gemini-agents" class="level3">
@@ -780,7 +780,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="metr-task-time-horizons-as-the-new-benchmark">METR: Task Time Horizons as the New Benchmark</h2>
 <p><strong>METR (Model Evaluation &amp; Threat Research)</strong> · <a href="https://metr.org/time-horizons/">metr.org/time-horizons</a></p>
 <p>METR proposed measuring agents not by task accuracy but by <strong>task time horizon</strong> — the longest task an agent can complete with 50% reliability. This reframing captures something accuracy-based benchmarks miss: can agents sustain coherent action over minutes, hours, or days?</p>
-<p><strong>Key findings (March 2025):</strong> - Claude 3.7 Sonnet: ~1 hour time horizon - GPT-5 (later 2025): ~2 hours 17 minutes - The time horizon has been <strong>doubling approximately every 7 months</strong> since 2019 - Extrapolation: agents capable of multi-day tasks within a few years</p>
+<p><strong>Key findings (March 2025):</strong> - Claude 3.7 Sonnet: ~50 minutes time horizon <em>(50%-task-completion time horizon, per arXiv:2503.14499)</em> - GPT-5 (later 2025): ~2 hours 17 minutes - The time horizon has been <strong>doubling approximately every 7 months</strong> since 2019 - Extrapolation: agents capable of multi-day tasks within a few years</p>
 <p>This metric directly maps to real-world utility. A 1-hour agent can do a coding task or research summary. A 24-hour agent could run a full experiment pipeline or manage a complex project.</p>
 <p>See <a href="./science-agents.html#metr-measuring-ai-ability-to-complete-long-tasks-2025">Science &amp; Research Agents →</a> for more.</p>
 <hr>
@@ -838,7 +838,7 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>The 2025 AI Agent Index</strong> (2026) — <a href="https://arxiv.org/abs/2602.17753">arXiv:2602.17753</a></li>
 <li><strong>AI Agent Systems: Architectures, Applications, and Evaluation</strong> (2026) — <a href="https://arxiv.org/abs/2601.01743">arXiv:2601.01743</a></li>
 <li><strong>GLM-5: From Vibe Coding to Agentic Engineering</strong> (GLM-5-Team, Zhipu AI &amp; Tsinghua University, 2026) — <a href="https://arxiv.org/abs/2602.15763">arXiv:2602.15763</a></li>
-<li><strong>Manus AI: Autonomous AI Agent Framework</strong> (Butterfly Effect / Monica.im, 2025) — <a href="https://arxiv.org/abs/2505.02024">arXiv:2505.02024</a></li>
+<li><strong>From Mind to Machine: The Rise of Manus AI as a Fully Autonomous Digital Agent</strong> (Yang et al., 2025; independent academic overview) — <a href="https://arxiv.org/abs/2505.02024">arXiv:2505.02024</a></li>
 </ul>
 </section>
 <section id="open-source-projects-frameworks" class="level3">
@@ -887,7 +887,7 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li><strong>MIT AI Agent Index</strong> (2025) — <a href="https://aiagentindex.mit.edu">aiagentindex.mit.edu</a>
 <ul>
-<li>Companion paper: <a href="https://arxiv.org/abs/2602.17753">arXiv:2602.17753</a></li>
+<li>Companion paper: <strong>The 2025 AI Agent Index</strong> (Staufer et al., 2026) — <a href="https://arxiv.org/abs/2602.17753">arXiv:2602.17753</a></li>
 </ul></li>
 <li><strong>Devin</strong> — <a href="https://cognition.ai">cognition.ai</a></li>
 <li><strong>Manus AI</strong> — <a href="https://manus.im">manus.im</a></li>
