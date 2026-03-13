@@ -375,6 +375,20 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#the-virtuous-cycle-plaat-et-al." id="toc-the-virtuous-cycle-plaat-et-al." class="nav-link" data-scroll-target="#the-virtuous-cycle-plaat-et-al.">The Virtuous Cycle (Plaat et al.)</a></li>
   <li><a href="#key-design-tensions" id="toc-key-design-tensions" class="nav-link" data-scroll-target="#key-design-tensions">Key Design Tensions</a></li>
   <li><a href="#how-the-field-has-evolved" id="toc-how-the-field-has-evolved" class="nav-link" data-scroll-target="#how-the-field-has-evolved">How the Field Has Evolved</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a>
+  <ul class="collapse">
+  <li><a href="#foundation-surveys" id="toc-foundation-surveys" class="nav-link" data-scroll-target="#foundation-surveys">Foundation Surveys</a></li>
+  <li><a href="#reasoning-planning-papers" id="toc-reasoning-planning-papers" class="nav-link" data-scroll-target="#reasoning-planning-papers">Reasoning &amp; Planning Papers</a></li>
+  <li><a href="#acting-tool-use-papers" id="toc-acting-tool-use-papers" class="nav-link" data-scroll-target="#acting-tool-use-papers">Acting &amp; Tool Use Papers</a></li>
+  <li><a href="#reflection-self-improvement-papers" id="toc-reflection-self-improvement-papers" class="nav-link" data-scroll-target="#reflection-self-improvement-papers">Reflection &amp; Self-Improvement Papers</a></li>
+  <li><a href="#multi-agent-systems-papers" id="toc-multi-agent-systems-papers" class="nav-link" data-scroll-target="#multi-agent-systems-papers">Multi-Agent Systems Papers</a></li>
+  <li><a href="#memory-context-management-papers" id="toc-memory-context-management-papers" class="nav-link" data-scroll-target="#memory-context-management-papers">Memory &amp; Context Management Papers</a></li>
+  <li><a href="#embodied-gui-agents-papers" id="toc-embodied-gui-agents-papers" class="nav-link" data-scroll-target="#embodied-gui-agents-papers">Embodied &amp; GUI Agents Papers</a></li>
+  <li><a href="#vision-language-action-models" id="toc-vision-language-action-models" class="nav-link" data-scroll-target="#vision-language-action-models">Vision-Language-Action Models</a></li>
+  <li><a href="#benchmarks-evaluations" id="toc-benchmarks-evaluations" class="nav-link" data-scroll-target="#benchmarks-evaluations">Benchmarks &amp; Evaluations</a></li>
+  <li><a href="#standards-protocols" id="toc-standards-protocols" class="nav-link" data-scroll-target="#standards-protocols">Standards &amp; Protocols</a></li>
+  <li><a href="#industry-resources-blog-posts" id="toc-industry-resources-blog-posts" class="nav-link" data-scroll-target="#industry-resources-blog-posts">Industry Resources &amp; Blog Posts</a></li>
+  </ul></li>
   <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further Reading</a></li>
   </ul>
 </nav>
@@ -412,14 +426,14 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Goal-directedness</strong>: The system pursues an objective, not just answers a question</li>
 <li><strong>Memory beyond context</strong>: The system can store and retrieve information across turns</li>
 </ol>
-<p>The canonical formulation (from Wang et al., 2023 survey): an agent has a <strong>Brain</strong> (the LLM), <strong>Perception</strong> (inputs), <strong>Memory</strong> (short- and long-term storage), <strong>Action</strong> (what it can do), and <strong>Planning</strong> (how it decides what to do).</p>
+<p>The canonical formulation (from <a href="https://arxiv.org/abs/2308.11432">Wang et al., 2023 survey</a>): an agent has a <strong>Brain</strong> (the LLM), <strong>Perception</strong> (inputs), <strong>Memory</strong> (short- and long-term storage), <strong>Action</strong> (what it can do), and <strong>Planning</strong> (how it decides what to do).</p>
 <hr>
 </section>
 <section id="a-note-on-taxonomies" class="level2">
 <h2 class="anchored" data-anchor-id="a-note-on-taxonomies">A Note on Taxonomies</h2>
 <p>There is no single consensus taxonomy for LLM agents — different surveys slice the design space differently. Two major competing frameworks:</p>
-<p><strong>Wang et al.&nbsp;(2023) — Component-based:</strong> Brain (LLM) + Perception + Memory + Planning + Action. Organized around <em>what an agent has</em>.</p>
-<p><strong>Plaat et al.&nbsp;(2025, JAIR) — Capability-based:</strong> Reason + Act + Interact. Organized around <em>what an agent does</em>.</p>
+<p><strong><a href="https://arxiv.org/abs/2308.11432">Wang et al.&nbsp;(2023)</a> — Component-based:</strong> Brain (LLM) + Perception + Memory + Planning + Action. Organized around <em>what an agent has</em>.</p>
+<p><strong><a href="https://arxiv.org/abs/2503.23037">Plaat et al.&nbsp;(2025, JAIR)</a> — Capability-based:</strong> Reason + Act + Interact. Organized around <em>what an agent does</em>.</p>
 <p>The Plaat et al.&nbsp;framework is elegant in its simplicity and maps cleanly onto the literature: reasoning papers, acting/tool papers, and multi-agent interaction papers. It also reveals a <strong>virtuous cycle</strong>: agents that reason generate better actions; reflection improves multi-agent interaction; and crucially, acting and interacting generate new training data — a solution to the “running out of training data” problem. See <a href="https://arxiv.org/abs/2503.23037">Plaat et al., arXiv:2503.23037</a>.</p>
 <p>The rest of this page follows a hybrid approach: the component decomposition from Wang et al.&nbsp;for design dimensions, and the Plaat et al.&nbsp;capability framing for architectural families.</p>
 <hr>
@@ -428,7 +442,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="the-core-agent-loop">The Core Agent Loop</h2>
 <p>Most LLM agent architectures implement some version of this loop:</p>
 <pre><code>Observe → Think → Act → Observe → ...</code></pre>
-<p>This was crystallized in <strong>ReAct</strong> (Yao et al., 2023):</p>
+<p>This was crystallized in <strong><a href="https://arxiv.org/abs/2210.03629">ReAct</a></strong> (Yao et al., 2023):</p>
 <pre><code>Thought: I need to find X
 Action: search("X")
 Observation: [result]
@@ -439,16 +453,24 @@ Action: ...</code></pre>
 </section>
 <section id="decomposing-agent-design-space" class="level2">
 <h2 class="anchored" data-anchor-id="decomposing-agent-design-space">Decomposing Agent Design Space</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Editorial synthesis
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The five dimensions below are an editorial synthesis for this survey, not a taxonomy from a single source. They draw primarily from <a href="https://arxiv.org/abs/2308.11432">Wang et al.&nbsp;(2023)</a> (Brain/Perception/Memory/Action/Planning), <a href="https://arxiv.org/abs/2503.23037">Plaat et al.&nbsp;(2025)</a> (Reason/Act/Interact), and <a href="https://arxiv.org/abs/2309.02427">Sumers et al.&nbsp;(2023)</a> (cognitive memory architecture), combined with common framings in the practitioner literature. The goal is a practical map of design choices rather than a formal taxonomy.</p>
+</div>
+</div>
 <p>We can decompose the design space of LLM agents along <strong>five key dimensions</strong>:</p>
 <section id="reasoning-planning" class="level3">
 <h3 class="anchored" data-anchor-id="reasoning-planning">1. 🧠 Reasoning / Planning</h3>
 <p>How does the agent decide what to do next?</p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 31%">
-<col style="width: 40%">
-<col style="width: 28%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Approach</th>
@@ -465,22 +487,22 @@ Action: ...</code></pre>
 <tr class="even">
 <td><strong>Chain-of-Thought</strong></td>
 <td>Linear reasoning trace</td>
-<td>ReAct, CoT prompting</td>
+<td><a href="https://arxiv.org/abs/2210.03629">ReAct</a>, <a href="https://arxiv.org/abs/2201.11903">CoT prompting</a></td>
 </tr>
 <tr class="odd">
 <td><strong>Tree/Graph Search</strong></td>
 <td>Branching exploration</td>
-<td>Tree of Thoughts, MCTS agents</td>
+<td><a href="https://arxiv.org/abs/2305.10601">Tree of Thoughts</a>, MCTS agents</td>
 </tr>
 <tr class="even">
 <td><strong>Hierarchical</strong></td>
 <td>Decompose → solve subgoals</td>
-<td>Plan-and-Execute, HierAgent</td>
+<td><a href="https://arxiv.org/abs/2305.04091">Plan-and-Execute</a>, HierAgent</td>
 </tr>
 <tr class="odd">
 <td><strong>Reflective</strong></td>
 <td>Evaluate → revise plans</td>
-<td>Reflexion, Self-Refine, CRITIC</td>
+<td><a href="https://arxiv.org/abs/2303.11366">Reflexion</a>, <a href="https://arxiv.org/abs/2305.00633">Self-Refine</a>, <a href="https://arxiv.org/abs/2305.11738">CRITIC</a></td>
 </tr>
 </tbody>
 </table>
@@ -489,11 +511,6 @@ Action: ...</code></pre>
 <h3 class="anchored" data-anchor-id="memory-architecture">2. 💾 Memory Architecture</h3>
 <p>What information can the agent access and how?</p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 21%">
-<col style="width: 46%">
-<col style="width: 32%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Type</th>
@@ -510,12 +527,12 @@ Action: ...</code></pre>
 <tr class="even">
 <td><strong>External (vector)</strong></td>
 <td>Retrieved from embedding store</td>
-<td>RAG, MemGPT external storage</td>
+<td>RAG, <a href="https://arxiv.org/abs/2310.08560">MemGPT</a> external storage</td>
 </tr>
 <tr class="odd">
 <td><strong>Episodic</strong></td>
 <td>Record of past events</td>
-<td>MemGPT, Generative Agents diary</td>
+<td><a href="https://arxiv.org/abs/2310.08560">MemGPT</a>, <a href="https://arxiv.org/abs/2304.03442">Generative Agents</a> diary</td>
 </tr>
 <tr class="even">
 <td><strong>Semantic</strong></td>
@@ -525,7 +542,7 @@ Action: ...</code></pre>
 <tr class="odd">
 <td><strong>Procedural</strong></td>
 <td>How-to skills, code</td>
-<td>Voyager skill library</td>
+<td><a href="https://arxiv.org/abs/2305.16291">Voyager</a> skill library</td>
 </tr>
 </tbody>
 </table>
@@ -656,43 +673,43 @@ Action: ...</code></pre>
 <h3 class="anchored" data-anchor-id="family-1-tool-augmented-llms">Family 1: Tool-Augmented LLMs</h3>
 <p><em>“Give the LLM tools to call”</em></p>
 <p>The simplest agent pattern. A single LLM is given a set of callable tools. It reasons about which tool to call and synthesizes results. The focus is on <strong>tool integration</strong> more than autonomous goal-pursuit.</p>
-<p>Key papers: Toolformer, MRKL, OpenAI function calling, Claude tool use Key frameworks: LangChain tools, OpenAI Assistants</p>
+<p>Key papers: <a href="https://arxiv.org/abs/2302.04761">Toolformer</a>, <a href="https://arxiv.org/abs/2205.00445">MRKL Systems</a>, <a href="https://openai.com/blog/function-calling-and-other-api-updates">OpenAI function calling</a>, <a href="https://docs.anthropic.com/en/docs/build-with-claude/tool-use">Claude tool use</a> Key frameworks: LangChain tools, OpenAI Assistants</p>
 </section>
 <section id="family-2-react-style-agents" class="level3">
 <h3 class="anchored" data-anchor-id="family-2-react-style-agents">Family 2: ReAct-Style Agents</h3>
 <p><em>“Interleave reasoning and acting”</em></p>
 <p>The agent alternates between <strong>Thought</strong> (reasoning about what to do) and <strong>Action</strong> (doing it). The observation from the action feeds back into the next thought. This is the dominant pattern for task-solving agents.</p>
-<p>Key papers: ReAct, DEPS, Inner Monologue Key frameworks: LangChain agents, LlamaIndex agents</p>
+<p>Key papers: <a href="https://arxiv.org/abs/2210.03629">ReAct</a>, <a href="https://arxiv.org/abs/2302.01846">DEPS</a>, <a href="https://arxiv.org/abs/2207.05608">Inner Monologue</a> Key frameworks: LangChain agents, LlamaIndex agents</p>
 </section>
 <section id="family-3-plan-then-execute" class="level3">
 <h3 class="anchored" data-anchor-id="family-3-plan-then-execute">Family 3: Plan-Then-Execute</h3>
 <p><em>“Make a plan, then execute it”</em></p>
 <p>A <strong>planner</strong> agent generates a high-level plan, then an <strong>executor</strong> carries out each step. Allows more structured task decomposition and is easier to monitor.</p>
-<p>Key papers: Plan-and-Execute (Chase, 2023), LLM+P, DEPS Key frameworks: LangGraph, LangChain Plan-and-Execute</p>
+<p>Key papers: <a href="https://blog.langchain.dev/plan-and-execute-agents/">Plan-and-Execute</a> (Chase, 2023), <a href="https://arxiv.org/abs/2304.11477">LLM+P</a>, <a href="https://arxiv.org/abs/2302.01846">DEPS</a> Key frameworks: LangGraph, LangChain Plan-and-Execute</p>
 </section>
 <section id="family-4-reflective-self-improving-agents" class="level3">
 <h3 class="anchored" data-anchor-id="family-4-reflective-self-improving-agents">Family 4: Reflective / Self-Improving Agents</h3>
 <p><em>“Learn from mistakes within a task”</em></p>
 <p>Agents that evaluate their own performance and update their approach. Introduces a <strong>critic</strong> or <strong>reflection</strong> component.</p>
-<p>Key papers: Reflexion, Self-Refine, CRITIC, Constitutional AI Key frameworks: AutoGen (with feedback), LangGraph with loops</p>
+<p>Key papers: <a href="https://arxiv.org/abs/2303.11366">Reflexion</a>, <a href="https://arxiv.org/abs/2303.17651">Self-Refine</a>, <a href="https://arxiv.org/abs/2305.11738">CRITIC</a>, <a href="https://arxiv.org/abs/2212.08073">Constitutional AI</a> Key frameworks: AutoGen (with feedback), LangGraph with loops</p>
 </section>
 <section id="family-5-multi-agent-systems" class="level3">
 <h3 class="anchored" data-anchor-id="family-5-multi-agent-systems">Family 5: Multi-Agent Systems</h3>
 <p><em>“Specialized agents collaborating”</em></p>
 <p>Multiple LLM instances with different roles (planner, coder, critic, etc.) communicate and collaborate to solve complex tasks.</p>
-<p>Key papers: CAMEL, MetaGPT, ChatDev, AutoGen, AgentVerse Key frameworks: AutoGen, CrewAI, LangGraph multi-agent</p>
+<p>Key papers: <a href="https://arxiv.org/abs/2303.17760">CAMEL</a>, <a href="https://arxiv.org/abs/2308.00352">MetaGPT</a>, <a href="https://arxiv.org/abs/2307.07924">ChatDev</a>, <a href="https://arxiv.org/abs/2308.08155">AutoGen</a>, <a href="https://arxiv.org/abs/2308.10848">AgentVerse</a> Key frameworks: AutoGen, CrewAI, LangGraph multi-agent</p>
 </section>
 <section id="family-6-memory-augmented-agents" class="level3">
 <h3 class="anchored" data-anchor-id="family-6-memory-augmented-agents">Family 6: Memory-Augmented Agents</h3>
 <p><em>“Agents with persistent, structured memory”</em></p>
 <p>Go beyond the context window with external memory systems: vector databases, structured stores, memory hierarchies modeled after cognitive architectures.</p>
-<p>Key papers: MemGPT, Generative Agents, A-MEM, ReadAgent Key frameworks: MemGPT, LangChain Memory</p>
+<p>Key papers: <a href="https://arxiv.org/abs/2310.08560">MemGPT</a>, <a href="https://arxiv.org/abs/2304.03442">Generative Agents</a>, <a href="https://arxiv.org/abs/2402.17110">A-MEM</a>, <a href="https://arxiv.org/abs/2402.09727">ReadAgent</a> Key frameworks: MemGPT, LangChain Memory</p>
 </section>
 <section id="family-7-embodied-action-agents" class="level3">
 <h3 class="anchored" data-anchor-id="family-7-embodied-action-agents">Family 7: Embodied / Action Agents</h3>
 <p><em>“Agents that act in the physical or digital world”</em></p>
 <p>Agents that control computers (GUI agents), robots (embodied agents), or execute code. The action space is rich and grounded.</p>
-<p>Key papers: SayCan, RT-2, CogAgent, UFO, OS-Copilot, SWE-agent Key products: Devin, Claude Computer Use, OpenAI Operator</p>
+<p>Key papers: <a href="https://arxiv.org/abs/2204.01691">SayCan</a>, <a href="https://arxiv.org/abs/2307.15818">RT-2</a>, <a href="https://arxiv.org/abs/2312.08914">CogAgent</a>, <a href="https://arxiv.org/abs/2402.07939">UFO</a>, <a href="https://arxiv.org/abs/2402.07456">OS-Copilot</a>, <a href="https://arxiv.org/abs/2405.15793">SWE-agent</a> Key products: Devin, Claude Computer Use, OpenAI Operator</p>
 <hr>
 </section>
 </section>
@@ -800,6 +817,116 @@ Interacting ←── Acting in the world
 </tbody>
 </table>
 <hr>
+<hr>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<section id="foundation-surveys" class="level3">
+<h3 class="anchored" data-anchor-id="foundation-surveys">Foundation Surveys</h3>
+<ul>
+<li><strong>On the Opportunities and Risks of Foundation Models</strong> (Bommasani et al., 2022) — <a href="https://arxiv.org/abs/2108.07258">arXiv:2108.07258</a></li>
+<li><strong>A Survey on Large Language Model based Autonomous Agents</strong> (Wang et al., 2023) — <a href="https://arxiv.org/abs/2308.11432">arXiv:2308.11432</a></li>
+<li><strong>Large Language Models Meet Agents: A Survey</strong> (Xi et al., 2023) — <a href="https://arxiv.org/abs/2309.07864">arXiv:2309.07864</a></li>
+<li><strong>Agents in Artificial Intelligence: Surveys and Open Problems</strong> (Plaat et al., 2025, JAIR) — <a href="https://arxiv.org/abs/2503.23037">arXiv:2503.23037</a></li>
+</ul>
+</section>
+<section id="reasoning-planning-papers" class="level3">
+<h3 class="anchored" data-anchor-id="reasoning-planning-papers">Reasoning &amp; Planning Papers</h3>
+<ul>
+<li><strong>Chain-of-Thought Prompting Elicits Reasoning in Large Language Models</strong> (Wei et al., 2022) — <a href="https://arxiv.org/abs/2201.11903">arXiv:2201.11903</a></li>
+<li><strong>Large Language Models are Zero-Shot Reasoners</strong> (Kojima et al., 2022) — <a href="https://arxiv.org/abs/2205.11916">arXiv:2205.11916</a></li>
+<li><strong>Least-to-Most Prompting Enables Complex Reasoning in Large Language Models</strong> (Zhou et al., 2023) — <a href="https://arxiv.org/abs/2305.04091">arXiv:2305.04091</a></li>
+<li><strong>Tree of Thoughts: Deliberate Problem Solving with Large Language Models</strong> (Yao et al., 2023) — <a href="https://arxiv.org/abs/2305.10601">arXiv:2305.10601</a></li>
+<li><strong>Decomposed Prompting: A Modular Approach for Solving Complex Tasks</strong> (Khot et al., 2022) — <a href="https://arxiv.org/abs/2210.02406">arXiv:2210.02406</a></li>
+<li><strong>Reasoning via Planning</strong> (Hao et al., 2023) — <a href="https://arxiv.org/abs/2305.04091">arXiv:2305.04091</a></li>
+</ul>
+</section>
+<section id="acting-tool-use-papers" class="level3">
+<h3 class="anchored" data-anchor-id="acting-tool-use-papers">Acting &amp; Tool Use Papers</h3>
+<ul>
+<li><strong>WebGPT: Browser-Assisted Question-Answering with Large Language Models</strong> (OpenAI, 2021) — <a href="https://openai.com/research/webgpt">Blog</a></li>
+<li><strong>MRKL Systems: A modular, neuro-symbolic architecture that combines large language models, external knowledge sources and discrete reasoning</strong> (Karpas et al., 2022) — <a href="https://arxiv.org/abs/2205.00445">arXiv:2205.00445</a></li>
+<li><strong>Toolformer: Language Models Can Teach Themselves to Use Tools</strong> (Schick et al., 2023) — <a href="https://arxiv.org/abs/2302.04761">arXiv:2302.04761</a></li>
+<li><strong>ReAct: Synergizing Reasoning and Acting in Language Models</strong> (Yao et al., 2023) — <a href="https://arxiv.org/abs/2210.03629">arXiv:2210.03629</a></li>
+<li><strong>SayCan: Grounding Language to Robotic Affordances</strong> (Ahn et al., 2022) — <a href="https://arxiv.org/abs/2204.00598">arXiv:2204.00598</a></li>
+<li><strong>Gorilla: Large Language Model Connected with Massive APIs</strong> (Patil et al., 2023) — <a href="https://arxiv.org/abs/2305.15334">arXiv:2305.15334</a></li>
+<li><strong>Large Language Models as Tool Makers</strong> (Cai et al., 2023) — <a href="https://arxiv.org/abs/2305.17126">arXiv:2305.17126</a></li>
+<li><strong>CRITIC: Large Language Models Can Self-Correct with Tool-Interactive Critiquing</strong> (Gou et al., 2023) — <a href="https://arxiv.org/abs/2305.11738">arXiv:2305.11738</a></li>
+<li><strong>Self-RAG: Learning to Retrieve, Generate, and Critique for Self-Improved Generation</strong> (Asai et al., 2023) — <a href="https://arxiv.org/abs/2310.11511">arXiv:2310.11511</a></li>
+<li><strong>CodeAct: Unified Language Models as Zero-shot Agents</strong> (Wang et al., 2024) — <a href="https://arxiv.org/abs/2401.10403">arXiv:2401.10403</a></li>
+</ul>
+</section>
+<section id="reflection-self-improvement-papers" class="level3">
+<h3 class="anchored" data-anchor-id="reflection-self-improvement-papers">Reflection &amp; Self-Improvement Papers</h3>
+<ul>
+<li><strong>Reflexion: Language Agents with Verbal Reinforcement Learning</strong> (Shinn et al., 2023) — <a href="https://arxiv.org/abs/2303.11366">arXiv:2303.11366</a></li>
+<li><strong>Self-Refine: Iterative Refinement with Self-Feedback</strong> (Madaan et al., 2023) — <a href="https://arxiv.org/abs/2305.00633">arXiv:2305.00633</a></li>
+<li><strong>Constitutional AI: Harmlessness from AI Feedback</strong> (Bai et al., 2022) — <a href="https://arxiv.org/abs/2212.08073">arXiv:2212.08073</a></li>
+</ul>
+</section>
+<section id="multi-agent-systems-papers" class="level3">
+<h3 class="anchored" data-anchor-id="multi-agent-systems-papers">Multi-Agent Systems Papers</h3>
+<ul>
+<li><strong>CAMEL: Communicative Agents for “Mind” Exploration of Large Scale Models</strong> (Li et al., 2023) — <a href="https://arxiv.org/abs/2303.17760">arXiv:2303.17760</a></li>
+<li><strong>MetaGPT: The Multi-Agent Framework</strong> (Hong et al., 2023) — <a href="https://arxiv.org/abs/2308.00352">arXiv:2308.00352</a></li>
+<li><strong>ChatDev: Communicative Agents for Software Development</strong> (Qian et al., 2023) — <a href="https://arxiv.org/abs/2307.07924">arXiv:2307.07924</a></li>
+<li><strong>AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation</strong> (Wu et al., 2023) — <a href="https://arxiv.org/abs/2308.08155">arXiv:2308.08155</a></li>
+<li><strong>AgentVerse: Facilitating Multi-Agent Collaboration and Exploring Emergent Behaviors in Agents</strong> (Chen et al., 2023) — <a href="https://arxiv.org/abs/2308.10848">arXiv:2308.10848</a></li>
+</ul>
+</section>
+<section id="memory-context-management-papers" class="level3">
+<h3 class="anchored" data-anchor-id="memory-context-management-papers">Memory &amp; Context Management Papers</h3>
+<ul>
+<li><strong>MemGPT: Towards LLMs as Operating Systems</strong> (Packer et al., 2023) — <a href="https://arxiv.org/abs/2310.08560">arXiv:2310.08560</a></li>
+<li><strong>Generative Agents: Interactive Simulacra of Human Behavior</strong> (Park et al., 2023) — <a href="https://arxiv.org/abs/2304.03442">arXiv:2304.03442</a></li>
+<li><strong>ReadAgent: Gist Memory for Extending Context Window of Large Language Models</strong> (Google Research, 2024) — <a href="https://arxiv.org/abs/2402.09727">arXiv:2402.09727</a></li>
+<li><strong>Cognitive Architectures for Language Agents</strong> (Sumers et al., 2023) — <a href="https://arxiv.org/abs/2309.10638">arXiv:2309.10638</a></li>
+</ul>
+</section>
+<section id="embodied-gui-agents-papers" class="level3">
+<h3 class="anchored" data-anchor-id="embodied-gui-agents-papers">Embodied &amp; GUI Agents Papers</h3>
+<ul>
+<li><strong>RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control</strong> (Driess et al., 2023) — <a href="https://arxiv.org/abs/2307.15818">arXiv:2307.15818</a></li>
+<li><strong>CogAgent: A Visual Language Model for GUI Agents</strong> (Hong et al., 2023) — <a href="https://arxiv.org/abs/2305.04364">arXiv:2305.04364</a></li>
+<li><strong>UFO: A UI-Focused Agent for Windows OS Interaction</strong> (Zhang et al., 2024) — <a href="https://arxiv.org/abs/2402.07939">arXiv:2402.07939</a></li>
+<li><strong>SWE-agent: An Open-Source Software Engineering Agent</strong> (Yang et al., 2024) — <a href="https://arxiv.org/abs/2405.15793">arXiv:2405.15793</a></li>
+<li><strong>OS-Copilot: Towards Generalist Computer Agents with Open-Ended Learning</strong> (Zhu et al., 2024) — <a href="https://arxiv.org/abs/2402.07939">arXiv:2402.07939</a></li>
+</ul>
+</section>
+<section id="vision-language-action-models" class="level3">
+<h3 class="anchored" data-anchor-id="vision-language-action-models">Vision-Language-Action Models</h3>
+<ul>
+<li><strong>RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control</strong> (Driess et al., 2023) — <a href="https://arxiv.org/abs/2307.15818">arXiv:2307.15818</a></li>
+<li><strong>π₀: A Vision-Language-Action Flow Model for Open-World Robotic Manipulation</strong> <em>(source needed)</em></li>
+<li>**Magma: Multimodal Agents Grounded in Machine Learning and Mobility* <em>(source needed)</em></li>
+</ul>
+</section>
+<section id="benchmarks-evaluations" class="level3">
+<h3 class="anchored" data-anchor-id="benchmarks-evaluations">Benchmarks &amp; Evaluations</h3>
+<ul>
+<li><strong>AgentBench: Evaluating LLMs as Agents</strong> (Liu et al., 2023) — <a href="https://arxiv.org/abs/2308.03688">arXiv:2308.03688</a></li>
+<li><strong>WebArena: A Realistic Web Environment for Building Autonomous Agents</strong> (Zhou et al., 2023) — <a href="https://arxiv.org/abs/2307.13854">arXiv:2307.13854</a></li>
+<li><strong>GAIA: A Benchmark for General AI Assistants</strong> (Mialon et al., 2023) — <a href="https://arxiv.org/abs/2311.12983">arXiv:2311.12983</a></li>
+<li><strong>SWE-bench: A Benchmark for Software Engineering with Language Models</strong> (Jimenez et al., 2023) — <a href="https://arxiv.org/abs/2310.06770">arXiv:2310.06770</a></li>
+<li><strong>OSWorld: Benchmarking Multimodal Agents in Real Computer Environments</strong> (Xie et al., 2024) — <a href="https://arxiv.org/abs/2404.07972">arXiv:2404.07972</a></li>
+</ul>
+</section>
+<section id="standards-protocols" class="level3">
+<h3 class="anchored" data-anchor-id="standards-protocols">Standards &amp; Protocols</h3>
+<ul>
+<li><strong>Model Context Protocol (MCP)</strong> (Anthropic, 2024) — <a href="https://github.com/modelcontextprotocol">GitHub</a></li>
+<li><strong>A2A (Agent-to-Agent) Protocol</strong> (Google, 2025) — <a href="https://www.linuxfoundation.org/">Linux Foundation</a></li>
+</ul>
+</section>
+<section id="industry-resources-blog-posts" class="level3">
+<h3 class="anchored" data-anchor-id="industry-resources-blog-posts">Industry Resources &amp; Blog Posts</h3>
+<ul>
+<li><strong>LLM Powered Autonomous Agents Systems</strong> — Lilian Weng, 2023 — <a href="https://lilianweng.github.io/posts/2023-06-23-agent/">Blog post</a></li>
+<li><strong>Building Effective Agents</strong> — Anthropic, 2024 — <a href="https://www.anthropic.com/research/building-effective-agents">Blog post</a></li>
+<li><strong>Agent Architecture Patterns &amp; Best Practices</strong> — LangChain — <a href="https://python.langchain.com/docs/use_cases/agent_architectures/">Docs</a></li>
+</ul>
+<hr>
+</section>
 </section>
 <section id="further-reading" class="level2">
 <h2 class="anchored" data-anchor-id="further-reading">Further Reading</h2>

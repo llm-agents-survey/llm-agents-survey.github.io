@@ -76,7 +76,7 @@ If you're new to LLM agents, start with these:
 | LangChain | [github.com/langchain-ai/langchain](https://github.com/langchain-ai/langchain) | Full-stack agent framework |
 | LangGraph | [github.com/langchain-ai/langgraph](https://github.com/langchain-ai/langgraph) | Graph-based agent workflows |
 | AutoGen | [github.com/microsoft/autogen](https://github.com/microsoft/autogen) | Multi-agent conversation |
-| CrewAI | [github.com/joaomdmoura/crewAI](https://github.com/joaomdmoura/crewAI) | Role-based agent crews |
+| CrewAI | [github.com/crewAIInc/crewAI](https://github.com/crewAIInc/crewAI) | Role-based agent crews |
 | SWE-agent | [github.com/princeton-nlp/SWE-agent](https://github.com/princeton-nlp/SWE-agent) | GitHub issue resolution |
 | OpenDevin | [github.com/All-Hands-AI/OpenHands](https://github.com/All-Hands-AI/OpenHands) | Open software dev agent |
 | DSPy | [github.com/stanfordnlp/dspy](https://github.com/stanfordnlp/dspy) | Programming language models |

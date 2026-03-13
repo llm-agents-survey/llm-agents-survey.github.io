@@ -375,6 +375,15 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#babyagi-2023" id="toc-babyagi-2023" class="nav-link" data-scroll-target="#babyagi-2023">BabyAGI (2023)</a></li>
   </ul></li>
   <li><a href="#standard-agent-decomposition" id="toc-standard-agent-decomposition" class="nav-link" data-scroll-target="#standard-agent-decomposition">Standard Agent Decomposition</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a>
+  <ul class="collapse">
+  <li><a href="#survey-papers" id="toc-survey-papers" class="nav-link" data-scroll-target="#survey-papers">Survey Papers</a></li>
+  <li><a href="#core-foundational-papers-1" id="toc-core-foundational-papers-1" class="nav-link" data-scroll-target="#core-foundational-papers-1">Core Foundational Papers</a></li>
+  <li><a href="#browser-web-based-agents" id="toc-browser-web-based-agents" class="nav-link" data-scroll-target="#browser-web-based-agents">Browser &amp; Web-Based Agents</a></li>
+  <li><a href="#multi-modal-embodied-agents" id="toc-multi-modal-embodied-agents" class="nav-link" data-scroll-target="#multi-modal-embodied-agents">Multi-Modal &amp; Embodied Agents</a></li>
+  <li><a href="#open-ended-lifelong-learning" id="toc-open-ended-lifelong-learning" class="nav-link" data-scroll-target="#open-ended-lifelong-learning">Open-Ended &amp; Lifelong Learning</a></li>
+  <li><a href="#landmark-agents-non-academic" id="toc-landmark-agents-non-academic" class="nav-link" data-scroll-target="#landmark-agents-non-academic">Landmark Agents (Non-Academic)</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -595,9 +604,59 @@ Action: finish("approximately 68 million")</code></pre>
 </tbody>
 </table>
 <hr>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<section id="survey-papers" class="level3">
+<h3 class="anchored" data-anchor-id="survey-papers">Survey Papers</h3>
+<ul>
+<li><strong>A Survey on Large Language Model based Autonomous Agents</strong> (Wang et al., 2023) — <a href="https://arxiv.org/abs/2308.11432">arXiv:2308.11432</a> — <em>Frontiers of Computer Science, 2024</em> — Comprehensive 200+ paper survey with unified Brain-Perception-Memory-Action framework</li>
+<li><strong>The Rise and Potential of Large Language Model Based Agents</strong> (Xi et al., 2023) — <a href="https://arxiv.org/abs/2309.07864">arXiv:2309.07864</a> — <em>Science China Information Sciences, 2025</em> — 86-page survey with philosophical grounding and multi-agent coordination</li>
+<li><strong>Agent AI: Surveying the Horizons of Multimodal Interaction</strong> (Durante et al., 2024) — <a href="https://arxiv.org/abs/2401.03568">arXiv:2401.03568</a> — Bridges language-only and embodied agents across text, vision, and action</li>
+<li><strong>Large Language Model Agent: A Survey on Methodology, Applications and Challenges</strong> (Luo et al., 2025) — <a href="https://arxiv.org/abs/2503.21460">arXiv:2503.21460</a> — Latest comprehensive survey with structured methodology taxonomy</li>
+<li><strong>Agentic Large Language Models: A Survey</strong> (Plaat, van Duijn, van Stein, Preuss, van der Putten, Batenburg, 2025) — <a href="https://arxiv.org/abs/2503.23037">arXiv:2503.23037</a> — <em>Journal of Artificial Intelligence Research, Vol. 84, December 2025</em> — Distinctive Reason–Act–Interact taxonomy with virtuous cycle framing — <a href="https://askeplaat.github.io/agentic-llm-survey-site/">companion website</a></li>
+<li><strong>Cognitive Architectures for Language Agents</strong> (Sumers et al., 2023) — <a href="https://arxiv.org/abs/2309.02427">arXiv:2309.02427</a> — <em>TMLR 2024</em> — Grounds agent design in cognitive science with four-part memory model</li>
+</ul>
+</section>
+<section id="core-foundational-papers-1" class="level3">
+<h3 class="anchored" data-anchor-id="core-foundational-papers-1">Core Foundational Papers</h3>
+<ul>
+<li><strong>ReAct: Synergizing Reasoning and Acting in Language Models</strong> (Yao et al., 2022) — <a href="https://arxiv.org/abs/2210.03629">arXiv:2210.03629</a> — <em>ICLR 2023</em> — Most cited agent paper; introduces interleaved reasoning-action loop</li>
+<li><strong>Chain-of-Thought Prompting Elicits Reasoning in Large Language Models</strong> (Wei et al., 2022) — <a href="https://arxiv.org/abs/2201.11903">arXiv:2201.11903</a> — <em>NeurIPS 2022</em> — Foundational work showing step-by-step reasoning improves LLM performance</li>
+<li><strong>Toolformer: Language Models Can Teach Themselves to Use Tools</strong> (Schick et al., 2023) — <a href="https://arxiv.org/abs/2302.04761">arXiv:2302.04761</a> — Self-supervised tool learning without large annotated datasets</li>
+<li><strong>MRKL Systems: A modular, neuro-symbolic architecture that combines large language models, external knowledge sources and discrete reasoning</strong> (Karpas et al., 2022) — <a href="https://arxiv.org/abs/2205.00445">arXiv:2205.00445</a> — Early modular AI vision with LLM as orchestrator</li>
+</ul>
+</section>
+<section id="browser-web-based-agents" class="level3">
+<h3 class="anchored" data-anchor-id="browser-web-based-agents">Browser &amp; Web-Based Agents</h3>
+<ul>
+<li><strong>WebGPT: Browser-Assisted Question Answering with Human Feedback</strong> (Nakano et al., 2021) — <a href="https://arxiv.org/abs/2112.09332">arXiv:2112.09332</a> — Pioneering web-browsing agents with RLHF training</li>
+</ul>
+</section>
+<section id="multi-modal-embodied-agents" class="level3">
+<h3 class="anchored" data-anchor-id="multi-modal-embodied-agents">Multi-Modal &amp; Embodied Agents</h3>
+<ul>
+<li><strong>HuggingGPT: Solving AI Tasks with ChatGPT and its Friends in Hugging Face</strong> (Shen et al., 2023) — <a href="https://arxiv.org/abs/2303.17580">arXiv:2303.17580</a> — <em>NeurIPS 2023</em> — LLM orchestration of 100s of specialized ML models — <a href="https://github.com/microsoft/JARVIS">GitHub: microsoft/JARVIS</a></li>
+<li><strong>Grounding Language to Affordances for Robotic Task Learning</strong> (Ahn et al., 2022) — <a href="https://arxiv.org/abs/2204.01691">arXiv:2204.01691</a> — <em>CoRL 2022</em> — Combines LLMs with robotic affordances for embodied planning</li>
+</ul>
+</section>
+<section id="open-ended-lifelong-learning" class="level3">
+<h3 class="anchored" data-anchor-id="open-ended-lifelong-learning">Open-Ended &amp; Lifelong Learning</h3>
+<ul>
+<li><strong>Voyager: An Open-Ended Embodied Agent with Large Language Models</strong> (Wang et al., 2023) — <a href="https://arxiv.org/abs/2305.16291">arXiv:2305.16291</a> — Autonomous Minecraft agent with skill library and curriculum learning</li>
+</ul>
+</section>
+<section id="landmark-agents-non-academic" class="level3">
+<h3 class="anchored" data-anchor-id="landmark-agents-non-academic">Landmark Agents (Non-Academic)</h3>
+<ul>
+<li><strong>AutoGPT</strong> (Toran Bruce Richards / Significant Gravitas, 2023) — <a href="https://github.com/Significant-Gravitas/AutoGPT">GitHub: Significant-Gravitas/AutoGPT</a> — Fully autonomous agent demonstrating goal pursuit and web integration</li>
+<li><strong>BabyAGI</strong> (Yohei Nakajima, 2023) — <a href="https://github.com/yoheinakajima/babyagi">GitHub: yoheinakajima/babyagi</a> — Minimalist task management agent with emergent behaviors</li>
+</ul>
+<hr>
 <p><em>For a full chronological view of the field, see the <a href="./timeline.html">Timeline →</a>. Continue to <a href="./reasoning.html">Reasoning &amp; Planning →</a></em></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

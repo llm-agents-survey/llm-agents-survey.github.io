@@ -51,7 +51,7 @@ Created specifically to address contamination. Issues come from private reposito
 Reveals the extent to which SWE-bench public scores reflect memorization vs. generalization.
 
 ### HumanEval (2021)
-**Chen et al. (OpenAI)** · Python function completion from docstrings. Early coding benchmark, largely saturated by 2024 but still used for baseline comparisons.
+**Chen et al. (OpenAI)** · [github.com/openai/human-eval](https://github.com/openai/human-eval) · Python function completion from docstrings. Early coding benchmark, largely saturated by 2024 but still used for baseline comparisons.
 
 ### Aider Coding Leaderboard
 **[aider.chat/docs/leaderboards](https://aider.chat/docs/leaderboards)**

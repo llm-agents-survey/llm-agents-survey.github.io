@@ -194,9 +194,9 @@ First major LLM provider to offer native computer control. Spawned the browser-u
 
 ### Code Execution Agents
 
-**OpenHands / OpenDevin** — Full dev environment with terminal, browser, editor  
-**SWE-agent** — GitHub issue resolution with purpose-built ACI  
-**Aider** — Human-in-the-loop coding with git integration
+**[OpenHands / OpenDevin](https://github.com/All-Hands-AI/OpenHands)** — Full dev environment with terminal, browser, editor  
+**[SWE-agent](https://github.com/princeton-nlp/SWE-agent)** — GitHub issue resolution with purpose-built ACI  
+**[Aider](https://github.com/paul-gauthier/aider)** — Human-in-the-loop coding with git integration
 
 ### Embodied / Robotics Agents
 

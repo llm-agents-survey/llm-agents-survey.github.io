@@ -228,7 +228,7 @@ A planner agent generates a structured plan; executor agents carry it out. Clean
 Adds a critic/reviewer agent that evaluates outputs and sends feedback. Used in MetaGPT, ChatDev.
 
 ### Pattern 3: Hub and Spoke
-One orchestrator agent routes tasks to specialist agents. The hub maintains context; spokes are stateless workers. Used in HuggingGPT, many LangGraph workflows.
+One orchestrator agent routes tasks to specialist agents. The hub maintains context; spokes are stateless workers. Used in [HuggingGPT](https://arxiv.org/abs/2303.17580), many LangGraph workflows.
 
 ### Pattern 4: Peer Debate
 Multiple agents argue different positions and converge on a consensus. Improves factual accuracy. Used in debates for math, science questions.

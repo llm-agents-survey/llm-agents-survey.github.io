@@ -96,7 +96,7 @@ Separate the **planner** (generates a high-level multi-step plan) from the **exe
 ### DEPS: Describe, Explain, Plan and Select (2023)
 **Wang et al.** · [arXiv:2302.01560](https://arxiv.org/abs/2302.01560)
 
-Interactive planning framework for open-world agents (Minecraft). Uses natural language descriptions and explanations to guide selection of sub-tasks, with error recovery.
+Interactive planning framework for open-world agents ([Minecraft](https://www.minecraft.net/)). Uses natural language descriptions and explanations to guide selection of sub-tasks, with error recovery.
 
 ### Inner Monologue: Embodied Reasoning via Language Feedback (2022)
 **Huang et al.** · [arXiv:2207.05608](https://arxiv.org/abs/2207.05608) · *CoRL 2022*
@@ -218,15 +218,15 @@ Research thread exploring LLMs as simulators of environment dynamics for plannin
 
 | Benchmark | Focus | Key Papers |
 |-----------|-------|-----------|
-| GSM8K | Grade school math | Cobbe et al. (2021) |
-| MATH | Competition math | Hendrycks et al. (2021) |
-| HumanEval | Code generation | Chen et al. (2021) |
+| GSM8K | Grade school math | [Cobbe et al. (2021)](https://arxiv.org/abs/2110.00476) |
+| MATH | Competition math | [Hendrycks et al. (2021)](https://arxiv.org/abs/2103.15808) |
+| HumanEval | Code generation | [Chen et al. (2021)](https://arxiv.org/abs/2107.03374) |
 | Game of 24 | Combinatorial reasoning | Tree of Thoughts (2023) |
-| ALFWorld | Embodied planning | Shridhar et al. (2021) |
-| WebShop | Web navigation + purchasing | Yao et al. (2022) |
-| MuSiQue | Multi-hop QA | Trivedi et al. (2022) |
+| ALFWorld | Embodied planning | [Shridhar et al. (2021)](https://arxiv.org/abs/2010.03768) |
+| WebShop | Web navigation + purchasing | [Yao et al. (2022)](https://arxiv.org/abs/2207.01206) |
+| MuSiQue | Multi-hop QA | [Trivedi et al. (2022)](https://arxiv.org/abs/2202.02590) |
 | FrontierMath | Research-level math | Glazer et al. (2024) |
-| ARC-AGI | Abstract reasoning | Chollet (2019) |
+| ARC-AGI | Abstract reasoning | [Chollet (2019)](https://arcprize.org/) |
 
 ---
 

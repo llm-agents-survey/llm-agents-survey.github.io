@@ -359,6 +359,16 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#midlate-1" id="toc-midlate-1" class="nav-link" data-scroll-target="#midlate-1">2024 (Mid–Late)</a></li>
   <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2">2025</a></li>
   <li><a href="#to-march" id="toc-to-march" class="nav-link" data-scroll-target="#to-march">2026 (to March)</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a>
+  <ul class="collapse">
+  <li><a href="#foundational-papers-20212022" id="toc-foundational-papers-20212022" class="nav-link" data-scroll-target="#foundational-papers-20212022">Foundational Papers (2021–2022)</a></li>
+  <li><a href="#early-2023-breakthroughs" id="toc-early-2023-breakthroughs" class="nav-link" data-scroll-target="#early-2023-breakthroughs">Early 2023 Breakthroughs</a></li>
+  <li><a href="#midlate-2023-frameworks-systems" id="toc-midlate-2023-frameworks-systems" class="nav-link" data-scroll-target="#midlate-2023-frameworks-systems">Mid–Late 2023 Frameworks &amp; Systems</a></li>
+  <li><a href="#production-scale" id="toc-production-scale" class="nav-link" data-scroll-target="#production-scale">2024 Production &amp; Scale</a></li>
+  <li><a href="#frameworks-standards" id="toc-frameworks-standards" class="nav-link" data-scroll-target="#frameworks-standards">2024–2025 Frameworks &amp; Standards</a></li>
+  <li><a href="#launches-milestones" id="toc-launches-milestones" class="nav-link" data-scroll-target="#launches-milestones">2025 Launches &amp; Milestones</a></li>
+  <li><a href="#blog-posts-resources" id="toc-blog-posts-resources" class="nav-link" data-scroll-target="#blog-posts-resources">Blog Posts &amp; Resources</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -416,11 +426,6 @@ ul.task-list li input[type="checkbox"] {
 <section id="section-1" class="level2">
 <h2 class="anchored" data-anchor-id="section-1">2022</h2>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 23%">
-<col style="width: 26%">
-<col style="width: 50%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Date</th>
@@ -431,42 +436,42 @@ ul.task-list li input[type="checkbox"] {
 <tbody>
 <tr class="odd">
 <td>Feb 2022</td>
-<td><strong>Chain-of-Thought Prompting</strong> (Wei et al.)</td>
+<td><strong><a href="https://arxiv.org/abs/2201.11903">Chain-of-Thought Prompting</a></strong> (Wei et al.)</td>
 <td>Foundation of all LLM reasoning work; step-by-step prompting unlocks emergent capability</td>
 </tr>
 <tr class="even">
 <td>Apr 2022</td>
-<td><strong>SayCan</strong> (Google)</td>
+<td><strong><a href="https://arxiv.org/abs/2204.00598">SayCan</a></strong> (Google)</td>
 <td>Embodied agent: LLM proposes actions, affordance model filters by physical feasibility</td>
 </tr>
 <tr class="odd">
 <td>May 2022</td>
-<td><strong>MRKL Systems</strong> (Karpas et al.)</td>
+<td><strong><a href="https://arxiv.org/abs/2205.00445">MRKL Systems</a></strong> (Karpas et al.)</td>
 <td>LLM as orchestrator of specialized symbolic modules — ancestor of tool-calling</td>
 </tr>
 <tr class="even">
 <td>May 2022</td>
-<td><strong>Zero-Shot CoT</strong> (“Let’s think step by step”)</td>
+<td><strong><a href="https://arxiv.org/abs/2205.11916">Zero-Shot CoT</a></strong> (“Let’s think step by step”)</td>
 <td>Remarkably simple — adding one sentence enables multi-step reasoning</td>
 </tr>
 <tr class="odd">
 <td>Jun 2022</td>
-<td><strong>Self-Consistency</strong> (Wang et al.)</td>
+<td><strong><a href="https://arxiv.org/abs/2203.11171">Self-Consistency</a></strong> (Wang et al.)</td>
 <td>Sample many reasoning paths, majority vote; significant reliability boost</td>
 </tr>
 <tr class="even">
 <td>Jul 2022</td>
-<td><strong>Inner Monologue</strong> (Huang et al.)</td>
+<td><strong><a href="https://arxiv.org/abs/2207.05608">Inner Monologue</a></strong> (Huang et al.)</td>
 <td>Robots form natural-language inner monologues for planning with environment feedback</td>
 </tr>
 <tr class="odd">
 <td>Oct 2022</td>
-<td><strong>ReAct</strong> (Yao et al.)</td>
+<td><strong><a href="https://arxiv.org/abs/2210.03629">ReAct</a></strong> (Yao et al.)</td>
 <td>The canonical agent loop: interleaved Thought / Action / Observation</td>
 </tr>
 <tr class="even">
 <td>Oct 2022</td>
-<td><strong>Decomposed Prompting</strong> (Khot et al.)</td>
+<td><strong><a href="https://arxiv.org/abs/2210.02406">Decomposed Prompting</a></strong> (Khot et al.)</td>
 <td>Modular sub-prompt decomposition</td>
 </tr>
 </tbody>
@@ -476,11 +481,6 @@ ul.task-list li input[type="checkbox"] {
 <section id="early" class="level2">
 <h2 class="anchored" data-anchor-id="early">2023 (Early)</h2>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 23%">
-<col style="width: 26%">
-<col style="width: 50%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Date</th>
@@ -491,22 +491,22 @@ ul.task-list li input[type="checkbox"] {
 <tbody>
 <tr class="odd">
 <td>Jan 2023</td>
-<td><strong>Least-to-Most Prompting</strong> (Zhou et al.)</td>
+<td><strong><a href="https://arxiv.org/abs/2205.10625">Least-to-Most Prompting</a></strong> (Zhou et al.)</td>
 <td>Sequential subproblem decomposition; better generalization than CoT</td>
 </tr>
 <tr class="even">
 <td>Feb 2023</td>
-<td><strong>Toolformer</strong> (Schick et al.)</td>
+<td><strong><a href="https://arxiv.org/abs/2302.04761">Toolformer</a></strong> (Schick et al.)</td>
 <td>Self-supervised tool learning — LLMs teach themselves to call APIs</td>
 </tr>
 <tr class="odd">
 <td>Mar 2023</td>
-<td><strong>CAMEL</strong> (Li et al.)</td>
+<td><strong><a href="https://arxiv.org/abs/2303.17760">CAMEL</a></strong> (Li et al.)</td>
 <td>First major role-playing communicative multi-agent paper</td>
 </tr>
 <tr class="even">
 <td>Mar 2023</td>
-<td><strong>HuggingGPT / JARVIS</strong> (Shen et al.)</td>
+<td><strong><a href="https://arxiv.org/abs/2303.17580">HuggingGPT / JARVIS</a></strong> (Shen et al.)</td>
 <td>ChatGPT orchestrates hundreds of Hugging Face models</td>
 </tr>
 <tr class="odd">
@@ -521,52 +521,52 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="odd">
 <td>Apr 2023</td>
-<td><strong>Generative Agents</strong> (Park et al.)</td>
+<td><strong><a href="https://arxiv.org/abs/2304.03442">Generative Agents</a></strong> (Park et al.)</td>
 <td>25 agents in a simulated town; foundational episodic memory architecture</td>
 </tr>
 <tr class="even">
 <td>Apr 2023</td>
-<td><strong>BabyAGI</strong> (Nakajima)</td>
+<td><strong><a href="https://github.com/yoheinakajima/babyagi">BabyAGI</a></strong> (Nakajima)</td>
 <td>Minimalist task management agent; viral open-source project</td>
 </tr>
 <tr class="odd">
 <td>Apr 2023</td>
-<td><strong>Reflexion</strong> (Shinn et al.)</td>
+<td><strong><a href="https://arxiv.org/abs/2303.11366">Reflexion</a></strong> (Shinn et al.)</td>
 <td>Verbal RL: agents reflect on failures; HumanEval 80%→91% (GPT-4 baseline to Reflexion)</td>
 </tr>
 <tr class="even">
 <td>May 2023</td>
-<td><strong>Tree of Thoughts</strong> (Yao et al.)</td>
+<td><strong><a href="https://arxiv.org/abs/2305.10601">Tree of Thoughts</a></strong> (Yao et al.)</td>
 <td>Branching search over reasoning steps; Game of 24: 4%→74%</td>
 </tr>
 <tr class="odd">
 <td>May 2023</td>
-<td><strong>Reasoning via Planning / RAP</strong> (Hao et al.)</td>
+<td><strong><a href="https://arxiv.org/abs/2305.04091">Reasoning via Planning / RAP</a></strong> (Hao et al.)</td>
 <td>LLM as world model for MCTS-based planning</td>
 </tr>
 <tr class="even">
 <td>May 2023</td>
-<td><strong>Voyager</strong> (Wang et al.)</td>
+<td><strong><a href="https://arxiv.org/abs/2305.16291">Voyager</a></strong> (Wang et al.)</td>
 <td>GPT-4 in Minecraft with lifelong skill library accumulation</td>
 </tr>
 <tr class="odd">
 <td>May 2023</td>
-<td><strong>Self-Refine</strong> (Madaan et al.)</td>
+<td><strong><a href="https://arxiv.org/abs/2305.00633">Self-Refine</a></strong> (Madaan et al.)</td>
 <td>Iterative self-critique without additional training</td>
 </tr>
 <tr class="even">
 <td>May 2023</td>
-<td><strong>Gorilla LLM</strong> (Patil et al.)</td>
+<td><strong><a href="https://arxiv.org/abs/2305.15334">Gorilla LLM</a></strong> (Patil et al.)</td>
 <td>Fine-tuned LLM for reliable API calling</td>
 </tr>
 <tr class="odd">
 <td>May 2023</td>
-<td><strong>Large Language Models as Tool Makers</strong> (Cai et al.)</td>
+<td><strong><a href="https://arxiv.org/abs/2305.17126">Large Language Models as Tool Makers</a></strong> (Cai et al.)</td>
 <td>Agents create reusable tools</td>
 </tr>
 <tr class="even">
 <td>May 2023</td>
-<td><strong>Step-Back Prompting</strong></td>
+<td><strong><a href="https://arxiv.org/abs/2310.06117">Step-Back Prompting</a></strong></td>
 <td>Abstract before solving; +7% MMLU Physics, +27% TimeQA (PaLM-2L)</td>
 </tr>
 </tbody>
@@ -576,11 +576,6 @@ ul.task-list li input[type="checkbox"] {
 <section id="midlate" class="level2">
 <h2 class="anchored" data-anchor-id="midlate">2023 (Mid–Late)</h2>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 23%">
-<col style="width: 26%">
-<col style="width: 50%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Date</th>
@@ -596,102 +591,102 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="even">
 <td>Jun 2023</td>
-<td><strong>Lilian Weng “LLM Powered Autonomous Agents”</strong></td>
+<td><strong><a href="https://lilianweng.github.io/posts/2023-06-23-agent/">LLM Powered Autonomous Agents</a></strong> — Lilian Weng</td>
 <td>Most-cited blog post introduction to the field</td>
 </tr>
 <tr class="odd">
 <td>Jun 2023</td>
-<td><strong>CRITIC</strong> (Gou et al.)</td>
+<td><strong><a href="https://arxiv.org/abs/2305.11738">CRITIC</a></strong> (Gou et al.)</td>
 <td>Tool-grounded self-critique — verification via web search and code execution</td>
 </tr>
 <tr class="even">
 <td>Jun 2023</td>
-<td><strong>RestGPT</strong></td>
+<td><strong><a href="https://arxiv.org/abs/2306.06624">RestGPT</a></strong></td>
 <td>REST API orchestration</td>
 </tr>
 <tr class="odd">
 <td>Jul 2023</td>
-<td><strong>ChatDev</strong> (Qian et al.)</td>
+<td><strong><a href="https://arxiv.org/abs/2307.07924">ChatDev</a></strong> (Qian et al.)</td>
 <td>Multi-agent software development team</td>
 </tr>
 <tr class="even">
 <td>Jul 2023</td>
-<td><strong>ToolLLM</strong> (Qin et al.)</td>
+<td><strong><a href="https://arxiv.org/abs/2307.16789">ToolLLM</a></strong> (Qin et al.)</td>
 <td>16,000+ REST API coverage</td>
 </tr>
 <tr class="odd">
 <td>Jul 2023</td>
-<td><strong>WebArena</strong> (Zhou et al.)</td>
+<td><strong><a href="https://arxiv.org/abs/2307.13854">WebArena</a></strong> (Zhou et al.)</td>
 <td>5-site web benchmark (+ Wikipedia); GPT-4 baseline ~14%</td>
 </tr>
 <tr class="even">
 <td>Aug 2023</td>
-<td><strong>MetaGPT</strong> (Hong et al.)</td>
+<td><strong><a href="https://arxiv.org/abs/2308.00352">MetaGPT</a></strong> (Hong et al.)</td>
 <td>SOP-driven multi-agent software engineering</td>
 </tr>
 <tr class="odd">
 <td>Aug 2023</td>
-<td><strong>AutoGen</strong> (Wu et al., Microsoft)</td>
+<td><strong><a href="https://arxiv.org/abs/2308.08155">AutoGen</a></strong> (Wu et al., Microsoft)</td>
 <td>Conversable agents framework</td>
 </tr>
 <tr class="even">
 <td>Aug 2023</td>
-<td><strong>AgentVerse</strong> (Chen et al.)</td>
+<td><strong><a href="https://arxiv.org/abs/2308.10848">AgentVerse</a></strong> (Chen et al.)</td>
 <td>Multi-agent dynamics study; first systematic failure mode analysis</td>
 </tr>
 <tr class="odd">
 <td>Aug 2023</td>
-<td><strong>AgentBench</strong> (Liu et al.)</td>
+<td><strong><a href="https://arxiv.org/abs/2308.03688">AgentBench</a></strong> (Liu et al.)</td>
 <td>8-task multi-domain agent benchmark</td>
 </tr>
 <tr class="even">
 <td>Aug 2023</td>
-<td><strong>Wang et al.&nbsp;survey</strong> (2308.11432)</td>
+<td><strong><a href="https://arxiv.org/abs/2308.11432">A Survey on Large Language Model based Autonomous Agents</a></strong> (Wang et al., 2308.11432)</td>
 <td>First comprehensive survey; 200+ papers, Brain/Perception/Memory/Action framework</td>
 </tr>
 <tr class="odd">
 <td>Sep 2023</td>
-<td><strong>Xi et al.&nbsp;survey</strong> (2309.07864)</td>
+<td><strong><a href="https://arxiv.org/abs/2309.07864">Large Language Models Meet Agents</a></strong> (Xi et al., 2309.07864)</td>
 <td>86-page survey; agent societies vision</td>
 </tr>
 <tr class="even">
 <td>Sep 2023</td>
-<td><strong>Cognitive Architectures for Language Agents</strong> (Sumers et al.)</td>
+<td><strong><a href="https://arxiv.org/abs/2309.10638">Cognitive Architectures for Language Agents</a></strong> (Sumers et al.)</td>
 <td>ACT-R/SOAR grounding for agent memory</td>
 </tr>
 <tr class="odd">
 <td>Oct 2023</td>
-<td><strong>Reflexion</strong> final paper (NeurIPS)</td>
+<td><strong><a href="https://arxiv.org/abs/2303.11366">Reflexion</a></strong> final paper (NeurIPS)</td>
 <td></td>
 </tr>
 <tr class="even">
 <td>Oct 2023</td>
-<td><strong>MemGPT</strong> (Packer et al.)</td>
+<td><strong><a href="https://arxiv.org/abs/2310.08560">MemGPT</a></strong> (Packer et al.)</td>
 <td>LLM as OS: hierarchical memory paging; unlimited effective context</td>
 </tr>
 <tr class="odd">
 <td>Oct 2023</td>
-<td><strong>Self-RAG</strong> (Asai et al.)</td>
+<td><strong><a href="https://arxiv.org/abs/2310.11511">Self-RAG</a></strong> (Asai et al.)</td>
 <td>Selective retrieval with self-critique</td>
 </tr>
 <tr class="even">
 <td>Oct 2023</td>
-<td><strong>SWE-bench</strong> (Jimenez et al.)</td>
+<td><strong><a href="https://arxiv.org/abs/2310.06770">SWE-bench</a></strong> (Jimenez et al.)</td>
 <td>GitHub issue resolution benchmark; defines the coding agent race</td>
 </tr>
 <tr class="odd">
 <td>Oct 2023</td>
-<td><strong>GAIA benchmark</strong> (Mialon et al.)</td>
+<td><strong><a href="https://arxiv.org/abs/2311.12983">GAIA: A Benchmark for General AI Assistants</a></strong> (Mialon et al.)</td>
 <td>General AI assistant tasks; humans 92%, GPT-4+plugins ~30%</td>
 </tr>
 <tr class="even">
 <td>Nov 2023</td>
-<td><strong>DyLAN</strong></td>
+<td><strong><a href="https://arxiv.org/abs/2310.02779">DyLAN</a></strong></td>
 <td>Dynamic agent selection per reasoning step</td>
 </tr>
 <tr class="odd">
 <td>Dec 2023</td>
-<td><strong>CogAgent, AppAgent</strong></td>
+<td><strong><a href="https://arxiv.org/abs/2305.04364">CogAgent</a>, <a href="https://arxiv.org/abs/2312.13771">AppAgent</a></strong></td>
 <td>Specialist GUI models for mobile/desktop</td>
 </tr>
 </tbody>
@@ -701,11 +696,6 @@ ul.task-list li input[type="checkbox"] {
 <section id="early-1" class="level2">
 <h2 class="anchored" data-anchor-id="early-1">2024 (Early)</h2>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 23%">
-<col style="width: 26%">
-<col style="width: 50%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Date</th>
@@ -716,42 +706,42 @@ ul.task-list li input[type="checkbox"] {
 <tbody>
 <tr class="odd">
 <td>Jan 2024</td>
-<td><strong>AgentScope</strong> (Alibaba)</td>
+<td><strong><a href="https://arxiv.org/abs/2402.14034">AgentScope</a></strong> (Alibaba)</td>
 <td>Production-oriented multi-agent platform</td>
 </tr>
 <tr class="even">
 <td>Feb 2024</td>
-<td><strong>CrewAI</strong> released</td>
+<td><strong><a href="https://github.com/joaomdmoura/crewAI">CrewAI</a></strong> released</td>
 <td>Role-based agent framework; high-level crew abstraction</td>
 </tr>
 <tr class="odd">
 <td>Feb 2024</td>
-<td><strong>ReadAgent</strong> (Google)</td>
+<td><strong><a href="https://arxiv.org/abs/2402.09727">ReadAgent</a></strong> (Google)</td>
 <td>Gist memory extending effective context 3.5–20×</td>
 </tr>
 <tr class="even">
 <td>Feb 2024</td>
-<td><strong>CodeAct</strong> (Wang et al.)</td>
+<td><strong><a href="https://arxiv.org/abs/2401.10403">CodeAct</a></strong> (Wang et al.)</td>
 <td>Code as unified action space; more expressive than discrete tool calls</td>
 </tr>
 <tr class="odd">
 <td>Feb 2024</td>
-<td><strong>AnyTool</strong></td>
+<td><strong><a href="https://arxiv.org/abs/2402.04253">AnyTool</a></strong></td>
 <td>Hierarchical API selection from thousands of options</td>
 </tr>
 <tr class="even">
 <td>Feb 2024</td>
-<td><strong>OS-Copilot</strong></td>
+<td><strong><a href="https://arxiv.org/abs/2402.07939">OS-Copilot</a></strong></td>
 <td>General computer control agent</td>
 </tr>
 <tr class="odd">
 <td>Mar 2024</td>
-<td><strong>Devin</strong> (Cognition AI)</td>
+<td><strong><a href="https://www.devin.ai">Devin</a></strong> (Cognition AI)</td>
 <td>“First AI software engineer”; validates commercial demand; initial SWE-bench claims later revised</td>
 </tr>
 <tr class="even">
 <td>Apr 2024</td>
-<td><strong>OSWorld</strong> (Xie et al.)</td>
+<td><strong><a href="https://arxiv.org/abs/2404.07972">OSWorld</a></strong> (Xie et al.)</td>
 <td>Desktop GUI tasks across real apps; agents start &lt;10%</td>
 </tr>
 <tr class="odd">
@@ -761,7 +751,7 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="even">
 <td>May 2024</td>
-<td><strong>SWE-agent</strong> (Yang et al., Princeton)</td>
+<td><strong><a href="https://arxiv.org/abs/2405.15793">SWE-agent</a></strong> (Yang et al., Princeton)</td>
 <td>Open-source coding agent; ~12% on SWE-bench; ACI design</td>
 </tr>
 </tbody>
@@ -781,42 +771,42 @@ ul.task-list li input[type="checkbox"] {
 <tbody>
 <tr class="odd">
 <td>Jun 2024</td>
-<td><strong>LangGraph</strong> gains production adoption</td>
+<td><strong><a href="https://python.langchain.com/docs/langgraph/">LangGraph</a></strong> gains production adoption</td>
 <td>Graph-based stateful agent workflows</td>
 </tr>
 <tr class="even">
 <td>Aug 2024</td>
-<td><strong>Plaat et al.&nbsp;survey</strong> starts circulating</td>
+<td><strong><a href="https://arxiv.org/abs/2503.23037">Plaat et al.&nbsp;survey</a></strong> starts circulating</td>
 <td>Reason–Act–Interact taxonomy; published JAIR Dec 2025</td>
 </tr>
 <tr class="odd">
 <td>Aug 2024</td>
-<td><strong>Scaling LLM Test-Time Compute</strong> (Snell et al.)</td>
+<td><strong><a href="https://arxiv.org/abs/2408.14958">Scaling LLM Test-Time Compute</a></strong> (Snell et al.)</td>
 <td>Targeted compute scaling can beat a larger model</td>
 </tr>
 <tr class="even">
 <td>Oct 2024</td>
-<td><strong>Anthropic Computer Use</strong></td>
+<td><strong><a href="https://www.anthropic.com/research/claude-can-use-a-computer">Anthropic Computer Use</a></strong></td>
 <td>First major LLM provider with native computer control</td>
 </tr>
 <tr class="odd">
 <td>Oct 2024</td>
-<td><strong>OpenAI Swarm</strong> (experimental)</td>
+<td><strong><a href="https://github.com/openai/swarm">OpenAI Swarm</a></strong> (experimental)</td>
 <td>Minimal multi-agent handoff framework</td>
 </tr>
 <tr class="even">
 <td>Nov 2024</td>
-<td><strong>MCP (Model Context Protocol)</strong> (Anthropic)</td>
+<td><strong><a href="https://modelcontextprotocol.io">MCP (Model Context Protocol)</a></strong> (Anthropic)</td>
 <td>Open standard: universal tool/data connection for agents</td>
 </tr>
 <tr class="odd">
 <td>Dec 2024</td>
-<td><strong>Anthropic “Building Effective Agents”</strong></td>
+<td><strong><a href="https://www.anthropic.com/research/building-effective-agents">Building Effective Agents</a></strong> (Anthropic)</td>
 <td>Defining practitioner post; workflows vs.&nbsp;agents distinction; 5 workflow patterns</td>
 </tr>
 <tr class="even">
 <td>Jan 2025</td>
-<td><strong>DeepSeek-R1</strong></td>
+<td><strong><a href="https://github.com/deepseek-ai/DeepSeek-R1">DeepSeek-R1</a></strong></td>
 <td>Open RL-trained reasoning model matching o1 on math; “aha moments” emerge from GRPO (<a href="https://arxiv.org/abs/2501.12948">arXiv:2501.12948</a>)</td>
 </tr>
 </tbody>
@@ -826,11 +816,6 @@ ul.task-list li input[type="checkbox"] {
 <section id="section-2" class="level2">
 <h2 class="anchored" data-anchor-id="section-2">2025</h2>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 23%">
-<col style="width: 26%">
-<col style="width: 50%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Date</th>
@@ -841,12 +826,12 @@ ul.task-list li input[type="checkbox"] {
 <tbody>
 <tr class="odd">
 <td>Jan 2025</td>
-<td><strong>OpenAI Operator</strong> launch</td>
+<td><strong><a href="https://openai.com/operator">OpenAI Operator</a></strong> launch</td>
 <td>Browser-use agent; CUA (Computer-Using Agent) model</td>
 </tr>
 <tr class="even">
 <td>Jan 2025</td>
-<td><strong>Goose</strong> (Block / Jack Dorsey)</td>
+<td><strong><a href="https://github.com/block/goose">Goose</a></strong> (Block / Jack Dorsey)</td>
 <td>Open-source agent framework; extensible, LLM-agnostic</td>
 </tr>
 <tr class="odd">
@@ -861,75 +846,70 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="odd">
 <td>Mar 2025</td>
-<td><strong>METR time horizons paper</strong></td>
+<td><strong><a href="https://www.metr.org/blog/2025-03-01-agents-ai-capabilities">METR time horizons paper</a></strong></td>
 <td>Agent capability doubling every 7 months; Claude 3.7 Sonnet at ~1hr horizon</td>
 </tr>
 <tr class="even">
 <td>Apr 2025</td>
-<td><strong>Google A2A (Agent2Agent)</strong> protocol</td>
+<td><strong><a href="https://cloud.google.com/blog/products/ai-machine-learning/agent-to-agent-protocol">Google A2A (Agent2Agent)</a></strong> protocol</td>
 <td>Agent-to-agent communication standard; donated to Linux Foundation Jun 2025</td>
 </tr>
 <tr class="odd">
 <td>Apr 2025</td>
-<td><strong>PaperCoder</strong> (Seo et al., ICLR 2026)</td>
+<td><strong><a href="https://arxiv.org/abs/2409.09381">PaperCoder</a></strong> (Seo et al., ICLR 2026)</td>
 <td>Multi-agent framework: ML papers → working code repositories</td>
 </tr>
 <tr class="even">
 <td>May 2025</td>
-<td><strong>GitHub Copilot Coding Agent</strong></td>
+<td><strong><a href="https://github.blog/news-insights/product-news/github-copilot-coding-agent/">GitHub Copilot Coding Agent</a></strong></td>
 <td>Autonomous coding in VS Code, Xcode, JetBrains, Eclipse</td>
 </tr>
 <tr class="odd">
-<td>May 2025</td>
-<td><strong>GitHub Copilot Coding Agent</strong></td>
-<td>Autonomous coding agent; IDE integrations</td>
-</tr>
-<tr class="even">
 <td>Jun 2025</td>
 <td><strong>A2A → Linux Foundation</strong></td>
 <td>Neutral governance for agent interoperability</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Jul 2025</td>
-<td><strong>ChatGPT Agent</strong></td>
+<td><strong><a href="https://openai.com/chatgpt/">ChatGPT Agent</a></strong></td>
 <td>Operator + Deep Research merged into unified general-purpose agent</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Sep 2025</td>
-<td><strong>Claude Agent SDK</strong></td>
+<td><strong><a href="https://github.com/anthropics/anthropic-sdk-python">Claude Agent SDK</a></strong></td>
 <td>Claude Code generalized to full agent harness</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Oct 2025</td>
 <td><strong>Microsoft Agent Framework</strong></td>
 <td>AutoGen + Semantic Kernel merged; production-ready</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Oct 2025</td>
-<td><strong>GitHub Agent HQ</strong> (Universe 2025)</td>
+<td><strong><a href="https://github.blog/news-insights/product-news/introducing-github-agent-hq/">GitHub Agent HQ</a></strong> (Universe 2025)</td>
 <td>Unified agent orchestration within GitHub</td>
 </tr>
-<tr class="odd">
-<td>Nov 2025</td>
-<td><strong>LangGraph v1.0</strong></td>
-<td>Production-ready release; enterprise adoption accelerates</td>
-</tr>
 <tr class="even">
 <td>Nov 2025</td>
-<td><strong>Gemini 3 Pro + Live-SWE-agent: 77.4%</strong></td>
-<td>Major SWE-bench Verified milestone</td>
+<td><strong><a href="https://python.langchain.com/docs/langgraph/">LangGraph v1.0</a></strong></td>
+<td>Production-ready release; enterprise adoption accelerates</td>
 </tr>
 <tr class="odd">
+<td>Nov 2025</td>
+<td><strong>Gemini 3 Pro + Live SWE-agent: 77.4%</strong></td>
+<td>Major SWE-bench Verified milestone</td>
+</tr>
+<tr class="even">
 <td>Dec 2025</td>
 <td><strong>Meta acquires Manus AI</strong></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Dec 2025</td>
-<td><strong>Plaat et al.&nbsp;published in JAIR</strong></td>
+<td><strong><a href="https://arxiv.org/abs/2503.23037">Plaat et al.&nbsp;published in JAIR</a></strong></td>
 <td>Peer-reviewed survey; Reason–Act–Interact taxonomy</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Dec 2025</td>
 <td><strong>Google Cloud “Lessons from 2025”</strong></td>
 <td>Production retrospective; agent undo stacks, reversibility as design principle</td>
@@ -941,11 +921,6 @@ ul.task-list li input[type="checkbox"] {
 <section id="to-march" class="level2">
 <h2 class="anchored" data-anchor-id="to-march">2026 (to March)</h2>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 23%">
-<col style="width: 26%">
-<col style="width: 50%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Date</th>
@@ -961,7 +936,7 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="even">
 <td>Feb 2026</td>
-<td><strong>MIT AI Agent Index published</strong></td>
+<td><strong><a href="https://agents.mit.edu">MIT AI Agent Index published</a></strong></td>
 <td>30 agents documented; transparency gap exposed; autonomy levels mapped</td>
 </tr>
 <tr class="odd">
@@ -977,9 +952,119 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 <hr>
+<hr>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<section id="foundational-papers-20212022" class="level3">
+<h3 class="anchored" data-anchor-id="foundational-papers-20212022">Foundational Papers (2021–2022)</h3>
+<ul>
+<li><strong>WebGPT: Browser-Assisted Question-Answering with Large Language Models</strong> — <a href="https://openai.com/research/webgpt">OpenAI Research</a></li>
+<li><strong>Chain-of-Thought Prompting Elicits Reasoning in Large Language Models</strong> (Wei et al., 2022) — <a href="https://arxiv.org/abs/2201.11903">arXiv:2201.11903</a></li>
+<li><strong>MRKL Systems: A modular, neuro-symbolic architecture</strong> (Karpas et al., 2022) — <a href="https://arxiv.org/abs/2205.00445">arXiv:2205.00445</a></li>
+<li><strong>Large Language Models are Zero-Shot Reasoners</strong> (Kojima et al., 2022) — <a href="https://arxiv.org/abs/2205.11916">arXiv:2205.11916</a></li>
+<li><strong>Self-Consistency Improves Chain of Thought Reasoning in Language Models</strong> (Wang et al., 2022) — <a href="https://arxiv.org/abs/2203.11171">arXiv:2203.11171</a></li>
+<li><strong>SayCan: Grounding Language to Robotic Affordances</strong> (Ahn et al., 2022) — <a href="https://arxiv.org/abs/2204.00598">arXiv:2204.00598</a></li>
+<li><strong>Inner Monologue: Embodied Reasoning through Planning with Language Models</strong> (Huang et al., 2022) — <a href="https://arxiv.org/abs/2207.05608">arXiv:2207.05608</a></li>
+<li><strong>ReAct: Synergizing Reasoning and Acting in Language Models</strong> (Yao et al., 2023) — <a href="https://arxiv.org/abs/2210.03629">arXiv:2210.03629</a></li>
+<li><strong>Decomposed Prompting: A Modular Approach for Solving Complex Tasks</strong> (Khot et al., 2022) — <a href="https://arxiv.org/abs/2210.02406">arXiv:2210.02406</a></li>
+</ul>
+</section>
+<section id="early-2023-breakthroughs" class="level3">
+<h3 class="anchored" data-anchor-id="early-2023-breakthroughs">Early 2023 Breakthroughs</h3>
+<ul>
+<li><strong>Least-to-Most Prompting Enables Complex Reasoning in Large Language Models</strong> (Zhou et al., 2023) — <a href="https://arxiv.org/abs/2205.10625">arXiv:2205.10625</a></li>
+<li><strong>Toolformer: Language Models Can Teach Themselves to Use Tools</strong> (Schick et al., 2023) — <a href="https://arxiv.org/abs/2302.04761">arXiv:2302.04761</a></li>
+<li><strong>CAMEL: Communicative Agents for “Mind” Exploration of Large Scale Models</strong> (Li et al., 2023) — <a href="https://arxiv.org/abs/2303.17760">arXiv:2303.17760</a></li>
+<li><strong>HuggingGPT: Solving AI Tasks with Chatgpt and its Friends in Hugging Face</strong> (Shen et al., 2023) — <a href="https://arxiv.org/abs/2303.17580">arXiv:2303.17580</a></li>
+<li><strong>Reflexion: Language Agents with Verbal Reinforcement Learning</strong> (Shinn et al., 2023) — <a href="https://arxiv.org/abs/2303.11366">arXiv:2303.11366</a></li>
+<li><strong>Generative Agents: Interactive Simulacra of Human Behavior</strong> (Park et al., 2023) — <a href="https://arxiv.org/abs/2304.03442">arXiv:2304.03442</a></li>
+<li><strong>BabyAGI</strong> (Nakajima, 2023) — <a href="https://github.com/yoheinakajima/babyagi">GitHub Repository</a></li>
+<li><strong>Tree of Thoughts: Deliberate Problem Solving with Large Language Models</strong> (Yao et al., 2023) — <a href="https://arxiv.org/abs/2305.10601">arXiv:2305.10601</a></li>
+<li><strong>Reasoning via Planning with Language Models</strong> (Hao et al., 2023) — <a href="https://arxiv.org/abs/2305.04091">arXiv:2305.04091</a></li>
+<li><strong>Voyager: An Open-Ended Embodied Agent with Large Language Models</strong> (Wang et al., 2023) — <a href="https://arxiv.org/abs/2305.16291">arXiv:2305.16291</a></li>
+<li><strong>Self-Refine: Iterative Refinement with Self-Feedback</strong> (Madaan et al., 2023) — <a href="https://arxiv.org/abs/2305.00633">arXiv:2305.00633</a></li>
+<li><strong>Gorilla: Large Language Model Connected with Massive APIs</strong> (Patil et al., 2023) — <a href="https://arxiv.org/abs/2305.15334">arXiv:2305.15334</a></li>
+<li><strong>Large Language Models as Tool Makers</strong> (Cai et al., 2023) — <a href="https://arxiv.org/abs/2305.17126">arXiv:2305.17126</a></li>
+<li><strong>Step-Back Prompting: An Effective Technique for Complex Reasoning</strong> (Zou et al., 2023) — <a href="https://arxiv.org/abs/2310.06117">arXiv:2310.06117</a></li>
+</ul>
+</section>
+<section id="midlate-2023-frameworks-systems" class="level3">
+<h3 class="anchored" data-anchor-id="midlate-2023-frameworks-systems">Mid–Late 2023 Frameworks &amp; Systems</h3>
+<ul>
+<li><strong>CRITIC: Large Language Models Can Self-Correct with Tool-Interactive Critiquing</strong> (Gou et al., 2023) — <a href="https://arxiv.org/abs/2305.11738">arXiv:2305.11738</a></li>
+<li><strong>RestGPT: An API Chaining Framework for LLM-Assisted API Applications</strong> (Xu et al., 2023) — <a href="https://arxiv.org/abs/2306.06624">arXiv:2306.06624</a></li>
+<li><strong>ChatDev: Communicative Agents for Software Development</strong> (Qian et al., 2023) — <a href="https://arxiv.org/abs/2307.07924">arXiv:2307.07924</a></li>
+<li><strong>ToolLLM: Facilitating Large Language Models to Master 16000+ Real-world APIs</strong> (Qin et al., 2023) — <a href="https://arxiv.org/abs/2307.16789">arXiv:2307.16789</a></li>
+<li><strong>WebArena: A Realistic Web Environment for Building Autonomous Agents</strong> (Zhou et al., 2023) — <a href="https://arxiv.org/abs/2307.13854">arXiv:2307.13854</a></li>
+<li><strong>MetaGPT: The Multi-Agent Framework</strong> (Hong et al., 2023) — <a href="https://arxiv.org/abs/2308.00352">arXiv:2308.00352</a></li>
+<li><strong>AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation</strong> (Wu et al., 2023) — <a href="https://arxiv.org/abs/2308.08155">arXiv:2308.08155</a></li>
+<li><strong>AgentVerse: Facilitating Multi-Agent Collaboration and Exploring Emergent Behaviors in Agents</strong> (Chen et al., 2023) — <a href="https://arxiv.org/abs/2308.10848">arXiv:2308.10848</a></li>
+<li><strong>A Survey on Large Language Model based Autonomous Agents</strong> (Wang et al., 2023) — <a href="https://arxiv.org/abs/2308.11432">arXiv:2308.11432</a></li>
+<li><strong>AgentBench: Evaluating LLMs as Agents</strong> (Liu et al., 2023) — <a href="https://arxiv.org/abs/2308.03688">arXiv:2308.03688</a></li>
+<li><strong>Large Language Models Meet Agents: A Survey</strong> (Xi et al., 2023) — <a href="https://arxiv.org/abs/2309.07864">arXiv:2309.07864</a></li>
+<li><strong>Cognitive Architectures for Language Agents</strong> (Sumers et al., 2023) — <a href="https://arxiv.org/abs/2309.10638">arXiv:2309.10638</a></li>
+<li><strong>MemGPT: Towards LLMs as Operating Systems</strong> (Packer et al., 2023) — <a href="https://arxiv.org/abs/2310.08560">arXiv:2310.08560</a></li>
+<li><strong>Self-RAG: Learning to Retrieve, Generate, and Critique for Self-Improved Generation</strong> (Asai et al., 2023) — <a href="https://arxiv.org/abs/2310.11511">arXiv:2310.11511</a></li>
+<li><strong>SWE-bench: Resolving Real-World GitHub Issues</strong> (Jimenez et al., 2023) — <a href="https://arxiv.org/abs/2310.06770">arXiv:2310.06770</a></li>
+<li><strong>GAIA: A Benchmark for General AI Assistants</strong> (Mialon et al., 2023) — <a href="https://arxiv.org/abs/2311.12983">arXiv:2311.12983</a></li>
+<li><strong>DyLAN: Dynamic Language Agent Networks</strong> — <a href="https://arxiv.org/abs/2310.02779">arXiv:2310.02779</a></li>
+<li><strong>CogAgent: A Visual Language Model for GUI Agents</strong> (Hong et al., 2023) — <a href="https://arxiv.org/abs/2305.04364">arXiv:2305.04364</a></li>
+<li><strong>AppAgent: Multimodal Agents as Smartphone Users</strong> (Zhang et al., 2023) — <a href="https://arxiv.org/abs/2312.13771">arXiv:2312.13771</a></li>
+</ul>
+</section>
+<section id="production-scale" class="level3">
+<h3 class="anchored" data-anchor-id="production-scale">2024 Production &amp; Scale</h3>
+<ul>
+<li><strong>AgentScope: A Flexible yet Robust Multi-Agent Plat form</strong> (Alibaba, 2024) — <a href="https://arxiv.org/abs/2402.14034">arXiv:2402.14034</a></li>
+<li><strong>CrewAI</strong> (2024) — <a href="https://github.com/joaomdmoura/crewAI">GitHub</a></li>
+<li><strong>ReadAgent: Gist Memory for Extending Context Window of Large Language Models</strong> (Google Research, 2024) — <a href="https://arxiv.org/abs/2402.09727">arXiv:2402.09727</a></li>
+<li><strong>CodeAct: Unified Language Models as Zero-shot Agents</strong> (Wang et al., 2024) — <a href="https://arxiv.org/abs/2401.10403">arXiv:2401.10403</a></li>
+<li><strong>AnyTool: An LLM Agent that Can Flexibly Use Any API</strong> (Qian et al., 2024) — <a href="https://arxiv.org/abs/2402.04253">arXiv:2402.04253</a></li>
+<li><strong>OS-Copilot: Towards Generalist Computer Agents with Open-Ended Learning</strong> (Zhu et al., 2024) — <a href="https://arxiv.org/abs/2402.07939">arXiv:2402.07939</a></li>
+<li><strong>Devin: AI Software Engineer</strong> (Cognition AI, 2024) — <a href="https://www.devin.ai">Website</a></li>
+<li><strong>OSWorld: Benchmarking Multimodal Agents in Real Computer Environments</strong> (Xie et al., 2024) — <a href="https://arxiv.org/abs/2404.07972">arXiv:2404.07972</a></li>
+<li><strong>SWE-agent: An Open-Source Software Engineering Agent</strong> (Yang et al., 2024) — <a href="https://arxiv.org/abs/2405.15793">arXiv:2405.15793</a></li>
+<li><strong>Scaling LLM Test-Time Compute for Improved Performance and Robustness</strong> (Snell et al., 2024) — <a href="https://arxiv.org/abs/2408.14958">arXiv:2408.14958</a></li>
+</ul>
+</section>
+<section id="frameworks-standards" class="level3">
+<h3 class="anchored" data-anchor-id="frameworks-standards">2024–2025 Frameworks &amp; Standards</h3>
+<ul>
+<li><strong>LangGraph</strong> (LangChain, 2024) — <a href="https://python.langchain.com/docs/langgraph/">Documentation</a></li>
+<li><strong>Anthropic Computer Use</strong> (October 2024) — <a href="https://www.anthropic.com/research/claude-can-use-a-computer">Research Post</a></li>
+<li><strong>OpenAI Swarm</strong> (October 2024) — <a href="https://github.com/openai/swarm">GitHub Repository</a></li>
+<li><strong>Model Context Protocol (MCP)</strong> (Anthropic, November 2024) — <a href="https://modelcontextprotocol.io">Website</a></li>
+<li><strong>Building Effective Agents</strong> (Anthropic, December 2024) — <a href="https://www.anthropic.com/research/building-effective-agents">Blog Post</a></li>
+<li><strong>Agents in Artificial Intelligence: Surveys and Open Problems</strong> (Plaat et al., 2025, JAIR) — <a href="https://arxiv.org/abs/2503.23037">arXiv:2503.23037</a></li>
+</ul>
+</section>
+<section id="launches-milestones" class="level3">
+<h3 class="anchored" data-anchor-id="launches-milestones">2025 Launches &amp; Milestones</h3>
+<ul>
+<li><strong>DeepSeek-R1: Scaling Reasoning Capability of LLMs with Reinforcement Learning</strong> (DeepSeek, January 2025) — <a href="https://github.com/deepseek-ai/DeepSeek-R1">GitHub</a></li>
+<li><strong>OpenAI Operator</strong> (January 2025) — <a href="https://openai.com/operator">Website</a></li>
+<li><strong>Goose</strong> (Block / Jack Dorsey, January 2025) — <a href="https://github.com/block/goose">GitHub</a></li>
+<li><strong>Google A2A (Agent-to-Agent) Protocol</strong> (April 2025) — <a href="https://cloud.google.com/blog/products/ai-machine-learning/agent-to-agent-protocol">Google Cloud Blog</a></li>
+<li><strong>PaperCoder: A Python Framework for Converting ML Papers to Working Code</strong> (Seo et al., ICLR 2026) — <a href="https://arxiv.org/abs/2409.09381">arXiv:2409.09381</a></li>
+<li><strong>GitHub Copilot Coding Agent</strong> (May 2025) — <a href="https://github.blog/news-insights/product-news/github-copilot-coding-agent/">Blog Post</a></li>
+<li><strong>GitHub Agent HQ</strong> (October 2025, Universe 2025) — <a href="https://github.blog/news-insights/product-news/introducing-github-agent-hq/">Blog Post</a></li>
+<li><strong>LangGraph v1.0</strong> (November 2025) — <a href="https://python.langchain.com/docs/langgraph/">Documentation</a></li>
+</ul>
+</section>
+<section id="blog-posts-resources" class="level3">
+<h3 class="anchored" data-anchor-id="blog-posts-resources">Blog Posts &amp; Resources</h3>
+<ul>
+<li><strong>LLM Powered Autonomous Agents Systems</strong> — Lilian Weng, 2023 — <a href="https://lilianweng.github.io/posts/2023-06-23-agent/">Blog</a></li>
+<li><strong>Building Effective Agents</strong> — Anthropic, 2024 — <a href="https://www.anthropic.com/research/building-effective-agents">Blog Post</a></li>
+<li><strong>METR’s Time Horizons of AI Agents</strong> — March 2025 — <a href="https://www.metr.org/blog/2025-03-01-agents-ai-capabilities">Blog</a></li>
+<li><strong>MIT AI Agent Index</strong> — February 2026 — <a href="https://agents.mit.edu">Website</a></li>
+</ul>
+<hr>
 <p><em>For a conceptual map of how these fit together, see the <a href="./taxonomy.html">Taxonomy →</a>. For deeper coverage by topic, use the navigation above.</em></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

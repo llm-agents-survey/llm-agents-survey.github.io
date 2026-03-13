@@ -105,11 +105,11 @@ Is the system a single agent or multiple?
 
 | Pattern | Description | Examples |
 |---------|-------------|---------|
-| **Single** | One LLM does everything | Standard ReAct agents |
+| **Single** | One LLM does everything | Standard [ReAct](https://arxiv.org/abs/2210.03629) agents |
 | **Specialist pipeline** | Sequential specialization | HuggingGPT, modular agents |
-| **Peer collaboration** | Agents debate and refine | CAMEL, SPP |
-| **Hierarchical** | Manager + workers | AutoGen, MetaGPT, ChatDev |
-| **Society** | Many autonomous agents | Generative Agents, AgentVerse |
+| **Peer collaboration** | Agents debate and refine | [CAMEL](https://arxiv.org/abs/2303.17760), SPP |
+| **Hierarchical** | Manager + workers | [AutoGen](https://arxiv.org/abs/2308.08155), [MetaGPT](https://arxiv.org/abs/2308.00352), [ChatDev](https://arxiv.org/abs/2307.07924) |
+| **Society** | Many autonomous agents | [Generative Agents](https://arxiv.org/abs/2304.03442), [AgentVerse](https://arxiv.org/abs/2308.10848) |
 
 ### 5. 🎯 Degree of Autonomy
 
@@ -149,7 +149,7 @@ Key frameworks: LangChain agents, LlamaIndex agents
 
 A **planner** agent generates a high-level plan, then an **executor** carries out each step. Allows more structured task decomposition and is easier to monitor.
 
-Key papers: [Plan-and-Execute](https://blog.langchain.dev/plan-and-execute-agents/) (Chase, 2023), [LLM+P](https://arxiv.org/abs/2304.11477), [DEPS](https://arxiv.org/abs/2302.01846)
+Key papers: [Plan-and-Execute](https://arxiv.org/abs/2305.04091) (Chase, 2023; [blog post](https://blog.langchain.dev/plan-and-execute-agents/)), [LLM+P](https://arxiv.org/abs/2304.11477), [DEPS](https://arxiv.org/abs/2302.01846)
 Key frameworks: LangGraph, LangChain Plan-and-Execute
 
 ### Family 4: Reflective / Self-Improving Agents

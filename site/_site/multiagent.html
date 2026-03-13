@@ -404,6 +404,13 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#osworld-2024" id="toc-osworld-2024" class="nav-link" data-scroll-target="#osworld-2024">OSWorld (2024)</a></li>
   <li><a href="#st-webagentbench-2024" id="toc-st-webagentbench-2024" class="nav-link" data-scroll-target="#st-webagentbench-2024">ST-WebAgentBench (2024)</a></li>
   </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a>
+  <ul class="collapse">
+  <li><a href="#papers" id="toc-papers" class="nav-link" data-scroll-target="#papers">Papers</a></li>
+  <li><a href="#blog-posts-articles" id="toc-blog-posts-articles" class="nav-link" data-scroll-target="#blog-posts-articles">Blog Posts &amp; Articles</a></li>
+  <li><a href="#frameworks-open-source-projects" id="toc-frameworks-open-source-projects" class="nav-link" data-scroll-target="#frameworks-open-source-projects">Frameworks &amp; Open-Source Projects</a></li>
+  <li><a href="#standards-specifications" id="toc-standards-specifications" class="nav-link" data-scroll-target="#standards-specifications">Standards &amp; Specifications</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -529,7 +536,7 @@ ul.task-list li input[type="checkbox"] {
 <p>These are the tools practitioners actually build with:</p>
 <section id="langchain" class="level3">
 <h3 class="anchored" data-anchor-id="langchain">LangChain</h3>
-<p><strong><a href="https://github.com/langchain-ai/langchain">github.com/langchain-ai/langchain</a></strong> — 95k+ stars</p>
+<p><strong><a href="https://github.com/langchain-ai/langchain">github.com/langchain-ai/langchain</a></strong> — 95k+ stars <em>(as of early 2025)</em></p>
 <p>The most widely used LLM application framework. Provides chains, agents, tools, and memory as composable building blocks. The <strong>Agents module</strong> supports ReAct, structured output, and tool-calling agents.</p>
 <ul>
 <li><strong>Philosophy:</strong> Composability — mix and match chains, tools, memory</li>
@@ -539,8 +546,8 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="langgraph" class="level3">
 <h3 class="anchored" data-anchor-id="langgraph">LangGraph</h3>
-<p><strong><a href="https://github.com/langchain-ai/langgraph">github.com/langchain-ai/langgraph</a></strong> — 12k+ stars</p>
-<p>Graph-based framework for <strong>stateful, multi-actor workflows</strong>. Nodes are agents/functions; edges are transitions. Supports cycles (loops), branching, and human-in-the-loop checkpoints. Released LangGraph v1.0 (production-ready) November 2025.</p>
+<p><strong><a href="https://github.com/langchain-ai/langgraph">github.com/langchain-ai/langgraph</a></strong> — 12k+ stars <em>(as of early 2025)</em></p>
+<p>Graph-based framework for <strong>stateful, multi-actor workflows</strong>. Nodes are agents/functions; edges are transitions. Supports cycles (loops), branching, and human-in-the-loop checkpoints. Production-ready with persistent checkpoints.</p>
 <ul>
 <li><strong>Philosophy:</strong> Explicit state machines — you control the flow</li>
 <li><strong>Best for:</strong> Complex multi-agent workflows, production deployments, long-running agents</li>
@@ -549,7 +556,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="autogen-microsoft" class="level3">
 <h3 class="anchored" data-anchor-id="autogen-microsoft">AutoGen (Microsoft)</h3>
-<p><strong><a href="https://github.com/microsoft/autogen">github.com/microsoft/autogen</a></strong> — 40k+ stars</p>
+<p><strong><a href="https://github.com/microsoft/autogen">github.com/microsoft/autogen</a></strong> — 40k+ stars <em>(as of early 2025)</em></p>
 <p>Conversable agent framework for multi-agent conversations. AutoGen v0.4 (2024) is a complete rewrite with async-first, event-driven architecture.</p>
 <ul>
 <li><strong>Philosophy:</strong> Agents as participants in a conversation</li>
@@ -559,7 +566,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="crewai" class="level3">
 <h3 class="anchored" data-anchor-id="crewai">CrewAI</h3>
-<p><strong><a href="https://github.com/crewAIInc/crewAI">github.com/crewAIInc/crewAI</a></strong> — 40k+ stars</p>
+<p><strong><a href="https://github.com/crewAIInc/crewAI">github.com/crewAIInc/crewAI</a></strong> — 40k+ stars <em>(as of early 2025)</em></p>
 <p>Role-based agent framework with a high-level “crew” abstraction. Define agents with roles, goals, and backstories; assign tasks; the crew coordinates to complete the objective.</p>
 <ul>
 <li><strong>Philosophy:</strong> Agents as a team with defined roles</li>
@@ -569,7 +576,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="dspy-stanford" class="level3">
 <h3 class="anchored" data-anchor-id="dspy-stanford">DSPy (Stanford)</h3>
-<p><strong><a href="https://github.com/stanfordnlp/dspy">github.com/stanfordnlp/dspy</a></strong> — 22k+ stars</p>
+<p><strong><a href="https://github.com/stanfordnlp/dspy">github.com/stanfordnlp/dspy</a></strong> — 22k+ stars <em>(as of early 2025)</em></p>
 <p>Programming language models via <strong>declarative modules and automatic optimization</strong>. Instead of hand-crafting prompts, you define a program and DSPy optimizes the prompts automatically.</p>
 <ul>
 <li><strong>Philosophy:</strong> LLM programs, not prompts; optimize systematically</li>
@@ -578,7 +585,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="semantic-kernel-microsoft" class="level3">
 <h3 class="anchored" data-anchor-id="semantic-kernel-microsoft">Semantic Kernel (Microsoft)</h3>
-<p><strong><a href="https://github.com/microsoft/semantic-kernel">github.com/microsoft/semantic-kernel</a></strong> — 23k+ stars</p>
+<p><strong><a href="https://github.com/microsoft/semantic-kernel">github.com/microsoft/semantic-kernel</a></strong> — 23k+ stars <em>(as of early 2025)</em></p>
 <p>Enterprise-focused SDK for AI-powered applications. Strong .NET/C# support alongside Python. Integrates with Azure AI, OpenAI, and Hugging Face.</p>
 <ul>
 <li><strong>Philosophy:</strong> Plugins and planners; enterprise integration</li>
@@ -587,7 +594,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="haystack-deepset" class="level3">
 <h3 class="anchored" data-anchor-id="haystack-deepset">Haystack (deepset)</h3>
-<p><strong><a href="https://github.com/deepset-ai/haystack">github.com/deepset-ai/haystack</a></strong> — 18k+ stars</p>
+<p><strong><a href="https://github.com/deepset-ai/haystack">github.com/deepset-ai/haystack</a></strong> — 18k+ stars <em>(as of early 2025)</em></p>
 <p>Pipeline-based framework for NLP applications with strong RAG and document processing support. v2.0 (2024) redesigned as composable components.</p>
 </section>
 <section id="agno" class="level3">
@@ -755,6 +762,74 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="st-webagentbench-2024">ST-WebAgentBench (2024)</h3>
 <p>Safety and trustworthiness evaluation for web agents. Tests whether agents follow safety instructions and avoid harmful actions.</p>
 <hr>
+<hr>
+</section>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<section id="papers" class="level3">
+<h3 class="anchored" data-anchor-id="papers">Papers</h3>
+<section id="multi-agent-systems-frameworks" class="level4">
+<h4 class="anchored" data-anchor-id="multi-agent-systems-frameworks">Multi-Agent Systems &amp; Frameworks</h4>
+<ul>
+<li><strong>CAMEL: Communicative Agents for “Mind” Exploration</strong> (Li et al., 2023) — <a href="https://arxiv.org/abs/2303.17760">arXiv:2303.17760</a></li>
+<li><strong>Generative Agents: Interactive Simulacra of Human Behavior</strong> (Park et al., 2023) — <a href="https://arxiv.org/abs/2304.03442">arXiv:2304.03442</a></li>
+<li><strong>MetaGPT: Meta Programming for A Multi-Agent Collaborative Framework</strong> (Hong et al., 2023) — <a href="https://arxiv.org/abs/2308.00352">arXiv:2308.00352</a></li>
+<li><strong>ChatDev: Communicative Agents for Software Development</strong> (Qian et al., 2023) — <a href="https://arxiv.org/abs/2307.07924">arXiv:2307.07924</a></li>
+<li><strong>AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation</strong> (Wu et al., 2023) — <a href="https://arxiv.org/abs/2308.08155">arXiv:2308.08155</a></li>
+<li><strong>AgentVerse: Facilitating Multi-Agent Collaboration and Exploring Emergent Behaviors</strong> (Chen et al., 2023) — <a href="https://arxiv.org/abs/2308.10848">arXiv:2308.10848</a></li>
+<li><strong>DyLAN: Towards Dynamic LLM-Agent Network Deployed at the Edge</strong> (Liu et al., 2023) — <a href="https://arxiv.org/abs/2310.02170">arXiv:2310.02170</a></li>
+<li><strong>Solo Performance Prompting</strong> (Wang et al., 2023) — <a href="https://arxiv.org/abs/2307.05300">arXiv:2307.05300</a></li>
+<li><strong>AgentScope: A Flexible yet Robust Multi-Agent Platform</strong> (Alibaba, 2024) — <a href="https://arxiv.org/abs/2402.14034">arXiv:2402.14034</a></li>
+<li><strong>TapeAgents: Tape-Centric Agent Framework</strong> (Bahdanau et al., 2024) — <a href="https://arxiv.org/abs/2412.08445">arXiv:2412.08445</a></li>
+</ul>
+</section>
+<section id="evaluation-benchmarks-1" class="level4">
+<h4 class="anchored" data-anchor-id="evaluation-benchmarks-1">Evaluation &amp; Benchmarks</h4>
+<ul>
+<li><strong>AgentBench: Evaluating LLMs as Agents</strong> (Liu et al., 2023) — <a href="https://arxiv.org/abs/2308.03688">arXiv:2308.03688</a></li>
+<li><strong>WebArena: A Realistic Web Environment for Building Autonomous Agents</strong> (Zhou et al., 2023) — <a href="https://arxiv.org/abs/2307.13854">arXiv:2307.13854</a></li>
+<li><strong>GAIA: A Benchmark for General AI Assistants</strong> (Mialon et al., 2023) — <a href="https://arxiv.org/abs/2311.12983">arXiv:2311.12983</a></li>
+<li><strong>OSWorld: Benchmarking Multimodal Agents for Open-Ended Tasks in Real Computer Environments</strong> (Xie et al., 2024) — <a href="https://arxiv.org/abs/2404.07972">arXiv:2404.07972</a></li>
+<li><strong>ST-WebAgentBench: Towards Evaluating Safety and Trustworthiness for Autonomous Web Agents</strong> (2024) <em>(source needed)</em></li>
+</ul>
+</section>
+<section id="theory-of-mind-social-behavior" class="level4">
+<h4 class="anchored" data-anchor-id="theory-of-mind-social-behavior">Theory of Mind &amp; Social Behavior</h4>
+<ul>
+<li><strong>Towards a Unified Taxonomy of Multi-Agent LLMs: Survey, Evaluation, and Future Research Directions</strong> (Plaat et al., 2025) <em>(cite as reference for theory of mind section and emergent social behavior)</em></li>
+</ul>
+</section>
+</section>
+<section id="blog-posts-articles" class="level3">
+<h3 class="anchored" data-anchor-id="blog-posts-articles">Blog Posts &amp; Articles</h3>
+<ul>
+<li><strong>Anthropic: Building Effective Agents</strong> — <a href="https://www.anthropic.com/engineering/multi-agent-research-system">anthropic.com/engineering/multi-agent-research-system</a></li>
+</ul>
+</section>
+<section id="frameworks-open-source-projects" class="level3">
+<h3 class="anchored" data-anchor-id="frameworks-open-source-projects">Frameworks &amp; Open-Source Projects</h3>
+<ul>
+<li><strong>LangChain</strong> — <a href="https://github.com/langchain-ai/langchain">github.com/langchain-ai/langchain</a></li>
+<li><strong>LangGraph</strong> — <a href="https://github.com/langchain-ai/langgraph">github.com/langchain-ai/langgraph</a></li>
+<li><strong>AutoGen</strong> (Microsoft) — <a href="https://github.com/microsoft/autogen">github.com/microsoft/autogen</a></li>
+<li><strong>CrewAI</strong> — <a href="https://github.com/crewAIInc/crewAI">github.com/crewAIInc/crewAI</a></li>
+<li><strong>DSPy</strong> (Stanford) — <a href="https://github.com/stanfordnlp/dspy">github.com/stanfordnlp/dspy</a></li>
+<li><strong>Semantic Kernel</strong> (Microsoft) — <a href="https://github.com/microsoft/semantic-kernel">github.com/microsoft/semantic-kernel</a></li>
+<li><strong>Haystack</strong> (deepset) — <a href="https://github.com/deepset-ai/haystack">github.com/deepset-ai/haystack</a></li>
+<li><strong>Agno</strong> — <a href="https://github.com/agno-agi/agno">github.com/agno-agi/agno</a></li>
+<li><strong>OpenAI Swarm</strong> — <a href="https://github.com/openai/swarm">github.com/openai/swarm</a></li>
+<li><strong>CAMEL</strong> — <a href="https://github.com/camel-ai/camel">github.com/camel-ai/camel</a></li>
+<li><strong>MetaGPT</strong> — <a href="https://github.com/geekan/MetaGPT">github.com/geekan/MetaGPT</a></li>
+<li><strong>ChatDev</strong> — <a href="https://github.com/OpenBMB/ChatDev">github.com/OpenBMB/ChatDev</a></li>
+<li><strong>AgentVerse</strong> — <a href="https://github.com/OpenBMB/AgentVerse">github.com/OpenBMB/AgentVerse</a></li>
+</ul>
+</section>
+<section id="standards-specifications" class="level3">
+<h3 class="anchored" data-anchor-id="standards-specifications">Standards &amp; Specifications</h3>
+<ul>
+<li><strong>Model Context Protocol (MCP)</strong> (Anthropic, 2024) — <a href="https://modelcontextprotocol.io">modelcontextprotocol.io</a></li>
+</ul>
 <hr>
 <p><em>Full chronology in the <a href="./timeline.html">Timeline →</a>. Continue to <a href="./memory-tools.html">Memory, Tools &amp; Actions →</a></em></p>
 

@@ -393,6 +393,15 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#key-open-problems-in-agent-evaluation" id="toc-key-open-problems-in-agent-evaluation" class="nav-link" data-scroll-target="#key-open-problems-in-agent-evaluation">Key Open Problems in Agent Evaluation</a></li>
   </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a>
+  <ul class="collapse">
+  <li><a href="#core-benchmarks-papers" id="toc-core-benchmarks-papers" class="nav-link" data-scroll-target="#core-benchmarks-papers">Core Benchmarks &amp; Papers</a></li>
+  <li><a href="#long-horizon-time-based-evaluation" id="toc-long-horizon-time-based-evaluation" class="nav-link" data-scroll-target="#long-horizon-time-based-evaluation">Long-Horizon &amp; Time-Based Evaluation</a></li>
+  <li><a href="#science-specific-benchmarks" id="toc-science-specific-benchmarks" class="nav-link" data-scroll-target="#science-specific-benchmarks">Science-Specific Benchmarks</a></li>
+  <li><a href="#safety-adversarial-evaluation-1" id="toc-safety-adversarial-evaluation-1" class="nav-link" data-scroll-target="#safety-adversarial-evaluation-1">Safety &amp; Adversarial Evaluation</a></li>
+  <li><a href="#domain-specific-benchmarks" id="toc-domain-specific-benchmarks" class="nav-link" data-scroll-target="#domain-specific-benchmarks">Domain-Specific Benchmarks</a></li>
+  <li><a href="#practitioner-resources" id="toc-practitioner-resources" class="nav-link" data-scroll-target="#practitioner-resources">Practitioner Resources</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -494,7 +503,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="swe-bench-pro-sep-2025" class="level3">
 <h3 class="anchored" data-anchor-id="swe-bench-pro-sep-2025">SWE-bench Pro (Sep 2025)</h3>
 <p><strong>Scale AI</strong> · Novel private-codebase variant</p>
-<p>Created specifically to address contamination. Issues come from private repositories never seen in training data. Performance drops dramatically across all models: - GPT-5: ~23% (public) → ~15% (private) - Claude Opus 4.1: ~22.7%</p>
+<p>Created specifically to address contamination. Issues come from private repositories never seen in training data. Performance drops dramatically across all models: - GPT-5: ~23% (public) → ~15% (private) <em>(approximate; source needed)</em> - Claude Opus 4.1: ~22.7% <em>(approximate; source needed)</em></p>
 <p>Reveals the extent to which SWE-bench public scores reflect memorization vs.&nbsp;generalization.</p>
 </section>
 <section id="humaneval-2021" class="level3">
@@ -554,7 +563,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="screenspot-pro-2025" class="level3">
 <h3 class="anchored" data-anchor-id="screenspot-pro-2025">ScreenSpot Pro (2025)</h3>
-<p>High-resolution GUI grounding benchmark with tiny target icons. OmniParser V2 + GPT-4o achieves 39.6%; raw GPT-4o achieves 0.8% — showing the importance of specialized screen parsing.</p>
+<p>High-resolution GUI grounding benchmark with tiny target icons. OmniParser V2 + GPT-4o achieves 39.6% <em>(source needed)</em>; raw GPT-4o achieves 0.8% <em>(source needed)</em> — showing the importance of specialized screen parsing.</p>
 <hr>
 </section>
 </section>
@@ -645,6 +654,58 @@ ul.task-list li input[type="checkbox"] {
 <li>How do you measure safety without being able to enumerate all failure modes?</li>
 </ul>
 <hr>
+<hr>
+</section>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<section id="core-benchmarks-papers" class="level3">
+<h3 class="anchored" data-anchor-id="core-benchmarks-papers">Core Benchmarks &amp; Papers</h3>
+<ul>
+<li><strong>SWE-bench: Resolving Real-World GitHub Issues</strong> (Jimenez et al., 2023) — <a href="https://arxiv.org/abs/2310.06770">arXiv:2310.06770</a> · <a href="https://www.swebench.com">swebench.com</a></li>
+<li><strong>WebArena: A Realistic Web Environment for Building Autonomous Agents</strong> (Zhou et al., 2023) — <a href="https://arxiv.org/abs/2307.13854">arXiv:2307.13854</a></li>
+<li><strong>Mind2Web: Towards a Generalist Agent for the Web</strong> (Deng et al., 2023) — <a href="https://arxiv.org/abs/2306.06070">arXiv:2306.06070</a></li>
+<li><strong>OSWorld: Benchmarking Multimodal Agents for Open-Ended Tasks in Real Computer Environments</strong> (Xie et al., 2024) — <a href="https://arxiv.org/abs/2404.07972">arXiv:2404.07972</a></li>
+<li><strong>GAIA: A Benchmark for General AI Assistants</strong> (Mialon et al., 2023, Meta AI) — <a href="https://arxiv.org/abs/2311.12983">arXiv:2311.12983</a> · ICLR 2024</li>
+<li><strong>AgentBench: Evaluating LLMs as Agents</strong> (Liu et al., 2023) — <a href="https://arxiv.org/abs/2308.03688">arXiv:2308.03688</a></li>
+</ul>
+</section>
+<section id="long-horizon-time-based-evaluation" class="level3">
+<h3 class="anchored" data-anchor-id="long-horizon-time-based-evaluation">Long-Horizon &amp; Time-Based Evaluation</h3>
+<ul>
+<li><strong>Measuring AI Ability to Complete Long Tasks: Task Time Horizons</strong> (METR, 2025) — <a href="https://metr.org/time-horizons/">metr.org/time-horizons</a> · <a href="https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/">Blog: 2025-03-19-measuring-ai-ability-to-complete-long-tasks</a></li>
+</ul>
+</section>
+<section id="science-specific-benchmarks" class="level3">
+<h3 class="anchored" data-anchor-id="science-specific-benchmarks">Science-Specific Benchmarks</h3>
+<ul>
+<li><strong>PaperBench</strong> — Tests ability to reproduce results from ML papers</li>
+<li><strong>PaperCoder: Automated Code Synthesis for Scientific Papers</strong> (Seo et al., ICLR 2026)</li>
+<li><strong>LabBench</strong> (FutureHouse, 2024) — Biology research tasks</li>
+<li><strong>BixBench</strong> (FutureHouse, 2025) — Bioinformatics benchmark</li>
+</ul>
+</section>
+<section id="safety-adversarial-evaluation-1" class="level3">
+<h3 class="anchored" data-anchor-id="safety-adversarial-evaluation-1">Safety &amp; Adversarial Evaluation</h3>
+<ul>
+<li><strong>ST-WebAgentBench: Evaluating Safety and Trustworthiness of Web Agents</strong> (2024)</li>
+<li><strong>AgentDojo: A Security Benchmark for LLM Agents</strong> (2024) — Tests robustness to prompt injection attacks</li>
+<li><strong>AgentHarm: Evaluating the Harmful Behaviors of LLM Agents</strong> (2024)</li>
+</ul>
+</section>
+<section id="domain-specific-benchmarks" class="level3">
+<h3 class="anchored" data-anchor-id="domain-specific-benchmarks">Domain-Specific Benchmarks</h3>
+<ul>
+<li><strong>tau-bench</strong> (2024) — Customer service and retail domain tasks</li>
+<li><strong>WorkArena</strong> (2024) — Enterprise software agent benchmark using ServiceNow</li>
+</ul>
+</section>
+<section id="practitioner-resources" class="level3">
+<h3 class="anchored" data-anchor-id="practitioner-resources">Practitioner Resources</h3>
+<ul>
+<li><strong>Aider Coding Leaderboard</strong> — <a href="https://aider.chat/docs/leaderboards">aider.chat/docs/leaderboards</a></li>
+<li><strong>HumanEval Benchmark</strong> (Chen et al., OpenAI, 2021) — Python function completion baseline</li>
+</ul>
 <p><em>See also: <a href="./science-agents.html#metr-measuring-ai-ability-to-complete-long-tasks-2025">METR time horizons</a> · <a href="./recent.html#swe-bench-the-scoreboard">SWE-bench in context</a> · <a href="./safety.html">Safety benchmarks</a></em></p>
 
 

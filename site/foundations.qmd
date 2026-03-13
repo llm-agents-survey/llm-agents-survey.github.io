@@ -81,7 +81,7 @@ Action: finish("approximately 68 million")
 ```
 
 - **Key ideas:** Reasoning and acting are synergistic, not separate; grounding in external feedback reduces hallucination; enables error correction mid-task
-- **Results:** Outperforms pure CoT and pure acting on HotpotQA, FEVER, ALFWorld, WebShop
+- **Results:** Outperforms pure CoT and pure acting on [HotpotQA](https://arxiv.org/abs/1809.06441), [FEVER](https://arxiv.org/abs/1803.05355), [ALFWorld](https://arxiv.org/abs/2010.03768), [WebShop](https://arxiv.org/abs/2207.01206)
 
 ### Chain-of-Thought Prompting Elicits Reasoning in Large Language Models (2022)
 **Wei et al.** · [arXiv:2201.11903](https://arxiv.org/abs/2201.11903) · *NeurIPS 2022*
@@ -117,7 +117,7 @@ GPT-3 fine-tuned to browse the web to answer questions. Introduced the concept o
 ### HuggingGPT / JARVIS (2023)
 **Shen et al.** · [arXiv:2303.17580](https://arxiv.org/abs/2303.17580) · *NeurIPS 2023*
 
-LLM (ChatGPT) as a **task planner** that orchestrates hundreds of specialized ML models from HuggingFace. The LLM parses user requests, selects the right ML models, executes them in sequence, and synthesizes results.
+LLM (ChatGPT) as a **task planner** that orchestrates hundreds of specialized ML models from [Hugging Face](https://huggingface.co/). The LLM parses user requests, selects the right ML models, executes them in sequence, and synthesizes results.
 
 - **Key ideas:** LLM as controller of a model hub; structured task planning; multi-modal capability via model composition
 - **GitHub:** [microsoft/JARVIS](https://github.com/microsoft/JARVIS)
@@ -132,7 +132,7 @@ Landmark paper combining LLMs with robotics. The LLM generates possible action p
 ### Voyager: An Open-Ended Embodied Agent in Minecraft (2023)
 **Wang et al.** · [arXiv:2305.16291](https://arxiv.org/abs/2305.16291)
 
-GPT-4 playing Minecraft autonomously for indefinite time spans. Features a **procedural skill library** that grows over time, an automatic curriculum for proposing increasingly complex tasks, and iterative skill refinement via execution feedback.
+GPT-4 playing [Minecraft](https://www.minecraft.net/) autonomously for indefinite time spans. Features a **procedural skill library** that grows over time, an automatic curriculum for proposing increasingly complex tasks, and iterative skill refinement via execution feedback.
 
 - **Key ideas:** Lifelong learning via skill accumulation; automatic curriculum; code-as-action (skills written as JavaScript); never "forgets" learned skills
 - **Results:** 3.3× more unique items collected, 2.3× longer distances covered, up to **15.3× faster** at unlocking tech tree milestones compared to prior methods

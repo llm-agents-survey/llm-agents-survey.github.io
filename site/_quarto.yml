@@ -18,6 +18,7 @@ project:
     - resources.qmd
 
 website:
+  favicon: favicon.svg
   title: "LLM Agents: A Survey (2022–2026)"
   description: "A thorough review of AI agent architectures, designs, and the evolving landscape of LLM-based agents"
   site-url: https://johnplake.github.io/llm-agents-survey/

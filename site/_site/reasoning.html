@@ -405,6 +405,19 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#reasoning-paradigms" id="toc-reasoning-paradigms" class="nav-link" data-scroll-target="#reasoning-paradigms">Reasoning Paradigms</a></li>
   <li><a href="#planning-strategies" id="toc-planning-strategies" class="nav-link" data-scroll-target="#planning-strategies">Planning Strategies</a></li>
   </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a>
+  <ul class="collapse">
+  <li><a href="#chain-of-thought-reasoning-foundations" id="toc-chain-of-thought-reasoning-foundations" class="nav-link" data-scroll-target="#chain-of-thought-reasoning-foundations">Chain-of-Thought &amp; Reasoning Foundations</a></li>
+  <li><a href="#structured-reasoning-tree-search" id="toc-structured-reasoning-tree-search" class="nav-link" data-scroll-target="#structured-reasoning-tree-search">Structured Reasoning &amp; Tree Search</a></li>
+  <li><a href="#agent-reasoning-loop" id="toc-agent-reasoning-loop" class="nav-link" data-scroll-target="#agent-reasoning-loop">Agent Reasoning Loop</a></li>
+  <li><a href="#planning-architectures-1" id="toc-planning-architectures-1" class="nav-link" data-scroll-target="#planning-architectures-1">Planning Architectures</a></li>
+  <li><a href="#reflection-self-improvement-1" id="toc-reflection-self-improvement-1" class="nav-link" data-scroll-target="#reflection-self-improvement-1">Reflection &amp; Self-Improvement</a></li>
+  <li><a href="#test-time-compute-search" id="toc-test-time-compute-search" class="nav-link" data-scroll-target="#test-time-compute-search">Test-Time Compute &amp; Search</a></li>
+  <li><a href="#rl-trained-reasoning-models" id="toc-rl-trained-reasoning-models" class="nav-link" data-scroll-target="#rl-trained-reasoning-models">RL-Trained Reasoning Models</a></li>
+  <li><a href="#world-models-for-planning-1" id="toc-world-models-for-planning-1" class="nav-link" data-scroll-target="#world-models-for-planning-1">World Models for Planning</a></li>
+  <li><a href="#benchmarks-referenced" id="toc-benchmarks-referenced" class="nav-link" data-scroll-target="#benchmarks-referenced">Benchmarks Referenced</a></li>
+  <li><a href="#theoretical-cognitive-foundations" id="toc-theoretical-cognitive-foundations" class="nav-link" data-scroll-target="#theoretical-cognitive-foundations">Theoretical &amp; Cognitive Foundations</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -801,6 +814,96 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<hr>
+</section>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<section id="chain-of-thought-reasoning-foundations" class="level3">
+<h3 class="anchored" data-anchor-id="chain-of-thought-reasoning-foundations">Chain-of-Thought &amp; Reasoning Foundations</h3>
+<ul>
+<li><strong>Chain-of-Thought Prompting Elicits Reasoning in Large Language Models</strong> (Wei et al., 2022) — <a href="https://arxiv.org/abs/2201.11903">arXiv:2201.11903</a> — <em>NeurIPS 2022</em> — Root work showing step-by-step reasoning dramatically improves performance</li>
+<li><strong>Large Language Models are Zero-Shot Reasoners</strong> (Kojima et al., 2022) — <a href="https://arxiv.org/abs/2205.11916">arXiv:2205.11916</a> — <em>NeurIPS 2022</em> — Zero-shot CoT: adding “Let’s think step by step” elicits reasoning without examples</li>
+<li><strong>Self-Consistency Improves Chain of Thought Reasoning in Language Models</strong> (Wang et al., 2022) — <a href="https://arxiv.org/abs/2203.11171">arXiv:2203.11171</a> — <em>ICLR 2023</em> — Majority voting over multiple reasoning paths improves robustness</li>
+<li><strong>Least-to-Most Prompting Enables Complex Reasoning in Large Language Models</strong> (Zhou et al., 2022) — <a href="https://arxiv.org/abs/2205.10625">arXiv:2205.10625</a> — Decompose hard problems into easier sub-problems solved sequentially</li>
+</ul>
+</section>
+<section id="structured-reasoning-tree-search" class="level3">
+<h3 class="anchored" data-anchor-id="structured-reasoning-tree-search">Structured Reasoning &amp; Tree Search</h3>
+<ul>
+<li><strong>Tree of Thoughts: Deliberate Problem Solving with Large Language Models</strong> (Yao et al., 2023) — <a href="https://arxiv.org/abs/2305.10601">arXiv:2305.10601</a> — <em>NeurIPS 2023</em> — Major advance: treats reasoning as tree search with backtracking — <a href="https://github.com/princeton-nlp/tree-of-thought-llm">GitHub: princeton-nlp/tree-of-thought-llm</a></li>
+<li><strong>Graph of Thoughts: Solving Elaborate Problems with Large Language Models</strong> (Besta et al., 2023) — <a href="https://arxiv.org/abs/2308.09687">arXiv:2308.09687</a> — <em>AAAI 2024</em> — Extends tree search to arbitrary graph structures</li>
+<li><strong>Algorithm of Thoughts: Augmenting Language Models with Explicit Planning</strong> (Sel et al., 2023) — <a href="https://arxiv.org/abs/2308.10379">arXiv:2308.10379</a> — Encodes classic algorithms (DFS, BFS) directly into reasoning traces</li>
+</ul>
+</section>
+<section id="agent-reasoning-loop" class="level3">
+<h3 class="anchored" data-anchor-id="agent-reasoning-loop">Agent Reasoning Loop</h3>
+<ul>
+<li><strong>ReAct: Synergizing Reasoning and Acting in Language Models</strong> (Yao et al., 2023) — <a href="https://arxiv.org/abs/2210.03629">arXiv:2210.03629</a> — <em>ICLR 2023</em> — Canonical agent reasoning loop: interleaves thinking, action, and observation</li>
+</ul>
+</section>
+<section id="planning-architectures-1" class="level3">
+<h3 class="anchored" data-anchor-id="planning-architectures-1">Planning Architectures</h3>
+<ul>
+<li><strong>LLM+P: Large Language Models as Programmers in Zero-Shot Program Synthesis</strong> (Liu et al., 2023) — <a href="https://arxiv.org/abs/2304.11477">arXiv:2304.11477</a> — <em>ICML 2024</em> — Translates NL to PDDL for classical planners</li>
+<li><strong>Plan-and-Execute Agents</strong> (Chase / LangChain, 2023) — <a href="https://blog.langchain.dev/plan-and-execute-agents/">Blog post</a> — Separates planner from executor for cleaner architecture</li>
+<li><strong>Describe, Explain, Plan and Select: Interactive Planning with Large Language Models for Open-World Agents</strong> (Wang et al., 2023) — <a href="https://arxiv.org/abs/2302.01560">arXiv:2302.01560</a> — Interactive planning with error recovery for Minecraft</li>
+<li><strong>Inner Monologue: Embodied Reasoning through Language</strong> (Huang et al., 2022) — <a href="https://arxiv.org/abs/2207.05608">arXiv:2207.05608</a> — <em>CoRL 2022</em> — Natural language reasoning about failures for robot planning</li>
+<li><strong>Reasoning via Planning</strong> (Hao et al., 2023) — <a href="https://arxiv.org/abs/2305.14992">arXiv:2305.14992</a> — LLM as world model + reasoning agent with MCTS</li>
+<li><strong>ADaPT: As-Needed Decomposition and Planning with Language Models</strong> (Trivedi et al., 2023) — <a href="https://arxiv.org/html/2311.05772v2">arXiv:2311.05772</a> — <em>NAACL 2024</em> — Recursive decomposition with re-decomposition on failure</li>
+<li><strong>Step-Back Prompting: Towards Principled In-Context Prompting and Decoding</strong> (Zou et al., 2023) — <a href="https://arxiv.org/abs/2310.06117">arXiv:2310.06117</a> — <em>ICLR 2024</em> — Derive high-level abstractions before solving instances</li>
+<li><strong>Decomposed Prompting: A Modular Approach for Solving Complex Tasks</strong> (Khot et al., 2022) — <a href="https://arxiv.org/abs/2210.02406">arXiv:2210.02406</a> — <em>EMNLP 2022</em> — Breaks tasks into modular sub-prompts</li>
+</ul>
+</section>
+<section id="reflection-self-improvement-1" class="level3">
+<h3 class="anchored" data-anchor-id="reflection-self-improvement-1">Reflection &amp; Self-Improvement</h3>
+<ul>
+<li><strong>Reflexion: Language Agents with Verbal Reinforcement Learning</strong> (Shinn et al., 2023) — <a href="https://arxiv.org/abs/2303.11366">arXiv:2303.11366</a> — <em>NeurIPS 2023</em> — Agents critique failures and improve via episodic memory — <a href="https://github.com/noahshinn/reflexion">GitHub: noahshinn/reflexion</a></li>
+<li><strong>Self-Refine: Iterative Refinement with Self-Feedback</strong> (Madaan et al., 2023) — <a href="https://arxiv.org/abs/2303.17651">arXiv:2303.17651</a> — <em>NeurIPS 2023</em> — Single model generates, critiques, revises iteratively</li>
+<li><strong>CRITIC: Large Language Models Can Self-Correct with Tool-Interactive Critiquing</strong> (Gou et al., 2023) — <a href="https://arxiv.org/abs/2305.11738">arXiv:2305.11738</a> — <em>ICLR 2024</em> — Grounds verification in tool use for correction</li>
+<li><strong>Constitutional AI: Harmlessness from AI Feedback</strong> (Bai et al., 2022) — <a href="https://arxiv.org/abs/2212.08073">arXiv:2212.08073</a> — Uses principles to guide model critique and revision</li>
+</ul>
+</section>
+<section id="test-time-compute-search" class="level3">
+<h3 class="anchored" data-anchor-id="test-time-compute-search">Test-Time Compute &amp; Search</h3>
+<ul>
+<li><strong>Scaling Language Models Test-Time Compute Optimally</strong> (Snell et al., 2024) — <a href="https://arxiv.org/abs/2408.03314">arXiv:2408.03314</a> — Targeted test-time scaling outperforms larger models</li>
+<li><strong>Large Language Monkeys: Scaling to 256K Context Window with Token-Level Llama Emergencies</strong> (Brown et al., 2024) — <a href="https://arxiv.org/abs/2407.21787">arXiv:2407.21787</a> — Coverage via sampling and majority voting for test-time compute</li>
+</ul>
+</section>
+<section id="rl-trained-reasoning-models" class="level3">
+<h3 class="anchored" data-anchor-id="rl-trained-reasoning-models">RL-Trained Reasoning Models</h3>
+<ul>
+<li><strong>OpenAI o1 &amp; o3</strong> (OpenAI, 2024-2025) — <a href="https://openai.com/o1">Technical report</a> — Models trained with RL to produce long internal reasoning chains; near-human Olympiad math performance</li>
+<li><strong>DeepSeek-R1</strong> (DeepSeek AI, 2025) — <a href="https://arxiv.org/abs/2501.12948">arXiv:2501.12948</a> — Open-source reasoning model with GRPO training; discovers reasoning from scratch</li>
+<li><strong>s1: Simple Test-Time Scaling of Small Models</strong> (Muennighoff et al., 2025) — <a href="https://arxiv.org/abs/2501.19393">arXiv:2501.19393</a> — Small models match o1 performance via curated hard problems</li>
+</ul>
+</section>
+<section id="world-models-for-planning-1" class="level3">
+<h3 class="anchored" data-anchor-id="world-models-for-planning-1">World Models for Planning</h3>
+<ul>
+<li><strong>Reasoning via Planning</strong> (Hao et al., 2023) — <a href="https://arxiv.org/abs/2305.14992">arXiv:2305.14992</a> — Explicit world models for tree search in planning</li>
+</ul>
+</section>
+<section id="benchmarks-referenced" class="level3">
+<h3 class="anchored" data-anchor-id="benchmarks-referenced">Benchmarks Referenced</h3>
+<ul>
+<li><strong>Training Verifiers to Solve Math Word Problems</strong> (Cobbe et al., 2021) — <em>GSM8K benchmark</em></li>
+<li><strong>Measuring Mathematical Problem Solving With the MATH Dataset</strong> (Hendrycks et al., 2021) — <em>MATH benchmark</em></li>
+<li><strong>Evaluating Large Language Models Trained on Code</strong> (Chen et al., 2021) — <em>HumanEval benchmark</em></li>
+<li><strong>ALFWorld: Bringing NLP and Embodied AI Together</strong> (Shridhar et al., 2021)</li>
+<li><strong>WebShop: Towards Scalable Real-World Web Interaction with Grounding</strong> (Yao et al., 2022)</li>
+<li><strong>Improving Multi-hop Question Answering by Learning Intermediate Supervision Signals</strong> (Trivedi et al., 2022) — <em>MuSiQue benchmark</em></li>
+<li><strong>Challenging BIG-Bench Tasks and Whether Chain-of-Thought Can Solve Them</strong> (Suzgun et al., 2022)</li>
+<li><strong>FrontierMath: A Benchmark for Evaluating Advanced Mathematical Reasoning</strong> (Glazer et al., 2024)</li>
+<li><strong>The Measure of Intelligence</strong> (François Chollet, 2019) — <em>ARC-AGI benchmark</em></li>
+</ul>
+</section>
+<section id="theoretical-cognitive-foundations" class="level3">
+<h3 class="anchored" data-anchor-id="theoretical-cognitive-foundations">Theoretical &amp; Cognitive Foundations</h3>
+<ul>
+<li><strong>Agentic Large Language Models: A Survey</strong> (Plaat et al., 2025) — <a href="https://arxiv.org/abs/2503.23037">arXiv:2503.23037</a> — References Kahneman’s <em>Thinking, Fast and Slow</em> dual-process theory connection to System 1 (fast) vs System 2 (slow) reasoning</li>
+</ul>
 <hr>
 <p><em>Continue to <a href="./multiagent.html">Multi-Agent Systems →</a></em></p>
 

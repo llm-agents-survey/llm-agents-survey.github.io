@@ -68,8 +68,8 @@ Even for highly autonomous agents, building in checkpoints where humans can revi
 
 ### Sandboxing
 Running agents in isolated environments (containers, VMs, restricted filesystem access) limits blast radius when things go wrong. Relevant tools:
-- **stereOS** (papercompute.co) — NixOS-based OS hardened for agent sandboxing
-- **AgentFS** (Turso) — auditable, reproducible agent filesystem
+- **stereOS** ([papercompute.co](https://papercompute.co)) — NixOS-based OS hardened for agent sandboxing
+- **AgentFS** ([github.com/tursodatabase/agentfs](https://github.com/tursodatabase/agentfs)) — auditable, reproducible agent filesystem
 - Standard container/VM isolation for code execution
 
 ### Tool Design Discipline

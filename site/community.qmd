@@ -130,7 +130,7 @@ agent = Agent(
 Agno's design philosophy: agents introduce three fundamental shifts from traditional software — streaming reasoning, long-horizon execution, and multi-agent coordination. The platform is built around these shifts rather than retrofitting agent concepts onto existing web frameworks.
 
 ### Orchestra: Cognitive Load Distribution
-**mainfra** · [blog.mainfra.me/p/introducing-orchestra](https://blog.mainfra.me/p/introducing-orchestra) · [orchestra.org](https://orchestra.org) — Open source, ~600+ stars *(as of March 2026)*
+**mainfra** · [blog.mainfra.me/p/introducing-orchestra](https://blog.mainfra.me/p/introducing-orchestra) · [github.com/mainframecomputer/orchestra](https://github.com/mainframecomputer/orchestra) · [orchestra.org](https://orchestra.org) — Open source, ~600+ stars *(as of March 2026)*
 
 Multi-agent framework built on the principle that **complex problems are solved through composition** — like a symphony emerging from individual instruments.
 

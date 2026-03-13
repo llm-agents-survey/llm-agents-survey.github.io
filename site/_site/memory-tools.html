@@ -389,6 +389,18 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#self-rag-2023" id="toc-self-rag-2023" class="nav-link" data-scroll-target="#self-rag-2023">Self-RAG (2023)</a></li>
   <li><a href="#agentic-rag-patterns" id="toc-agentic-rag-patterns" class="nav-link" data-scroll-target="#agentic-rag-patterns">Agentic RAG Patterns</a></li>
   </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a>
+  <ul class="collapse">
+  <li><a href="#memory-systems-papers" id="toc-memory-systems-papers" class="nav-link" data-scroll-target="#memory-systems-papers">Memory Systems Papers</a></li>
+  <li><a href="#tool-use-function-calling-papers" id="toc-tool-use-function-calling-papers" class="nav-link" data-scroll-target="#tool-use-function-calling-papers">Tool Use &amp; Function Calling Papers</a></li>
+  <li><a href="#web-browsing-agents-1" id="toc-web-browsing-agents-1" class="nav-link" data-scroll-target="#web-browsing-agents-1">Web Browsing Agents</a></li>
+  <li><a href="#gui-desktop-computer-use-agents" id="toc-gui-desktop-computer-use-agents" class="nav-link" data-scroll-target="#gui-desktop-computer-use-agents">GUI, Desktop &amp; Computer Use Agents</a></li>
+  <li><a href="#embodied-robotics-agents-1" id="toc-embodied-robotics-agents-1" class="nav-link" data-scroll-target="#embodied-robotics-agents-1">Embodied &amp; Robotics Agents</a></li>
+  <li><a href="#retrieval-augmented-agents-1" id="toc-retrieval-augmented-agents-1" class="nav-link" data-scroll-target="#retrieval-augmented-agents-1">Retrieval-Augmented Agents</a></li>
+  <li><a href="#memory-agent-platforms" id="toc-memory-agent-platforms" class="nav-link" data-scroll-target="#memory-agent-platforms">Memory &amp; Agent Platforms</a></li>
+  <li><a href="#agent-filesystem-infrastructure" id="toc-agent-filesystem-infrastructure" class="nav-link" data-scroll-target="#agent-filesystem-infrastructure">Agent Filesystem &amp; Infrastructure</a></li>
+  <li><a href="#api-standards-milestones" id="toc-api-standards-milestones" class="nav-link" data-scroll-target="#api-standards-milestones">API Standards &amp; Milestones</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -507,12 +519,12 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>mem0ai</strong> · <a href="https://github.com/mem0ai/mem0">github.com/mem0ai/mem0</a> · <a href="https://mem0.ai">mem0.ai</a> · Y Combinator-backed</p>
 <p>The leading open-source <strong>production memory layer for AI agents</strong>. Provides multi-level memory (User, Session, Agent state) with adaptive personalization. Key benchmarks vs.&nbsp;full-context and OpenAI Memory:</p>
 <ul>
-<li><strong>+26% accuracy</strong> over OpenAI Memory on the LOCOMO benchmark</li>
-<li><strong>91% faster</strong> responses than full-context approaches</li>
-<li><strong>90% lower token usage</strong> than full-context (critical cost reduction)</li>
+<li><strong>+26% accuracy</strong> over OpenAI Memory on the LOCOMO benchmark <em>(source needed)</em></li>
+<li><strong>91% faster</strong> responses than full-context approaches <em>(source needed)</em></li>
+<li><strong>90% lower token usage</strong> than full-context (critical cost reduction) <em>(source needed)</em></li>
 </ul>
 <p>Core capabilities: remembers user preferences, adapts to individual needs over time, provides cross-platform SDKs (Python, TypeScript) and a managed cloud service. v1.0.0 release (2025) added improved vector store support and enhanced GCP integration.</p>
-<p><strong>GitHub:</strong> <a href="https://github.com/mem0ai/mem0">mem0ai/mem0</a> — 27k+ stars</p>
+<p><strong>GitHub:</strong> <a href="https://github.com/mem0ai/mem0">mem0ai/mem0</a> — 27k+ stars <em>(as of early 2025)</em></p>
 </section>
 <section id="letta-formerly-memgpt-2024-2025" class="level3">
 <h3 class="anchored" data-anchor-id="letta-formerly-memgpt-2024-2025">Letta (formerly MemGPT) (2024-2025)</h3>
@@ -524,7 +536,7 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Memory architecture</strong> — tiered memory blocks that are explicitly managed, inspectable, and modifiable</li>
 </ul>
 <p>The key advance over vanilla MemGPT: Letta’s memory blocks are explicitly represented, not just paged in/out — agents can <em>inspect</em> and <em>modify</em> their own memory programmatically. This enables genuinely stateful agents that improve over time. Maintains a <a href="https://leaderboard.letta.com/">model leaderboard</a> for agent capability evaluation.</p>
-<p><strong>GitHub:</strong> <a href="https://github.com/letta-ai/letta">letta-ai/letta</a> — 14k+ stars</p>
+<p><strong>GitHub:</strong> <a href="https://github.com/letta-ai/letta">letta-ai/letta</a> — 14k+ stars <em>(as of early 2025)</em></p>
 </section>
 <section id="engram-2025" class="level3">
 <h3 class="anchored" data-anchor-id="engram-2025">ENGRAM (2025)</h3>
@@ -626,7 +638,7 @@ Windows desktop agent using UI Automation framework.</p>
 General computer control agent.</p>
 <p><strong>OSWorld</strong> (2024) · <a href="https://arxiv.org/abs/2404.07972">arXiv:2404.07972</a><br>
 Benchmark for desktop GUI tasks across real apps. Agents started &lt;10%; specialized models reached 72.5% by late 2024.</p>
-<p><strong>Anthropic Computer Use</strong> (Oct 2024)<br>
+<p><strong>Anthropic Computer Use</strong> (Oct 2024) — <a href="https://www.anthropic.com/news/introducing-computer-use">anthropic.com/news/introducing-computer-use</a><br>
 First major LLM provider to offer native computer control. Spawned the browser-use ecosystem.</p>
 </section>
 <section id="code-execution-agents" class="level3">
@@ -673,6 +685,85 @@ Vision-language-action model. Web-scale training + robot data; emergent robot ge
 <li><strong>HyDE (Hypothetical Document Embeddings):</strong> Generate a hypothetical answer, embed it, retrieve similar documents</li>
 </ul>
 <hr>
+</section>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<section id="memory-systems-papers" class="level3">
+<h3 class="anchored" data-anchor-id="memory-systems-papers">Memory Systems Papers</h3>
+<ul>
+<li><strong>MemGPT: Towards LLMs as Operating Systems</strong> (Packer et al., 2023) — <a href="https://arxiv.org/abs/2310.08560">arXiv:2310.08560</a></li>
+<li><strong>Generative Agents: Interactive Simulacra of Human Behavior</strong> (Park et al., 2023) — <a href="https://arxiv.org/abs/2304.03442">arXiv:2304.03442</a></li>
+<li><strong>Cognitive Architectures for Language Agents</strong> (Sumers et al., 2023) — <a href="https://arxiv.org/abs/2309.02427">arXiv:2309.02427</a></li>
+<li><strong>ReadAgent: Gist Memory for Long Documents</strong> (Lee et al., 2024) — <a href="https://arxiv.org/abs/2402.09727">arXiv:2402.09727</a></li>
+<li><strong>ENGRAM: Efficient Orchestration of LLM Agents with Multi-Memory Types</strong> (2025) — <a href="https://arxiv.org/abs/2511.12960">arXiv:2511.12960</a></li>
+<li><strong>Episodic Memory is the Missing Piece in Long-Context Language Agents</strong> (2025) — <a href="https://arxiv.org/abs/2502.06975">arXiv:2502.06975</a></li>
+</ul>
+</section>
+<section id="tool-use-function-calling-papers" class="level3">
+<h3 class="anchored" data-anchor-id="tool-use-function-calling-papers">Tool Use &amp; Function Calling Papers</h3>
+<ul>
+<li><strong>Toolformer: Language Models Can Teach Themselves to Use Tools</strong> (Schick et al., 2023) — <a href="https://arxiv.org/abs/2302.04761">arXiv:2302.04761</a></li>
+<li><strong>Gorilla: Large Language Model Connected with Massive APIs</strong> (Patil et al., 2023) — <a href="https://arxiv.org/abs/2305.15334">arXiv:2305.15334</a></li>
+<li><strong>ToolLLM: Facilitating Large Language Models to Master 16,000+ Real-world APIs</strong> (Qin et al., 2023) — <a href="https://arxiv.org/abs/2307.16789">arXiv:2307.16789</a></li>
+<li><strong>HuggingGPT: Solving AI Tasks with ChatGPT and its Friends in Hugging Face</strong> (Shen et al., 2023) — <a href="https://arxiv.org/abs/2303.17580">arXiv:2303.17580</a></li>
+<li><strong>AnyTool: Self-Reflective, Hierarchical Agents for Large-Scale API Calls</strong> (2024) — <a href="https://arxiv.org/abs/2402.04253">arXiv:2402.04253</a></li>
+<li><strong>CodeAct: Unified and Interoperable Agent Framework with Customizable Prompts and Execution</strong> (Wang et al., 2024) — <a href="https://arxiv.org/abs/2402.01030">arXiv:2402.01030</a></li>
+<li><strong>Large Language Models as Tool Makers</strong> (Cai et al., 2023) — <a href="https://arxiv.org/abs/2305.17126">arXiv:2305.17126</a></li>
+</ul>
+</section>
+<section id="web-browsing-agents-1" class="level3">
+<h3 class="anchored" data-anchor-id="web-browsing-agents-1">Web Browsing Agents</h3>
+<ul>
+<li><strong>WebGPT: Browser-Assisted Question-Answering with Human Feedback</strong> (2021) — <a href="https://arxiv.org/abs/2112.09332">arXiv:2112.09332</a></li>
+<li><strong>Mind2Web: Towards a Generalist Agent for the Web</strong> (2023) — <a href="https://arxiv.org/abs/2306.06070">arXiv:2306.06070</a></li>
+<li><strong>WebArena: A Realistic Web Environment for Building Autonomous Agents</strong> (Zhou et al., 2023) — <a href="https://arxiv.org/abs/2307.13854">arXiv:2307.13854</a></li>
+<li><strong>Towards Autonomous Web Agent</strong> (Google, 2023) — <a href="https://arxiv.org/abs/2307.12856">arXiv:2307.12856</a></li>
+</ul>
+</section>
+<section id="gui-desktop-computer-use-agents" class="level3">
+<h3 class="anchored" data-anchor-id="gui-desktop-computer-use-agents">GUI, Desktop &amp; Computer Use Agents</h3>
+<ul>
+<li><strong>CogAgent: A Visual Language Model for GUI Agents</strong> (2024) — <a href="https://arxiv.org/abs/2312.08914">arXiv:2312.08914</a></li>
+<li><strong>AppAgent: Multimodal Agents as Smartphone Users</strong> (2023) — <a href="https://arxiv.org/abs/2312.13771">arXiv:2312.13771</a></li>
+<li><strong>UFO: A UI-Focused Agent for Windows OS Interaction</strong> (Microsoft, 2024) — <a href="https://arxiv.org/abs/2402.07939">arXiv:2402.07939</a></li>
+<li><strong>OS-Copilot: Towards Generalist Computer Agents with Open-Ended Goals and Open-Platform Actions</strong> (2024) — <a href="https://arxiv.org/abs/2402.07456">arXiv:2402.07456</a></li>
+<li><strong>OSWorld: Benchmarking Multimodal Agents for Open-Ended Tasks in Real Computer Environments</strong> (Xie et al., 2024) — <a href="https://arxiv.org/abs/2404.07972">arXiv:2404.07972</a></li>
+</ul>
+</section>
+<section id="embodied-robotics-agents-1" class="level3">
+<h3 class="anchored" data-anchor-id="embodied-robotics-agents-1">Embodied &amp; Robotics Agents</h3>
+<ul>
+<li><strong>Do as I can, not as I say: Grounding Language in Robotic Affordances</strong> (Ahn et al., 2022) — <a href="https://arxiv.org/abs/2204.01691">arXiv:2204.01691</a></li>
+<li><strong>PaLM-E: An Embodied Multimodal Language Model</strong> (2023) — <a href="https://arxiv.org/abs/2303.03378">arXiv:2303.03378</a></li>
+<li><strong>RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control</strong> (Google, 2023) — <a href="https://arxiv.org/abs/2307.15818">arXiv:2307.15818</a></li>
+</ul>
+</section>
+<section id="retrieval-augmented-agents-1" class="level3">
+<h3 class="anchored" data-anchor-id="retrieval-augmented-agents-1">Retrieval-Augmented Agents</h3>
+<ul>
+<li><strong>Self-RAG: Learning to Retrieve, Generate, and Critique for Self-Improved Generation</strong> (Asai et al., 2023) — <a href="https://arxiv.org/abs/2310.11511">arXiv:2310.11511</a></li>
+</ul>
+</section>
+<section id="memory-agent-platforms" class="level3">
+<h3 class="anchored" data-anchor-id="memory-agent-platforms">Memory &amp; Agent Platforms</h3>
+<ul>
+<li><strong>mem0</strong> — <a href="https://github.com/mem0ai/mem0">github.com/mem0ai/mem0</a> · <a href="https://mem0.ai">mem0.ai</a></li>
+<li><strong>Letta</strong> (formerly MemGPT) — <a href="https://github.com/letta-ai/letta">github.com/letta-ai/letta</a> · <a href="https://letta.com">letta.com</a></li>
+</ul>
+</section>
+<section id="agent-filesystem-infrastructure" class="level3">
+<h3 class="anchored" data-anchor-id="agent-filesystem-infrastructure">Agent Filesystem &amp; Infrastructure</h3>
+<ul>
+<li><strong>AgentFS: The Filesystem for Agents</strong> (Turso, 2025) — <a href="https://github.com/tursodatabase/agentfs">github.com/tursodatabase/agentfs</a></li>
+</ul>
+</section>
+<section id="api-standards-milestones" class="level3">
+<h3 class="anchored" data-anchor-id="api-standards-milestones">API Standards &amp; Milestones</h3>
+<ul>
+<li><strong>OpenAI Function Calling</strong> (June 2023) — De facto standard for structured tool use in LLM agents</li>
+<li><strong>Anthropic Computer Use</strong> (Oct 2024) — <a href="https://www.anthropic.com/news/introducing-computer-use">anthropic.com/news/introducing-computer-use</a></li>
+</ul>
 <hr>
 <p><em>Full chronology in the <a href="./timeline.html">Timeline →</a>. Continue to <a href="./recent.html">2024–2026 Frontier →</a></em></p>
 
