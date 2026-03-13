@@ -1,1 +1,1 @@
-Sitemap: https://johnplake.github.io/llm-agents-survey/sitemap.xml
+Sitemap: https://llm-agents-survey.github.io/sitemap.xml
