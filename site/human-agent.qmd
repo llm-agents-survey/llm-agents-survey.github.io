@@ -36,7 +36,7 @@ Trust in AI is not binary. *Calibrated* trust means trusting appropriately: foll
 
 **Undertrust:** The opposite failure — refusing to use capable agents because of excessive skepticism — is less studied but equally costly. Users who don't delegate appropriately to competent agents forgo real productivity gains. The asymmetry in attention (overtrust dominates the safety literature; undertrust is mostly studied in productivity economics) can distort research agendas.
 
-**Calibration:** The goal is *appropriate reliance* — overriding incorrect AI advice and following correct advice. [Schoeffer et al., "Explanations, Fairness, and Appropriate Reliance in Human-AI Decision-Making"](https://arxiv.org/abs/2209.11812) (arXiv:2209.11812) develops a formal conceptualization of appropriate reliance and finds that explanations can improve calibration, but the effect depends heavily on the quality and framing of the explanation. [Bansal et al., 2021](https://arxiv.org/abs/2102.04566) is an influential earlier study finding that human-AI teams often underperform the AI alone because humans fail to identify when to trust machine predictions and when to apply their own judgment.
+**Calibration:** The goal is *appropriate reliance* — overriding incorrect AI advice and following correct advice. [Schemmer et al., "Appropriate Reliance on AI Advice: Conceptualization and the Effect of Explanations"](https://arxiv.org/abs/2302.02187) (arXiv:2302.02187, IUI 2023) develops a formal conceptualization of appropriate reliance — the Appropriateness of Reliance (AoR) framework — and shows in a controlled experiment with 200 participants that explanations influence reliance behavior, with effects depending on framing and quality. [Schoeffer et al., "Explanations, Fairness, and Appropriate Reliance in Human-AI Decision-Making"](https://arxiv.org/abs/2209.11812) (arXiv:2209.11812) offers a complementary and sobering result: while explanations can shape users' *fairness perceptions* and their tendency to comply with AI recommendations, they do **not** enable humans to distinguish correct from incorrect AI predictions — a challenge for trust calibration. [Bansal et al., 2021](https://arxiv.org/abs/2006.14779) (CHI 2021) is an influential study finding that human-AI teams often underperform the AI alone because explanations increase AI acceptance regardless of correctness, rather than fostering appropriate discrimination between right and wrong AI outputs.
 
 ### What Affects Trust?
 
@@ -44,7 +44,7 @@ The classical framework in human factors is Parasuraman, Sheridan & Wickens' (20
 
 More recent work focuses on the specific signals that drive trust in AI systems:
 
-- **Uncertainty communication:** Does the system express confidence appropriately? [arXiv:2402.07632](https://arxiv.org/abs/2402.07632) (Steyvers et al.) studies miscalibrated AI confidence and finds that overconfident AI substantially degrades user trust and reliance calibration over time.
+- **Uncertainty communication:** Does the system express confidence appropriately? [arXiv:2402.07632](https://arxiv.org/abs/2402.07632) (Li et al., 2024) studies miscalibrated AI confidence and finds that overconfident AI substantially degrades user trust and reliance calibration over time.
 - **Explainability:** Showing the agent's reasoning or tool calls helps users identify when to override, but can also produce *illusions* of understanding that increase overtrust in wrong answers.
 - **Track record:** Users develop calibrated trust faster when they can observe the agent's historical accuracy domain by domain.
 - **Task stakes:** Users apply more scrutiny to high-stakes tasks. This is rational but can cause under-reliance on agents operating in lower-stakes domains where they actually perform well.
@@ -79,7 +79,7 @@ In practice, most production agentic systems maintain human-in-the-loop oversigh
 - **Interrupt-and-resume:** human can pause a running agent, inspect state, redirect, and resume
 - **Periodic review:** agent works autonomously but presents a summary of completed actions for human review at checkpoints
 
-Anthropic's empirical study ["Measuring AI agent autonomy in practice"](https://www.anthropic.com/research/measuring-agent-autonomy) (2025) analyzes millions of Claude Code interactions and finds instructive patterns: among new users, ~20% of sessions use full auto-approve; this rises to >40% as users gain experience. Experienced users auto-approve more *and* interrupt more — a signal that expertise produces better calibration rather than simply more or less trust. On the most complex tasks, Claude Code stops to ask for clarification more than twice as often as humans interrupt it: agent-initiated pauses are an underappreciated oversight mechanism.
+Anthropic's empirical study ["Measuring AI agent autonomy in practice"](https://www.anthropic.com/research/measuring-agent-autonomy) (2026) analyzes millions of Claude Code interactions and finds instructive patterns: among new users, ~20% of sessions use full auto-approve; this rises to >40% as users gain experience. Experienced users auto-approve more *and* interrupt more — a signal that expertise produces better calibration rather than simply more or less trust. On the most complex tasks, Claude Code stops to ask for clarification more than twice as often as humans interrupt it: agent-initiated pauses are an underappreciated oversight mechanism.
 
 ### When Should an Agent Ask vs. Act?
 
@@ -152,7 +152,7 @@ Evaluating human-agent collaboration is methodologically hard:
 - **Subjective quality:** many agent-assisted tasks produce outputs that are hard to objectively score
 - **Trust dynamics:** trust changes over time; a single-session experiment misses how collaboration evolves with experience
 
-The [arXiv:2307.03913](https://arxiv.org/abs/2307.03913) survey on human-AI teaming outlines evaluation frameworks that attempt to capture long-horizon collaboration, emphasizing the importance of studying *team* performance rather than simply measuring the quality of individual outputs.
+[Lou et al.'s review of human-AI teaming, "Unraveling Human-AI Teaming: A Review and Outlook" (arXiv:2504.05755)](https://arxiv.org/abs/2504.05755) outlines evaluation frameworks and structural challenges for long-horizon collaboration, emphasizing the importance of studying *team* performance — including shared mental models and trust-building — rather than simply measuring the quality of individual outputs.
 
 ---
 
@@ -177,7 +177,7 @@ For autonomous agents, good oversight requires:
 
 ### AI Safety Levels
 
-Anthropic's [Responsible Scaling Policy](https://www.anthropic.com/responsible-scaling-policy) (updated October 2024) formalizes a framework of AI Safety Levels (ASL-1 through ASL-4+) where safeguards scale with capability. ASL-3 — which requires substantially enhanced deployment controls — is triggered when models show "low-level autonomous capabilities" or substantially increased risk of catastrophic misuse. This framework is directly relevant to agentic deployment: the RSP commits Anthropic to not deploying agents that have crossed certain capability thresholds without corresponding oversight infrastructure.
+Anthropic's [Responsible Scaling Policy](https://www.anthropic.com/responsible-scaling-policy) (updated February 2026) formalizes a framework of AI Safety Levels (ASL-1 through ASL-4+) where safeguards scale with capability. ASL-3 — which requires substantially enhanced deployment controls — is triggered when models show "low-level autonomous capabilities" or substantially increased risk of catastrophic misuse. This framework is directly relevant to agentic deployment: the RSP commits Anthropic to not deploying agents that have crossed certain capability thresholds without corresponding oversight infrastructure.
 
 [METR (Model Evaluation & Threat Research)](https://metr.org) focuses specifically on evaluating AI systems for dangerous autonomous capabilities. METR's [Autonomy Evaluation Resources](https://metr.org/blog/2024-03-13-autonomy-evaluation-resources/) (March 2024) provide protocols for testing whether agents can autonomously complete multi-hour tasks in ways that could pose risks — from cybersecurity threats to self-replication. METR's 2025 evaluations of Claude 3.5 Sonnet and o1 found no evidence of dangerous autonomous capabilities, but noted that evaluation methodologies are still immature.
 
@@ -232,23 +232,24 @@ These are not purely technical questions. They require input from law, ethics, H
 ### Papers
 
 - **Complementarity in Human-AI Collaboration: Concept, Sources, and Evidence** (2024) — [arXiv:2404.00029](https://arxiv.org/abs/2404.00029)
+- **Does the Whole Exceed its Parts? The Effect of AI Explanations on Complementary Team Performance** (Bansal et al., CHI 2021) — [arXiv:2006.14779](https://arxiv.org/abs/2006.14779)
 - **Collaborative Gym: A Framework for Enabling and Evaluating Human-Agent Collaboration** (Shao, Samuel, Jiang, Yang, Yang, 2024) — [arXiv:2412.15701](https://arxiv.org/abs/2412.15701) · [GitHub](https://github.com/SALT-NLP/collaborative-gym)
 - **The Impact of AI on Developer Productivity: Evidence from GitHub Copilot** (Peng et al., 2023) — [arXiv:2302.06590](https://arxiv.org/abs/2302.06590)
 - **Explanations, Fairness, and Appropriate Reliance in Human-AI Decision-Making** (Schoeffer, De-Arteaga, Kuehl, 2022/2024) — [arXiv:2209.11812](https://arxiv.org/abs/2209.11812)
 - **Appropriate Reliance on AI Advice: Conceptualization and the Effect of Explanations** (Schemmer et al., IUI 2023) — [arXiv:2302.02187](https://arxiv.org/abs/2302.02187)
-- **Understanding the Effects of Miscalibrated AI Confidence on User Trust, Reliance, and Decision Efficacy** (Steyvers et al., 2024) — [arXiv:2402.07632](https://arxiv.org/abs/2402.07632)
+- **Understanding the Effects of Miscalibrated AI Confidence on User Trust, Reliance, and Decision Efficacy** (Li et al., 2024) — [arXiv:2402.07632](https://arxiv.org/abs/2402.07632)
 - **Multi-Agent Systems Should be Treated as Principal-Agent Problems** (2026) — [arXiv:2601.23211](https://arxiv.org/abs/2601.23211)
 - **Governing AI Agents** (Kolt, 2025) — [arXiv:2501.07913](https://arxiv.org/abs/2501.07913)
 - **Unraveling Human-AI Teaming: A Review and Outlook** (Lou et al., 2025) — [arXiv:2504.05755](https://arxiv.org/abs/2504.05755)
 - **A Decision-Theoretic Approach for Managing Misalignment** (2025) — [arXiv:2512.15584](https://arxiv.org/abs/2512.15584)
 - **A model for types and levels of human interaction with automation** (Parasuraman, Sheridan & Wickens, 2000) — foundational LOA taxonomy; [Semantic Scholar](https://www.semanticscholar.org/paper/A-model-for-types-and-levels-of-human-interaction-Parasuraman-Sheridan/14ae6f2231e09e226b99002aa04b5c70f3c59f2b)
-- **Trust in Automation: Misuse and Disuse** (Parasuraman & Riley, 1997) — foundational framework for automation bias and undertrust
+- **Humans and Automation: Use, Misuse, Disuse, Abuse** (Parasuraman & Riley, 1997) — foundational framework for automation bias and undertrust — [Semantic Scholar](https://www.semanticscholar.org/paper/Humans-and-Automation:-Use,-Misuse,-Disuse,-Abuse-Parasuraman-Riley/1cf890ce8391ca958fbc173533d575efcb51f70a) · [DOI](https://journals.sagepub.com/doi/10.1518/001872097778543886)
 
 ### Blog Posts & Industry Resources
 
 - **Building Effective Agents** — Anthropic Engineering Blog, December 2024 — [anthropic.com/engineering/building-effective-agents](https://www.anthropic.com/engineering/building-effective-agents)
-- **Measuring AI Agent Autonomy in Practice** — Anthropic Research, 2025 — [anthropic.com/research/measuring-agent-autonomy](https://www.anthropic.com/research/measuring-agent-autonomy)
-- **Anthropic Responsible Scaling Policy (RSP)** — Updated October 2024 — [anthropic.com/responsible-scaling-policy](https://www.anthropic.com/responsible-scaling-policy)
+- **Measuring AI Agent Autonomy in Practice** — Anthropic Research, 2026 — [anthropic.com/research/measuring-agent-autonomy](https://www.anthropic.com/research/measuring-agent-autonomy)
+- **Anthropic Responsible Scaling Policy (RSP)** — Updated February 2026 — [anthropic.com/responsible-scaling-policy](https://www.anthropic.com/responsible-scaling-policy)
 - **METR Autonomy Evaluation Resources** — March 2024 — [metr.org/blog/2024-03-13-autonomy-evaluation-resources](https://metr.org/blog/2024-03-13-autonomy-evaluation-resources/)
 - **Levels of Autonomy for AI Agents** — Knight First Amendment Institute — [knightcolumbia.org](https://knightcolumbia.org/content/levels-of-autonomy-for-ai-agents-1)
 - **Research: Quantifying GitHub Copilot's Impact on Developer Productivity and Happiness** — GitHub Blog — [github.blog](https://github.blog/news-insights/research/research-quantifying-github-copilots-impact-on-developer-productivity-and-happiness/)
