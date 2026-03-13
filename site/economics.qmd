@@ -22,7 +22,7 @@ Unlike a single LLM call, an agentic pipeline incurs costs at every step:
 - **Input token costs** — the prompt (system instructions, tool descriptions, conversation history, retrieved context) is priced per input token. In long-running agents, the context window grows with each step, so input costs compound over a trajectory.
 - **Output token costs** — typically priced at 3–5× input rates. Every reasoning step, tool call argument, and final response adds to this.
 - **Tool call overhead** — each tool invocation typically requires: (1) prompt construction including tool schema definitions, (2) LLM output parsing, (3) the tool's own execution cost (API call, compute, latency), (4) feeding results back into the next prompt.
-- **Multi-step amplification** — a 10-step ReAct agent doesn't cost 10× a single LLM call: it costs 10 full-context LLM calls, each including the accumulated history of all prior steps. Cost scales quadratically with context length in token-priced APIs.
+- **Multi-step amplification** — a 10-step ReAct agent doesn't cost 10× a single LLM call: it costs 10 full-context LLM calls, each including the accumulated history of all prior steps. Total input token cost grows **approximately quadratically with the number of agent steps** (each step is billed for all prior accumulated context), even though API pricing is linear per token.
 - **Retry overhead** — agents that verify and retry failed steps can multiply costs by 2–3× for hard tasks.
 
 ### How Much Does a Task Cost?
@@ -35,9 +35,9 @@ Real-world cost data from production tools is illuminating. **Agentless** ([arXi
 
 ### The Token Paradox: Cheaper Per Token, More Expensive in Total
 
-Token pricing has dropped dramatically — LLM inference prices for comparable capability have fallen at rates between 9× and 900× per year depending on the benchmark ([Epoch AI](https://epoch.ai/data-insights/llm-inference-price-trends)). GPT-4-class performance that cost ~$60/million tokens in 2023 costs under $3/million tokens by 2025. Yet enterprise AI bills are *rising*, not falling. Token consumption per task has jumped **10×–100× since 2023** as agentic workflows proliferate — each adding planning steps, retrieval, tool calls, retry loops, and multi-agent coordination. **Multi-agent teams consume roughly 7× more tokens than single-agent sessions** because each sub-agent maintains its own full context window. The per-task cost now depends more on agent chain design and thinking budgets than on list prices. This "token paradox" — cheaper tokens, higher total bills — is the defining economic tension of the current era.
+Token pricing has dropped dramatically — LLM inference prices for comparable capability have fallen at rates between 9× and 900× per year depending on the benchmark ([Epoch AI](https://epoch.ai/data-insights/llm-inference-price-trends)). GPT-4-class performance that cost ~$60/million tokens in 2023 costs under $3/million tokens by 2025. Yet enterprise AI bills are *rising*, not falling. Token consumption per task has jumped **10×–100× since 2023** *(industry estimate; exact figures vary by application)* as agentic workflows proliferate — each adding planning steps, retrieval, tool calls, retry loops, and multi-agent coordination. **Multi-agent teams consume roughly 7× more tokens than single-agent sessions** because each sub-agent maintains its own full context window. The per-task cost now depends more on agent chain design and thinking budgets than on list prices. This "token paradox" — cheaper tokens, higher total bills — is the defining economic tension of the current era.
 
-**"The Emerging Market for Intelligence"** ([NBER Working Paper 34608](https://www.nber.org/papers/w34608), Demirer, Fradkin, Tadelis, Peng, December 2025) documents the supply and demand dynamics empirically using Microsoft Azure API and OpenRouter data. With over 600 models available by late 2025 and prices increasingly heterogeneous, the LLM market has shifted from near-monopoly to intense competition — but consumption patterns are simultaneously accelerating due to agentic deployment.
+**"The Emerging Market for Intelligence"** ([NBER Working Paper 34608](https://www.nber.org/papers/w34608), Demirer, Fradkin, Tadelis, Peng, December 2025) documents the supply and demand dynamics empirically using Microsoft Azure API and OpenRouter data. With rapid growth in models, creators, and inference providers by late 2025 and prices increasingly heterogeneous, the LLM market has shifted from near-monopoly to intense competition — but consumption patterns are simultaneously accelerating due to agentic deployment.
 
 ### Prompt Caching: A Structural Discount
 
@@ -55,7 +55,7 @@ This is harder than it sounds. A standard agent prompted to "solve this task" wi
 
 **Token-Budget-Aware LLM Reasoning (TALE)** ([arXiv:2412.18547](https://arxiv.org/abs/2412.18547), Han et al., ACL Findings 2025) takes a direct approach: include a token budget in the prompt itself, and train the model to adjust reasoning verbosity to that budget. The key empirical finding is that LLM reasoning is *systematically over-verbose* — current models (including o1-style models) generate far more reasoning tokens than necessary for most problems. TALE dynamically estimates the complexity of each problem and allocates a budget accordingly, achieving substantial token savings with only slight accuracy degradation. **GitHub:** [GeniusHTX/TALE](https://github.com/GeniusHTX/TALE)
 
-Separately, **"Increasing the Thinking Budget is Not All You Need"** ([arXiv:2512.19585](https://arxiv.org/abs/2512.19585), 2025) shows empirically that simply allocating more thinking budget doesn't reliably improve performance — and that most tasks achieve optimal results at 256–512 thinking tokens, with smaller models benefiting more from extended thinking than larger ones. This reframes the thinking budget as an allocation problem, not just an upper bound.
+Separately, **"Increasing the Thinking Budget is Not All You Need"** ([arXiv:2512.19585](https://arxiv.org/abs/2512.19585), 2025) shows empirically that simply allocating more thinking budget doesn't reliably improve performance — and that more accurate responses can often be achieved through alternative configurations such as self-consistency and self-reflection. This reframes the thinking budget as an allocation problem, not just an upper bound.
 
 ### The Thinking Budget: Explicit API Controls
 
@@ -67,13 +67,13 @@ A cluster of recent papers uses reinforcement learning to train models that adap
 
 **L1 / Length Controlled Policy Optimization (LCPO)** ([arXiv:2503.04697](https://arxiv.org/abs/2503.04697), CMU, 2025) trains reasoning models via RL to satisfy user-specified length constraints. L1 smoothly trades off compute and accuracy and uncovers "Short Reasoning Models" (SRMs) that match full-length models at a fraction of the token budget.
 
-**SelfBudgeter** ([arXiv:2505.11274](https://arxiv.org/abs/2505.11274), 2025) trains reasoning models to self-estimate the required token budget per query, then uses budget-guided GRPO reinforcement learning to maintain accuracy while shrinking output length. Result: **61% average response length compression** on math reasoning benchmarks for a 1.5B model, 48% for a 7B model.
+**SelfBudgeter** ([arXiv:2505.11274](https://arxiv.org/abs/2505.11274), 2025) trains reasoning models to self-estimate the required token budget per query, then uses budget-guided GRPO reinforcement learning to maintain accuracy while shrinking output length. Result: **61% average response length compression** on math reasoning benchmarks for a 1.5B model, 48% for a 7B model *(as reported in paper)*.
 
 **BudgetThinker** ([arXiv:2508.17196](https://arxiv.org/abs/2508.17196), 2025) inserts special control tokens during inference to continuously inform the model of its remaining token budget, using a two-stage pipeline (SFT + curriculum-based RL with length-aware reward). It significantly surpasses baselines in maintaining performance across varied reasoning budgets.
 
-**AdaptThink** ([arXiv:2505.13417](https://arxiv.org/abs/2505.13417), 2025) demonstrates that skipping chain-of-thought ("NoThinking") outperforms thinking on simple problems in both performance and efficiency. Its RL algorithm with constrained optimization encourages the model to use NoThinking where it suffices, reducing average response length of DeepSeek-R1-Distill-Qwen-1.5B by **53% while improving accuracy by 2.4%** across three math datasets.
+**AdaptThink** ([arXiv:2505.13417](https://arxiv.org/abs/2505.13417), 2025) demonstrates that skipping chain-of-thought ("NoThinking") outperforms thinking on simple problems in both performance and efficiency. Its RL algorithm with constrained optimization encourages the model to use NoThinking where it suffices, reducing average response length of DeepSeek-R1-Distill-Qwen-1.5B by **53% while improving accuracy by 2.4%** across three math datasets *(as reported in paper)*.
 
-**HBPO** ([arXiv:2507.15844](https://arxiv.org/abs/2507.15844), 2025) assigns reasoning budgets hierarchically based on problem difficulty. Applied to DeepSeek-R1-Distill-Qwen-1.5B, it improves average accuracy from 56.3% to 59.4% while **reducing token usage by 60.6%** (from 7,921 to 3,120 tokens on average).
+**HBPO** ([arXiv:2507.15844](https://arxiv.org/abs/2507.15844), 2025) assigns reasoning budgets hierarchically based on problem difficulty. Applied to DeepSeek-R1-Distill-Qwen-1.5B, it improves average accuracy from 56.3% to 59.4% while **reducing token usage by 60.6%** (from 7,921 to 3,120 tokens on average) *(as reported in paper)*.
 
 ### Budget-Aware Tool Use and Agent Scaling
 
@@ -119,7 +119,7 @@ Token efficiency is the engineering discipline of getting the most task completi
 
 **Batching related queries.** If multiple related questions can be answered in a single LLM call, batching them avoids per-call prompt overhead. This is especially useful for agents doing parallel information gathering.
 
-**Caching strategies.** Beyond prompt caching for static prefixes, result caching — storing the output of expensive tool calls or LLM calls so they needn't be repeated for identical inputs — can dramatically reduce costs in agents that repeatedly query the same external APIs or documents.
+**Caching strategies.** Beyond prompt caching for static prefixes, result caching — storing the output of expensive tool calls or LLM calls so they needn't be repeated for identical inputs — can dramatically reduce costs in agents that repeatedly query the same external APIs or documents. **Agentic Plan Caching (APC)** ([arXiv:2506.14852](https://arxiv.org/abs/2506.14852), 2025) formalizes this idea: it extracts, stores, and reuses structured plan templates across semantically similar tasks, reducing serving cost by **50.31% and latency by 27.28%** on average across multiple real-world agent applications.
 
 ### For Agents Themselves
 
@@ -209,7 +209,7 @@ FrugalGPT demonstrates that a learned cascade can **match GPT-4 performance with
 
 **Mixture-of-Agents (MoA)** ([arXiv:2406.04692](https://arxiv.org/abs/2406.04692), Wang et al., Together AI, 2024) proposes a layered architecture where multiple LLM agents per layer each receive all outputs from the previous layer as auxiliary context. The "collaborativeness" phenomenon: LLMs generate better responses when given outputs from other models, even weaker ones. MoA using only open-source LLMs achieves **65.1% LC win rate** on AlpacaEval 2.0, surpassing GPT-4 Omni's 57.5%. **LLM-Blender** ([arXiv:2306.02561](https://arxiv.org/abs/2306.02561), Lin et al., ACL 2023) takes a pairwise ranking approach: PairRanker filters poor outputs, then GenFuser merges top-ranked candidates — establishing that the optimal LLM varies significantly per example and motivating ensemble routing.
 
-**Plan-and-Act** ([arXiv:2503.09572](https://arxiv.org/abs/2503.09572), Lee et al., ICML 2025) separates high-level planning from low-level execution into distinct Planner and Executor models, recognizing that different agent roles benefit from different specialized training. It achieves 57.58% success on WebArena-Lite and 81.36% on WebVoyager (text-only SOTA), validating the expensive-planner/cheap-executor architecture pattern.
+**Plan-and-Act** ([arXiv:2503.09572](https://arxiv.org/abs/2503.09572), Lee et al., 2025) separates high-level planning from low-level execution into distinct Planner and Executor models, recognizing that different agent roles benefit from different specialized training. It achieves 57.58% success on WebArena-Lite and 81.36% on WebVoyager (text-only SOTA) *(as reported in paper)*, validating the expensive-planner/cheap-executor architecture pattern.
 
 ### Commercial Routing Infrastructure
 
@@ -244,7 +244,7 @@ But this calculation has crucial qualifiers. Human workers have flexibility, con
 
 ### The CLEAR Framework: Beyond Accuracy
 
-**"Beyond Accuracy: A Multi-Dimensional Framework for Evaluating Enterprise Agentic AI Systems"** ([arXiv:2511.14136](https://arxiv.org/abs/2511.14136), 2025) proposes the CLEAR framework (Cost, Latency, Efficacy, Assurance, Reliability) and delivers a sobering empirical finding: current benchmarks show **up to 50× cost variation** for agents with similar accuracy. Agent performance drops from 60% accuracy (single run) to just 25% in 8-run consistency tests — revealing that reliability in multi-run production environments is dramatically worse than single-benchmark scores suggest. Optimizing for accuracy alone yields agents that are **4.4–10.8× more expensive** than cost-aware alternatives with comparable performance. Expert evaluation (N=15 practitioners) confirms CLEAR predicts production success (ρ=0.83) versus accuracy-only metrics (ρ=0.41).
+**"A Multi-Dimensional Framework for Evaluating Enterprise Agentic AI Systems"** ([arXiv:2511.14136](https://arxiv.org/abs/2511.14136), 2025) proposes the CLEAR framework (Cost, Latency, Efficacy, Assurance, Reliability) and delivers a sobering empirical finding: current benchmarks show **up to 50× cost variation** for agents with similar accuracy. Agent performance drops from 60% accuracy (single run) to just 25% in 8-run consistency tests — revealing that reliability in multi-run production environments is dramatically worse than single-benchmark scores suggest. Optimizing for accuracy alone yields agents that are **4.4–10.8× more expensive** than cost-aware alternatives with comparable performance. Expert evaluation (N=15 practitioners) confirms CLEAR predicts production success (ρ=0.83) versus accuracy-only metrics (ρ=0.41).
 
 ### Adoption Metrics and the Value Capture Gap
 
@@ -256,12 +256,12 @@ But this calculation has crucial qualifiers. Human workers have flexibility, con
 
 ### The Human Oversight Reality
 
-**Anthropic's "Measuring AI Agent Autonomy in Practice"** (2026) analyzed millions of real human-agent interactions across Claude Code and Anthropic's public API, finding that the "set it and forget it" vision of autonomous agents is still rare in practice:
+**Anthropic's "Measuring AI Agent Autonomy in Practice"** ([anthropic.com/research/measuring-agent-autonomy](https://www.anthropic.com/research/measuring-agent-autonomy), 2025) analyzed millions of real human-agent interactions across Claude Code and Anthropic's public API, finding that the "set it and forget it" vision of autonomous agents is still rare in practice:
 
 - **73% of tool calls appear to have a human in the loop** in some form (restricted permissions or approval gates)
 - **Only 0.8% of actions appear to be irreversible** (e.g., sending emails, deleting files)
 - Software engineering accounts for ~50% of all tool calls on their API
-- Among longest-running sessions, agent-initiated stops for clarification occur more than twice as often as human interruptions — agents are self-limiting more than users think
+- Among longest-running sessions, the length of time Claude Code works autonomously before stopping has nearly doubled in three months (from under 25 minutes to over 45 minutes), suggesting agents are capable of more autonomy than they currently exercise
 
 This empirical baseline matters enormously for enterprise ROI calculations: if 73% of tool calls involve human oversight, the cost of human time in the loop is a major component of total deployment cost.
 
@@ -283,7 +283,7 @@ Enterprise ROI calculations often miss indirect costs:
 - **Observability tooling** — tracing which agent step went wrong requires logging infrastructure
 - **Model dependency risk** — when the underlying model changes, agent behavior can shift in subtle ways that require re-evaluation
 
-Operational costs dominate enterprise AI agent TCO: empirical data from 60+ real implementations shows operational costs represent **65–75% of total 3-year spending**, vastly exceeding initial build costs.
+Operational costs dominate enterprise AI agent TCO: operational costs are estimated to represent **65–75% of total 3-year spending** *(unverified; widely cited industry estimate; primary source not available)*, vastly exceeding initial build costs.
 
 ---
 
@@ -321,20 +321,20 @@ LLM inference is energy-intensive. **"Quantifying the Energy Consumption and Car
 - **DiSRouter: Distributed Self-Routing for LLM Selections** (Zheng et al., SJTU, 2025) — [arXiv:2510.19208](https://arxiv.org/abs/2510.19208) *(distributed self-aware routing; models self-assess competence)*
 - **Router-R1: Teaching LLMs Multi-Round Routing and Aggregation via Reinforcement Learning** (2025) — [arXiv:2506.09033](https://arxiv.org/abs/2506.09033) *(multi-round RL-based routing and aggregation as sequential decision process)*
 - **Dynamic Model Routing and Cascading for Efficient LLM Inference: A Survey** (Moslem et al., 2026) — [arXiv:2603.04445](https://arxiv.org/abs/2603.04445) *(comprehensive routing survey; 3-dimensional framework)*
-- **Towards Efficient Multi-LLM Inference: Routing and Hierarchical Techniques** (Behera et al., 2025) — [arXiv:2506.06579](https://arxiv.org/abs/2506.06579) *(survey of routing vs. cascading as complementary strategies)*
+- **Towards Efficient Multi-LLM Inference: Characterization and Analysis of LLM Routing and Hierarchical Techniques** (Behera et al., 2025) — [arXiv:2506.06579](https://arxiv.org/abs/2506.06579) *(survey of routing vs. cascading as complementary strategies)*
 - **Mixture-of-Agents Enhances Large Language Model Capabilities** (Wang et al., Together AI, 2024) — [arXiv:2406.04692](https://arxiv.org/abs/2406.04692) *(layered multi-LLM ensembling; 65.1% AlpacaEval win rate, beating GPT-4 Omni)*
 - **LLM-Blender: Ensembling LLMs with Pairwise Ranking and Generative Fusion** (Lin et al., ACL 2023) — [arXiv:2306.02561](https://arxiv.org/abs/2306.02561) *(PairRanker + GenFuser ensemble; optimal LLM varies per example)*
-- **Plan-and-Act: Improving Planning of Agents for Long-Horizon Tasks** (Lee et al., ICML 2025) — [arXiv:2503.09572](https://arxiv.org/abs/2503.09572) *(separate Planner and Executor models; 57.58% WebArena-Lite, 81.36% WebVoyager)*
+- **Plan-and-Act: Improving Planning of Agents for Long-Horizon Tasks** (Lee et al., 2025) — [arXiv:2503.09572](https://arxiv.org/abs/2503.09572) *(separate Planner and Executor models; 57.58% WebArena-Lite, 81.36% WebVoyager)*
 - **Token-Budget-Aware LLM Reasoning (TALE)** (Han et al., ACL Findings 2025) — [arXiv:2412.18547](https://arxiv.org/abs/2412.18547) *(dynamically adjusts reasoning token count per problem; CoT reasoning is over-verbose)*
 - **Budget-Aware Tool-Use Enables Effective Agent Scaling (BATS)** (Liu, Wang et al., 2025) — [arXiv:2511.17006](https://arxiv.org/abs/2511.17006) *(scaling tool-call budget requires budget awareness; budget tracker enables effective agent scaling)*
-- **INTENT: Intention-Based Planning for Costly Tool Use** (2026) — [arXiv:2602.11541](https://arxiv.org/abs/2602.11541) *(intention-aware hierarchical world model for monetary tool budget enforcement)*
+- **INTENT: Budget-Constrained Agentic LLMs with Intention-Based Planning for Costly Tool Use** (2026) — [arXiv:2602.11541](https://arxiv.org/abs/2602.11541) *(intention-aware hierarchical world model for monetary tool budget enforcement)*
 - **CoRL: Controlling Performance and Budget of Multi-agent LLM Systems with RL** (2025) — [arXiv:2511.02755](https://arxiv.org/abs/2511.02755) *(RL-based multi-LLM cost-performance control; surpasses best individual expert under high budget)*
 - **Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters** (Snell, Lee, Xu, Kumar, 2024) — [arXiv:2408.03314](https://arxiv.org/abs/2408.03314) *(compute-optimal inference as an alternative to model scaling)*
 - **Inference Scaling Laws: Compute-Optimal Inference for Problem-Solving** (2024) — [arXiv:2408.00724](https://arxiv.org/abs/2408.00724) *(smaller models + advanced search = Pareto-optimal cost-performance)*
 - **Compute-Optimal Multi-Stage Agents** (2025) — [arXiv:2508.00890](https://arxiv.org/abs/2508.00890) *(LLM agent learns compute-optimal allocation across multi-stage task phases)*
-- **L1: Controlling Reasoning Length with Reinforcement Learning / LCPO** (CMU, 2025) — [arXiv:2503.04697](https://arxiv.org/abs/2503.04697) *(RL-trained length control; uncovers Short Reasoning Models)*
+- **L1 / LCPO: Controlling How Long A Reasoning Model Thinks With Reinforcement Learning** (CMU, 2025) — [arXiv:2503.04697](https://arxiv.org/abs/2503.04697) *(RL-trained length control; uncovers Short Reasoning Models)*
 - **SelfBudgeter: Adaptive Token Allocation for Efficient LLM Reasoning** (2025) — [arXiv:2505.11274](https://arxiv.org/abs/2505.11274) *(61% response length compression; budget-guided GRPO reinforcement learning)*
-- **BudgetThinker: Budget-aware LLM Reasoning with Control Tokens** (2025) — [arXiv:2508.17196](https://arxiv.org/abs/2508.17196) *(control tokens for budget awareness; curriculum-based RL training)*
+- **BudgetThinker: Empowering Budget-aware LLM Reasoning with Control Tokens** (2025) — [arXiv:2508.17196](https://arxiv.org/abs/2508.17196) *(control tokens for budget awareness; curriculum-based RL training)*
 - **AdaptThink: Reasoning Models Can Learn When to Think** (2025) — [arXiv:2505.13417](https://arxiv.org/abs/2505.13417) *(53% response length reduction + 2.4% accuracy gain; NoThinking vs Thinking selection)*
 - **HBPO: Hierarchical Budget Policy Optimization for Adaptive Reasoning** (2025) — [arXiv:2507.15844](https://arxiv.org/abs/2507.15844) *(60.6% token reduction; difficulty-based budget assignment)*
 - **ACON: Agent Context Optimization** (Microsoft Research, 2025) — [arXiv:2510.00615](https://arxiv.org/abs/2510.00615) *(26–54% peak token reduction for long-horizon agents; distillable to smaller compressors)*
@@ -346,20 +346,21 @@ LLM inference is energy-intensive. **"Quantifying the Energy Consumption and Car
 - **RECOMP: Improving RAG with Compression and Selective Augmentation** (2023) — [arXiv:2310.04408](https://arxiv.org/abs/2310.04408) *(extractive and abstractive RAG document compression; selective augmentation)*
 - **Self-Route: RAG or Long-Context LLMs?** (EMNLP 2024) — [arXiv:2407.16833](https://arxiv.org/abs/2407.16833) *(RAG vs. LC cost tradeoff; self-reflection routing for cost-adaptive context strategy)*
 - **Prompt Compression for Large Language Models: A Survey** (2024) — [arXiv:2410.12388](https://arxiv.org/abs/2410.12388) *(comprehensive survey of token-dropping, soft-prompt, and distillation-based compression)*
+- **Agentic Plan Caching: Test-Time Memory for Fast and Cost-Efficient LLM Agents** (2025) — [arXiv:2506.14852](https://arxiv.org/abs/2506.14852) *(50.31% cost reduction and 27.28% latency reduction via reusable plan templates)*
 - **CostBench: Evaluating Cost-Optimal Planning for LLM Tool-Use Agents** (Liu et al., 2025) — [arXiv:2511.02734](https://arxiv.org/abs/2511.02734) *(benchmark for cost-aware agent planning; reveals significant gaps in current models)*
 - **In-Context Distillation with Self-Consistency Cascades** (2025) — [arXiv:2512.02543](https://arxiv.org/abs/2512.02543) *(adapts knowledge distillation to in-context learning; training-free cost reduction)*
-- **Increasing the Thinking Budget is Not All You Need** (2025) — [arXiv:2512.19585](https://arxiv.org/abs/2512.19585) *(most tasks optimal at 256–512 thinking tokens; smaller models benefit more)*
+- **Increasing the Thinking Budget is Not All You Need** (2025) — [arXiv:2512.19585](https://arxiv.org/abs/2512.19585) *(increasing thinking budget is not always optimal; self-consistency and self-reflection can outperform larger budgets)*
 - **Quantifying the Accuracy and Cost Impact of Design Decisions in Budget-Constrained Agentic LLM Search** (2025) — [arXiv:2603.08877](https://arxiv.org/abs/2603.08877) *(empirical cost-accuracy tradeoff analysis for budget-constrained agent search)*
-- **Beyond Accuracy: The CLEAR Framework for Enterprise Agentic AI** (2025) — [arXiv:2511.14136](https://arxiv.org/abs/2511.14136) *(50× cost variation at same accuracy; 4.4–10.8× savings from cost-aware design)*
+- **CLEAR: A Multi-Dimensional Framework for Evaluating Enterprise Agentic AI Systems** (2025) — [arXiv:2511.14136](https://arxiv.org/abs/2511.14136) *(50× cost variation at same accuracy; 4.4–10.8× savings from cost-aware design)*
 - **Agentless: Demystifying LLM-based Software Engineering Agents** (2024) — [arXiv:2407.01489](https://arxiv.org/abs/2407.01489) *(32% SWE-bench Lite resolve rate at $0.70/task avg)*
-- **The Emerging Market for Intelligence: Pricing, Supply, and Demand for LLMs** (Demirer, Fradkin, Tadelis, Peng, 2025) — [NBER WP 34608](https://www.nber.org/papers/w34608) *(600+ models by late 2025; LLM market shifts to intense price competition)*
+- **The Emerging Market for Intelligence: Pricing, Supply, and Demand for LLMs** (Demirer, Fradkin, Tadelis, Peng, 2025) — [NBER WP 34608](https://www.nber.org/papers/w34608) *(rapid growth in LLM market; intense price competition; open-source models ~90% cheaper than closed-source at same intelligence tier)*
 - **Quantifying the Energy Consumption and Carbon Emissions of LLM Inference via Simulations** (2025) — [arXiv:2507.11417](https://arxiv.org/abs/2507.11417) *(GPU power model for LLM inference; carbon-aware scheduling analysis)*
 
 ### Blog Posts & Resources
 
 - **Prompt Caching with Claude** (Anthropic, 2024) — [anthropic.com/news/prompt-caching](https://www.anthropic.com/news/prompt-caching) *(automatic caching of static prompt prefixes; ~90% reduction on cached input tokens)*
-- **Measuring AI Agent Autonomy in Practice** (Anthropic, 2026) — [anthropic.com/research/measuring-agent-autonomy](https://www.anthropic.com/research/measuring-agent-autonomy) *(73% of tool calls have human oversight; 0.8% irreversible; empirical autonomy data)*
-- **McKinsey State of AI 2025** — [mckinsey.com](https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-ai) *(88% of organizations use AI; ~6% capture meaningful value)*
+- **Measuring AI Agent Autonomy in Practice** (Anthropic, 2025) — [anthropic.com/research/measuring-agent-autonomy](https://www.anthropic.com/research/measuring-agent-autonomy) *(73% of tool calls have human oversight; 0.8% irreversible; empirical autonomy data from millions of Claude Code sessions)*
+- **McKinsey State of AI 2025** — [mckinsey.com](https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai) *(88% of organizations use AI; ~6% capture meaningful value)*
 - **Gartner: 40% of Enterprise Apps Will Feature AI Agents by 2026** (August 2025) — [gartner.com](https://www.gartner.com/en/newsroom/press-releases/2025-08-26-gartner-predicts-40-percent-of-enterprise-apps-will-feature-task-specific-ai-agents-by-2026-up-from-less-than-5-percent-in-2025)
 - **Forrester TEI: Microsoft 365 Copilot** (Forrester/Microsoft, 2024) — 116% enterprise ROI; 132–353% SMB ROI over 3 years — [tei.forrester.com/go/microsoft/M365Copilot](https://tei.forrester.com/go/microsoft/M365Copilot/)
 - **LLM Inference Prices Have Fallen Rapidly But Unequally Across Tasks** (Epoch AI) — [epoch.ai/data-insights/llm-inference-price-trends](https://epoch.ai/data-insights/llm-inference-price-trends) *(9×–900× price decline per year depending on benchmark)*
