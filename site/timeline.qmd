@@ -46,7 +46,7 @@ A consolidated chronology of the major papers, releases, frameworks, benchmarks,
 | May 2023 | **[Tree of Thoughts](https://arxiv.org/abs/2305.10601)** (Yao et al.) | Branching search over reasoning steps; Game of 24: 4%→74% |
 | May 2023 | **[Reasoning via Planning / RAP](https://arxiv.org/abs/2305.04091)** (Hao et al.) | LLM as world model for MCTS-based planning |
 | May 2023 | **[Voyager](https://arxiv.org/abs/2305.16291)** (Wang et al.) | GPT-4 in Minecraft with lifelong skill library accumulation |
-| May 2023 | **[Self-Refine](https://arxiv.org/abs/2305.00633)** (Madaan et al.) | Iterative self-critique without additional training |
+| May 2023 | **[Self-Refine](https://arxiv.org/abs/2303.17651)** (Madaan et al.) | Iterative self-critique without additional training |
 | May 2023 | **[Gorilla LLM](https://arxiv.org/abs/2305.15334)** (Patil et al.) | Fine-tuned LLM for reliable API calling |
 | May 2023 | **[Large Language Models as Tool Makers](https://arxiv.org/abs/2305.17126)** (Cai et al.) | Agents create reusable tools |
 
@@ -177,7 +177,7 @@ A consolidated chronology of the major papers, releases, frameworks, benchmarks,
 - **Tree of Thoughts: Deliberate Problem Solving with Large Language Models** (Yao et al., 2023) — [arXiv:2305.10601](https://arxiv.org/abs/2305.10601)
 - **Reasoning via Planning with Language Models** (Hao et al., 2023) — [arXiv:2305.04091](https://arxiv.org/abs/2305.04091)
 - **Voyager: An Open-Ended Embodied Agent with Large Language Models** (Wang et al., 2023) — [arXiv:2305.16291](https://arxiv.org/abs/2305.16291)
-- **Self-Refine: Iterative Refinement with Self-Feedback** (Madaan et al., 2023) — [arXiv:2305.00633](https://arxiv.org/abs/2305.00633)
+- **Self-Refine: Iterative Refinement with Self-Feedback** (Madaan et al., 2023) — [arXiv:2303.17651](https://arxiv.org/abs/2303.17651)
 - **Gorilla: Large Language Model Connected with Massive APIs** (Patil et al., 2023) — [arXiv:2305.15334](https://arxiv.org/abs/2305.15334)
 - **Large Language Models as Tool Makers** (Cai et al., 2023) — [arXiv:2305.17126](https://arxiv.org/abs/2305.17126)
 ### Mid–Late 2023 Frameworks & Systems

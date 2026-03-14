@@ -64,9 +64,9 @@ Grounds agent memory in cognitive science (ACT-R, SOAR). Proposes the four-memor
 
 The leading open-source **production memory layer for AI agents**. Provides multi-level memory (User, Session, Agent state) with adaptive personalization. Key benchmarks vs. full-context and OpenAI Memory:
 
-- **+26% accuracy** over OpenAI Memory on the LOCOMO benchmark *(source needed)*
-- **91% faster** responses than full-context approaches *(source needed)*
-- **90% lower token usage** than full-context (critical cost reduction) *(source needed)*
+- **+26% accuracy** over OpenAI Memory on the LOCOMO benchmark ([arXiv:2504.19413](https://arxiv.org/abs/2504.19413))
+- **91% lower p95 latency** than full-context approaches ([arXiv:2504.19413](https://arxiv.org/abs/2504.19413))
+- **90% lower token usage** than full-context (critical cost reduction) ([arXiv:2504.19413](https://arxiv.org/abs/2504.19413))
 
 Core capabilities: remembers user preferences, adapts to individual needs over time, provides cross-platform SDKs (Python, TypeScript) and a managed cloud service. v1.0.0 release (2025) added improved vector store support and enhanced GCP integration.
 
@@ -281,6 +281,7 @@ As agent frameworks matured in 2024, several RAG patterns emerged:
 
 ### Memory & Agent Platforms
 - **mem0** — [github.com/mem0ai/mem0](https://github.com/mem0ai/mem0) · [mem0.ai](https://mem0.ai)
+- **Mem0: Building Production-Ready AI Agents with Scalable Long-Term Memory** (mem0ai, 2025) — [arXiv:2504.19413](https://arxiv.org/abs/2504.19413) *(+26% accuracy, 91% lower latency, 90% fewer tokens vs full-context on LOCOMO)*
 - **Letta** (formerly MemGPT) — [github.com/letta-ai/letta](https://github.com/letta-ai/letta) · [letta.com](https://letta.com)
 
 ### Agent Filesystem & Infrastructure

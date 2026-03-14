@@ -71,7 +71,7 @@ How does the agent decide what to do next?
 | **Chain-of-Thought** | Linear reasoning trace | [ReAct](https://arxiv.org/abs/2210.03629), [CoT prompting](https://arxiv.org/abs/2201.11903) |
 | **Tree/Graph Search** | Branching exploration | [Tree of Thoughts](https://arxiv.org/abs/2305.10601), MCTS agents |
 | **Hierarchical** | Decompose → solve subgoals | [Plan-and-Execute](https://arxiv.org/abs/2305.04091), HierAgent |
-| **Reflective** | Evaluate → revise plans | [Reflexion](https://arxiv.org/abs/2303.11366), [Self-Refine](https://arxiv.org/abs/2305.00633), [CRITIC](https://arxiv.org/abs/2305.11738) |
+| **Reflective** | Evaluate → revise plans | [Reflexion](https://arxiv.org/abs/2303.11366), [Self-Refine](https://arxiv.org/abs/2303.17651), [CRITIC](https://arxiv.org/abs/2305.11738) |
 
 ### 2. 💾 Memory Architecture
 
@@ -268,7 +268,7 @@ The literature reveals several recurring tensions that different systems resolve
 ### Reflection & Self-Improvement Papers
 
 - **Reflexion: Language Agents with Verbal Reinforcement Learning** (Shinn et al., 2023) — [arXiv:2303.11366](https://arxiv.org/abs/2303.11366)
-- **Self-Refine: Iterative Refinement with Self-Feedback** (Madaan et al., 2023) — [arXiv:2305.00633](https://arxiv.org/abs/2305.00633)
+- **Self-Refine: Iterative Refinement with Self-Feedback** (Madaan et al., 2023) — [arXiv:2303.17651](https://arxiv.org/abs/2303.17651)
 - **Constitutional AI: Harmlessness from AI Feedback** (Bai et al., 2022) — [arXiv:2212.08073](https://arxiv.org/abs/2212.08073)
 
 ### Multi-Agent Systems Papers
@@ -289,7 +289,7 @@ The literature reveals several recurring tensions that different systems resolve
 ### Embodied & GUI Agents Papers
 
 - **RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control** (Driess et al., 2023) — [arXiv:2307.15818](https://arxiv.org/abs/2307.15818)
-- **CogAgent: A Visual Language Model for GUI Agents** (Hong et al., 2023) — [arXiv:2305.04364](https://arxiv.org/abs/2305.04364)
+- **CogAgent: A Visual Language Model for GUI Agents** (Hong et al., 2023) — [arXiv:2312.08914](https://arxiv.org/abs/2312.08914)
 - **UFO: A UI-Focused Agent for Windows OS Interaction** (Zhang et al., 2024) — [arXiv:2402.07939](https://arxiv.org/abs/2402.07939)
 - **SWE-agent: An Open-Source Software Engineering Agent** (Yang et al., 2024) — [arXiv:2405.15793](https://arxiv.org/abs/2405.15793)
 - **OS-Copilot: Towards Generalist Computer Agents with Open-Ended Learning** (Zhu et al., 2024) — [arXiv:2402.07939](https://arxiv.org/abs/2402.07939)
