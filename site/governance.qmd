@@ -9,7 +9,7 @@ Foundation models generate content — but AI agents *act*. They browse the web,
 
 Most AI regulation enacted so far — from the EU AI Act's risk tiers to the NIST AI Risk Management Framework — was designed with static, decision-support systems in mind: a model takes an input and returns an output, and a human decides what to do with it. Agents collapse this model. They make sequences of consequential decisions autonomously, act through tools that affect external systems, and can delegate subtasks to other agents, all before a human ever reviews the result.
 
-The [2025 AI Agent Index](https://arxiv.org/abs/2602.17753) (Casper et al., 2025), which surveyed 30 state-of-the-art deployed agent systems, found that most developers share little information about safety, evaluations, and societal impacts — a stark transparency gap precisely as agents are entering consequential domains in healthcare, finance, and software engineering.
+The [2025 AI Agent Index](https://arxiv.org/abs/2602.17753) (Staufer et al., 2026), which surveyed 30 state-of-the-art deployed agent systems, found that most developers share little information about safety, evaluations, and societal impacts — a stark transparency gap precisely as agents are entering consequential domains in healthcare, finance, and software engineering.
 
 The central governance challenge is the accountability gap: when an autonomous agent causes harm, the chain from action to responsible party is long, opaque, and tangled across multiple legal jurisdictions and commercial relationships. Addressing this gap requires new thinking in law, policy, and technical standards simultaneously.
 
@@ -35,7 +35,7 @@ Kolt argues that conventional solutions to agency problems — incentive design,
 
 ### The Shadow Principal Problem
 
-A particularly thorny issue is what researchers call the **"shadow principal"** problem. In multi-stakeholder agent deployments, the entity whose instructions most shape agent behavior is often the system prompt author — typically the deployer, not the user. These shadow principals create persistent information asymmetries: users believe they control the agent, but the agent's behavior is largely determined by instructions they cannot see. This [analysis from the Network Law Review](https://www.networklawreview.org/stocker-lehr-ai/) (Stocker & Lehr, 2025) notes that shadow principals can also weaken traditional attention-based accountability in digital platforms.
+A particularly thorny issue is what researchers call the **"shadow principal"** problem. In multi-stakeholder agent deployments, the entity whose instructions most shape agent behavior is often the system prompt author — typically the deployer, not the user. These shadow principals create persistent information asymmetries: users believe they control the agent, but the agent's behavior is largely determined by instructions they cannot see. This [analysis from the Network Law Review](https://www.networklawreview.org/stocker-lehr-ai/) (Stocker & Lehr, 2025, *unverified*) notes that shadow principals can also weaken traditional attention-based accountability in digital platforms.
 
 ### Can an Agent Form a Binding Contract?
 
@@ -77,11 +77,11 @@ In the absence of binding regulation specifically targeting AI agents, frontier 
 
 ### Anthropic's Responsible Scaling Policy
 
-Anthropic's [**Responsible Scaling Policy (RSP)**](https://www.anthropic.com/rsp-updates), now at **Version 2.1** (effective March 31, 2025), ties deployment decisions to capability thresholds called "AI Safety Levels" (ASL). Before deploying a model that crosses an ASL threshold, Anthropic commits to implementing corresponding safety measures. Agentic capabilities — particularly autonomous replication and self-improvement — are among the evaluated threat vectors. The RSP represents an attempt to operationalize the principle that capability and safety measures must scale together.
+Anthropic's [**Responsible Scaling Policy (RSP)**](https://www.anthropic.com/responsible-scaling-policy), now at **Version 3.0** (effective February 24, 2026), ties deployment decisions to capability thresholds called "AI Safety Levels" (ASL). Before deploying a model that crosses an ASL threshold, Anthropic commits to implementing corresponding safety measures. Agentic capabilities — particularly autonomous replication and self-improvement — are among the evaluated threat vectors. The RSP represents an attempt to operationalize the principle that capability and safety measures must scale together.
 
 ### OpenAI's Preparedness Framework
 
-OpenAI's [**Preparedness Framework**](https://openai.com/global-affairs/our-approach-to-frontier-risk/) (updated to Version 2, April 2025) tracks safety-relevant capabilities across domains including cybersecurity, persuasion, biological threats, and **autonomy**. The framework explicitly tracks "Long-range Autonomy" — the ability of a model to pursue goals over extended periods without human oversight — and "Autonomous Replication and Adaptation" as focus areas. Models must reach below a "critical" risk threshold in these dimensions before deployment is permitted. The framework acknowledges that agentic systems are "increasingly" capable of creating meaningful real-world risk.
+OpenAI's [**Preparedness Framework**](https://openai.com/index/updating-our-preparedness-framework/) (updated to Version 2, April 2025) tracks safety-relevant capabilities across domains including cybersecurity, persuasion, biological threats, and **autonomy**. The framework explicitly tracks "Long-range Autonomy" — the ability of a model to pursue goals over extended periods without human oversight — and "Autonomous Replication and Adaptation" as focus areas. Models must reach below a "critical" risk threshold in these dimensions before deployment is permitted. The framework acknowledges that agentic systems are "increasingly" capable of creating meaningful real-world risk.
 
 ### Google DeepMind's Frontier Safety Framework
 
@@ -93,7 +93,7 @@ Google DeepMind introduced its [**Frontier Safety Framework**](https://deepmind.
 
 ### Seoul Summit Commitments and the Frontier Model Forum
 
-In **May 2024**, sixteen AI companies signed the [**Frontier AI Safety Commitments**](https://www.gov.uk/government/publications/frontier-ai-safety-commitments-ai-seoul-summit-2024/frontier-ai-safety-commitments-ai-seoul-summit-2024) at the AI Seoul Summit, including commitments to publish frontier AI safety frameworks, conduct red-teaming, and share safety information with governments. The [**Frontier Model Forum**](https://www.frontiermodelforum.org/), founded by Amazon, Anthropic, Google, and Microsoft in 2023, coordinates safety research and information sharing among member companies.
+In **May 2024**, sixteen AI companies signed the [**Frontier AI Safety Commitments**](https://www.gov.uk/government/publications/frontier-ai-safety-commitments-ai-seoul-summit-2024/frontier-ai-safety-commitments-ai-seoul-summit-2024) at the AI Seoul Summit, including commitments to publish frontier AI safety frameworks, conduct red-teaming, and share safety information with governments. The [**Frontier Model Forum**](https://www.frontiermodelforum.org/), founded by Anthropic, Google, Microsoft, and OpenAI in 2023, coordinates safety research and information sharing among member companies.
 
 METR's December 2025 analysis [**Common Elements of Frontier AI Safety Policies**](https://metr.org/blog/2025-12-09-common-elements-of-frontier-ai-safety-policies/) catalogues twelve published frontier AI safety policies, identifying consistent themes: capability thresholds, model weight security commitments, and deployment mitigations — but also wide variation in specificity and independent verifiability.
 
@@ -115,7 +115,7 @@ Agents capable of drafting emails, posting content, and engaging in conversation
 
 ### Cascading Delegation
 
-In multi-agent systems, Agent A may delegate a task to Agent B, which delegates a subtask to Agent C, each with different capabilities, different system prompts, and potentially different principals. When Agent C causes harm, tracing accountability back through this chain is extremely difficult. The [ETHOS framework](https://arxiv.org/abs/2412.17114) (Hess & Kjeldsen, 2024; arXiv:2412.17114) proposes a **global registry for AI agents** using blockchain and soulbound tokens to enable dynamic risk classification and automated compliance monitoring across delegation chains. Whether decentralized governance infrastructure is the right solution remains contested, but the problem it addresses is real.
+In multi-agent systems, Agent A may delegate a task to Agent B, which delegates a subtask to Agent C, each with different capabilities, different system prompts, and potentially different principals. When Agent C causes harm, tracing accountability back through this chain is extremely difficult. The [ETHOS framework](https://arxiv.org/abs/2412.17114) (Chaffer et al., 2024; arXiv:2412.17114) proposes a **global registry for AI agents** using blockchain and soulbound tokens to enable dynamic risk classification and automated compliance monitoring across delegation chains. Whether decentralized governance infrastructure is the right solution remains contested, but the problem it addresses is real.
 
 ### Tool Access Control
 
@@ -130,6 +130,8 @@ Agents that access and process personal data — reading emails, browsing calend
 ## Proposed Frameworks and Standards
 
 Several concrete governance proposals have emerged to address agent-specific risks:
+
+A complementary angle is **UI-level regulation**: [Bansal et al. (2025)](https://arxiv.org/abs/2512.00742) analyze 22 agentic systems and argue that regulating user interfaces — requiring transparency disclosures and behavioral constraints at the point of interaction — is an under-explored but tractable governance lever that can cascade upward to demand changes at the system and infrastructure levels.
 
 **Agent identity and registration**: Proposals like ETHOS ([arXiv:2412.17114](https://arxiv.org/abs/2412.17114)) and various policy documents suggest that deployed AI agents should be registered, with unique identifiers enabling traceability across multi-agent pipelines. This would allow regulators and affected parties to identify which agent took a given action and hold the appropriate principal accountable.
 
@@ -167,7 +169,7 @@ A comparative analysis of cross-regional AI frameworks ([arXiv:2410.21279](https
 
 Governance of AI agents faces several structural challenges with no clear solution in current policy thinking:
 
-**Regulatory lag**: Capability development is outpacing regulatory processes by years. METR's finding that autonomous task performance has doubled roughly every 7 months means that by the time regulations developed today take effect, the systems they address will be qualitatively more capable. The EU AI Act's full implementation is not expected until August 2026 — an eternity in AI development time.
+**Regulatory lag**: Capability development is outpacing regulatory processes by years. METR's finding that autonomous task performance has doubled roughly every 7 months means that by the time regulations developed today take effect, the systems they address will be qualitatively more capable. The EU AI Act's full implementation is not expected until August 2027 — an eternity in AI development time.
 
 **No consensus on legal personhood**: Whether AI agents can or should bear legal personhood remains philosophically contested and practically unresolved. Without personhood, agents cannot be parties to contracts or defendants in tort cases. With full personhood, humans could evade accountability by attributing harmful decisions to the agent. Intermediate frameworks (limited liability entities for AI) are proposed but unenacted.
 
@@ -185,13 +187,15 @@ Governance of AI agents faces several structural challenges with no clear soluti
 
 - Kolt, N. (2025). [Governing AI Agents](https://arxiv.org/abs/2501.07913). *Notre Dame Law Review*, Vol. 101 (forthcoming). arXiv:2501.07913.
 
-- Casper, S. et al. (2025). [The 2025 AI Agent Index: Documenting Technical and Safety Features of Deployed Agentic AI Systems](https://arxiv.org/abs/2602.17753). arXiv:2602.17753. [Online index: aiagentindex.mit.edu](https://aiagentindex.mit.edu).
+- Staufer, L., Feng, K., Wei, K., Bailey, L., Duan, Y., Yang, M., Ozisik, A. P., Casper, S., and Kolt, N. (2026). [The 2025 AI Agent Index: Documenting Technical and Safety Features of Deployed Agentic AI Systems](https://arxiv.org/abs/2602.17753). arXiv:2602.17753. [Online index: aiagentindex.mit.edu](https://aiagentindex.mit.edu).
 
-- Hess, M. & Kjeldsen, A. (2024). [Decentralized Governance of Autonomous AI Agents](https://arxiv.org/abs/2412.17114). arXiv:2412.17114. (ETHOS framework.)
+- Chaffer, T. J., von Goins, C., Cotlage, D., Okusanya, B., and Goldston, J. (2024). [Decentralized Governance of Autonomous AI Agents](https://arxiv.org/abs/2412.17114). arXiv:2412.17114. (ETHOS framework.)
 
-- Al-Maamari, A. et al. (2024). [Comparative Global AI Regulation: Policy Perspectives from the EU, China, and the US](https://arxiv.org/html/2410.21279v1). arXiv:2410.21279.
+- Chun, J., Schroeder de Witt, C., and Elkins, K. (2024). [Comparative Global AI Regulation: Policy Perspectives from the EU, China, and the US](https://arxiv.org/html/2410.21279v1). arXiv:2410.21279.
 
 - Autio, C. et al. (2024). [Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile (NIST AI 600-1)](https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence). NIST, July 26, 2024.
+
+- Shavit, Y., Agarwal, S., Brundage, M., Adler, S., O'Keefe, C., Campbell, R., Lee, T., Mishkin, P., Eloundou, T., Hickey, A., et al. (2023). [Practices for Governing Agentic AI Systems](https://openai.com/index/practices-for-governing-agentic-ai-systems/). OpenAI Research White Paper, December 2023.
 
 ### Blog Posts & Resources
 
@@ -203,7 +207,7 @@ Governance of AI agents faces several structural challenges with no clear soluti
 
 - Google DeepMind. (2025, September 22). [Strengthening the Frontier Safety Framework](https://deepmind.google/blog/strengthening-our-frontier-safety-framework/).
 
-- Anthropic. (2025). [Responsible Scaling Policy v2.1](https://www.anthropic.com/rsp-updates) (effective March 31, 2025).
+- Anthropic. (2026). [Responsible Scaling Policy v3.0](https://www.anthropic.com/responsible-scaling-policy) (effective February 24, 2026).
 
 - OpenAI. (2025). [Preparedness Framework v2](https://openai.com/index/updating-our-preparedness-framework/) (updated April 15, 2025).
 
@@ -221,9 +225,13 @@ Governance of AI agents faces several structural challenges with no clear soluti
 
 - UK AI Security Institute (AISI). [aisi.gov.uk](https://www.aisi.gov.uk/).
 
-- Stocker, J. & Lehr, S. (2025). [Principal-Agent Dynamics and Digital Platform Economics in the Age of Agentic AI](https://www.networklawreview.org/stocker-lehr-ai/). *Network Law Review*.
+- Stocker, J. & Lehr, S. (2025). [Principal-Agent Dynamics and Digital Platform Economics in the Age of Agentic AI](https://www.networklawreview.org/stocker-lehr-ai/). *Network Law Review*. *(unverified — URL exists; content not independently confirmed)*
 
-- Proskauer Rose. (2025). [Contract Law in the Age of Agentic AI: Who's Really Clicking "Accept"?](https://www.proskauer.com/blog/contract-law-in-the-age-of-agentic-ai-whos-really-clicking-accept)
+- Proskauer Rose. (2025). [Contract Law in the Age of Agentic AI: Who's Really Clicking "Accept"?](https://www.proskauer.com/blog/contract-law-in-the-age-of-agentic-ai-whos-really-clicking-accept). *(unverified — URL exists; content not independently confirmed)*
+
+- Bansal, R., et al. (2025). [On the Regulatory Potential of User Interfaces for AI Agent Governance](https://arxiv.org/abs/2512.00742). arXiv:2512.00742. *(Analyzes 22 agentic systems; proposes UI-level regulation as a complementary approach to system-level and infrastructure-level safeguards for transparency and behavioral compliance)*
+
+- [Legal Foundations and Technical Constraints: Legal Analogues for AI Actorship](https://arxiv.org/abs/2509.08009). arXiv:2509.08009, 2025. *(Critically evaluates the "Law-Following AI" framework; uses comparative legal analysis to identify existing constructs of legal actors without full personhood; examines whether law alignment is more tractable than value alignment)*
 
 - OECD. [OECD AI Principles](https://oecd.ai/en/ai-principles). First adopted 2019; updated 2023–2024.
 

@@ -67,7 +67,7 @@ In real-world web booking tasks, Agent Q improved Llama-3 70B's zero-shot perfor
 
 ### SkyRL-Agent: Scalable Multi-Turn RL
 
-[**SkyRL-Agent**](https://arxiv.org/abs/2511.16108) (Cao et al., 2025) is an open framework for scalable RL training of multi-turn LLM agents. It provides a unified tool interface, efficient rollout scheduling, and dynamic trajectory construction—addressing the engineering bottleneck that makes RL for agents much harder than RL for single-turn reasoning. SkyRL-Agent trains primarily on SWE (software engineering) tasks but demonstrates generalization to Terminal-Bench, BrowseComp-Plus, and WebArena.
+[**SkyRL-Agent**](https://arxiv.org/abs/2511.16108) (Cao et al., 2025) is an open framework for efficient, multi-turn, long-horizon agent training and evaluation. It provides efficient asynchronous dispatching, lightweight tool integration, and flexible backend interoperability—addressing the engineering bottleneck that makes RL for agents much harder than RL for single-turn reasoning. Using SkyRL-Agent, the authors train SA-SWE-32B from Qwen3-32B (24.4% Pass@1 baseline) purely with RL, reaching 39.4% Pass@1 on SWE-Bench Verified at more than 2× cost reduction compared to prior models of similar performance. Despite training solely on SWE tasks, the model generalizes to Terminal-Bench, BrowseComp-Plus, and WebArena.
 
 ---
 
@@ -125,7 +125,7 @@ The result was a model that learned *when* to call tools, *what arguments to pas
 
 ### Gorilla: Massive API Coverage
 
-[**Gorilla**](https://arxiv.org/abs/2305.15334) (Patil et al., UC Berkeley, 2023) pushed in a different direction: rather than teaching tool use self-supervisedly, it fine-tuned specifically for API call generation across thousands of real-world APIs. Gorilla was trained on a large corpus of API documentation and paired API calls, and integrated a retrieval system to handle frequently updated API documentation. The project has since expanded into the [Gorilla Execution Engine (GoEX)](https://gorilla.cs.berkeley.edu/)—a runtime for LLM-generated API calls with "undo" and "damage confinement" abstractions for safe execution.
+[**Gorilla**](https://arxiv.org/abs/2305.15334) (Patil et al., UC Berkeley, 2023) pushed in a different direction: rather than teaching tool use self-supervisedly, it fine-tuned specifically for API call generation across ~1,600 ML model APIs from HuggingFace, TorchHub, and TensorHub (compiled as the APIBench dataset). Gorilla was trained on a large corpus of API documentation and paired API calls, and integrated a retrieval system to handle frequently updated API documentation. The project has since expanded into the [Gorilla Execution Engine (GoEX)](https://gorilla.cs.berkeley.edu/)—a runtime for LLM-generated API calls with "undo" and "damage confinement" abstractions for safe execution.
 
 ### ToolBench / ToolLLM: Real-World Tool Mastery
 
@@ -196,7 +196,7 @@ Large prompted models (GPT-4, Claude 3.5, Gemini 1.5 Pro) are competent at agent
 
 Consider the math: a GPT-4-class model costs roughly $10–30 per million output tokens at retail API pricing. A self-hosted 7B model running on a single consumer GPU costs $0.10–0.50 per million tokens at amortized hardware cost. For an agent that executes 1,000 multi-step tasks per day—each generating hundreds of tokens of intermediate reasoning—the cost difference compounds rapidly. This is why many production deployments use a **cascade architecture**: small fine-tuned models handle routine tasks while large models handle edge cases and ambiguous situations.
 
-The evidence is accumulating. [**"Small Language Models for Efficient Agentic Tool Calling"**](https://arxiv.org/abs/2512.15943) (2024) demonstrated that a fine-tuned small model can achieve **77.55% pass rate on ToolBench evaluation**—significantly outperforming ChatGPT-CoT (26.00%) and ToolLLaMA-DFS (30.18%). The fine-tuned model was dramatically cheaper per inference call.
+The evidence is accumulating. [**"Small Language Models for Efficient Agentic Tool Calling"**](https://arxiv.org/abs/2512.15943) (2025) demonstrated that a fine-tuned small model can achieve **77.55% pass rate on ToolBench evaluation**—significantly outperforming ChatGPT-CoT (26.00%) and ToolLLaMA-DFS (30.18%). The fine-tuned model was dramatically cheaper per inference call.
 
 ### Tool Use Fine-Tuning at Small Scale
 
@@ -273,9 +273,10 @@ An underappreciated issue: optimizing an agent for task success (did the flight 
 - **DeepSeek-R1 (DeepSeek-AI, 2025)** — [arXiv:2501.12948](https://arxiv.org/abs/2501.12948) — RL for reasoning; GRPO; open-source.
 - **s1: Simple Test-Time Scaling (Muennighoff et al., 2025)** — [arXiv:2501.19393](https://arxiv.org/abs/2501.19393) — budget forcing and the 1,000-example recipe.
 - **SWE-smith (Yang et al., 2025)** — [arXiv:2504.21798](https://arxiv.org/abs/2504.21798) — 50k SWE trajectories from 128 repos (NeurIPS 2025 Spotlight).
-- **Small LMs for Agentic Tool Calling (2024)** — [arXiv:2512.15943](https://arxiv.org/abs/2512.15943) — fine-tuned SLM outperforms ChatGPT on ToolBench.
+- **Small LMs for Agentic Tool Calling (2025)** — [arXiv:2512.15943](https://arxiv.org/abs/2512.15943) — fine-tuned SLM outperforms ChatGPT on ToolBench (AAAI 2026 Workshop).
 - **SkyRL-Agent (Cao et al., 2025)** — [arXiv:2511.16108](https://arxiv.org/abs/2511.16108) — scalable RL training framework for multi-turn agents.
 - **PRM Survey (2025)** — [arXiv:2510.08049](https://arxiv.org/abs/2510.08049) — comprehensive survey of process reward models.
+- **Agentic RL Survey (Zhang et al., 2025)** — [arXiv:2509.02547](https://arxiv.org/abs/2509.02547) — "The Landscape of Agentic Reinforcement Learning for LLMs"; synthesizes 500+ works; published in Transactions on Machine Learning Research (TMLR).
 
 ### Blog Posts & Resources
 
@@ -285,6 +286,7 @@ An underappreciated issue: optimizing an agent for task success (did the flight 
 - [SWE-smith Project Site](https://swesmith.com) — data, models, and trajectories.
 - [AgentTrek Project Page](https://agenttrek.github.io/) — trajectory synthesis demo and datasets.
 - [RL Meets LLMs Survey (2025)](https://arxiv.org/abs/2509.16679) — comprehensive survey of RL across the LLM lifecycle.
+- [Agentic RL for LLMs Survey (Zhang et al., TMLR 2025+)](https://arxiv.org/abs/2509.02547) — "The Landscape of Agentic Reinforcement Learning for LLMs": synthesizes 500+ works; specifically contrasts LLM-RL (single-step MDPs) with Agentic RL (temporally extended POMDPs); covers planning, tool use, memory, reasoning, self-improvement, and perception.
 
 ### Code & Projects
 
@@ -293,7 +295,7 @@ An underappreciated issue: optimizing an agent for task success (did the flight 
 - [**simplescaling/s1**](https://github.com/simplescaling/s1) — s1-32B, budget forcing, and the s1K dataset.
 - [**SWE-bench/SWE-smith**](https://github.com/SWE-bench/SWE-smith) — SWE-smith pipeline, task instances, and trajectories.
 - [**QwenLM/Qwen-Agent**](https://github.com/QwenLM/Qwen-Agent) — Qwen models with tool use and agent fine-tuning.
-- [**Nexusflow/NexusRaven-13B**](https://huggingface.co/Nexusflow/NexusRaven-13B) — function calling model on HuggingFace.
+- [**Nexusflow/NexusRaven-V2-13B**](https://huggingface.co/Nexusflow/NexusRaven-V2-13B) — function calling model on HuggingFace (surpasses GPT-4 by 7% on human-generated function calling benchmarks).
 - [**microsoft/Phi-3-mini-4k-instruct**](https://huggingface.co/microsoft/Phi-3-mini-4k-instruct) — small model with strong instruction following for agent tasks.
 
 ---
