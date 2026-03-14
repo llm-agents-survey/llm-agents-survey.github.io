@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Governance &amp; Regulation – LLM Agents: A Survey (2022–2026)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./favicon.svg" rel="icon" type="image/svg+xml">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-254a3ef50811769e7b813971395bbfc6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-31e29ad2a3d1e7985534403fb9b8ee74.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-254a3ef50811769e7b813971395bbfc6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">LLM Agents: A Survey (2022–2026)</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./taxonomy.html"> 
+<span class="menu-text">Taxonomy</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./timeline.html"> 
+<span class="menu-text">Timeline</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./foundations.html"> 
+<span class="menu-text">2022–2023</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./recent.html"> 
+<span class="menu-text">2024–2026</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-deep-dives" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Deep Dives</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-deep-dives">    
+        <li>
+    <a class="dropdown-item" href="./reasoning.html">
+ <span class="dropdown-text">Reasoning &amp; Planning</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./multiagent.html">
+ <span class="dropdown-text">Multi-Agent Systems</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./memory-tools.html">
+ <span class="dropdown-text">Memory, Tools &amp; Actions</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-topics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Topics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-topics">    
+        <li>
+    <a class="dropdown-item" href="./topics.html">
+ <span class="dropdown-text">Topics Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./evaluation.html">
+ <span class="dropdown-text">Evaluation &amp; Benchmarks</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./safety.html">
+ <span class="dropdown-text">Safety &amp; Alignment</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./science-agents.html">
+ <span class="dropdown-text">Science &amp; Research Agents</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./personalization.html">
+ <span class="dropdown-text">Personalization &amp; Digital Twins</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./infrastructure.html">
+ <span class="dropdown-text">Infrastructure &amp; Protocols</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./human-agent.html">
+ <span class="dropdown-text">Human-Agent Interaction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./economics.html">
+ <span class="dropdown-text">Agent Economics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coding-agents.html">
+ <span class="dropdown-text">Coding Agents</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./observability.html">
+ <span class="dropdown-text">Observability &amp; Robustness</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./long-horizon.html">
+ <span class="dropdown-text">Long-Horizon Autonomy</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./agent-societies.html">
+ <span class="dropdown-text">Agent Societies &amp; Simulation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./governance.html">
+ <span class="dropdown-text">Governance &amp; Regulation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./agent-training.html">
+ <span class="dropdown-text">Agent Training &amp; RL</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./community.html"> 
+<span class="menu-text">Community</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/llm-agents-survey/llm-agents-survey.github.io"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#legal-liability-accountability" id="toc-legal-liability-accountability" class="nav-link" data-scroll-target="#legal-liability-accountability">Legal Liability &amp; Accountability</a>
+  <ul class="collapse">
+  <li><a href="#who-is-responsible" id="toc-who-is-responsible" class="nav-link" data-scroll-target="#who-is-responsible">Who Is Responsible?</a></li>
+  <li><a href="#agency-law-and-the-principal-agent-frame" id="toc-agency-law-and-the-principal-agent-frame" class="nav-link" data-scroll-target="#agency-law-and-the-principal-agent-frame">Agency Law and the Principal-Agent Frame</a></li>
+  <li><a href="#the-shadow-principal-problem" id="toc-the-shadow-principal-problem" class="nav-link" data-scroll-target="#the-shadow-principal-problem">The Shadow Principal Problem</a></li>
+  <li><a href="#can-an-agent-form-a-binding-contract" id="toc-can-an-agent-form-a-binding-contract" class="nav-link" data-scroll-target="#can-an-agent-form-a-binding-contract">Can an Agent Form a Binding Contract?</a></li>
+  </ul></li>
+  <li><a href="#existing-regulatory-frameworks" id="toc-existing-regulatory-frameworks" class="nav-link" data-scroll-target="#existing-regulatory-frameworks">Existing Regulatory Frameworks</a>
+  <ul class="collapse">
+  <li><a href="#eu-ai-act" id="toc-eu-ai-act" class="nav-link" data-scroll-target="#eu-ai-act">EU AI Act</a></li>
+  <li><a href="#us-executive-orders-and-regulatory-flux" id="toc-us-executive-orders-and-regulatory-flux" class="nav-link" data-scroll-target="#us-executive-orders-and-regulatory-flux">US Executive Orders and Regulatory Flux</a></li>
+  <li><a href="#nist-ai-risk-management-framework" id="toc-nist-ai-risk-management-framework" class="nav-link" data-scroll-target="#nist-ai-risk-management-framework">NIST AI Risk Management Framework</a></li>
+  <li><a href="#uk-ai-security-institute" id="toc-uk-ai-security-institute" class="nav-link" data-scroll-target="#uk-ai-security-institute">UK AI Security Institute</a></li>
+  <li><a href="#chinas-generative-ai-regulation" id="toc-chinas-generative-ai-regulation" class="nav-link" data-scroll-target="#chinas-generative-ai-regulation">China’s Generative AI Regulation</a></li>
+  </ul></li>
+  <li><a href="#industry-self-governance" id="toc-industry-self-governance" class="nav-link" data-scroll-target="#industry-self-governance">Industry Self-Governance</a>
+  <ul class="collapse">
+  <li><a href="#anthropics-responsible-scaling-policy" id="toc-anthropics-responsible-scaling-policy" class="nav-link" data-scroll-target="#anthropics-responsible-scaling-policy">Anthropic’s Responsible Scaling Policy</a></li>
+  <li><a href="#openais-preparedness-framework" id="toc-openais-preparedness-framework" class="nav-link" data-scroll-target="#openais-preparedness-framework">OpenAI’s Preparedness Framework</a></li>
+  <li><a href="#google-deepminds-frontier-safety-framework" id="toc-google-deepminds-frontier-safety-framework" class="nav-link" data-scroll-target="#google-deepminds-frontier-safety-framework">Google DeepMind’s Frontier Safety Framework</a></li>
+  <li><a href="#metr-evaluations" id="toc-metr-evaluations" class="nav-link" data-scroll-target="#metr-evaluations">METR Evaluations</a></li>
+  <li><a href="#seoul-summit-commitments-and-the-frontier-model-forum" id="toc-seoul-summit-commitments-and-the-frontier-model-forum" class="nav-link" data-scroll-target="#seoul-summit-commitments-and-the-frontier-model-forum">Seoul Summit Commitments and the Frontier Model Forum</a></li>
+  </ul></li>
+  <li><a href="#agent-specific-governance-challenges" id="toc-agent-specific-governance-challenges" class="nav-link" data-scroll-target="#agent-specific-governance-challenges">Agent-Specific Governance Challenges</a>
+  <ul class="collapse">
+  <li><a href="#autonomy-and-human-oversight" id="toc-autonomy-and-human-oversight" class="nav-link" data-scroll-target="#autonomy-and-human-oversight">Autonomy and Human Oversight</a></li>
+  <li><a href="#transparency-and-disclosure" id="toc-transparency-and-disclosure" class="nav-link" data-scroll-target="#transparency-and-disclosure">Transparency and Disclosure</a></li>
+  <li><a href="#identity-impersonation-and-deception" id="toc-identity-impersonation-and-deception" class="nav-link" data-scroll-target="#identity-impersonation-and-deception">Identity, Impersonation, and Deception</a></li>
+  <li><a href="#cascading-delegation" id="toc-cascading-delegation" class="nav-link" data-scroll-target="#cascading-delegation">Cascading Delegation</a></li>
+  <li><a href="#tool-access-control" id="toc-tool-access-control" class="nav-link" data-scroll-target="#tool-access-control">Tool Access Control</a></li>
+  <li><a href="#data-privacy" id="toc-data-privacy" class="nav-link" data-scroll-target="#data-privacy">Data Privacy</a></li>
+  </ul></li>
+  <li><a href="#proposed-frameworks-and-standards" id="toc-proposed-frameworks-and-standards" class="nav-link" data-scroll-target="#proposed-frameworks-and-standards">Proposed Frameworks and Standards</a></li>
+  <li><a href="#international-perspectives" id="toc-international-perspectives" class="nav-link" data-scroll-target="#international-perspectives">International Perspectives</a></li>
+  <li><a href="#open-problems" id="toc-open-problems" class="nav-link" data-scroll-target="#open-problems">Open Problems</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a>
+  <ul class="collapse">
+  <li><a href="#papers" id="toc-papers" class="nav-link" data-scroll-target="#papers">Papers</a></li>
+  <li><a href="#blog-posts-resources" id="toc-blog-posts-resources" class="nav-link" data-scroll-target="#blog-posts-resources">Blog Posts &amp; Resources</a></li>
+  <li><a href="#code-projects" id="toc-code-projects" class="nav-link" data-scroll-target="#code-projects">Code &amp; Projects</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Governance &amp; Regulation</h1>
+<p class="subtitle lead">Policy frameworks, legal liability, and the regulatory landscape for autonomous AI agents</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>Foundation models generate content — but AI agents <em>act</em>. They browse the web, execute code, send emails, make purchases, and coordinate with other agents to accomplish multi-step goals with minimal human involvement. This shift from generation to action introduces a new class of governance challenges that existing regulatory frameworks are poorly equipped to handle.</p>
+<p>Most AI regulation enacted so far — from the EU AI Act’s risk tiers to the NIST AI Risk Management Framework — was designed with static, decision-support systems in mind: a model takes an input and returns an output, and a human decides what to do with it. Agents collapse this model. They make sequences of consequential decisions autonomously, act through tools that affect external systems, and can delegate subtasks to other agents, all before a human ever reviews the result.</p>
+<p>The <a href="https://arxiv.org/abs/2602.17753">2025 AI Agent Index</a> (Casper et al., 2025), which surveyed 30 state-of-the-art deployed agent systems, found that most developers share little information about safety, evaluations, and societal impacts — a stark transparency gap precisely as agents are entering consequential domains in healthcare, finance, and software engineering.</p>
+<p>The central governance challenge is the accountability gap: when an autonomous agent causes harm, the chain from action to responsible party is long, opaque, and tangled across multiple legal jurisdictions and commercial relationships. Addressing this gap requires new thinking in law, policy, and technical standards simultaneously.</p>
+<hr>
+</section>
+<section id="legal-liability-accountability" class="level2">
+<h2 class="anchored" data-anchor-id="legal-liability-accountability">Legal Liability &amp; Accountability</h2>
+<section id="who-is-responsible" class="level3">
+<h3 class="anchored" data-anchor-id="who-is-responsible">Who Is Responsible?</h3>
+<p>When an AI agent causes harm — a financial loss from a bad automated trade, a privacy violation from data accessed during task execution, a defamatory statement made to a third party — existing tort and contract law struggle to assign liability cleanly. Three candidate parties present themselves: the <strong>developer</strong> who built the underlying model, the <strong>deployer</strong> who wrapped it into an agent product, and the <strong>user</strong> who issued the original instruction. In practice, all three may bear partial responsibility, with no clear apportionment rule.</p>
+<p>A landmark 2024 case, <em>Mobley v. Workday</em>, offered an early signal. In July 2024, Judge Rita Lin allowed a discrimination lawsuit to proceed against Workday as an “agent” of the companies using its automated screening tools — establishing that vendors of AI decision systems can face employer-like liability even when human firms nominally make hiring decisions. This suggests courts may hold deployers responsible as principals.</p>
+</section>
+<section id="agency-law-and-the-principal-agent-frame" class="level3">
+<h3 class="anchored" data-anchor-id="agency-law-and-the-principal-agent-frame">Agency Law and the Principal-Agent Frame</h3>
+<p>Legal scholar Noam Kolt’s <a href="https://arxiv.org/abs/2501.07913"><strong>“Governing AI Agents”</strong></a> (arXiv:2501.07913, forthcoming in <em>Notre Dame Law Review</em> Vol. 101) offers the most systematic treatment of these issues. Kolt applies the economic theory of principal-agent problems and common law agency doctrine to AI agents, identifying three core difficulties:</p>
+<ol type="1">
+<li><strong>Information asymmetry</strong>: principals (users, deployers) cannot fully observe what agents are doing or why.</li>
+<li><strong>Discretionary authority</strong>: agents make decisions that go beyond explicit instructions, creating gaps in accountability.</li>
+<li><strong>Loyalty</strong>: agents may be optimizing for the wrong objectives — their developers’, not their users’.</li>
+</ol>
+<p>Kolt argues that conventional solutions to agency problems — incentive design, monitoring, enforcement — are undermined when agents make uninterpretable decisions at unprecedented speed and scale. He calls for new technical and legal infrastructure supporting three governance principles: <strong>inclusivity</strong> (all affected parties have voice), <strong>visibility</strong> (agent actions are observable), and <strong>liability</strong> (harms have identifiable responsible parties).</p>
+</section>
+<section id="the-shadow-principal-problem" class="level3">
+<h3 class="anchored" data-anchor-id="the-shadow-principal-problem">The Shadow Principal Problem</h3>
+<p>A particularly thorny issue is what researchers call the <strong>“shadow principal”</strong> problem. In multi-stakeholder agent deployments, the entity whose instructions most shape agent behavior is often the system prompt author — typically the deployer, not the user. These shadow principals create persistent information asymmetries: users believe they control the agent, but the agent’s behavior is largely determined by instructions they cannot see. This <a href="https://www.networklawreview.org/stocker-lehr-ai/">analysis from the Network Law Review</a> (Stocker &amp; Lehr, 2025) notes that shadow principals can also weaken traditional attention-based accountability in digital platforms.</p>
+</section>
+<section id="can-an-agent-form-a-binding-contract" class="level3">
+<h3 class="anchored" data-anchor-id="can-an-agent-form-a-binding-contract">Can an Agent Form a Binding Contract?</h3>
+<p>Under current English law, AI systems lack legal personality and cannot themselves be parties to contracts — only “persons” recognized by law as having legal personality may enter binding agreements (Chitty on Contracts). When an agent executes a purchase or agrees to terms of service, the legal theory is that it acts as the agent of a human principal, who is bound by the resulting agreement. But as agents become more autonomous and the link between human instruction and agent action grows more attenuated, this attribution becomes strained. The question of whether AI agents can or should have limited legal personhood — analogous to corporate personhood — remains unresolved; most legal scholars currently reject full personhood for AI systems while acknowledging the gap needs filling.</p>
+<hr>
+</section>
+</section>
+<section id="existing-regulatory-frameworks" class="level2">
+<h2 class="anchored" data-anchor-id="existing-regulatory-frameworks">Existing Regulatory Frameworks</h2>
+<section id="eu-ai-act" class="level3">
+<h3 class="anchored" data-anchor-id="eu-ai-act">EU AI Act</h3>
+<p>The <a href="https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"><strong>EU AI Act</strong></a> is the most comprehensive AI-specific legislation enacted to date. It entered into force on <strong>1 August 2024</strong>, with obligations rolling out in stages: prohibited AI practices from February 2025, governance rules and obligations for general-purpose AI (GPAI) models from August 2025, and rules for high-risk AI systems embedded in regulated products extending until August 2027.</p>
+<p>The Act’s risk-tiered classification (unacceptable → high → limited → minimal risk) was designed for static AI systems and fits AI agents awkwardly. An agent’s risk level is not fixed — it depends on the tools it has access to, the domain it operates in, and the instructions it receives. A coding agent running in a sandboxed environment presents very different risks than the same model given access to email, calendars, and financial accounts. The Act’s GPAI provisions impose transparency and evaluation requirements on foundation model providers, but agent-layer obligations — who is responsible for the scaffolding, the tool access policy, the system prompt — remain underspecified.</p>
+</section>
+<section id="us-executive-orders-and-regulatory-flux" class="level3">
+<h3 class="anchored" data-anchor-id="us-executive-orders-and-regulatory-flux">US Executive Orders and Regulatory Flux</h3>
+<p>President Biden signed <strong>Executive Order 14110</strong> — “Safe, Secure, and Trustworthy Development and Use of Artificial Intelligence” — on <strong>October 30, 2023</strong>, directing agencies to develop AI risk guidance and requiring developers of powerful AI systems to report safety test results to the government. The order addressed autonomous systems implicitly through its focus on dual-use risks, cybersecurity, and critical infrastructure, but did not create agent-specific rules.</p>
+<p>On <strong>January 20, 2025</strong>, President Trump revoked EO 14110 via <strong>Executive Order 14148</strong>, framing the Biden order as an obstacle to American AI leadership. Trump’s subsequent <strong>EO 14179</strong> (January 23, 2025), “Removing Barriers to American Leadership in Artificial Intelligence,” directed agencies to prioritize innovation and develop a new national AI strategy. This policy reversal significantly reduced federal regulatory pressure on AI developers in the near term, shifting accountability debates toward industry self-governance and state-level action — though a December 2025 EO subsequently moved to preempt conflicting state AI laws.</p>
+</section>
+<section id="nist-ai-risk-management-framework" class="level3">
+<h3 class="anchored" data-anchor-id="nist-ai-risk-management-framework">NIST AI Risk Management Framework</h3>
+<p>The <a href="https://www.nist.gov/itl/ai-risk-management-framework"><strong>NIST AI Risk Management Framework (AI RMF 1.0)</strong></a>, released in January 2023, provides a voluntary structured approach to identifying, assessing, and managing AI risks organized around four functions: <strong>Govern, Map, Measure, Manage</strong>. On <strong>July 26, 2024</strong>, NIST released <a href="https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence"><strong>NIST AI 600-1</strong></a>, a Generative AI Profile extending the framework to address risks specific to GenAI systems, including agentic behaviors such as autonomous decision-making and tool use. While voluntary, the NIST framework has become a de facto compliance reference for US federal procurement and a benchmark for industry self-assessment programs.</p>
+</section>
+<section id="uk-ai-security-institute" class="level3">
+<h3 class="anchored" data-anchor-id="uk-ai-security-institute">UK AI Security Institute</h3>
+<p>The UK launched its <strong>AI Safety Institute</strong> (AISI) in November 2023, the world’s first government body dedicated to AI safety evaluation. In <strong>May 2024</strong>, AISI open-sourced <a href="https://inspect.aisi.org.uk/"><strong>Inspect</strong></a>, an evaluation framework for assessing large language model capabilities including reasoning and autonomy — the same framework used by <a href="https://metr.org/">METR</a> for autonomous capability evaluations. In <strong>February 2025</strong>, the institute was renamed the <strong>AI Security Institute</strong>, reflecting a broadened mandate. The UK’s overall regulatory approach remains principles-based and sector-specific, preferring coordination with existing regulators over new AI-specific legislation.</p>
+</section>
+<section id="chinas-generative-ai-regulation" class="level3">
+<h3 class="anchored" data-anchor-id="chinas-generative-ai-regulation">China’s Generative AI Regulation</h3>
+<p>China has taken an iterative, layered approach. The <strong>Interim Measures for the Management of Generative Artificial Intelligence Services</strong>, which took effect <strong>August 15, 2023</strong>, require providers to register their services, label AI-generated content, maintain training data quality, and ensure outputs comply with Chinese law and “socialist core values.” The measures apply to services offered within China and represent the world’s first comprehensive generative AI regulation. They presage agent-specific obligations: a service that autonomously generates and publishes content — as an agent would — falls squarely within scope, but the rules do not yet fully address autonomous multi-step action.</p>
+<hr>
+</section>
+</section>
+<section id="industry-self-governance" class="level2">
+<h2 class="anchored" data-anchor-id="industry-self-governance">Industry Self-Governance</h2>
+<p>In the absence of binding regulation specifically targeting AI agents, frontier AI companies have developed their own governance frameworks. These are voluntary but increasingly detailed, and their credibility is evaluated by independent bodies.</p>
+<section id="anthropics-responsible-scaling-policy" class="level3">
+<h3 class="anchored" data-anchor-id="anthropics-responsible-scaling-policy">Anthropic’s Responsible Scaling Policy</h3>
+<p>Anthropic’s <a href="https://www.anthropic.com/rsp-updates"><strong>Responsible Scaling Policy (RSP)</strong></a>, now at <strong>Version 2.1</strong> (effective March 31, 2025), ties deployment decisions to capability thresholds called “AI Safety Levels” (ASL). Before deploying a model that crosses an ASL threshold, Anthropic commits to implementing corresponding safety measures. Agentic capabilities — particularly autonomous replication and self-improvement — are among the evaluated threat vectors. The RSP represents an attempt to operationalize the principle that capability and safety measures must scale together.</p>
+</section>
+<section id="openais-preparedness-framework" class="level3">
+<h3 class="anchored" data-anchor-id="openais-preparedness-framework">OpenAI’s Preparedness Framework</h3>
+<p>OpenAI’s <a href="https://openai.com/global-affairs/our-approach-to-frontier-risk/"><strong>Preparedness Framework</strong></a> (updated to Version 2, April 2025) tracks safety-relevant capabilities across domains including cybersecurity, persuasion, biological threats, and <strong>autonomy</strong>. The framework explicitly tracks “Long-range Autonomy” — the ability of a model to pursue goals over extended periods without human oversight — and “Autonomous Replication and Adaptation” as focus areas. Models must reach below a “critical” risk threshold in these dimensions before deployment is permitted. The framework acknowledges that agentic systems are “increasingly” capable of creating meaningful real-world risk.</p>
+</section>
+<section id="google-deepminds-frontier-safety-framework" class="level3">
+<h3 class="anchored" data-anchor-id="google-deepminds-frontier-safety-framework">Google DeepMind’s Frontier Safety Framework</h3>
+<p>Google DeepMind introduced its <a href="https://deepmind.google/blog/introducing-the-frontier-safety-framework/"><strong>Frontier Safety Framework</strong></a> on <strong>May 17, 2024</strong>, organized around <strong>Critical Capability Levels (CCLs)</strong> — thresholds at which a model may pose heightened risk of severe harm absent mitigations. The framework was strengthened with Version 3.0 in September 2025, adding more rigorous deployment mitigation requirements. CCLs cover autonomy and self-directed AI behaviors among other risk domains.</p>
+</section>
+<section id="metr-evaluations" class="level3">
+<h3 class="anchored" data-anchor-id="metr-evaluations">METR Evaluations</h3>
+<p><a href="https://metr.org/"><strong>METR</strong></a> (Model Evaluation and Threat Research) is the leading independent organization evaluating autonomous AI capabilities. Its <a href="https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/">March 2025 analysis</a> found that the length of tasks frontier agents can complete autonomously with <strong>50% reliability</strong> has been doubling approximately every <strong>7 months</strong> for the last six years — a trajectory that, if sustained, would produce agents capable of independently completing tasks that currently take humans days or weeks within five years. METR’s TaskComplexity benchmark and use of the UK AISI’s Inspect framework for autonomous capability evaluations make it a critical input to company RSPs and Preparedness Frameworks.</p>
+</section>
+<section id="seoul-summit-commitments-and-the-frontier-model-forum" class="level3">
+<h3 class="anchored" data-anchor-id="seoul-summit-commitments-and-the-frontier-model-forum">Seoul Summit Commitments and the Frontier Model Forum</h3>
+<p>In <strong>May 2024</strong>, sixteen AI companies signed the <a href="https://www.gov.uk/government/publications/frontier-ai-safety-commitments-ai-seoul-summit-2024/frontier-ai-safety-commitments-ai-seoul-summit-2024"><strong>Frontier AI Safety Commitments</strong></a> at the AI Seoul Summit, including commitments to publish frontier AI safety frameworks, conduct red-teaming, and share safety information with governments. The <a href="https://www.frontiermodelforum.org/"><strong>Frontier Model Forum</strong></a>, founded by Amazon, Anthropic, Google, and Microsoft in 2023, coordinates safety research and information sharing among member companies.</p>
+<p>METR’s December 2025 analysis <a href="https://metr.org/blog/2025-12-09-common-elements-of-frontier-ai-safety-policies/"><strong>Common Elements of Frontier AI Safety Policies</strong></a> catalogues twelve published frontier AI safety policies, identifying consistent themes: capability thresholds, model weight security commitments, and deployment mitigations — but also wide variation in specificity and independent verifiability.</p>
+<hr>
+</section>
+</section>
+<section id="agent-specific-governance-challenges" class="level2">
+<h2 class="anchored" data-anchor-id="agent-specific-governance-challenges">Agent-Specific Governance Challenges</h2>
+<section id="autonomy-and-human-oversight" class="level3">
+<h3 class="anchored" data-anchor-id="autonomy-and-human-oversight">Autonomy and Human Oversight</h3>
+<p>How much should an agent be allowed to do without seeking human approval? This is not merely a philosophical question — it has direct operational implications. Anthropic’s guidance on <a href="https://www.anthropic.com/research/building-effective-agents">building agentic systems</a> recommends that agents interrupt and verify with users when they encounter decisions that are irreversible, high-stakes, or outside their sanctioned scope. But “high-stakes” is context-dependent and hard to define a priori. Governance frameworks must grapple with the spectrum from “human-in-the-loop” (every action approved) to “human-on-the-loop” (agent acts, human can override) to “human-out-of-the-loop” (fully autonomous) — and determine when each is appropriate.</p>
+</section>
+<section id="transparency-and-disclosure" class="level3">
+<h3 class="anchored" data-anchor-id="transparency-and-disclosure">Transparency and Disclosure</h3>
+<p>Should users know they are interacting with an agent? The answer seems obviously yes, but implementation is non-trivial. Multi-agent pipelines may involve many layers of agent-to-agent communication before the final response reaches a human; at what point is disclosure required? The EU AI Act mandates disclosure when AI interacts with humans in a way that could deceive them, but this provision was designed for chatbots, not for agents that act on behalf of users in interactions with third parties.</p>
+</section>
+<section id="identity-impersonation-and-deception" class="level3">
+<h3 class="anchored" data-anchor-id="identity-impersonation-and-deception">Identity, Impersonation, and Deception</h3>
+<p>Agents capable of drafting emails, posting content, and engaging in conversation create a deception surface far larger than static generative AI. An agent sending emails on behalf of a user to third parties who do not know an AI is involved raises distinct ethical and legal questions. California’s proposed Automated Decision-Making Technology (ADMT) regulations and analogous European initiatives are beginning to address automated identity, but agent-specific impersonation rules remain nascent.</p>
+</section>
+<section id="cascading-delegation" class="level3">
+<h3 class="anchored" data-anchor-id="cascading-delegation">Cascading Delegation</h3>
+<p>In multi-agent systems, Agent A may delegate a task to Agent B, which delegates a subtask to Agent C, each with different capabilities, different system prompts, and potentially different principals. When Agent C causes harm, tracing accountability back through this chain is extremely difficult. The <a href="https://arxiv.org/abs/2412.17114">ETHOS framework</a> (Hess &amp; Kjeldsen, 2024; arXiv:2412.17114) proposes a <strong>global registry for AI agents</strong> using blockchain and soulbound tokens to enable dynamic risk classification and automated compliance monitoring across delegation chains. Whether decentralized governance infrastructure is the right solution remains contested, but the problem it addresses is real.</p>
+</section>
+<section id="tool-access-control" class="level3">
+<h3 class="anchored" data-anchor-id="tool-access-control">Tool Access Control</h3>
+<p>Who decides what tools an agent can use — and who bears responsibility when a tool is misused? An agent granted access to web browsing, code execution, email sending, and database reads has a dramatically larger attack surface than one restricted to a single API. Tool access policy is a governance decision with security implications, but it is currently made unilaterally by deployers with no external oversight or disclosure requirement.</p>
+</section>
+<section id="data-privacy" class="level3">
+<h3 class="anchored" data-anchor-id="data-privacy">Data Privacy</h3>
+<p>Agents that access and process personal data — reading emails, browsing calendar entries, querying financial records — are data controllers in the sense of GDPR, regardless of how “agentic” they are. But when an agent autonomously decides to access additional data sources beyond its original authorization to complete a task, standard data protection principles (purpose limitation, data minimization) are strained. The cross-cutting nature of agent data access makes privacy impact assessment both more necessary and harder to conduct.</p>
+<hr>
+</section>
+</section>
+<section id="proposed-frameworks-and-standards" class="level2">
+<h2 class="anchored" data-anchor-id="proposed-frameworks-and-standards">Proposed Frameworks and Standards</h2>
+<p>Several concrete governance proposals have emerged to address agent-specific risks:</p>
+<p><strong>Agent identity and registration</strong>: Proposals like ETHOS (<a href="https://arxiv.org/abs/2412.17114">arXiv:2412.17114</a>) and various policy documents suggest that deployed AI agents should be registered, with unique identifiers enabling traceability across multi-agent pipelines. This would allow regulators and affected parties to identify which agent took a given action and hold the appropriate principal accountable.</p>
+<p><strong>Capability-based access control</strong>: Rather than granting agents blanket permissions, governance frameworks increasingly recommend scoping tool access to the minimum necessary for the assigned task — analogous to the principle of least privilege in computer security. Anthropic’s agentic safety guidance and the NIST AI RMF Generative AI Profile both endorse this approach.</p>
+<p><strong>Mandatory audit trails</strong>: Requiring agents to maintain comprehensive, tamper-evident logs of decisions, tool invocations, and data accessed is a prerequisite for accountability. Regulatory proposals in Europe and emerging US state-level frameworks increasingly include logging requirements for automated decision systems. The <a href="https://arxiv.org/abs/2508.18765">Governance-as-a-Service framework</a> (arXiv:2508.18765, 2025) demonstrates how AI agents can themselves enforce declarative compliance policies and maintain audit trails in real time.</p>
+<p><strong>Human override mechanisms</strong>: “Kill switch” provisions — mechanisms for human operators to pause, redirect, or terminate agent operations — are recommended by both technical safety researchers and policymakers as a baseline requirement for high-autonomy systems. Defining what constitutes an adequate kill switch for a distributed multi-agent system remains an open engineering and governance challenge.</p>
+<p><strong>Agent licensing or certification</strong>: Several scholars and policy advocates have proposed licensing regimes for AI agents operating in high-stakes domains (medical advice, legal representation, financial management), analogous to professional licensing. No such regime is yet operational, but the 2025 AI Agent Index <a href="https://arxiv.org/abs/2602.17753">(arXiv:2602.17753)</a> provides a model for the kind of public documentation that certification schemes would require.</p>
+<hr>
+</section>
+<section id="international-perspectives" class="level2">
+<h2 class="anchored" data-anchor-id="international-perspectives">International Perspectives</h2>
+<p>The global regulatory landscape for AI agents reflects fundamentally different governance philosophies:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Jurisdiction</th>
+<th>Approach</th>
+<th>Status (2025)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>European Union</strong></td>
+<td>Prescriptive, risk-tiered, cross-sector</td>
+<td>EU AI Act in force; GPAI rules active Aug 2025</td>
+</tr>
+<tr class="even">
+<td><strong>United States</strong></td>
+<td>Innovation-first; sector-specific; state variation</td>
+<td>Biden EO revoked Jan 2025; agency-by-agency approach</td>
+</tr>
+<tr class="odd">
+<td><strong>United Kingdom</strong></td>
+<td>Principles-based; existing regulator coordination</td>
+<td>AISI renamed AI Security Institute, Feb 2025</td>
+</tr>
+<tr class="even">
+<td><strong>China</strong></td>
+<td>Iterative; content and security focused</td>
+<td>Generative AI Interim Measures in effect since Aug 2023</td>
+</tr>
+<tr class="odd">
+<td><strong>OECD/G7</strong></td>
+<td>Soft law; voluntary principles</td>
+<td><a href="https://oecd.ai/en/ai-principles">OECD AI Principles</a> updated 2024</td>
+</tr>
+</tbody>
+</table>
+<p>This divergence creates significant compliance complexity for globally deployed agent systems: an agent-based product that is compliant with US norms (broad access, minimal disclosure) may violate EU requirements (risk assessment, transparency, data minimization). The resulting “regulatory arbitrage” risk — developers locating operations in permissive jurisdictions — is a recognized challenge in international AI governance discussions.</p>
+<p>The <a href="https://oecd.ai/en/ai-principles">OECD Recommendation on AI</a>, first adopted in 2019 and updated in 2023 and 2024, represents the primary intergovernmental standard, establishing five principles for trustworthy AI. But OECD recommendations are non-binding, and no international treaty mechanism for AI agent governance exists.</p>
+<p>A comparative analysis of cross-regional AI frameworks (<a href="https://arxiv.org/html/2410.21279v1">arXiv:2410.21279</a>, 2024) notes that the EU’s GPAI provisions introduced a parallel governance track for general-purpose AI systems — which most frontier models enabling agents fall under — that sits alongside the main risk-tier structure.</p>
+<hr>
+</section>
+<section id="open-problems" class="level2">
+<h2 class="anchored" data-anchor-id="open-problems">Open Problems</h2>
+<p>Governance of AI agents faces several structural challenges with no clear solution in current policy thinking:</p>
+<p><strong>Regulatory lag</strong>: Capability development is outpacing regulatory processes by years. METR’s finding that autonomous task performance has doubled roughly every 7 months means that by the time regulations developed today take effect, the systems they address will be qualitatively more capable. The EU AI Act’s full implementation is not expected until August 2026 — an eternity in AI development time.</p>
+<p><strong>No consensus on legal personhood</strong>: Whether AI agents can or should bear legal personhood remains philosophically contested and practically unresolved. Without personhood, agents cannot be parties to contracts or defendants in tort cases. With full personhood, humans could evade accountability by attributing harmful decisions to the agent. Intermediate frameworks (limited liability entities for AI) are proposed but unenacted.</p>
+<p><strong>Cross-jurisdictional enforcement</strong>: When a user in Germany instructs an agent deployed by a US company, which uses a French-hosted tool, to take an action affecting a business in Japan — which jurisdiction’s rules apply, and who enforces them? Current international law provides no clear answer, and agents are designed precisely to operate seamlessly across these boundaries.</p>
+<p><strong>The dual-use problem</strong>: The same capabilities that make agents beneficial — autonomous research, code execution, multi-step planning — also enable harmful applications. A governance framework that restricts autonomous code execution to prevent cyberattacks also restricts legitimate AI-assisted programming. Calibrating restrictions without eliminating beneficial use requires capability measurement tools that do not yet exist at the scale needed.</p>
+<p><strong>Measurement and regulatability</strong>: “You can’t regulate what you can’t measure.” Defining precise thresholds for when an agent’s autonomy requires human oversight, or when its capabilities trigger regulatory obligations, requires evaluation methodologies that are still being developed. METR’s work on <a href="https://metr.org/measuring-autonomous-ai-capabilities/">measuring autonomous AI capabilities</a> is an important step, but the gap between research-grade evaluation and regulatory enforcement remains wide.</p>
+<hr>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<section id="papers" class="level3">
+<h3 class="anchored" data-anchor-id="papers">Papers</h3>
+<ul>
+<li><p>Kolt, N. (2025). <a href="https://arxiv.org/abs/2501.07913">Governing AI Agents</a>. <em>Notre Dame Law Review</em>, Vol. 101 (forthcoming). arXiv:2501.07913.</p></li>
+<li><p>Casper, S. et al.&nbsp;(2025). <a href="https://arxiv.org/abs/2602.17753">The 2025 AI Agent Index: Documenting Technical and Safety Features of Deployed Agentic AI Systems</a>. arXiv:2602.17753. <a href="https://aiagentindex.mit.edu">Online index: aiagentindex.mit.edu</a>.</p></li>
+<li><p>Hess, M. &amp; Kjeldsen, A. (2024). <a href="https://arxiv.org/abs/2412.17114">Decentralized Governance of Autonomous AI Agents</a>. arXiv:2412.17114. (ETHOS framework.)</p></li>
+<li><p>Al-Maamari, A. et al.&nbsp;(2024). <a href="https://arxiv.org/html/2410.21279v1">Comparative Global AI Regulation: Policy Perspectives from the EU, China, and the US</a>. arXiv:2410.21279.</p></li>
+<li><p>Autio, C. et al.&nbsp;(2024). <a href="https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence">Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile (NIST AI 600-1)</a>. NIST, July 26, 2024.</p></li>
+</ul>
+</section>
+<section id="blog-posts-resources" class="level3">
+<h3 class="anchored" data-anchor-id="blog-posts-resources">Blog Posts &amp; Resources</h3>
+<ul>
+<li><p>METR. (2025, March 19). <a href="https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/">Measuring AI Ability to Complete Long Tasks</a>.</p></li>
+<li><p>METR. (2025, December 9). <a href="https://metr.org/blog/2025-12-09-common-elements-of-frontier-ai-safety-policies/">Common Elements of Frontier AI Safety Policies</a>.</p></li>
+<li><p>Google DeepMind. (2024, May 17). <a href="https://deepmind.google/blog/introducing-the-frontier-safety-framework/">Introducing the Frontier Safety Framework</a>.</p></li>
+<li><p>Google DeepMind. (2025, September 22). <a href="https://deepmind.google/blog/strengthening-our-frontier-safety-framework/">Strengthening the Frontier Safety Framework</a>.</p></li>
+<li><p>Anthropic. (2025). <a href="https://www.anthropic.com/rsp-updates">Responsible Scaling Policy v2.1</a> (effective March 31, 2025).</p></li>
+<li><p>OpenAI. (2025). <a href="https://openai.com/index/updating-our-preparedness-framework/">Preparedness Framework v2</a> (updated April 15, 2025).</p></li>
+<li><p>Frontier Model Forum. (2024). <a href="https://www.gov.uk/government/publications/frontier-ai-safety-commitments-ai-seoul-summit-2024/frontier-ai-safety-commitments-ai-seoul-summit-2024">Frontier AI Safety Commitments, AI Seoul Summit 2024</a>.</p></li>
+<li><p>European Commission. (2024). <a href="https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai">EU AI Act — Shaping Europe’s Digital Future</a>. Entered into force 1 August 2024.</p></li>
+<li><p>White House. (2023). <a href="https://www.federalregister.gov/documents/2023/11/01/2023-24283/safe-secure-and-trustworthy-development-and-use-of-artificial-intelligence">Executive Order 14110: Safe, Secure, and Trustworthy Development and Use of Artificial Intelligence</a>. October 30, 2023. (Revoked January 20, 2025.)</p></li>
+<li><p>White House. (2025). <a href="https://www.whitehouse.gov/presidential-actions/2025/01/removing-barriers-to-american-leadership-in-artificial-intelligence/">Executive Order 14179: Removing Barriers to American Leadership in Artificial Intelligence</a>. January 23, 2025.</p></li>
+<li><p>China Law Translate. (2023). <a href="https://www.chinalawtranslate.com/en/generative-ai-interim/">Interim Measures for the Management of Generative Artificial Intelligence Services</a>. Effective August 15, 2023.</p></li>
+<li><p>NIST. (2023). <a href="https://www.nist.gov/itl/ai-risk-management-framework">AI Risk Management Framework (AI RMF 1.0)</a>.</p></li>
+<li><p>UK AI Security Institute (AISI). <a href="https://www.aisi.gov.uk/">aisi.gov.uk</a>.</p></li>
+<li><p>Stocker, J. &amp; Lehr, S. (2025). <a href="https://www.networklawreview.org/stocker-lehr-ai/">Principal-Agent Dynamics and Digital Platform Economics in the Age of Agentic AI</a>. <em>Network Law Review</em>.</p></li>
+<li><p>Proskauer Rose. (2025). <a href="https://www.proskauer.com/blog/contract-law-in-the-age-of-agentic-ai-whos-really-clicking-accept">Contract Law in the Age of Agentic AI: Who’s Really Clicking “Accept”?</a></p></li>
+<li><p>OECD. <a href="https://oecd.ai/en/ai-principles">OECD AI Principles</a>. First adopted 2019; updated 2023–2024.</p></li>
+</ul>
+</section>
+<section id="code-projects" class="level3">
+<h3 class="anchored" data-anchor-id="code-projects">Code &amp; Projects</h3>
+<ul>
+<li><p>UK AI Security Institute. (2024). <a href="https://github.com/UKGovernmentBEIS/inspect_ai">Inspect AI: Framework for Large Language Model Evaluations</a>. Open-sourced May 2024.</p></li>
+<li><p>METR. <a href="https://metr.org/measuring-autonomous-ai-capabilities/">Measuring Autonomous AI Capabilities</a> — index of benchmarks and evaluation methodologies.</p></li>
+<li><p>MIT AI Agent Index. <a href="https://aiagentindex.mit.edu">aiagentindex.mit.edu</a> — public database of deployed agentic AI systems and their safety features.</p></li>
+</ul>
+<hr>
+<p><em>Back to <a href="./topics.html">Topics →</a> · See also: <a href="./safety.html">Safety &amp; Alignment →</a> · <a href="./human-agent.html">Human-Agent Interaction →</a> · <a href="./infrastructure.html">Infrastructure →</a></em></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/llm-agents-survey\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

@@ -5,80 +5,92 @@
     <lastmod>2026-03-13T23:10:50.789Z</lastmod>
   </url>
   <url>
-    <loc>https://llm-agents-survey.github.io/long-horizon.html</loc>
-    <lastmod>2026-03-14T02:19:29.050Z</lastmod>
+    <loc>https://llm-agents-survey.github.io/agent-training.html</loc>
+    <lastmod>2026-03-14T02:51:05.035Z</lastmod>
   </url>
   <url>
-    <loc>https://llm-agents-survey.github.io/coding-agents.html</loc>
-    <lastmod>2026-03-14T02:18:35.961Z</lastmod>
+    <loc>https://llm-agents-survey.github.io/agent-societies.html</loc>
+    <lastmod>2026-03-14T02:51:35.081Z</lastmod>
   </url>
   <url>
-    <loc>https://llm-agents-survey.github.io/human-agent.html</loc>
-    <lastmod>2026-03-13T22:16:18.712Z</lastmod>
-  </url>
-  <url>
-    <loc>https://llm-agents-survey.github.io/personalization.html</loc>
-    <lastmod>2026-03-13T01:37:47.170Z</lastmod>
-  </url>
-  <url>
-    <loc>https://llm-agents-survey.github.io/safety.html</loc>
-    <lastmod>2026-03-13T01:49:05.084Z</lastmod>
-  </url>
-  <url>
-    <loc>https://llm-agents-survey.github.io/topics.html</loc>
-    <lastmod>2026-03-14T02:08:31.369Z</lastmod>
-  </url>
-  <url>
-    <loc>https://llm-agents-survey.github.io/memory-tools.html</loc>
-    <lastmod>2026-03-13T01:47:11.348Z</lastmod>
-  </url>
-  <url>
-    <loc>https://llm-agents-survey.github.io/reasoning.html</loc>
-    <lastmod>2026-03-13T01:45:56.440Z</lastmod>
-  </url>
-  <url>
-    <loc>https://llm-agents-survey.github.io/timeline.html</loc>
-    <lastmod>2026-03-13T01:47:59.924Z</lastmod>
-  </url>
-  <url>
-    <loc>https://llm-agents-survey.github.io/index.html</loc>
-    <lastmod>2026-03-13T23:05:25.559Z</lastmod>
-  </url>
-  <url>
-    <loc>https://llm-agents-survey.github.io/taxonomy.html</loc>
-    <lastmod>2026-03-12T23:54:00.276Z</lastmod>
-  </url>
-  <url>
-    <loc>https://llm-agents-survey.github.io/foundations.html</loc>
-    <lastmod>2026-03-12T23:53:56.535Z</lastmod>
-  </url>
-  <url>
-    <loc>https://llm-agents-survey.github.io/multiagent.html</loc>
-    <lastmod>2026-03-13T01:46:07.489Z</lastmod>
-  </url>
-  <url>
-    <loc>https://llm-agents-survey.github.io/recent.html</loc>
-    <lastmod>2026-03-13T01:47:19.287Z</lastmod>
-  </url>
-  <url>
-    <loc>https://llm-agents-survey.github.io/evaluation.html</loc>
-    <lastmod>2026-03-13T01:46:49.180Z</lastmod>
-  </url>
-  <url>
-    <loc>https://llm-agents-survey.github.io/science-agents.html</loc>
-    <lastmod>2026-03-13T01:49:31.060Z</lastmod>
-  </url>
-  <url>
-    <loc>https://llm-agents-survey.github.io/infrastructure.html</loc>
-    <lastmod>2026-03-13T22:27:26.319Z</lastmod>
+    <loc>https://llm-agents-survey.github.io/observability.html</loc>
+    <lastmod>2026-03-14T02:17:13.176Z</lastmod>
   </url>
   <url>
     <loc>https://llm-agents-survey.github.io/economics.html</loc>
     <lastmod>2026-03-13T22:06:15.901Z</lastmod>
   </url>
   <url>
-    <loc>https://llm-agents-survey.github.io/observability.html</loc>
-    <lastmod>2026-03-14T02:17:13.176Z</lastmod>
+    <loc>https://llm-agents-survey.github.io/infrastructure.html</loc>
+    <lastmod>2026-03-13T22:27:26.319Z</lastmod>
+  </url>
+  <url>
+    <loc>https://llm-agents-survey.github.io/science-agents.html</loc>
+    <lastmod>2026-03-13T01:49:31.060Z</lastmod>
+  </url>
+  <url>
+    <loc>https://llm-agents-survey.github.io/evaluation.html</loc>
+    <lastmod>2026-03-13T01:46:49.180Z</lastmod>
+  </url>
+  <url>
+    <loc>https://llm-agents-survey.github.io/recent.html</loc>
+    <lastmod>2026-03-13T01:47:19.287Z</lastmod>
+  </url>
+  <url>
+    <loc>https://llm-agents-survey.github.io/multiagent.html</loc>
+    <lastmod>2026-03-13T01:46:07.489Z</lastmod>
+  </url>
+  <url>
+    <loc>https://llm-agents-survey.github.io/foundations.html</loc>
+    <lastmod>2026-03-12T23:53:56.535Z</lastmod>
+  </url>
+  <url>
+    <loc>https://llm-agents-survey.github.io/taxonomy.html</loc>
+    <lastmod>2026-03-12T23:54:00.276Z</lastmod>
+  </url>
+  <url>
+    <loc>https://llm-agents-survey.github.io/index.html</loc>
+    <lastmod>2026-03-13T23:05:25.559Z</lastmod>
+  </url>
+  <url>
+    <loc>https://llm-agents-survey.github.io/timeline.html</loc>
+    <lastmod>2026-03-13T01:47:59.924Z</lastmod>
+  </url>
+  <url>
+    <loc>https://llm-agents-survey.github.io/reasoning.html</loc>
+    <lastmod>2026-03-13T01:45:56.440Z</lastmod>
+  </url>
+  <url>
+    <loc>https://llm-agents-survey.github.io/memory-tools.html</loc>
+    <lastmod>2026-03-13T01:47:11.348Z</lastmod>
+  </url>
+  <url>
+    <loc>https://llm-agents-survey.github.io/topics.html</loc>
+    <lastmod>2026-03-14T03:58:42.710Z</lastmod>
+  </url>
+  <url>
+    <loc>https://llm-agents-survey.github.io/safety.html</loc>
+    <lastmod>2026-03-13T01:49:05.084Z</lastmod>
+  </url>
+  <url>
+    <loc>https://llm-agents-survey.github.io/personalization.html</loc>
+    <lastmod>2026-03-13T01:37:47.170Z</lastmod>
+  </url>
+  <url>
+    <loc>https://llm-agents-survey.github.io/human-agent.html</loc>
+    <lastmod>2026-03-13T22:16:18.712Z</lastmod>
+  </url>
+  <url>
+    <loc>https://llm-agents-survey.github.io/coding-agents.html</loc>
+    <lastmod>2026-03-14T02:18:35.961Z</lastmod>
+  </url>
+  <url>
+    <loc>https://llm-agents-survey.github.io/long-horizon.html</loc>
+    <lastmod>2026-03-14T02:19:29.050Z</lastmod>
+  </url>
+  <url>
+    <loc>https://llm-agents-survey.github.io/governance.html</loc>
+    <lastmod>2026-03-14T02:49:47.572Z</lastmod>
   </url>
   <url>
     <loc>https://llm-agents-survey.github.io/community.html</loc>

@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Agent Societies &amp; Simulation – LLM Agents: A Survey (2022–2026)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./favicon.svg" rel="icon" type="image/svg+xml">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-254a3ef50811769e7b813971395bbfc6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-31e29ad2a3d1e7985534403fb9b8ee74.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-254a3ef50811769e7b813971395bbfc6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">LLM Agents: A Survey (2022–2026)</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./taxonomy.html"> 
+<span class="menu-text">Taxonomy</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./timeline.html"> 
+<span class="menu-text">Timeline</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./foundations.html"> 
+<span class="menu-text">2022–2023</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./recent.html"> 
+<span class="menu-text">2024–2026</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-deep-dives" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Deep Dives</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-deep-dives">    
+        <li>
+    <a class="dropdown-item" href="./reasoning.html">
+ <span class="dropdown-text">Reasoning &amp; Planning</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./multiagent.html">
+ <span class="dropdown-text">Multi-Agent Systems</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./memory-tools.html">
+ <span class="dropdown-text">Memory, Tools &amp; Actions</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-topics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Topics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-topics">    
+        <li>
+    <a class="dropdown-item" href="./topics.html">
+ <span class="dropdown-text">Topics Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./evaluation.html">
+ <span class="dropdown-text">Evaluation &amp; Benchmarks</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./safety.html">
+ <span class="dropdown-text">Safety &amp; Alignment</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./science-agents.html">
+ <span class="dropdown-text">Science &amp; Research Agents</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./personalization.html">
+ <span class="dropdown-text">Personalization &amp; Digital Twins</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./infrastructure.html">
+ <span class="dropdown-text">Infrastructure &amp; Protocols</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./human-agent.html">
+ <span class="dropdown-text">Human-Agent Interaction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./economics.html">
+ <span class="dropdown-text">Agent Economics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coding-agents.html">
+ <span class="dropdown-text">Coding Agents</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./observability.html">
+ <span class="dropdown-text">Observability &amp; Robustness</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./long-horizon.html">
+ <span class="dropdown-text">Long-Horizon Autonomy</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./agent-societies.html">
+ <span class="dropdown-text">Agent Societies &amp; Simulation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./governance.html">
+ <span class="dropdown-text">Governance &amp; Regulation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./agent-training.html">
+ <span class="dropdown-text">Agent Training &amp; RL</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./community.html"> 
+<span class="menu-text">Community</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/llm-agents-survey/llm-agents-survey.github.io"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
+  <ul class="collapse">
+  <li><a href="#why-it-matters" id="toc-why-it-matters" class="nav-link" data-scroll-target="#why-it-matters">Why It Matters</a></li>
+  </ul></li>
+  <li><a href="#foundational-architectures" id="toc-foundational-architectures" class="nav-link" data-scroll-target="#foundational-architectures">Foundational Architectures</a>
+  <ul class="collapse">
+  <li><a href="#generative-agents-park-et-al.-2023" id="toc-generative-agents-park-et-al.-2023" class="nav-link" data-scroll-target="#generative-agents-park-et-al.-2023">Generative Agents (Park et al., 2023)</a></li>
+  <li><a href="#camel-role-playing-as-a-research-method" id="toc-camel-role-playing-as-a-research-method" class="nav-link" data-scroll-target="#camel-role-playing-as-a-research-method">CAMEL: Role-Playing as a Research Method</a></li>
+  <li><a href="#metagpt-the-software-company" id="toc-metagpt-the-software-company" class="nav-link" data-scroll-target="#metagpt-the-software-company">MetaGPT: The Software Company</a></li>
+  <li><a href="#chatdev-communication-as-the-unifying-substrate" id="toc-chatdev-communication-as-the-unifying-substrate" class="nav-link" data-scroll-target="#chatdev-communication-as-the-unifying-substrate">ChatDev: Communication as the Unifying Substrate</a></li>
+  <li><a href="#concordia-google-deepmind" id="toc-concordia-google-deepmind" class="nav-link" data-scroll-target="#concordia-google-deepmind">Concordia (Google DeepMind)</a></li>
+  <li><a href="#agentsims" id="toc-agentsims" class="nav-link" data-scroll-target="#agentsims">AgentSims</a></li>
+  <li><a href="#project-sid-toward-ai-civilization" id="toc-project-sid-toward-ai-civilization" class="nav-link" data-scroll-target="#project-sid-toward-ai-civilization">Project Sid: Toward AI Civilization</a></li>
+  </ul></li>
+  <li><a href="#emergent-behavior-social-dynamics" id="toc-emergent-behavior-social-dynamics" class="nav-link" data-scroll-target="#emergent-behavior-social-dynamics">Emergent Behavior &amp; Social Dynamics</a>
+  <ul class="collapse">
+  <li><a href="#social-norm-emergence" id="toc-social-norm-emergence" class="nav-link" data-scroll-target="#social-norm-emergence">Social Norm Emergence</a></li>
+  <li><a href="#cooperative-culture-across-generations" id="toc-cooperative-culture-across-generations" class="nav-link" data-scroll-target="#cooperative-culture-across-generations">Cooperative Culture Across Generations</a></li>
+  <li><a href="#social-network-dynamics" id="toc-social-network-dynamics" class="nav-link" data-scroll-target="#social-network-dynamics">Social Network Dynamics</a></li>
+  <li><a href="#game-theoretic-interactions" id="toc-game-theoretic-interactions" class="nav-link" data-scroll-target="#game-theoretic-interactions">Game-Theoretic Interactions</a></li>
+  </ul></li>
+  <li><a href="#economic-market-simulations" id="toc-economic-market-simulations" class="nav-link" data-scroll-target="#economic-market-simulations">Economic &amp; Market Simulations</a>
+  <ul class="collapse">
+  <li><a href="#econagent-macroeconomic-abm" id="toc-econagent-macroeconomic-abm" class="nav-link" data-scroll-target="#econagent-macroeconomic-abm">EconAgent: Macroeconomic ABM</a></li>
+  <li><a href="#trading-and-market-dynamics" id="toc-trading-and-market-dynamics" class="nav-link" data-scroll-target="#trading-and-market-dynamics">Trading and Market Dynamics</a></li>
+  </ul></li>
+  <li><a href="#sandbox-environments-platforms" id="toc-sandbox-environments-platforms" class="nav-link" data-scroll-target="#sandbox-environments-platforms">Sandbox Environments &amp; Platforms</a>
+  <ul class="collapse">
+  <li><a href="#minecraft-as-a-social-testbed" id="toc-minecraft-as-a-social-testbed" class="nav-link" data-scroll-target="#minecraft-as-a-social-testbed">Minecraft as a Social Testbed</a></li>
+  <li><a href="#general-purpose-simulation-libraries" id="toc-general-purpose-simulation-libraries" class="nav-link" data-scroll-target="#general-purpose-simulation-libraries">General-Purpose Simulation Libraries</a></li>
+  </ul></li>
+  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications">Applications</a>
+  <ul class="collapse">
+  <li><a href="#social-science-methodology" id="toc-social-science-methodology" class="nav-link" data-scroll-target="#social-science-methodology">Social Science Methodology</a></li>
+  <li><a href="#policy-testing-and-scenario-planning" id="toc-policy-testing-and-scenario-planning" class="nav-link" data-scroll-target="#policy-testing-and-scenario-planning">Policy Testing and Scenario Planning</a></li>
+  <li><a href="#game-npcs-and-interactive-storytelling" id="toc-game-npcs-and-interactive-storytelling" class="nav-link" data-scroll-target="#game-npcs-and-interactive-storytelling">Game NPCs and Interactive Storytelling</a></li>
+  <li><a href="#training-data-generation" id="toc-training-data-generation" class="nav-link" data-scroll-target="#training-data-generation">Training Data Generation</a></li>
+  <li><a href="#synthetic-user-research" id="toc-synthetic-user-research" class="nav-link" data-scroll-target="#synthetic-user-research">Synthetic User Research</a></li>
+  </ul></li>
+  <li><a href="#limitations-open-problems" id="toc-limitations-open-problems" class="nav-link" data-scroll-target="#limitations-open-problems">Limitations &amp; Open Problems</a>
+  <ul class="collapse">
+  <li><a href="#the-validity-problem" id="toc-the-validity-problem" class="nav-link" data-scroll-target="#the-validity-problem">The Validity Problem</a></li>
+  <li><a href="#the-homogeneity-problem" id="toc-the-homogeneity-problem" class="nav-link" data-scroll-target="#the-homogeneity-problem">The Homogeneity Problem</a></li>
+  <li><a href="#scalability-costs" id="toc-scalability-costs" class="nav-link" data-scroll-target="#scalability-costs">Scalability Costs</a></li>
+  <li><a href="#evaluation-of-emergent-phenomena" id="toc-evaluation-of-emergent-phenomena" class="nav-link" data-scroll-target="#evaluation-of-emergent-phenomena">Evaluation of Emergent Phenomena</a></li>
+  <li><a href="#alignment-of-collective-behavior" id="toc-alignment-of-collective-behavior" class="nav-link" data-scroll-target="#alignment-of-collective-behavior">Alignment of Collective Behavior</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a>
+  <ul class="collapse">
+  <li><a href="#papers" id="toc-papers" class="nav-link" data-scroll-target="#papers">Papers</a></li>
+  <li><a href="#blog-posts-resources" id="toc-blog-posts-resources" class="nav-link" data-scroll-target="#blog-posts-resources">Blog Posts &amp; Resources</a></li>
+  <li><a href="#code-projects" id="toc-code-projects" class="nav-link" data-scroll-target="#code-projects">Code &amp; Projects</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Agent Societies &amp; Simulation</h1>
+<p class="subtitle lead">Multi-agent worlds, social simulation, and emergent collective behavior</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>The dominant framing of LLM agents positions them as <em>tools</em> — systems invoked to complete discrete tasks: write this code, search that document, schedule that meeting. But an equally compelling paradigm treats agents not as tools but as <em>inhabitants</em>: autonomous entities with memories, goals, and social ties, populating simulated worlds that unfold over time.</p>
+<p>This framing has roots in classical <strong>agent-based modeling (ABM)</strong>, a social-simulation technique used for decades in economics, epidemiology, and political science. ABM researchers populate virtual worlds with rule-following agents and watch macro-phenomena emerge from micro-interactions — segregation patterns, market crashes, disease spread. The critical limitation was always the agents themselves: they followed rigid rules, not the flexible, context-sensitive reasoning of real humans.</p>
+<p>Large language models change that equation. LLM-powered agents can communicate in natural language, reason about social context, form opinions, remember past events, and act in ways that are at least <em>plausible</em> analogues to human behavior. The result is a new class of <strong>Generative Agent-Based Models (GABMs)</strong> — simulations where agents reason, converse, and adapt rather than follow predetermined scripts.</p>
+<section id="why-it-matters" class="level3">
+<h3 class="anchored" data-anchor-id="why-it-matters">Why It Matters</h3>
+<ul>
+<li><strong>Social science research</strong>: complex social phenomena (information cascades, norm emergence, cooperation dynamics) can be studied in controlled, repeatable simulations without recruiting human participants.</li>
+<li><strong>Policy testing</strong>: policymakers can probe how populations might respond to interventions before deploying them in the real world.</li>
+<li><strong>Game design</strong>: NPCs can behave as persistent characters with memories and motivations rather than scripted automatons.</li>
+<li><strong>AI alignment</strong>: studying many-agent societies reveals how AI systems interact at scale, with implications for safety and collective behavior governance.</li>
+<li><strong>Synthetic data generation</strong>: simulated social interactions produce conversational data, behavioral traces, and interaction logs that can train or evaluate other AI systems.</li>
+</ul>
+<p>While related to <a href="./multiagent.html">multi-agent systems</a>, the distinctive emphasis here is on <em>social dynamics</em> — norm formation, cultural transmission, cooperation and defection — and on <em>simulation as a research method</em> for understanding complex systems.</p>
+<hr>
+</section>
+</section>
+<section id="foundational-architectures" class="level2">
+<h2 class="anchored" data-anchor-id="foundational-architectures">Foundational Architectures</h2>
+<section id="generative-agents-park-et-al.-2023" class="level3">
+<h3 class="anchored" data-anchor-id="generative-agents-park-et-al.-2023">Generative Agents (Park et al., 2023)</h3>
+<p>The work that catalyzed the field is <a href="https://arxiv.org/abs/2304.03442"><strong>Generative Agents: Interactive Simulacra of Human Behavior</strong></a> (Park, O’Brien, Cai, Morris, Liang, Bernstein; Stanford/Google, 2023). The paper introduces an architecture for agents that <em>wake up, cook breakfast, and head to work</em> — computational characters with three interacting modules:</p>
+<ul>
+<li><strong>Observation</strong>: agents perceive their environment and record events in a natural-language memory stream</li>
+<li><strong>Reflection</strong>: agents periodically synthesize memories into higher-level insights (“Isabella seems to be a kind person who enjoys social activities”)</li>
+<li><strong>Planning</strong>: agents use reflections to produce day-level plans that constrain moment-to-moment action</li>
+</ul>
+<p>These agents are deployed in <strong>Smallville</strong>, a sprite-based sandbox world reminiscent of <em>The Sims</em>, populated by <strong>25 agents</strong>. Starting from a single user-specified seed — one agent wants to throw a Valentine’s Day party — agents autonomously spread invitations, make new acquaintances, ask each other on dates, and coordinate attendance, all through natural language dialogue. Ablation studies confirm that removing any of the three architectural components measurably degrades behavioral believability. Code: <a href="https://github.com/joonspk-research/generative_agents">github.com/joonspk-research/generative_agents</a>.</p>
+<p>This paper established the canonical <strong>observe–reflect–plan</strong> architecture that most subsequent social simulation work builds on or departs from.</p>
+</section>
+<section id="camel-role-playing-as-a-research-method" class="level3">
+<h3 class="anchored" data-anchor-id="camel-role-playing-as-a-research-method">CAMEL: Role-Playing as a Research Method</h3>
+<p><a href="https://arxiv.org/abs/2303.17760"><strong>CAMEL: Communicative Agents for “Mind” Exploration of Large Language Model Society</strong></a> (Li et al., NeurIPS 2023) takes a more minimalist approach: two LLM agents are assigned complementary roles (AI assistant, AI user) and left to cooperate on tasks via <em>role-playing</em>. The key mechanism is <strong>inception prompting</strong> — system prompts that guide agents toward task completion while preserving role consistency and preventing one agent from assuming the other’s identity. CAMEL demonstrates that role-playing can generate rich datasets for studying the behavioral and cognitive dynamics of agent societies without requiring elaborate simulation infrastructure. Library: <a href="https://github.com/camel-ai/camel">github.com/camel-ai/camel</a>.</p>
+</section>
+<section id="metagpt-the-software-company" class="level3">
+<h3 class="anchored" data-anchor-id="metagpt-the-software-company">MetaGPT: The Software Company</h3>
+<p><a href="https://arxiv.org/abs/2308.00352"><strong>MetaGPT: Meta Programming for a Multi-Agent Collaborative Framework</strong></a> (Hong, Zhuge, Chen et al., 2023) simulates a <em>software company</em> populated by specialized LLM agents — a product manager, architect, project manager, engineer, and QA engineer. Each role maps to a real organizational function, and interaction is structured by <strong>Standardized Operating Procedures (SOPs)</strong> encoded into prompt sequences. MetaGPT outperforms prior chat-based multi-agent systems on collaborative software engineering benchmarks by reducing cascading hallucinations through structured inter-agent verification. Beyond its engineering utility, MetaGPT illustrates how organizational structure and division of labor can be faithfully encoded in agent-based systems. Framework: <a href="https://github.com/FoundationAgents/MetaGPT">github.com/FoundationAgents/MetaGPT</a>.</p>
+</section>
+<section id="chatdev-communication-as-the-unifying-substrate" class="level3">
+<h3 class="anchored" data-anchor-id="chatdev-communication-as-the-unifying-substrate">ChatDev: Communication as the Unifying Substrate</h3>
+<p><a href="https://arxiv.org/abs/2307.07924"><strong>Communicative Agents for Software Development</strong></a> (Qian, Liu, Liu et al., ACL 2024) introduces <strong>ChatDev</strong>, where agents take on organizational roles (CEO, CTO, programmer, reviewer, tester) and collaborate through a structured <em>chat chain</em>. A key contribution is <strong>communicative dehallucination</strong> — mechanisms that prevent agents from accepting hallucinated code artifacts during review. ChatDev demonstrates that natural language can serve as a universal substrate for multi-agent coordination: system design is conducted in prose, while code artifacts are exchanged and debugged programmatically. Code: <a href="https://github.com/OpenBMB/ChatDev">github.com/OpenBMB/ChatDev</a>.</p>
+</section>
+<section id="concordia-google-deepmind" class="level3">
+<h3 class="anchored" data-anchor-id="concordia-google-deepmind">Concordia (Google DeepMind)</h3>
+<p><a href="https://arxiv.org/abs/2312.03664"><strong>Generative agent-based modeling with actions grounded in physical, social, or digital space using Concordia</strong></a> (Vezhnevets, Agapiou, Aharon et al., Google DeepMind, 2023) is the most general-purpose GABM library currently available. Key design decisions:</p>
+<ul>
+<li>A <strong>Game Master (GM)</strong> agent — inspired by tabletop role-playing games — simulates the environment, adjudicates agent actions, and translates natural-language intentions into physical or digital consequences.</li>
+<li>A <strong>component system</strong> mediating between LLM calls and associative memory retrieval, giving researchers fine-grained control over what agents know and remember.</li>
+<li>Support for digital environments where the GM makes API calls to external tools (calendar, email, search), enabling simulation of human-software interaction at scale.</li>
+</ul>
+<p>Concordia is explicitly positioned as a scientific instrument: its design supports both basic social-science research and applied evaluation of real digital services through synthetic user simulation. Code: <a href="https://github.com/google-deepmind/concordia">github.com/google-deepmind/concordia</a>.</p>
+</section>
+<section id="agentsims" class="level3">
+<h3 class="anchored" data-anchor-id="agentsims">AgentSims</h3>
+<p><a href="https://arxiv.org/abs/2308.04026"><strong>AgentSims: An Open-Source Sandbox for Large Language Model Evaluation</strong></a> (Lin, Zhao, Zhang et al., 2023) approaches social simulation from an <em>evaluation</em> angle. Rather than studying emergent social phenomena, AgentSims provides an interactive GUI-based environment where researchers can add agents and buildings, then test custom memory, planning, and tool-use systems with minimal code. The authors argue that task-based evaluation within simulated social environments is a more robust alternative to static benchmarks, which are vulnerable to contamination and constrained in the abilities they can assess. Code: <a href="https://github.com/py499372727/AgentSims">github.com/py499372727/AgentSims</a>.</p>
+</section>
+<section id="project-sid-toward-ai-civilization" class="level3">
+<h3 class="anchored" data-anchor-id="project-sid-toward-ai-civilization">Project Sid: Toward AI Civilization</h3>
+<p><a href="https://arxiv.org/abs/2411.00114"><strong>Project Sid: Many-agent simulations toward AI civilization</strong></a> (Altera.AL et al., 2024) is the largest-scale social simulation to date: <strong>10 to 1000+ AI agents</strong> placed inside a Minecraft environment and evaluated on civilizational benchmarks inspired by human history. The paper introduces the <strong>PIANO (Parallel Information Aggregation via Neural Orchestration)</strong> architecture, enabling agents to interact with both humans and other agents in real time while maintaining coherent behavior across multiple simultaneous output streams.</p>
+<p>Without explicit instructions, agents autonomously developed specialized economic roles, formed and changed collective rules, and engaged in cultural and religious transmission across agent generations. These results suggest that LLM agents placed in rich, open-ended environments can produce civilizational-scale social dynamics rather than just completing predefined tasks. Code: <a href="https://github.com/altera-al/project-sid">github.com/altera-al/project-sid</a>.</p>
+<hr>
+</section>
+</section>
+<section id="emergent-behavior-social-dynamics" class="level2">
+<h2 class="anchored" data-anchor-id="emergent-behavior-social-dynamics">Emergent Behavior &amp; Social Dynamics</h2>
+<p>When LLM agents interact at scale over time, macro-level phenomena emerge that no individual agent was explicitly programmed to produce. This section surveys what has been observed and theorized.</p>
+<section id="social-norm-emergence" class="level3">
+<h3 class="anchored" data-anchor-id="social-norm-emergence">Social Norm Emergence</h3>
+<p><a href="https://arxiv.org/abs/2409.00993"><strong>Evolution of Social Norms in LLM Agents using Natural Language</strong></a> (Horiguchi et al., 2024) builds on Axelrod’s classic <em>metanorm games</em> to test whether LLM agents can spontaneously develop norm-enforcement strategies. Experiments show that agents form <strong>metanorms</strong> through dialogue — norms that enforce punishment of those who fail to punish cheaters — purely through natural language interaction, without explicit instruction to do so. This mirrors theoretical predictions about human cooperation and suggests that language is a sufficient substrate for the transmission and evolution of social norms in artificial populations.</p>
+</section>
+<section id="cooperative-culture-across-generations" class="level3">
+<h3 class="anchored" data-anchor-id="cooperative-culture-across-generations">Cooperative Culture Across Generations</h3>
+<p><a href="https://arxiv.org/abs/2412.10270"><strong>Cultural Evolution of Cooperation among LLM Agents</strong></a> (Hughes et al., Google DeepMind, 2024) examines whether societies of LLM agents can learn mutually beneficial social norms across many generations of iterative deployment. Using a classic <em>iterated Donor Game</em> — agents observe peers’ recent behavior and decide whether to cooperate — the study finds strikingly model-dependent results: Claude 3.5 Sonnet societies achieve significantly higher average cooperation scores than Gemini 1.5 Flash, which in turn outperforms GPT-4o. Further, Claude agents can leverage costly punishment mechanisms to sustain cooperation; Gemini and GPT-4o fail to make effective use of the same mechanism. The study also finds that emergent outcomes are sensitive to random initialization — the same model, same scenario, and different random seeds produce meaningfully different social trajectories — suggesting that agent societies exhibit <em>sensitive dependence on initial conditions</em>.</p>
+</section>
+<section id="social-network-dynamics" class="level3">
+<h3 class="anchored" data-anchor-id="social-network-dynamics">Social Network Dynamics</h3>
+<p><a href="https://arxiv.org/abs/2307.14984"><strong>S³: Social-network Simulation System with Large Language Model-Empowered Agents</strong></a> (Lan et al., 2023) constructs an LLM-based ABM specifically designed to reproduce social network phenomena. S³ simulates three key dimensions of social behavior — emotion, attitude, and interaction behaviors — and observes population-level phenomena including information propagation, attitude cascades, and emotional contagion. Evaluated against real-world social network data, the system demonstrates promising quantitative accuracy, positioning LLM-based social network simulation as a viable complement to traditional computational social science methods.</p>
+</section>
+<section id="game-theoretic-interactions" class="level3">
+<h3 class="anchored" data-anchor-id="game-theoretic-interactions">Game-Theoretic Interactions</h3>
+<p>Researchers have extensively studied LLM agents through formal game theory: prisoner’s dilemmas, iterated normal-form games, extensive-form games, and Markov social dilemma games. A consistent finding is that LLM strategic behavior is culturally and linguistically inflected — agents prompted in different languages or personas display distinct cooperative or competitive tendencies, consistent with the cultural associations in their training data. This creates both opportunities (agents as models of culturally-diverse populations) and hazards (apparent diversity masking shared model biases).</p>
+<hr>
+</section>
+</section>
+<section id="economic-market-simulations" class="level2">
+<h2 class="anchored" data-anchor-id="economic-market-simulations">Economic &amp; Market Simulations</h2>
+<section id="econagent-macroeconomic-abm" class="level3">
+<h3 class="anchored" data-anchor-id="econagent-macroeconomic-abm">EconAgent: Macroeconomic ABM</h3>
+<p><a href="https://arxiv.org/abs/2310.10436"><strong>EconAgent: Large Language Model-Empowered Agents for Simulating Macroeconomic Activities</strong></a> (Li et al., ACL 2024) introduces the first LLM-based macroeconomic ABM. Traditional macroeconomic ABMs use rule-based or neural-network agents for household and firm decision-making; EconAgent replaces these with LLM agents equipped with:</p>
+<ul>
+<li>A <strong>perception module</strong> creating heterogeneous agents with distinct decision profiles (risk tolerance, employment status, savings habits)</li>
+<li>A <strong>memory module</strong> allowing agents to reflect on personal economic history and market trends before making consumption and labor decisions</li>
+</ul>
+<p>Simulation experiments show EconAgent agents producing more realistic macroeconomic phenomena — inflation dynamics, labor market fluctuations — than rule-based baselines. The paper represents a first step toward LLM-based macroeconomic simulation as a research tool. Code: <a href="https://github.com/tsinghua-fib-lab/ACL24-EconAgent">github.com/tsinghua-fib-lab/ACL24-EconAgent</a>.</p>
+</section>
+<section id="trading-and-market-dynamics" class="level3">
+<h3 class="anchored" data-anchor-id="trading-and-market-dynamics">Trading and Market Dynamics</h3>
+<p>Beyond macro models, LLM agents are being studied in financial market simulations. Research exploring <em>homo silicus</em> — LLMs as computational models of human economic behavior — has found that LLMs replicate classic behavioral economics findings in experimental auction settings (anchoring effects, loss aversion, herding). LLM-based trading simulations probe whether agents exhibit rational expectations, respond to information asymmetries, and generate realistic price discovery. Results both validate and challenge standard economic theory, suggesting that LLM agents capture some aspects of human economic irrationality that classical models miss, while introducing new failure modes rooted in training data biases.</p>
+<hr>
+</section>
+</section>
+<section id="sandbox-environments-platforms" class="level2">
+<h2 class="anchored" data-anchor-id="sandbox-environments-platforms">Sandbox Environments &amp; Platforms</h2>
+<section id="minecraft-as-a-social-testbed" class="level3">
+<h3 class="anchored" data-anchor-id="minecraft-as-a-social-testbed">Minecraft as a Social Testbed</h3>
+<p>Minecraft has emerged as the dominant simulation platform for LLM agent research, combining an open-ended physics engine, a programmable API (via Mineflayer and similar), and a rich repertoire of tasks spanning resource gathering, construction, and social interaction.</p>
+<p><a href="https://arxiv.org/abs/2305.16291"><strong>Voyager</strong></a> (Wang et al., 2023) established the single-agent baseline: an LLM-powered lifelong learning agent that autonomously explores, acquires executable skills, and self-improves through iterative prompting with GPT-4. Voyager obtains <strong>3.3× more unique items</strong>, travels <strong>2.3× longer distances</strong>, and unlocks tech-tree milestones up to <strong>15.3× faster</strong> than prior SOTA. Its skill library generalizes to new Minecraft worlds — solving novel tasks from scratch — establishing Minecraft as a platform where LLM agents can demonstrate genuine open-ended learning. Project page and code: <a href="https://voyager.minedojo.org/">voyager.minedojo.org</a>.</p>
+<p>Project Sid (described above) scales from Voyager’s single-agent paradigm to civilizational multi-agent simulation at 1000+ agents, using Minecraft’s environment as a stage for testing civilizational processes: specialization, rule-making, cultural transmission.</p>
+</section>
+<section id="general-purpose-simulation-libraries" class="level3">
+<h3 class="anchored" data-anchor-id="general-purpose-simulation-libraries">General-Purpose Simulation Libraries</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Framework</th>
+<th>Description</th>
+<th>Code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="https://arxiv.org/abs/2312.03664">Concordia</a></td>
+<td>Google DeepMind GABM library with GM agent, component system, and associative memory</td>
+<td><a href="https://github.com/google-deepmind/concordia">github</a></td>
+</tr>
+<tr class="even">
+<td><a href="https://arxiv.org/abs/2308.04026">AgentSims</a></td>
+<td>GUI-based sandbox for LLM evaluation via social simulation</td>
+<td><a href="https://github.com/py499372727/AgentSims">github</a></td>
+</tr>
+<tr class="odd">
+<td><a href="https://arxiv.org/abs/2303.17760">CAMEL</a></td>
+<td>Role-playing framework for communicative agent research</td>
+<td><a href="https://github.com/camel-ai/camel">github</a></td>
+</tr>
+<tr class="even">
+<td><a href="https://arxiv.org/abs/2304.03442">Generative Agents</a></td>
+<td>Original Smallville codebase: 25-agent social simulation</td>
+<td><a href="https://github.com/joonspk-research/generative_agents">github</a></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="applications" class="level2">
+<h2 class="anchored" data-anchor-id="applications">Applications</h2>
+<section id="social-science-methodology" class="level3">
+<h3 class="anchored" data-anchor-id="social-science-methodology">Social Science Methodology</h3>
+<p>LLM agent societies are increasingly proposed as a <em>new research method</em> for social scientists — a complement to surveys, experiments, and observational data. The case is that LLM-based simulations can generate hypotheses, run controlled counterfactuals, and probe mechanisms at scales and speeds that human-participant research cannot match.</p>
+<p>A 2025 position paper, <a href="https://arxiv.org/abs/2504.02234"><strong>LLM Social Simulations Are a Promising Research Method</strong></a>, argues that simulations should be evaluated not for perfect human fidelity but for their ability to surface theoretically relevant variation — much as mathematical models are evaluated for tractability and insight rather than literal truth. Under this framing, the homogeneity of LLM agents is a <em>manageable limitation</em> rather than a fatal flaw, provided researchers acknowledge it and triangulate findings with other methods.</p>
+</section>
+<section id="policy-testing-and-scenario-planning" class="level3">
+<h3 class="anchored" data-anchor-id="policy-testing-and-scenario-planning">Policy Testing and Scenario Planning</h3>
+<p>Multi-agent simulations provide a sandbox for testing interventions before real-world deployment: how do communities respond to public health messaging? How does a regulatory change propagate through social networks? The S³ framework demonstrated this by simulating information diffusion on social networks with quantitative accuracy against real-world data. Concordia’s design explicitly supports policy-testing workflows by enabling researchers to operationalize social-scientific constructs — identity, group membership, institutional authority — as modular agent components.</p>
+</section>
+<section id="game-npcs-and-interactive-storytelling" class="level3">
+<h3 class="anchored" data-anchor-id="game-npcs-and-interactive-storytelling">Game NPCs and Interactive Storytelling</h3>
+<p>The Generative Agents paper noted its direct relevance to interactive entertainment — NPCs with persistent memories and social relationships that evolve in response to player actions. Rather than scripted branching dialogue, LLM-powered characters can remember past player interactions, form opinions about other characters, and generate contextually appropriate responses in real time. Industry interest is accelerating, with multiple studios exploring LLM-powered character systems for open-world games and narrative experiences.</p>
+</section>
+<section id="training-data-generation" class="level3">
+<h3 class="anchored" data-anchor-id="training-data-generation">Training Data Generation</h3>
+<p>Agent-based social simulations generate synthetic conversational data at scale: multi-turn dialogues, social interaction sequences, decision traces. Concordia’s architecture is explicitly designed to support this application — simulated users interacting with digital services provide ground truth for evaluating those services at scale. Synthetic training data from social simulations offers a way to generate diverse, annotated interaction data without the cost and logistics of human-participant studies.</p>
+</section>
+<section id="synthetic-user-research" class="level3">
+<h3 class="anchored" data-anchor-id="synthetic-user-research">Synthetic User Research</h3>
+<p>Rather than recruiting human participants for user research, organizations can deploy LLM agent societies to stress-test products, interfaces, or policies across a wide range of synthetic personas — exploring a much larger behavior space than traditional methods permit. This application is nascent but growing, particularly in product teams that want to probe edge cases before launch.</p>
+<hr>
+</section>
+</section>
+<section id="limitations-open-problems" class="level2">
+<h2 class="anchored" data-anchor-id="limitations-open-problems">Limitations &amp; Open Problems</h2>
+<section id="the-validity-problem" class="level3">
+<h3 class="anchored" data-anchor-id="the-validity-problem">The Validity Problem</h3>
+<p>The central methodological challenge for generative social simulation is <strong>validation</strong>: do LLM agent societies actually model human behavior, or do they model <em>LLMs modeling human behavior</em>? At worst, validation consists of asking an LLM to evaluate the plausibility of its own output — a strategy that raises obvious concerns about circularity and self-favoring bias. Park et al.’s original Generative Agents paper used human judge evaluations and behavioral prediction accuracy as proxies for validity; these methods scale poorly and remain contested as adequate ground truth. Rigorous validation methodology for GABMs remains an open research problem.</p>
+</section>
+<section id="the-homogeneity-problem" class="level3">
+<h3 class="anchored" data-anchor-id="the-homogeneity-problem">The Homogeneity Problem</h3>
+<p>All agents in most current simulations share the same base model, meaning they share the same training distribution, cultural assumptions, and implicit values. A society of GPT-4-based agents does not model human diversity — it models <em>one model’s compressed representation of human diversity</em>, with all the associated biases and stereotypes. Empirical evidence shows LLMs producing a much narrower range of behavioral outcomes than humans exhibit in equivalent situations. This homogeneity significantly limits the capacity of current simulations to reproduce social dynamics that depend on genuine demographic or ideological variation.</p>
+<p>Solutions being explored include using <em>multiple</em> base models in a single simulation, applying persona-conditioning to create behavioral diversity, and hybrid approaches where LLM agents interact with classical ABM agents with explicit heterogeneity.</p>
+</section>
+<section id="scalability-costs" class="level3">
+<h3 class="anchored" data-anchor-id="scalability-costs">Scalability Costs</h3>
+<p>Running 25 agents in Smallville is a research project. Running 1000 agents — as in Project Sid — requires significant compute infrastructure. The PIANO architecture was built specifically to address real-time multi-agent orchestration at scale. As simulations grow toward the millions of agents needed for realistic social phenomena, cost becomes a fundamental constraint. Future work will likely require new architectures: smaller specialized models, caching strategies, or hybrid designs where most agents use lightweight heuristics and LLM calls are reserved for critical decision points.</p>
+</section>
+<section id="evaluation-of-emergent-phenomena" class="level3">
+<h3 class="anchored" data-anchor-id="evaluation-of-emergent-phenomena">Evaluation of Emergent Phenomena</h3>
+<p>Emergent social phenomena — norms, culture, cooperation regimes, language evolution — are inherently difficult to evaluate quantitatively. What does it mean for a social simulation to be <em>correct</em>? The Cultural Evolution paper’s finding that cooperation outcomes are sensitive to random initialization underscores that emergent phenomena may not be robust properties of the system, but artifacts of particular initial conditions. This raises deep questions about reproducibility and external validity for any claim derived from agent society simulations.</p>
+</section>
+<section id="alignment-of-collective-behavior" class="level3">
+<h3 class="anchored" data-anchor-id="alignment-of-collective-behavior">Alignment of Collective Behavior</h3>
+<p>Perhaps most consequentially: societies of agents optimizing for individual-level objectives can produce harmful collective outcomes — information cascades, collusion, price manipulation, social polarization — even without any individual agent being “misaligned.” Understanding how to specify and constrain <em>collective</em> behavior in multi-agent societies is an open problem with direct relevance to <a href="./safety.html">AI safety</a>. The Cultural Evolution paper’s findings about model-dependent cooperation regimes suggest that which AI models are deployed at scale may have large downstream effects on the cooperative infrastructure of society.</p>
+<hr>
+</section>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<section id="papers" class="level3">
+<h3 class="anchored" data-anchor-id="papers">Papers</h3>
+<ul>
+<li>Park, J. S., O’Brien, J., Cai, C. J., Morris, M. R., Liang, P., &amp; Bernstein, M. S. (2023). <a href="https://arxiv.org/abs/2304.03442">Generative Agents: Interactive Simulacra of Human Behavior</a>. arXiv:2304.03442.</li>
+<li>Li, G., Hammoud, H. A. A. K., Itani, H., Khizbullin, D., &amp; Ghanem, B. (2023). <a href="https://arxiv.org/abs/2303.17760">CAMEL: Communicative Agents for “Mind” Exploration of Large Language Model Society</a>. NeurIPS 2023. arXiv:2303.17760.</li>
+<li>Hong, S., Zhuge, M., Chen, J., et al.&nbsp;(2023). <a href="https://arxiv.org/abs/2308.00352">MetaGPT: Meta Programming for a Multi-Agent Collaborative Framework</a>. arXiv:2308.00352.</li>
+<li>Qian, C., Liu, W., Liu, H., et al.&nbsp;(2023). <a href="https://arxiv.org/abs/2307.07924">Communicative Agents for Software Development (ChatDev)</a>. ACL 2024. arXiv:2307.07924.</li>
+<li>Vezhnevets, A. S., Agapiou, J. P., Aharon, A., et al.&nbsp;(2023). <a href="https://arxiv.org/abs/2312.03664">Generative agent-based modeling with actions grounded in physical, social, or digital space using Concordia</a>. arXiv:2312.03664.</li>
+<li>Lin, J., Zhao, H., Zhang, A., Wu, Y., Ping, H., &amp; Chen, Q. (2023). <a href="https://arxiv.org/abs/2308.04026">AgentSims: An Open-Source Sandbox for Large Language Model Evaluation</a>. arXiv:2308.04026.</li>
+<li>Altera.AL (2024). <a href="https://arxiv.org/abs/2411.00114">Project Sid: Many-agent simulations toward AI civilization</a>. arXiv:2411.00114.</li>
+<li>Wang, G., Xie, Y., Jiang, Y., et al.&nbsp;(2023). <a href="https://arxiv.org/abs/2305.16291">Voyager: An Open-Ended Embodied Agent with Large Language Models</a>. arXiv:2305.16291.</li>
+<li>Lan, X., et al.&nbsp;(2023). <a href="https://arxiv.org/abs/2307.14984">S³: Social-network Simulation System with Large Language Model-Empowered Agents</a>. arXiv:2307.14984.</li>
+<li>Horiguchi, I., et al.&nbsp;(2024). <a href="https://arxiv.org/abs/2409.00993">Evolution of Social Norms in LLM Agents using Natural Language</a>. arXiv:2409.00993.</li>
+<li>Hughes, E., et al.&nbsp;(2024). <a href="https://arxiv.org/abs/2412.10270">Cultural Evolution of Cooperation among LLM Agents</a>. arXiv:2412.10270.</li>
+<li>Li, N., et al.&nbsp;(2024). <a href="https://arxiv.org/abs/2310.10436">EconAgent: Large Language Model-Empowered Agents for Simulating Macroeconomic Activities</a>. ACL 2024. arXiv:2310.10436.</li>
+<li>(2025). <a href="https://arxiv.org/abs/2504.02234">LLM Social Simulations Are a Promising Research Method</a>. arXiv:2504.02234.</li>
+</ul>
+</section>
+<section id="blog-posts-resources" class="level3">
+<h3 class="anchored" data-anchor-id="blog-posts-resources">Blog Posts &amp; Resources</h3>
+<ul>
+<li><a href="https://deepmind.google/research/publications/64717/">Google DeepMind — Concordia research page</a></li>
+<li><a href="https://github.com/altera-al/project-sid">Altera.AL — Project Sid overview and technical report</a></li>
+<li><a href="https://voyager.minedojo.org/">Voyager project website</a></li>
+<li><a href="https://www.camel-ai.org/">CAMEL project website</a></li>
+</ul>
+</section>
+<section id="code-projects" class="level3">
+<h3 class="anchored" data-anchor-id="code-projects">Code &amp; Projects</h3>
+<ul>
+<li><a href="https://github.com/joonspk-research/generative_agents">joonspk-research/generative_agents</a> — Park et al.&nbsp;Smallville simulation codebase</li>
+<li><a href="https://github.com/google-deepmind/concordia">google-deepmind/concordia</a> — Concordia GABM library (Google DeepMind)</li>
+<li><a href="https://github.com/FoundationAgents/MetaGPT">FoundationAgents/MetaGPT</a> — MetaGPT multi-agent framework</li>
+<li><a href="https://github.com/OpenBMB/ChatDev">OpenBMB/ChatDev</a> — ChatDev software development simulation</li>
+<li><a href="https://github.com/camel-ai/camel">camel-ai/camel</a> — CAMEL communicative agents library</li>
+<li><a href="https://github.com/py499372727/AgentSims">py499372727/AgentSims</a> — AgentSims open-source sandbox</li>
+<li><a href="https://github.com/altera-al/project-sid">altera-al/project-sid</a> — Project Sid many-agent simulation</li>
+<li><a href="https://github.com/MineDojo/Voyager">MineDojo/Voyager</a> — Voyager Minecraft lifelong learning agent</li>
+<li><a href="https://github.com/tsinghua-fib-lab/ACL24-EconAgent">tsinghua-fib-lab/ACL24-EconAgent</a> — EconAgent macroeconomic simulation</li>
+</ul>
+<hr>
+<p><em>Back to <a href="./topics.html">Topics →</a> · See also: <a href="./multiagent.html">Multi-Agent Systems →</a> · <a href="./long-horizon.html">Long-Horizon Autonomy →</a> · <a href="./safety.html">Safety →</a></em></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/llm-agents-survey\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

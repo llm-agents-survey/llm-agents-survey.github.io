@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Agent Training &amp; Reinforcement Learning – LLM Agents: A Survey (2022–2026)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./favicon.svg" rel="icon" type="image/svg+xml">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-254a3ef50811769e7b813971395bbfc6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-31e29ad2a3d1e7985534403fb9b8ee74.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-254a3ef50811769e7b813971395bbfc6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">LLM Agents: A Survey (2022–2026)</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./taxonomy.html"> 
+<span class="menu-text">Taxonomy</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./timeline.html"> 
+<span class="menu-text">Timeline</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./foundations.html"> 
+<span class="menu-text">2022–2023</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./recent.html"> 
+<span class="menu-text">2024–2026</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-deep-dives" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Deep Dives</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-deep-dives">    
+        <li>
+    <a class="dropdown-item" href="./reasoning.html">
+ <span class="dropdown-text">Reasoning &amp; Planning</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./multiagent.html">
+ <span class="dropdown-text">Multi-Agent Systems</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./memory-tools.html">
+ <span class="dropdown-text">Memory, Tools &amp; Actions</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-topics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Topics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-topics">    
+        <li>
+    <a class="dropdown-item" href="./topics.html">
+ <span class="dropdown-text">Topics Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./evaluation.html">
+ <span class="dropdown-text">Evaluation &amp; Benchmarks</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./safety.html">
+ <span class="dropdown-text">Safety &amp; Alignment</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./science-agents.html">
+ <span class="dropdown-text">Science &amp; Research Agents</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./personalization.html">
+ <span class="dropdown-text">Personalization &amp; Digital Twins</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./infrastructure.html">
+ <span class="dropdown-text">Infrastructure &amp; Protocols</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./human-agent.html">
+ <span class="dropdown-text">Human-Agent Interaction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./economics.html">
+ <span class="dropdown-text">Agent Economics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coding-agents.html">
+ <span class="dropdown-text">Coding Agents</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./observability.html">
+ <span class="dropdown-text">Observability &amp; Robustness</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./long-horizon.html">
+ <span class="dropdown-text">Long-Horizon Autonomy</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./agent-societies.html">
+ <span class="dropdown-text">Agent Societies &amp; Simulation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./governance.html">
+ <span class="dropdown-text">Governance &amp; Regulation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./agent-training.html">
+ <span class="dropdown-text">Agent Training &amp; RL</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./community.html"> 
+<span class="menu-text">Community</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/llm-agents-survey/llm-agents-survey.github.io"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#reinforcement-learning-for-agents" id="toc-reinforcement-learning-for-agents" class="nav-link" data-scroll-target="#reinforcement-learning-for-agents">Reinforcement Learning for Agents</a>
+  <ul class="collapse">
+  <li><a href="#rlhf-the-foundation" id="toc-rlhf-the-foundation" class="nav-link" data-scroll-target="#rlhf-the-foundation">RLHF: The Foundation</a></li>
+  <li><a href="#rl-for-reasoning-deepseek-r1-and-the-think-longer-paradigm" id="toc-rl-for-reasoning-deepseek-r1-and-the-think-longer-paradigm" class="nav-link" data-scroll-target="#rl-for-reasoning-deepseek-r1-and-the-think-longer-paradigm">RL for Reasoning: DeepSeek-R1 and the “Think Longer” Paradigm</a></li>
+  <li><a href="#webrl-rl-for-web-navigation" id="toc-webrl-rl-for-web-navigation" class="nav-link" data-scroll-target="#webrl-rl-for-web-navigation">WebRL: RL for Web Navigation</a></li>
+  <li><a href="#agent-q-mcts-preference-learning" id="toc-agent-q-mcts-preference-learning" class="nav-link" data-scroll-target="#agent-q-mcts-preference-learning">Agent Q: MCTS + Preference Learning</a></li>
+  <li><a href="#skyrl-agent-scalable-multi-turn-rl" id="toc-skyrl-agent-scalable-multi-turn-rl" class="nav-link" data-scroll-target="#skyrl-agent-scalable-multi-turn-rl">SkyRL-Agent: Scalable Multi-Turn RL</a></li>
+  </ul></li>
+  <li><a href="#learning-from-trajectories" id="toc-learning-from-trajectories" class="nav-link" data-scroll-target="#learning-from-trajectories">Learning from Trajectories</a>
+  <ul class="collapse">
+  <li><a href="#behavioral-cloning-for-agents" id="toc-behavioral-cloning-for-agents" class="nav-link" data-scroll-target="#behavioral-cloning-for-agents">Behavioral Cloning for Agents</a></li>
+  <li><a href="#agenttrek-scalable-trajectory-synthesis" id="toc-agenttrek-scalable-trajectory-synthesis" class="nav-link" data-scroll-target="#agenttrek-scalable-trajectory-synthesis">AgentTrek: Scalable Trajectory Synthesis</a></li>
+  <li><a href="#swe-smith-trajectory-data-at-scale-for-software-engineering" id="toc-swe-smith-trajectory-data-at-scale-for-software-engineering" class="nav-link" data-scroll-target="#swe-smith-trajectory-data-at-scale-for-software-engineering">SWE-smith: Trajectory Data at Scale for Software Engineering</a></li>
+  <li><a href="#agent-workflow-memory-learning-reusable-routines" id="toc-agent-workflow-memory-learning-reusable-routines" class="nav-link" data-scroll-target="#agent-workflow-memory-learning-reusable-routines">Agent Workflow Memory: Learning Reusable Routines</a></li>
+  <li><a href="#self-play-and-self-improvement" id="toc-self-play-and-self-improvement" class="nav-link" data-scroll-target="#self-play-and-self-improvement">Self-Play and Self-Improvement</a></li>
+  </ul></li>
+  <li><a href="#tool-use-training" id="toc-tool-use-training" class="nav-link" data-scroll-target="#tool-use-training">Tool Use Training</a>
+  <ul class="collapse">
+  <li><a href="#toolformer-self-supervised-api-learning" id="toc-toolformer-self-supervised-api-learning" class="nav-link" data-scroll-target="#toolformer-self-supervised-api-learning">Toolformer: Self-Supervised API Learning</a></li>
+  <li><a href="#gorilla-massive-api-coverage" id="toc-gorilla-massive-api-coverage" class="nav-link" data-scroll-target="#gorilla-massive-api-coverage">Gorilla: Massive API Coverage</a></li>
+  <li><a href="#toolbench-toolllm-real-world-tool-mastery" id="toc-toolbench-toolllm-real-world-tool-mastery" class="nav-link" data-scroll-target="#toolbench-toolllm-real-world-tool-mastery">ToolBench / ToolLLM: Real-World Tool Mastery</a></li>
+  <li><a href="#nexusraven-commercially-permissive-function-calling" id="toc-nexusraven-commercially-permissive-function-calling" class="nav-link" data-scroll-target="#nexusraven-commercially-permissive-function-calling">NexusRaven: Commercially Permissive Function Calling</a></li>
+  </ul></li>
+  <li><a href="#the-test-time-compute-paradigm" id="toc-the-test-time-compute-paradigm" class="nav-link" data-scroll-target="#the-test-time-compute-paradigm">The Test-Time Compute Paradigm</a>
+  <ul class="collapse">
+  <li><a href="#scaling-inference-compute" id="toc-scaling-inference-compute" class="nav-link" data-scroll-target="#scaling-inference-compute">Scaling Inference Compute</a></li>
+  <li><a href="#budget-forcing-the-s1-paper" id="toc-budget-forcing-the-s1-paper" class="nav-link" data-scroll-target="#budget-forcing-the-s1-paper">Budget Forcing: The s1 Paper</a></li>
+  <li><a href="#process-reward-models-vs.-outcome-reward-models" id="toc-process-reward-models-vs.-outcome-reward-models" class="nav-link" data-scroll-target="#process-reward-models-vs.-outcome-reward-models">Process Reward Models vs.&nbsp;Outcome Reward Models</a></li>
+  </ul></li>
+  <li><a href="#environment-specific-training" id="toc-environment-specific-training" class="nav-link" data-scroll-target="#environment-specific-training">Environment-Specific Training</a>
+  <ul class="collapse">
+  <li><a href="#the-sim-to-real-gap" id="toc-the-sim-to-real-gap" class="nav-link" data-scroll-target="#the-sim-to-real-gap">The Sim-to-Real Gap</a></li>
+  <li><a href="#osworld-and-gui-agent-training" id="toc-osworld-and-gui-agent-training" class="nav-link" data-scroll-target="#osworld-and-gui-agent-training">OSWorld and GUI Agent Training</a></li>
+  <li><a href="#code-execution-environments" id="toc-code-execution-environments" class="nav-link" data-scroll-target="#code-execution-environments">Code Execution Environments</a></li>
+  <li><a href="#embodied-agents-and-sim-to-real-transfer" id="toc-embodied-agents-and-sim-to-real-transfer" class="nav-link" data-scroll-target="#embodied-agents-and-sim-to-real-transfer">Embodied Agents and Sim-to-Real Transfer</a></li>
+  </ul></li>
+  <li><a href="#small-model-agents" id="toc-small-model-agents" class="nav-link" data-scroll-target="#small-model-agents">Small Model Agents</a>
+  <ul class="collapse">
+  <li><a href="#the-cost-argument" id="toc-the-cost-argument" class="nav-link" data-scroll-target="#the-cost-argument">The Cost Argument</a></li>
+  <li><a href="#tool-use-fine-tuning-at-small-scale" id="toc-tool-use-fine-tuning-at-small-scale" class="nav-link" data-scroll-target="#tool-use-fine-tuning-at-small-scale">Tool Use Fine-Tuning at Small Scale</a></li>
+  <li><a href="#when-small-models-struggle" id="toc-when-small-models-struggle" class="nav-link" data-scroll-target="#when-small-models-struggle">When Small Models Struggle</a></li>
+  </ul></li>
+  <li><a href="#open-problems" id="toc-open-problems" class="nav-link" data-scroll-target="#open-problems">Open Problems</a>
+  <ul class="collapse">
+  <li><a href="#sample-efficiency" id="toc-sample-efficiency" class="nav-link" data-scroll-target="#sample-efficiency">Sample Efficiency</a></li>
+  <li><a href="#reward-design" id="toc-reward-design" class="nav-link" data-scroll-target="#reward-design">Reward Design</a></li>
+  <li><a href="#catastrophic-forgetting" id="toc-catastrophic-forgetting" class="nav-link" data-scroll-target="#catastrophic-forgetting">Catastrophic Forgetting</a></li>
+  <li><a href="#distribution-shift" id="toc-distribution-shift" class="nav-link" data-scroll-target="#distribution-shift">Distribution Shift</a></li>
+  <li><a href="#the-training-data-bottleneck" id="toc-the-training-data-bottleneck" class="nav-link" data-scroll-target="#the-training-data-bottleneck">The Training Data Bottleneck</a></li>
+  <li><a href="#online-learning-and-continual-adaptation" id="toc-online-learning-and-continual-adaptation" class="nav-link" data-scroll-target="#online-learning-and-continual-adaptation">Online Learning and Continual Adaptation</a></li>
+  <li><a href="#the-alignment-problem-in-agent-training" id="toc-the-alignment-problem-in-agent-training" class="nav-link" data-scroll-target="#the-alignment-problem-in-agent-training">The Alignment Problem in Agent Training</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a>
+  <ul class="collapse">
+  <li><a href="#papers" id="toc-papers" class="nav-link" data-scroll-target="#papers">Papers</a></li>
+  <li><a href="#blog-posts-resources" id="toc-blog-posts-resources" class="nav-link" data-scroll-target="#blog-posts-resources">Blog Posts &amp; Resources</a></li>
+  <li><a href="#code-projects" id="toc-code-projects" class="nav-link" data-scroll-target="#code-projects">Code &amp; Projects</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Agent Training &amp; Reinforcement Learning</h1>
+<p class="subtitle lead">How agents learn from experience — RL, trajectory optimization, and the training-inference frontier</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>Most LLM agents deployed today are not trained to be agents. They are general-purpose language models steered through prompting, chain-of-thought instructions, and carefully designed system messages. This works—remarkably well, given that these models were never explicitly optimized for tool use, multi-step planning, or environment interaction. But it has limits.</p>
+<p>A growing body of research asks a different question: what if we actually <em>train</em> models to be agents? The hypothesis is that a model fine-tuned on agent trajectories—or shaped by reinforcement learning on environment rewards—should generalize more reliably, require less prompting overhead, and ultimately be cheaper to run than a massive prompted model used as a drop-in agent.</p>
+<p>The spectrum from “no training” to “full RL” looks roughly like this:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 31%">
+<col style="width: 40%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Approach</th>
+<th>What changes</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Prompting</td>
+<td>Nothing—inference only</td>
+<td>ReAct, CoT</td>
+</tr>
+<tr class="even">
+<td>Few-shot</td>
+<td>Context enrichment</td>
+<td>Tool-use examples in prompt</td>
+</tr>
+<tr class="odd">
+<td>Supervised fine-tuning (SFT)</td>
+<td>Model weights on demonstration data</td>
+<td>ToolLLaMA, SWE-agent</td>
+</tr>
+<tr class="even">
+<td>Behavioral cloning</td>
+<td>SFT on successful trajectories</td>
+<td>AgentTrek</td>
+</tr>
+<tr class="odd">
+<td>RL from environment</td>
+<td>Weights shaped by reward signals</td>
+<td>WebRL, DeepSeek-R1</td>
+</tr>
+<tr class="even">
+<td>Online learning</td>
+<td>Ongoing updates during deployment</td>
+<td>(largely open research)</td>
+</tr>
+</tbody>
+</table>
+<p>The field is moving fast enough that a system that required GPT-4 prompting to function in 2023 might run adequately on a fine-tuned 7B model in 2025. This compression—from large prompted to small trained—is one of the defining dynamics of applied agent research.</p>
+<p><strong>Why does training matter?</strong></p>
+<ul>
+<li><strong>Reliability</strong>: Prompted agents hallucinate tool syntax; trained agents learn the grammar of tool calls.</li>
+<li><strong>Cost</strong>: A fine-tuned 7B model can outperform a prompted 70B model on specific tasks—at a fraction of the inference cost.</li>
+<li><strong>Capability ceiling</strong>: Some behaviors (long-horizon planning, self-correction, code execution loops) seem to require training, not just clever prompting.</li>
+<li><strong>Specialization</strong>: Domain-specific agents (software engineering, web navigation, scientific research) benefit from task-specific training data that no general pretraining corpus captures.</li>
+</ul>
+<hr>
+</section>
+<section id="reinforcement-learning-for-agents" class="level2">
+<h2 class="anchored" data-anchor-id="reinforcement-learning-for-agents">Reinforcement Learning for Agents</h2>
+<section id="rlhf-the-foundation" class="level3">
+<h3 class="anchored" data-anchor-id="rlhf-the-foundation">RLHF: The Foundation</h3>
+<p>Reinforcement Learning from Human Feedback (<a href="https://arxiv.org/abs/1706.03741">RLHF</a>) is the training paradigm behind modern chatbots like ChatGPT and Claude. It optimizes for <em>human preference</em>: a reward model trained on human comparisons guides the policy via PPO (Proximal Policy Optimization). RLHF made language models dramatically more helpful and less toxic—but it was optimized for conversational helpfulness, not for autonomous agent competence. An RLHF-trained model knows how to write a polite email; it was never rewarded for navigating a web browser and booking a flight.</p>
+<p>The key structural difference between RLHF and agent RL is the <strong>horizon length</strong>. RLHF typically operates on single-turn interactions: write a response, get a preference signal. Agent tasks are multi-step: take 30 browser actions over several minutes, then receive a single binary reward. This <strong>credit assignment problem</strong>—figuring out which of 30 actions deserved credit for success or blame for failure—is one of the central technical challenges in extending RL to agents.</p>
+</section>
+<section id="rl-for-reasoning-deepseek-r1-and-the-think-longer-paradigm" class="level3">
+<h3 class="anchored" data-anchor-id="rl-for-reasoning-deepseek-r1-and-the-think-longer-paradigm">RL for Reasoning: DeepSeek-R1 and the “Think Longer” Paradigm</h3>
+<p>The most influential recent application of RL to language models is <a href="https://arxiv.org/abs/2501.12948"><strong>DeepSeek-R1</strong></a> (DeepSeek-AI, January 2025). The core insight: instead of training for helpfulness, use RL to train a model to <em>reason</em>. The reward is simple—is the final answer correct (for math, coding, and STEM problems)? No human-annotated reasoning traces are needed.</p>
+<p>DeepSeek-R1 uses <strong>GRPO</strong> (Group Relative Policy Optimization), introduced in <a href="https://arxiv.org/abs/2402.03300">Shao et al.&nbsp;(2024)</a>. GRPO is a memory-efficient alternative to PPO: instead of maintaining a separate critic model, it estimates advantage by comparing a group of sampled responses to the same prompt. The response with higher reward gets positive advantage; those with lower reward get negative advantage. This eliminates the critic network while preserving the relative-improvement signal that makes RL work.</p>
+<p>The results were striking: a model trained with pure RL (no supervised fine-tuning on chain-of-thought traces) developed elaborate reasoning behaviors—self-verification, error correction, extended deliberation—entirely through trial and error on verifiable tasks. DeepSeek-R1 subsequently matched or surpassed OpenAI’s o1 model on multiple benchmarks, at far lower inference cost, and was open-sourced.</p>
+<p>OpenAI’s <a href="https://openai.com/o1">o1 and o3 models</a> follow a similar philosophy—training models to allocate more computation at inference time through an internal “thinking” process—though the technical details remain proprietary.</p>
+</section>
+<section id="webrl-rl-for-web-navigation" class="level3">
+<h3 class="anchored" data-anchor-id="webrl-rl-for-web-navigation">WebRL: RL for Web Navigation</h3>
+<p><a href="https://arxiv.org/abs/2411.02337"><strong>WebRL</strong></a> (Qi et al., 2024) applies RL directly to web agents. The challenge: web navigation is hard to reward (success is binary, sparse, and only observable at task completion), and the distribution of tasks changes as the model improves. WebRL addresses this with three components:</p>
+<ol type="1">
+<li>A <strong>self-evolving curriculum</strong> that generates new tasks from failed attempts—the agent’s errors become the training set for tomorrow.</li>
+<li>A <strong>robust outcome-supervised reward model (ORM)</strong> that predicts task success from trajectories.</li>
+<li><strong>Adaptive RL strategies</strong> that prevent the policy from drifting too far from stable checkpoints.</li>
+</ol>
+<p>Applied to Llama-3.1-8B and GLM-4-9B, WebRL improved success rates on <a href="https://webarena.dev/">WebArena-Lite</a> from 4.8% → <strong>42.4%</strong> and 6.1% → <strong>43%</strong> respectively—transforming an off-the-shelf open model into a state-of-the-art web agent.</p>
+</section>
+<section id="agent-q-mcts-preference-learning" class="level3">
+<h3 class="anchored" data-anchor-id="agent-q-mcts-preference-learning">Agent Q: MCTS + Preference Learning</h3>
+<p><a href="https://arxiv.org/abs/2408.07199"><strong>Agent Q</strong></a> (Putta et al., 2024) takes a different approach to agent RL: it combines <strong>guided Monte Carlo Tree Search (MCTS)</strong> with <strong>Direct Preference Optimization (DPO)</strong>. The agent explores action sequences using MCTS, collects both successful and unsuccessful trajectories as preference pairs, then fine-tunes on those pairs using an off-policy DPO variant. This allows the model to learn from failure—not just from rewards at success.</p>
+<p>In real-world web booking tasks, Agent Q improved Llama-3 70B’s zero-shot performance from 18.6% to <strong>81.7%</strong> success rate after a single day of data collection, reaching 95.4% when combined with online search. The <a href="https://github.com/sentient-engineering/agent-q">GitHub repository</a> is open-source.</p>
+</section>
+<section id="skyrl-agent-scalable-multi-turn-rl" class="level3">
+<h3 class="anchored" data-anchor-id="skyrl-agent-scalable-multi-turn-rl">SkyRL-Agent: Scalable Multi-Turn RL</h3>
+<p><a href="https://arxiv.org/abs/2511.16108"><strong>SkyRL-Agent</strong></a> (Cao et al., 2025) is an open framework for scalable RL training of multi-turn LLM agents. It provides a unified tool interface, efficient rollout scheduling, and dynamic trajectory construction—addressing the engineering bottleneck that makes RL for agents much harder than RL for single-turn reasoning. SkyRL-Agent trains primarily on SWE (software engineering) tasks but demonstrates generalization to Terminal-Bench, BrowseComp-Plus, and WebArena.</p>
+<hr>
+</section>
+</section>
+<section id="learning-from-trajectories" class="level2">
+<h2 class="anchored" data-anchor-id="learning-from-trajectories">Learning from Trajectories</h2>
+<section id="behavioral-cloning-for-agents" class="level3">
+<h3 class="anchored" data-anchor-id="behavioral-cloning-for-agents">Behavioral Cloning for Agents</h3>
+<p>Before RL, the simplest approach to agent training is <strong>behavioral cloning</strong>: collect successful trajectories from a capable agent (often a prompted GPT-4 or Claude), and fine-tune a smaller model to imitate them. This is supervised learning applied to action sequences rather than single outputs. The technique works surprisingly well—and is far cheaper than RL—but suffers from <strong>compounding errors</strong>: the model encounters states that look slightly different from training, makes a small mistake, and spirals into a distribution it never trained on.</p>
+</section>
+<section id="agenttrek-scalable-trajectory-synthesis" class="level3">
+<h3 class="anchored" data-anchor-id="agenttrek-scalable-trajectory-synthesis">AgentTrek: Scalable Trajectory Synthesis</h3>
+<p>A key bottleneck for behavioral cloning is <em>data</em>. Expert trajectories are expensive to collect. <a href="https://arxiv.org/abs/2412.09605"><strong>AgentTrek</strong></a> (Xu et al., 2024; ICLR 2025 Spotlight) addresses this by automatically synthesizing trajectories from publicly available web tutorials:</p>
+<ol type="1">
+<li>A classifier harvests and filters tutorial-like texts from the internet.</li>
+<li>These texts are transformed into structured task specifications.</li>
+<li>A VLM agent executes the instructions in real environments while a VLM-based evaluator verifies correctness.</li>
+</ol>
+<p>The result: high-quality multimodal GUI agent trajectories at a cost of approximately <strong>$0.55 per trajectory</strong>—without human annotators. AgentTrek achieves state-of-the-art on WebArena and Multimodal Mind2Web benchmarks.</p>
+</section>
+<section id="swe-smith-trajectory-data-at-scale-for-software-engineering" class="level3">
+<h3 class="anchored" data-anchor-id="swe-smith-trajectory-data-at-scale-for-software-engineering">SWE-smith: Trajectory Data at Scale for Software Engineering</h3>
+<p><a href="https://arxiv.org/abs/2504.21798"><strong>SWE-smith</strong></a> (Yang et al., 2025; NeurIPS 2025 Spotlight) tackles the same data bottleneck for software engineering agents. Existing SWE datasets had at most ~1,000 training instances from 11 or fewer repositories. SWE-smith introduces a pipeline that:</p>
+<ul>
+<li>Takes any Python codebase</li>
+<li>Constructs a corresponding execution environment</li>
+<li>Automatically synthesizes 100s–1,000s of task instances that break existing tests</li>
+</ul>
+<p>Using SWE-smith, the authors create a dataset of <strong>50,000 instances from 128 GitHub repositories</strong>—an order of magnitude larger than prior work. A 32B model trained on these trajectories achieves 40.2% Pass@1 on <a href="https://www.swebench.com/">SWE-bench Verified</a>, state of the art among open-source models. All assets are available at <a href="https://swesmith.com">swesmith.com</a>.</p>
+</section>
+<section id="agent-workflow-memory-learning-reusable-routines" class="level3">
+<h3 class="anchored" data-anchor-id="agent-workflow-memory-learning-reusable-routines">Agent Workflow Memory: Learning Reusable Routines</h3>
+<p><a href="https://arxiv.org/abs/2409.07429"><strong>Agent Workflow Memory (AWM)</strong></a> (Wang et al., 2024) takes a different angle: instead of learning raw trajectories, it extracts <em>reusable workflows</em>—structured routines that generalize across tasks. The agent induces workflows from past successful sequences and stores them as high-level callable functions. Future tasks can invoke these workflows as tools, effectively learning a growing library of skills.</p>
+<p>AWM improves baseline results by <strong>24.6% and 51.1%</strong> relative success rate on Mind2Web and WebArena respectively, while reducing the number of steps needed per task. Crucially, it generalizes robustly across task, website, and domain distribution shifts—surpassing baselines by 8.9 to 14.0 absolute points as train-test gaps widen.</p>
+</section>
+<section id="self-play-and-self-improvement" class="level3">
+<h3 class="anchored" data-anchor-id="self-play-and-self-improvement">Self-Play and Self-Improvement</h3>
+<p>A natural extension of trajectory learning is <strong>self-play</strong>: the agent generates its own training data by attempting tasks, succeeding or failing, and learning from the outcomes. WebRL’s self-evolving curriculum is one instantiation. More generally, the loop of generate → evaluate → filter → fine-tune → repeat is becoming the standard recipe for agent self-improvement. The key challenge is the quality of the evaluator: if the reward model or success criterion is wrong, the agent will overfit to gaming it.</p>
+<p><a href="https://arxiv.org/abs/2501.12948">DeepSeek-R1</a> represents the clearest success story for self-improvement through RL: starting from a capable base model, pure reinforcement learning with verifiable rewards produced emergent reasoning behaviors that were never explicitly trained. The model learned to revisit assumptions, extend its chain of thought, and cross-check partial results—not because these behaviors were demonstrated, but because they were adaptive strategies that improved reward. Whether similar emergent behaviors will arise in <em>agent</em> settings (as opposed to single-turn math/coding tasks) remains an open question and an active research frontier.</p>
+<hr>
+</section>
+</section>
+<section id="tool-use-training" class="level2">
+<h2 class="anchored" data-anchor-id="tool-use-training">Tool Use Training</h2>
+<section id="toolformer-self-supervised-api-learning" class="level3">
+<h3 class="anchored" data-anchor-id="toolformer-self-supervised-api-learning">Toolformer: Self-Supervised API Learning</h3>
+<p><a href="https://arxiv.org/abs/2302.04761"><strong>Toolformer</strong></a> (Schick et al., Meta AI, 2023) demonstrated that language models could teach themselves to use tools in a self-supervised way. Given a handful of demonstrations for each API (calculator, search engine, calendar, Wikipedia, translation), Toolformer:</p>
+<ol type="1">
+<li>Samples candidate API call insertions into its own generation</li>
+<li>Filters to keep only those that actually reduce perplexity on subsequent tokens (i.e., those that genuinely help)</li>
+<li>Fine-tunes on the filtered calls</li>
+</ol>
+<p>The result was a model that learned <em>when</em> to call tools, <em>what arguments to pass</em>, and <em>how to incorporate results</em>—without human annotation of when tool calls were needed. A key insight: the tool call annotation is only kept if it improves the model’s own prediction, providing a natural filter for useful calls.</p>
+</section>
+<section id="gorilla-massive-api-coverage" class="level3">
+<h3 class="anchored" data-anchor-id="gorilla-massive-api-coverage">Gorilla: Massive API Coverage</h3>
+<p><a href="https://arxiv.org/abs/2305.15334"><strong>Gorilla</strong></a> (Patil et al., UC Berkeley, 2023) pushed in a different direction: rather than teaching tool use self-supervisedly, it fine-tuned specifically for API call generation across thousands of real-world APIs. Gorilla was trained on a large corpus of API documentation and paired API calls, and integrated a retrieval system to handle frequently updated API documentation. The project has since expanded into the <a href="https://gorilla.cs.berkeley.edu/">Gorilla Execution Engine (GoEX)</a>—a runtime for LLM-generated API calls with “undo” and “damage confinement” abstractions for safe execution.</p>
+</section>
+<section id="toolbench-toolllm-real-world-tool-mastery" class="level3">
+<h3 class="anchored" data-anchor-id="toolbench-toolllm-real-world-tool-mastery">ToolBench / ToolLLM: Real-World Tool Mastery</h3>
+<p><a href="https://arxiv.org/abs/2307.16789"><strong>ToolBench</strong></a> (Qin et al., 2023; ICLR 2024 Spotlight) provides an open platform for training and evaluating LLMs on 16,000+ real-world APIs. The companion model <strong>ToolLLaMA</strong> is a LLaMA fine-tune equipped with a neural API retriever. An automatic evaluator, <strong>ToolEval</strong>, enables scalable assessment of tool-use quality. The full platform is available at the <a href="https://github.com/OpenBMB/ToolBench">OpenBMB/ToolBench</a> GitHub repository.</p>
+</section>
+<section id="nexusraven-commercially-permissive-function-calling" class="level3">
+<h3 class="anchored" data-anchor-id="nexusraven-commercially-permissive-function-calling">NexusRaven: Commercially Permissive Function Calling</h3>
+<p><a href="http://nexusflow.ai/blog"><strong>NexusRaven</strong></a> (Nexusflow.ai, 2023) is a family of LLMs fine-tuned specifically for function calling, released under commercially permissive licenses. NexusRaven-V2-13B matched or exceeded GPT-4’s function calling performance on several benchmarks at the time of release, demonstrating that focused fine-tuning on function calling data could close the gap with much larger proprietary models.</p>
+<hr>
+</section>
+</section>
+<section id="the-test-time-compute-paradigm" class="level2">
+<h2 class="anchored" data-anchor-id="the-test-time-compute-paradigm">The Test-Time Compute Paradigm</h2>
+<p>A subtle but important insight has emerged: training a model is not just about teaching it to answer questions—it can also teach it <em>how much to think</em>. The <strong>test-time compute</strong> paradigm asks: given a fixed budget of inference computation, how should a model allocate it?</p>
+<section id="scaling-inference-compute" class="level3">
+<h3 class="anchored" data-anchor-id="scaling-inference-compute">Scaling Inference Compute</h3>
+<p><a href="https://arxiv.org/abs/2408.03314"><strong>“Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters”</strong></a> (Snell et al., Google DeepMind, 2024) established the empirical case: for sufficiently hard prompts, allocating more inference compute (via parallel sampling, beam search, or iterative revision) can match or exceed the benefits of training a larger model. The key finding is that compute-optimal scaling strategies that adapt to prompt difficulty are <strong>4x more efficient</strong> than best-of-N sampling. This work directly informed the design of “reasoning models” that think before they answer.</p>
+</section>
+<section id="budget-forcing-the-s1-paper" class="level3">
+<h3 class="anchored" data-anchor-id="budget-forcing-the-s1-paper">Budget Forcing: The s1 Paper</h3>
+<p><a href="https://arxiv.org/abs/2501.19393"><strong>s1: Simple Test-Time Scaling</strong></a> (Muennighoff et al., Stanford, 2025) showed that test-time scaling can be remarkably simple to implement. The key technique is <strong>budget forcing</strong>: during inference, you can <em>extend</em> the model’s thinking by appending “Wait” tokens when it tries to terminate early, forcing continued deliberation. Trained on only <strong>1,000 carefully curated examples</strong> (the s1K dataset), s1-32B exceeded o1-preview on AIME24 competition math (50% → 57% with budget forcing). Code and data are at <a href="https://github.com/simplescaling/s1">github.com/simplescaling/s1</a>.</p>
+</section>
+<section id="process-reward-models-vs.-outcome-reward-models" class="level3">
+<h3 class="anchored" data-anchor-id="process-reward-models-vs.-outcome-reward-models">Process Reward Models vs.&nbsp;Outcome Reward Models</h3>
+<p>A central question in RL for reasoning is <em>when</em> to give feedback. Two approaches:</p>
+<ul>
+<li><strong>Outcome Reward Models (ORMs)</strong>: reward only the final answer (correct/incorrect). Simple to train, but provides no signal about <em>which steps</em> were good or bad.</li>
+<li><strong>Process Reward Models (PRMs)</strong>: reward each reasoning step individually. Richer signal, better credit assignment, but requires step-level annotations.</li>
+</ul>
+<p><a href="https://arxiv.org/abs/2305.20050">Lightman et al.&nbsp;(2023)</a> showed that PRMs significantly outperform ORMs for mathematical reasoning. A <a href="https://arxiv.org/abs/2510.08049">2025 survey</a> documents the rapidly growing PRM literature and its extension to agent tasks. The tension between PRMs and ORMs is especially acute in agent settings: a web navigation task might have 50 steps, and it’s unclear which steps deserve credit when the task succeeds or fails.</p>
+<hr>
+</section>
+</section>
+<section id="environment-specific-training" class="level2">
+<h2 class="anchored" data-anchor-id="environment-specific-training">Environment-Specific Training</h2>
+<section id="the-sim-to-real-gap" class="level3">
+<h3 class="anchored" data-anchor-id="the-sim-to-real-gap">The Sim-to-Real Gap</h3>
+<p>A recurring theme in agent training is the gap between training environments and deployment environments. Training in a sandbox web environment (like <a href="https://webarena.dev/">WebArena</a>) produces agents that struggle when real websites have different layouts, load times, and anti-bot measures. Similarly, code execution sandboxes for training coding agents don’t capture the messy realities of real codebases.</p>
+<p><strong>Approaches to closing the gap:</strong></p>
+<ul>
+<li><strong>Domain randomization</strong>: vary the training environment (layouts, content, error rates) so the agent learns robust strategies rather than memorizing specific states.</li>
+<li><strong>Diverse trajectory collection</strong>: <a href="https://arxiv.org/abs/2504.21798">SWE-smith</a> explicitly sources from 128 diverse repositories to maximize coverage.</li>
+<li><strong>Online fine-tuning</strong>: continue updating the model on real deployment interactions (with appropriate safeguards). This is analogous to how game-playing RL agents (AlphaGo, AlphaCode) close the sim-to-real gap through continued interaction.</li>
+</ul>
+</section>
+<section id="osworld-and-gui-agent-training" class="level3">
+<h3 class="anchored" data-anchor-id="osworld-and-gui-agent-training">OSWorld and GUI Agent Training</h3>
+<p><a href="https://arxiv.org/abs/2404.07972"><strong>OSWorld</strong></a> (Xie et al., 2024) is a benchmark and environment for training GUI agents that must control desktop software. Agents interact with real applications (spreadsheets, browsers, file managers) in a virtualized environment. Early results suggest that current prompted agents achieve under 15% task success on OSWorld, indicating substantial room for training-driven improvement. The challenge is particularly pronounced for GUI agents because the observation space (pixels or accessibility trees) is high-dimensional, the action space (mouse clicks, keyboard input) is continuous, and the task specification (natural language) must be grounded to visual elements.</p>
+</section>
+<section id="code-execution-environments" class="level3">
+<h3 class="anchored" data-anchor-id="code-execution-environments">Code Execution Environments</h3>
+<p>For coding agents, the reward signal is unusually clean: does the code run? Do the tests pass? This makes code generation an ideal domain for RL, and indeed <a href="https://arxiv.org/abs/2501.12948">DeepSeek-R1</a> used coding problems extensively as a training signal. <a href="https://arxiv.org/abs/2504.21798">SWE-smith</a> further scales this by automating the construction of coding environments for arbitrary repositories.</p>
+<p>The feedback loop for code is tighter than for most agent domains: execution is fast, deterministic, and unambiguous. This is one reason why software engineering has become a proving ground for agent training techniques before they generalize to messier environments like web navigation or embodied robotics.</p>
+</section>
+<section id="embodied-agents-and-sim-to-real-transfer" class="level3">
+<h3 class="anchored" data-anchor-id="embodied-agents-and-sim-to-real-transfer">Embodied Agents and Sim-to-Real Transfer</h3>
+<p>Beyond digital environments, <strong>embodied agents</strong>—robots that perceive and act in the physical world—face the starkest version of the distribution shift problem. Training in simulation (e.g., <a href="https://developer.nvidia.com/isaac-gym">IsaacGym</a>, <a href="https://aihabitat.org/">Habitat</a>) is computationally efficient but produces policies that fail in the real world due to differences in physics, lighting, and sensor noise. Techniques developed for robotic sim-to-real transfer—domain randomization, system identification, adversarial environment generation—are increasingly being adopted by digital agent researchers as they grapple with the same fundamental challenge at the software level.</p>
+<hr>
+</section>
+</section>
+<section id="small-model-agents" class="level2">
+<h2 class="anchored" data-anchor-id="small-model-agents">Small Model Agents</h2>
+<section id="the-cost-argument" class="level3">
+<h3 class="anchored" data-anchor-id="the-cost-argument">The Cost Argument</h3>
+<p>Large prompted models (GPT-4, Claude 3.5, Gemini 1.5 Pro) are competent at agent tasks—but they cost orders of magnitude more per query than a self-hosted 7B or 13B model. If a task-specific fine-tune of a small model can match a large prompted model, the economics favor deployment of the smaller model for high-volume agent workloads.</p>
+<p>Consider the math: a GPT-4-class model costs roughly $10–30 per million output tokens at retail API pricing. A self-hosted 7B model running on a single consumer GPU costs $0.10–0.50 per million tokens at amortized hardware cost. For an agent that executes 1,000 multi-step tasks per day—each generating hundreds of tokens of intermediate reasoning—the cost difference compounds rapidly. This is why many production deployments use a <strong>cascade architecture</strong>: small fine-tuned models handle routine tasks while large models handle edge cases and ambiguous situations.</p>
+<p>The evidence is accumulating. <a href="https://arxiv.org/abs/2512.15943"><strong>“Small Language Models for Efficient Agentic Tool Calling”</strong></a> (2024) demonstrated that a fine-tuned small model can achieve <strong>77.55% pass rate on ToolBench evaluation</strong>—significantly outperforming ChatGPT-CoT (26.00%) and ToolLLaMA-DFS (30.18%). The fine-tuned model was dramatically cheaper per inference call.</p>
+</section>
+<section id="tool-use-fine-tuning-at-small-scale" class="level3">
+<h3 class="anchored" data-anchor-id="tool-use-fine-tuning-at-small-scale">Tool Use Fine-Tuning at Small Scale</h3>
+<ul>
+<li><strong><a href="https://arxiv.org/abs/2307.16789">ToolLLaMA</a></strong>: Fine-tunes LLaMA on 16,000+ real-world API interactions. Demonstrates strong generalization across API categories.</li>
+<li><strong><a href="http://nexusflow.ai/blog">NexusRaven</a></strong>: Commercial-grade function calling from a 13B model fine-tuned by Nexusflow.ai.</li>
+<li><strong><a href="https://github.com/QwenLM/Qwen-Agent">Qwen-Agent</a></strong>: Alibaba’s Qwen model family with agent-specific fine-tuning. Qwen2.5 and Qwen3 models support tool calling natively, with GRPO training available for agent-specific RL.</li>
+<li><strong>Phi-3/Phi-4</strong>: Microsoft’s small models (<a href="https://huggingface.co/microsoft/Phi-3-mini-4k-instruct">microsoft/phi-3</a>) show competitive function-calling performance for their size through instruction fine-tuning on high-quality synthetic data.</li>
+</ul>
+</section>
+<section id="when-small-models-struggle" class="level3">
+<h3 class="anchored" data-anchor-id="when-small-models-struggle">When Small Models Struggle</h3>
+<p>The gains from fine-tuning small models are task-specific. Where small fine-tuned models tend to underperform large prompted models:</p>
+<ul>
+<li><strong>Out-of-distribution tasks</strong>: fine-tuned models memorize the distribution of their training data more than large models do.</li>
+<li><strong>Multi-hop reasoning</strong>: complex planning over many steps benefits from the capacity of larger models.</li>
+<li><strong>Novel tool APIs</strong>: if the tool isn’t in the training distribution, the small model has no fallback general-purpose reasoning ability.</li>
+</ul>
+<p>The practical recommendation is a tiered approach: use small specialized models for high-frequency, well-defined tasks; fall back to large models for complex or novel queries.</p>
+<hr>
+</section>
+</section>
+<section id="open-problems" class="level2">
+<h2 class="anchored" data-anchor-id="open-problems">Open Problems</h2>
+<p>Agent training research is advancing rapidly but several hard problems remain unsolved:</p>
+<section id="sample-efficiency" class="level3">
+<h3 class="anchored" data-anchor-id="sample-efficiency">Sample Efficiency</h3>
+<p>Agent trajectories are expensive to collect. A single successful web navigation trajectory requires executing 10–50 browser actions in a real or simulated environment, with most attempts failing. RL exacerbates this: the agent must explore before it can exploit, generating thousands of trajectories to learn from sparse rewards. Techniques like curriculum learning (WebRL), trajectory synthesis (AgentTrek, SWE-smith), and offline RL (Agent Q’s DPO) partially address this, but sample efficiency remains the central bottleneck.</p>
+</section>
+<section id="reward-design" class="level3">
+<h3 class="anchored" data-anchor-id="reward-design">Reward Design</h3>
+<p>What should an agent be rewarded for? For narrow tasks (pass tests, book the right hotel), the reward is clear. For general assistants, the reward function is deeply contested. RLHF proxies this with human preferences—but preferences don’t always align with competence. A model can be rated helpful while being confidently wrong. For multi-step tasks, partial credit (did you get 7 of 10 steps right?) vs.&nbsp;binary success (did the task complete?) is an open design question with significant implications for learning dynamics.</p>
+</section>
+<section id="catastrophic-forgetting" class="level3">
+<h3 class="anchored" data-anchor-id="catastrophic-forgetting">Catastrophic Forgetting</h3>
+<p>Fine-tuning LLMs for agent tasks can degrade their general capabilities—a phenomenon known as <strong>catastrophic forgetting</strong>. A model trained to navigate web forms might lose its ability to write poetry. Methods like LoRA (Low-Rank Adaptation) and elastic weight consolidation partially mitigate this, but the tradeoff between specialization and generality is not fully understood. <a href="https://arxiv.org/abs/2501.12948">DeepSeek-R1</a> explicitly uses cold-start SFT before RL to avoid the instability of pure RL from a general base model.</p>
+</section>
+<section id="distribution-shift" class="level3">
+<h3 class="anchored" data-anchor-id="distribution-shift">Distribution Shift</h3>
+<p>Training environments rarely match deployment environments. A coding agent trained on GitHub Python repositories will encounter enterprise Java codebases. A web agent trained on WebArena will encounter real websites with popups, CAPTCHAs, and dynamic content. Closing this gap through more diverse training data, domain randomization, or online adaptation is an active area.</p>
+</section>
+<section id="the-training-data-bottleneck" class="level3">
+<h3 class="anchored" data-anchor-id="the-training-data-bottleneck">The Training Data Bottleneck</h3>
+<p>High-quality agent trajectories—diverse, covering failure modes, spanning multiple domains—are the limiting resource for the field. Systems like SWE-smith and AgentTrek are early attempts to synthesize this data automatically, but the quality-versus-quantity tradeoff remains challenging. Generated trajectories can embed the biases and errors of the model that generated them.</p>
+</section>
+<section id="online-learning-and-continual-adaptation" class="level3">
+<h3 class="anchored" data-anchor-id="online-learning-and-continual-adaptation">Online Learning and Continual Adaptation</h3>
+<p>Can and should agents update their weights during deployment? Online learning would allow agents to adapt to new tools, new domains, and user-specific workflows. But it also introduces risks: an agent that updates on user interactions might overfit to idiosyncratic preferences, learn from adversarial inputs, or exhibit unexpected drift. The research community is actively exploring the right tradeoff between stability and adaptability.</p>
+<p><a href="https://arxiv.org/abs/2411.02337">WebRL</a> represents a step toward this: its self-evolving curriculum continuously generates new training tasks from failed attempts, enabling the agent to improve without stopping deployment. However, this is still offline in the sense that weight updates happen in controlled training rounds, not continuously during inference. True online learning—where the model updates its weights from each user interaction in real time—remains largely aspirational for production systems.</p>
+</section>
+<section id="the-alignment-problem-in-agent-training" class="level3">
+<h3 class="anchored" data-anchor-id="the-alignment-problem-in-agent-training">The Alignment Problem in Agent Training</h3>
+<p>An underappreciated issue: optimizing an agent for task success (did the flight get booked?) doesn’t automatically produce an agent that respects user intent (did the user <em>want</em> a refundable ticket?). Reward hacking—where the agent achieves the measurable reward while violating the spirit of the task—is a real concern in agent RL. A web agent trained to maximize “task completion” might click the first available option rather than the best one. These issues connect the technical literature on agent training to the broader alignment research agenda, suggesting that designing the reward function is as important as designing the training algorithm.</p>
+<hr>
+</section>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<section id="papers" class="level3">
+<h3 class="anchored" data-anchor-id="papers">Papers</h3>
+<ul>
+<li><strong>RLHF (Christiano et al., 2017)</strong> — <a href="https://arxiv.org/abs/1706.03741">Deep Reinforcement Learning from Human Preferences</a> — foundational RL from human feedback.</li>
+<li><strong>Toolformer (Schick et al., 2023)</strong> — <a href="https://arxiv.org/abs/2302.04761">arXiv:2302.04761</a> — self-supervised tool use learning.</li>
+<li><strong>Gorilla (Patil et al., 2023)</strong> — <a href="https://arxiv.org/abs/2305.15334">arXiv:2305.15334</a> — LLM connected to 1,600+ APIs.</li>
+<li><strong>Let’s Verify Step by Step (Lightman et al., 2023)</strong> — <a href="https://arxiv.org/abs/2305.20050">arXiv:2305.20050</a> — process reward models for math reasoning.</li>
+<li><strong>ToolLLM / ToolBench (Qin et al., 2023)</strong> — <a href="https://arxiv.org/abs/2307.16789">arXiv:2307.16789</a> — training on 16,000+ real-world APIs.</li>
+<li><strong>NexusRaven (Nexusflow.ai, 2023)</strong> — <a href="http://nexusflow.ai/blog">nexusflow.ai/blog</a> — commercially permissive function calling.</li>
+<li><strong>Agent Q (Putta et al., 2024)</strong> — <a href="https://arxiv.org/abs/2408.07199">arXiv:2408.07199</a> — MCTS + DPO for web agent training.</li>
+<li><strong>Scaling Test-Time Compute (Snell et al., 2024)</strong> — <a href="https://arxiv.org/abs/2408.03314">arXiv:2408.03314</a> — inference-time compute vs.&nbsp;parameter scaling.</li>
+<li><strong>Agent Workflow Memory (Wang et al., 2024)</strong> — <a href="https://arxiv.org/abs/2409.07429">arXiv:2409.07429</a> — learning reusable workflows from trajectories.</li>
+<li><strong>GRPO (Shao et al., 2024)</strong> — <a href="https://arxiv.org/abs/2402.03300">arXiv:2402.03300</a> — group relative policy optimization.</li>
+<li><strong>WebRL (Qi et al., 2024)</strong> — <a href="https://arxiv.org/abs/2411.02337">arXiv:2411.02337</a> — self-evolving RL for web agents.</li>
+<li><strong>AgentTrek (Xu et al., 2024)</strong> — <a href="https://arxiv.org/abs/2412.09605">arXiv:2412.09605</a> — trajectory synthesis from web tutorials (ICLR 2025 Spotlight).</li>
+<li><strong>OSWorld (Xie et al., 2024)</strong> — <a href="https://arxiv.org/abs/2404.07972">arXiv:2404.07972</a> — GUI agent benchmark with real applications.</li>
+<li><strong>DeepSeek-R1 (DeepSeek-AI, 2025)</strong> — <a href="https://arxiv.org/abs/2501.12948">arXiv:2501.12948</a> — RL for reasoning; GRPO; open-source.</li>
+<li><strong>s1: Simple Test-Time Scaling (Muennighoff et al., 2025)</strong> — <a href="https://arxiv.org/abs/2501.19393">arXiv:2501.19393</a> — budget forcing and the 1,000-example recipe.</li>
+<li><strong>SWE-smith (Yang et al., 2025)</strong> — <a href="https://arxiv.org/abs/2504.21798">arXiv:2504.21798</a> — 50k SWE trajectories from 128 repos (NeurIPS 2025 Spotlight).</li>
+<li><strong>Small LMs for Agentic Tool Calling (2024)</strong> — <a href="https://arxiv.org/abs/2512.15943">arXiv:2512.15943</a> — fine-tuned SLM outperforms ChatGPT on ToolBench.</li>
+<li><strong>SkyRL-Agent (Cao et al., 2025)</strong> — <a href="https://arxiv.org/abs/2511.16108">arXiv:2511.16108</a> — scalable RL training framework for multi-turn agents.</li>
+<li><strong>PRM Survey (2025)</strong> — <a href="https://arxiv.org/abs/2510.08049">arXiv:2510.08049</a> — comprehensive survey of process reward models.</li>
+</ul>
+</section>
+<section id="blog-posts-resources" class="level3">
+<h3 class="anchored" data-anchor-id="blog-posts-resources">Blog Posts &amp; Resources</h3>
+<ul>
+<li><a href="https://openai.com/o1">OpenAI o1 System Card</a> — inference-time compute scaling and “thinking” models.</li>
+<li><a href="https://www.nature.com/articles/s41586-025-09422-z">DeepSeek-R1 in Nature</a> — peer-reviewed coverage of RL for reasoning.</li>
+<li><a href="https://gorilla.cs.berkeley.edu/">Gorilla Project Page</a> — API-connected LLM research at Berkeley.</li>
+<li><a href="https://swesmith.com">SWE-smith Project Site</a> — data, models, and trajectories.</li>
+<li><a href="https://agenttrek.github.io/">AgentTrek Project Page</a> — trajectory synthesis demo and datasets.</li>
+<li><a href="https://arxiv.org/abs/2509.16679">RL Meets LLMs Survey (2025)</a> — comprehensive survey of RL across the LLM lifecycle.</li>
+</ul>
+</section>
+<section id="code-projects" class="level3">
+<h3 class="anchored" data-anchor-id="code-projects">Code &amp; Projects</h3>
+<ul>
+<li><a href="https://github.com/OpenBMB/ToolBench"><strong>OpenBMB/ToolBench</strong></a> — open platform for tool-use training and evaluation.</li>
+<li><a href="https://github.com/sentient-engineering/agent-q"><strong>sentient-engineering/agent-q</strong></a> — Agent Q MCTS + DPO reference implementation.</li>
+<li><a href="https://github.com/simplescaling/s1"><strong>simplescaling/s1</strong></a> — s1-32B, budget forcing, and the s1K dataset.</li>
+<li><a href="https://github.com/SWE-bench/SWE-smith"><strong>SWE-bench/SWE-smith</strong></a> — SWE-smith pipeline, task instances, and trajectories.</li>
+<li><a href="https://github.com/QwenLM/Qwen-Agent"><strong>QwenLM/Qwen-Agent</strong></a> — Qwen models with tool use and agent fine-tuning.</li>
+<li><a href="https://huggingface.co/Nexusflow/NexusRaven-13B"><strong>Nexusflow/NexusRaven-13B</strong></a> — function calling model on HuggingFace.</li>
+<li><a href="https://huggingface.co/microsoft/Phi-3-mini-4k-instruct"><strong>microsoft/Phi-3-mini-4k-instruct</strong></a> — small model with strong instruction following for agent tasks.</li>
+</ul>
+<hr>
+<p><em>Back to <a href="./topics.html">Topics →</a> · See also: <a href="./reasoning.html">Reasoning &amp; Planning →</a> · <a href="./coding-agents.html">Coding Agents →</a> · <a href="./economics.html">Economics →</a></em></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/llm-agents-survey\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
