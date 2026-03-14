@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Science &amp; Analytics Agents – LLM Agents: A Survey (2022–2026)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./favicon.svg" rel="icon" type="image/svg+xml">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-254a3ef50811769e7b813971395bbfc6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-31e29ad2a3d1e7985534403fb9b8ee74.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-254a3ef50811769e7b813971395bbfc6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">LLM Agents: A Survey (2022–2026)</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./taxonomy.html"> 
+<span class="menu-text">Taxonomy</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./timeline.html"> 
+<span class="menu-text">Timeline</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./foundations.html"> 
+<span class="menu-text">2022–2023</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./recent.html"> 
+<span class="menu-text">2024–2026</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-deep-dives" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Deep Dives</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-deep-dives">    
+        <li>
+    <a class="dropdown-item" href="./reasoning.html">
+ <span class="dropdown-text">Reasoning &amp; Planning</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./multiagent.html">
+ <span class="dropdown-text">Multi-Agent Systems</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./memory-tools.html">
+ <span class="dropdown-text">Memory, Tools &amp; Actions</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-topics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Topics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-topics">    
+        <li>
+    <a class="dropdown-item" href="./topics.html">
+ <span class="dropdown-text">Topics Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./evaluation.html">
+ <span class="dropdown-text">Evaluation &amp; Benchmarks</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./safety.html">
+ <span class="dropdown-text">Safety &amp; Alignment</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./science-agents.html">
+ <span class="dropdown-text">Science &amp; Research Agents</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./personalization.html">
+ <span class="dropdown-text">Personalization &amp; Digital Twins</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./infrastructure.html">
+ <span class="dropdown-text">Infrastructure &amp; Protocols</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./human-agent.html">
+ <span class="dropdown-text">Human-Agent Interaction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./economics.html">
+ <span class="dropdown-text">Agent Economics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coding-agents.html">
+ <span class="dropdown-text">Coding Agents</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./observability.html">
+ <span class="dropdown-text">Observability &amp; Robustness</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./long-horizon.html">
+ <span class="dropdown-text">Long-Horizon Autonomy</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./agent-societies.html">
+ <span class="dropdown-text">Agent Societies &amp; Simulation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./governance.html">
+ <span class="dropdown-text">Governance &amp; Regulation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./agent-training.html">
+ <span class="dropdown-text">Agent Training &amp; RL</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./domain-agents.html">
+ <span class="dropdown-text">Domain-Specific Agents</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./data-science-agents.html">
+ <span class="dropdown-text">Data Science &amp; Analytics Agents</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./community.html"> 
+<span class="menu-text">Community</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/llm-agents-survey/llm-agents-survey.github.io"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#code-interpreter-advanced-data-analysis" id="toc-code-interpreter-advanced-data-analysis" class="nav-link" data-scroll-target="#code-interpreter-advanced-data-analysis">Code Interpreter / Advanced Data Analysis</a></li>
+  <li><a href="#research-papers-on-data-analysis-agents" id="toc-research-papers-on-data-analysis-agents" class="nav-link" data-scroll-target="#research-papers-on-data-analysis-agents">Research Papers on Data Analysis Agents</a>
+  <ul class="collapse">
+  <li><a href="#data-interpreter" id="toc-data-interpreter" class="nav-link" data-scroll-target="#data-interpreter">Data Interpreter</a></li>
+  <li><a href="#ds-agent" id="toc-ds-agent" class="nav-link" data-scroll-target="#ds-agent">DS-Agent</a></li>
+  <li><a href="#mlagentbench" id="toc-mlagentbench" class="nav-link" data-scroll-target="#mlagentbench">MLAgentBench</a></li>
+  <li><a href="#aide" id="toc-aide" class="nav-link" data-scroll-target="#aide">AIDE</a></li>
+  <li><a href="#automl-agent" id="toc-automl-agent" class="nav-link" data-scroll-target="#automl-agent">AutoML-Agent</a></li>
+  <li><a href="#insightbench" id="toc-insightbench" class="nav-link" data-scroll-target="#insightbench">InsightBench</a></li>
+  <li><a href="#infiagent-dabench" id="toc-infiagent-dabench" class="nav-link" data-scroll-target="#infiagent-dabench">InfiAgent-DABench</a></li>
+  <li><a href="#spider2-v" id="toc-spider2-v" class="nav-link" data-scroll-target="#spider2-v">Spider2-V</a></li>
+  </ul></li>
+  <li><a href="#ml-engineering-agents" id="toc-ml-engineering-agents" class="nav-link" data-scroll-target="#ml-engineering-agents">ML Engineering Agents</a>
+  <ul class="collapse">
+  <li><a href="#kaggle-competition-agents" id="toc-kaggle-competition-agents" class="nav-link" data-scroll-target="#kaggle-competition-agents">Kaggle Competition Agents</a></li>
+  <li><a href="#hyperparameter-optimization-and-architecture-search" id="toc-hyperparameter-optimization-and-architecture-search" class="nav-link" data-scroll-target="#hyperparameter-optimization-and-architecture-search">Hyperparameter Optimization and Architecture Search</a></li>
+  <li><a href="#experiment-management-and-reporting" id="toc-experiment-management-and-reporting" class="nav-link" data-scroll-target="#experiment-management-and-reporting">Experiment Management and Reporting</a></li>
+  </ul></li>
+  <li><a href="#visualization-reporting-agents" id="toc-visualization-reporting-agents" class="nav-link" data-scroll-target="#visualization-reporting-agents">Visualization &amp; Reporting Agents</a>
+  <ul class="collapse">
+  <li><a href="#lida" id="toc-lida" class="nav-link" data-scroll-target="#lida">LIDA</a></li>
+  <li><a href="#chartqa-and-chart-understanding" id="toc-chartqa-and-chart-understanding" class="nav-link" data-scroll-target="#chartqa-and-chart-understanding">ChartQA and Chart Understanding</a></li>
+  <li><a href="#nl-to-visualization-pipelines" id="toc-nl-to-visualization-pipelines" class="nav-link" data-scroll-target="#nl-to-visualization-pipelines">NL-to-Visualization Pipelines</a></li>
+  </ul></li>
+  <li><a href="#nl-to-sql-database-agents" id="toc-nl-to-sql-database-agents" class="nav-link" data-scroll-target="#nl-to-sql-database-agents">NL-to-SQL &amp; Database Agents</a>
+  <ul class="collapse">
+  <li><a href="#spider-benchmark" id="toc-spider-benchmark" class="nav-link" data-scroll-target="#spider-benchmark">Spider Benchmark</a></li>
+  <li><a href="#bird-benchmark" id="toc-bird-benchmark" class="nav-link" data-scroll-target="#bird-benchmark">BIRD Benchmark</a></li>
+  <li><a href="#din-sql" id="toc-din-sql" class="nav-link" data-scroll-target="#din-sql">DIN-SQL</a></li>
+  <li><a href="#sqlcoder" id="toc-sqlcoder" class="nav-link" data-scroll-target="#sqlcoder">SQLCoder</a></li>
+  <li><a href="#beyond-select-agentic-database-interaction" id="toc-beyond-select-agentic-database-interaction" class="nav-link" data-scroll-target="#beyond-select-agentic-database-interaction">Beyond SELECT: Agentic Database Interaction</a></li>
+  </ul></li>
+  <li><a href="#production-data-pipelines" id="toc-production-data-pipelines" class="nav-link" data-scroll-target="#production-data-pipelines">Production Data Pipelines</a>
+  <ul class="collapse">
+  <li><a href="#dbt-and-pipeline-agents" id="toc-dbt-and-pipeline-agents" class="nav-link" data-scroll-target="#dbt-and-pipeline-agents">dbt and Pipeline Agents</a></li>
+  <li><a href="#automated-data-quality" id="toc-automated-data-quality" class="nav-link" data-scroll-target="#automated-data-quality">Automated Data Quality</a></li>
+  <li><a href="#schema-inference-and-documentation" id="toc-schema-inference-and-documentation" class="nav-link" data-scroll-target="#schema-inference-and-documentation">Schema Inference and Documentation</a></li>
+  <li><a href="#etl-automation" id="toc-etl-automation" class="nav-link" data-scroll-target="#etl-automation">ETL Automation</a></li>
+  <li><a href="#agents-in-notebooks" id="toc-agents-in-notebooks" class="nav-link" data-scroll-target="#agents-in-notebooks">Agents in Notebooks</a></li>
+  </ul></li>
+  <li><a href="#open-problems" id="toc-open-problems" class="nav-link" data-scroll-target="#open-problems">Open Problems</a>
+  <ul class="collapse">
+  <li><a href="#correctness-verification" id="toc-correctness-verification" class="nav-link" data-scroll-target="#correctness-verification">Correctness Verification</a></li>
+  <li><a href="#large-dataset-handling" id="toc-large-dataset-handling" class="nav-link" data-scroll-target="#large-dataset-handling">Large Dataset Handling</a></li>
+  <li><a href="#reproducibility" id="toc-reproducibility" class="nav-link" data-scroll-target="#reproducibility">Reproducibility</a></li>
+  <li><a href="#hallucinated-statistics" id="toc-hallucinated-statistics" class="nav-link" data-scroll-target="#hallucinated-statistics">Hallucinated Statistics</a></li>
+  <li><a href="#the-analyst-in-the-loop" id="toc-the-analyst-in-the-loop" class="nav-link" data-scroll-target="#the-analyst-in-the-loop">The Analyst in the Loop</a></li>
+  <li><a href="#evaluation-difficulty" id="toc-evaluation-difficulty" class="nav-link" data-scroll-target="#evaluation-difficulty">Evaluation Difficulty</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a>
+  <ul class="collapse">
+  <li><a href="#papers" id="toc-papers" class="nav-link" data-scroll-target="#papers">Papers</a></li>
+  <li><a href="#blog-posts-resources" id="toc-blog-posts-resources" class="nav-link" data-scroll-target="#blog-posts-resources">Blog Posts &amp; Resources</a></li>
+  <li><a href="#code-projects" id="toc-code-projects" class="nav-link" data-scroll-target="#code-projects">Code &amp; Projects</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Data Science &amp; Analytics Agents</h1>
+<p class="subtitle lead">Agents that explore, analyze, and model data — from EDA to ML pipelines</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>Data science is one of the most natural application domains for LLM-based agents. The work is inherently iterative — load data, inspect it, form a hypothesis, write some code, check the output, revise the approach — which maps cleanly onto the agent loop. Unlike a one-shot question-answering task, good data analysis requires multiple rounds of reasoning and execution before arriving at an answer. Agents that can write code, run it, observe results, and adjust accordingly are well-suited to this.</p>
+<p>The key distinction from <a href="./coding-agents.html">coding agents</a> is subtle but important: in coding tasks, the <em>code</em> is the output; correctness is relatively verifiable (does the program pass tests?). In data science, the <em>insight</em> is the output. The code is just a means to get there. A data science agent must not only generate runnable code but also make judgment calls — which variables matter, whether an outlier is noise or signal, which visualization conveys the finding, whether a correlation merits further investigation. These require statistical reasoning, domain knowledge, and the ability to interpret intermediate results.</p>
+<p>Data science is also distinct from <a href="./science-agents.html">science and research agents</a> in its primary orientation: data science agents typically operate on business or engineering data (customer tables, sensor readings, model performance metrics), where the goal is operational decision-making rather than hypothesis-driven scientific inquiry. The datasets are often messy, underdocumented, and proprietary — a very different environment from the curated datasets used in academic research.</p>
+<p>This makes data science a genuinely hard domain for agents:</p>
+<ul>
+<li><strong>EDA requires taste.</strong> There is rarely a uniquely correct path through exploratory data analysis. The agent must make choices, and those choices determine what it finds.</li>
+<li><strong>Success criteria are fuzzy.</strong> A trading strategy backtest might look great and still be overfit. A regression might have high R² and still make no causal sense.</li>
+<li><strong>Errors are often silent.</strong> Unlike a crashing program, a wrong statistical conclusion produces no error message — it just looks like a result.</li>
+<li><strong>Domain knowledge matters.</strong> Knowing that a particular spike in the data coincides with a system outage, or that a correlation is likely a known confound, requires context that an agent may not have.</li>
+<li><strong>The data itself is unknown.</strong> In most tasks, the agent must first <em>understand</em> the dataset — column semantics, data quality issues, encoding quirks — before it can do anything useful with it.</li>
+</ul>
+<p>Despite these challenges, the gains from agentic data science tools have been substantial, and the field has rapidly developed both production products and research benchmarks. The space spans a wide spectrum: from consumer-facing tools like ChatGPT’s Advanced Data Analysis that democratize basic EDA, to research-grade agents competing on Kaggle, to production engineering tools embedded in data infrastructure like dbt and Databricks.</p>
+<hr>
+</section>
+<section id="code-interpreter-advanced-data-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="code-interpreter-advanced-data-analysis">Code Interpreter / Advanced Data Analysis</h2>
+<p>The product that launched this category was <strong>OpenAI’s Code Interpreter</strong>, released in beta in July 2023 and subsequently renamed <strong>Advanced Data Analysis</strong> <a href="https://help.openai.com/en/articles/8437071-data-analysis-with-chatgpt">(OpenAI Help Center)</a>. It is available to ChatGPT Plus subscribers as a GPT-4 capability.</p>
+<p>The mechanism is conceptually simple but powerful in practice:</p>
+<ol type="1">
+<li>The user uploads a file (CSV, Excel, PDF, image, etc.) and poses a question in natural language.</li>
+<li>GPT-4 writes Python code to address the question and executes it in a sandboxed environment.</li>
+<li>The output — including printed values, error tracebacks, or rendered charts — is fed back into context.</li>
+<li>GPT-4 interprets the output, revises the code if needed, and continues until it can answer the question.</li>
+</ol>
+<p>This loop enables genuine multi-step analysis: cleaning messy data, computing statistics, fitting models, generating visualizations, and converting between formats — all within a single conversation. The key technical insight is that the code execution output is fed back into context, allowing GPT-4 to observe errors and revise its approach — a tight feedback loop that mirrors how an experienced analyst works at the Python REPL.</p>
+<p><strong>Strengths:</strong> Exploratory data analysis, data cleaning, descriptive statistics, visualization, pivot tables, format conversion (e.g., CSV to JSON), light statistical modeling.</p>
+<p><strong>Limitations:</strong> No internet access; session-scoped (files are lost when the conversation ends); file size limits (roughly 50MB for CSVs); no persistent memory across sessions. Perhaps most importantly, the agent can confidently produce analyses that are statistically flawed without any indication of uncertainty. Users who lack the statistical background to check outputs are particularly at risk of treating agent-generated analyses as authoritative.</p>
+<p>The product’s commercial success — it became one of the most-used features of ChatGPT Plus — validated the hypothesis that there is massive pent-up demand for accessible data analysis tools. It also sparked a wave of research and competing products.</p>
+<hr>
+</section>
+<section id="research-papers-on-data-analysis-agents" class="level2">
+<h2 class="anchored" data-anchor-id="research-papers-on-data-analysis-agents">Research Papers on Data Analysis Agents</h2>
+<section id="data-interpreter" class="level3">
+<h3 class="anchored" data-anchor-id="data-interpreter">Data Interpreter</h3>
+<p>The <strong><a href="https://arxiv.org/abs/2402.18679">Data Interpreter</a></strong> (Hong et al., 2024; arXiv:2402.18679), developed by the MetaGPT team, is one of the most thorough academic treatments of LLM agents for data science tasks. Rather than treating analysis as a flat sequence of steps, Data Interpreter uses <strong>Hierarchical Graph Modeling</strong>: the problem is decomposed into a directed acyclic graph of subproblems, with dynamic node generation as new information becomes available during execution. A second module, <strong>Programmable Node Generation</strong>, refines and verifies each subproblem before generating code for it.</p>
+<p>This structure allows the agent to adapt its plan mid-execution — for example, discovering that a dataset has missing values and inserting a cleaning step that wasn’t in the original plan. This dynamic replanning is what distinguishes Data Interpreter from simpler code generation agents that commit to a plan upfront. The approach was evaluated on machine learning tasks, mathematical reasoning, and data visualization challenges, outperforming prior agents across all three categories.</p>
+</section>
+<section id="ds-agent" class="level3">
+<h3 class="anchored" data-anchor-id="ds-agent">DS-Agent</h3>
+<p><strong><a href="https://arxiv.org/abs/2402.17453">DS-Agent</a></strong> (Guo et al., 2024; ICML 2024; arXiv:2402.17453) tackles automated data science through <strong>case-based reasoning</strong>. Rather than generating code purely from the task description, DS-Agent retrieves similar past cases (e.g., winning Kaggle notebooks) and adapts their solutions to the current problem. This reflects a key insight: expert data scientists don’t start from scratch — they build on established patterns and known-good approaches.</p>
+<p>DS-Agent operates in two stages: a <strong>development stage</strong> (using retrieved cases to produce initial code) and a <strong>deployment stage</strong> (refining for production use). Evaluated against GPT-3.5, GPT-4, and open-source models on 18 deployment tasks derived from Kaggle competitions, DS-Agent demonstrated substantially higher one-pass success rates than zero-shot and one-shot baselines.</p>
+</section>
+<section id="mlagentbench" class="level3">
+<h3 class="anchored" data-anchor-id="mlagentbench">MLAgentBench</h3>
+<p><strong><a href="https://arxiv.org/abs/2310.03302">MLAgentBench</a></strong> (Huang et al., 2023/2024; arXiv:2310.03302) from Stanford’s SNAP lab is a benchmark suite of end-to-end machine learning experimentation tasks. Given a dataset and a task description, an agent must autonomously develop or improve an ML model — writing code, running experiments, and iterating based on results.</p>
+<p>The benchmark covers tasks across diverse domains (image classification, NLP, tabular data) and evaluates agents on their ability to improve upon baseline performance. Benchmarked models include GPT-4-turbo, Claude v3 Opus, Gemini Pro, and Mixtral; Claude v3 Opus achieved the best success rate across tasks, though absolute performance remained modest, highlighting how difficult autonomous ML engineering remains. MLAgentBench was one of the first systems to evaluate agents on <em>open-ended</em> ML experimentation — not just asking “complete this task” but “improve this baseline as much as you can” — which is a closer analog to real research work.</p>
+</section>
+<section id="aide" class="level3">
+<h3 class="anchored" data-anchor-id="aide">AIDE</h3>
+<p><strong><a href="https://arxiv.org/abs/2502.13138">AIDE</a></strong> (Wu et al., 2025; arXiv:2502.13138) — AI-Driven Exploration — takes a distinctive approach by framing ML engineering as a <strong>code optimization problem</strong> and the agent’s trial-and-error process as a <strong>tree search</strong> over candidate solutions. Rather than discarding failed attempts, AIDE reuses and refines promising intermediate solutions, effectively trading compute for better performance.</p>
+<p>AIDE achieves state-of-the-art results on <a href="https://arxiv.org/abs/2410.07095">OpenAI’s MLE-bench</a> (arXiv:2410.07095), a benchmark of 75 Kaggle competitions. The best configuration — o1-preview combined with AIDE scaffolding — achieves at least a bronze medal level in <strong>16.9% of competitions</strong>, a striking result that suggests current agents are approaching amateur-to-intermediate human performance on structured ML tasks. AIDE also achieves top results on RE-Bench (ML research engineering) and the authors’ own Kaggle evaluations.</p>
+<p>The tree-search framing has an important practical implication: compute scales performance. Unlike prompting strategies that are essentially fixed-cost, AIDE can be given more compute budget to explore a larger solution space, and performance improves accordingly. This suggests a path toward more capable agents that is as much about scaling compute during inference as improving the underlying model.</p>
+</section>
+<section id="automl-agent" class="level3">
+<h3 class="anchored" data-anchor-id="automl-agent">AutoML-Agent</h3>
+<p><strong><a href="https://arxiv.org/abs/2410.02958">AutoML-Agent</a></strong> (Trirat et al., 2024; arXiv:2410.02958) is a multi-agent LLM framework for <strong>full-pipeline AutoML</strong>, handling everything from data retrieval to model deployment. Unlike prior LLM-based frameworks that assist with individual steps (preprocessing, model selection, etc.), AutoML-Agent coordinates multiple specialized sub-agents to cover the complete pipeline. Evaluated on seven downstream tasks across fourteen datasets, it achieves higher automation success rates than single-agent baselines across diverse domains.</p>
+</section>
+<section id="insightbench" class="level3">
+<h3 class="anchored" data-anchor-id="insightbench">InsightBench</h3>
+<p><strong><a href="https://arxiv.org/abs/2407.06423">InsightBench</a></strong> (Sahu et al., 2024; arXiv:2407.06423) from ServiceNow evaluates agents on <strong>multi-step business analytics insight generation</strong> — a more realistic and demanding setting than single-query benchmarks. Rather than answering one question at a time, agents must perform end-to-end analysis: exploring a dataset, generating multiple insights, and producing a coherent analytical narrative.</p>
+<p>The benchmark introduces AgentPoirot as a baseline agent and shows it outperforms Pandas Agent and other query-focused approaches. The benchmark is publicly available at <a href="https://github.com/ServiceNow/insight-bench">github.com/ServiceNow/insight-bench</a>.</p>
+</section>
+<section id="infiagent-dabench" class="level3">
+<h3 class="anchored" data-anchor-id="infiagent-dabench">InfiAgent-DABench</h3>
+<p><strong><a href="https://arxiv.org/abs/2401.05507">InfiAgent-DABench</a></strong> (Hu et al., 2024; arXiv:2401.05507) was among the first benchmarks specifically designed to evaluate LLM-based agents on data analysis tasks. It contains <strong>311 data analysis questions</strong> derived from <strong>55 CSV files</strong>, using a closed-form answer format that enables automated evaluation. The benchmark is notable for requiring agents to interact with an execution environment end-to-end, rather than simply generating code.</p>
+</section>
+<section id="spider2-v" class="level3">
+<h3 class="anchored" data-anchor-id="spider2-v">Spider2-V</h3>
+<p><strong><a href="https://arxiv.org/abs/2407.10956">Spider2-V</a></strong> (Cao et al., 2024; NeurIPS 2024 Datasets and Benchmarks Track; arXiv:2407.10956) is a multimodal agent benchmark covering professional data science and engineering workflows in full desktop environments. It features <strong>494 real-world tasks</strong> in authentic computer environments, incorporating <strong>20 enterprise-level applications</strong> — including BigQuery, dbt, Airflow, Jupyter, and Snowflake.</p>
+<p>Critically, Spider2-V evaluates agents on GUI control in addition to code generation: agents must navigate real software interfaces, not just produce text or code. Results reveal significant gaps: even with step-by-step guidance, agents underperform severely on knowledge-intensive GUI actions (16.2% task completion) and tasks requiring cloud-hosted workspace access (10.6%). This benchmark underscores that real-world data workflows are far more complex than controlled code generation tasks.</p>
+<hr>
+</section>
+</section>
+<section id="ml-engineering-agents" class="level2">
+<h2 class="anchored" data-anchor-id="ml-engineering-agents">ML Engineering Agents</h2>
+<p>Beyond data analysis, a growing body of work focuses on agents that conduct <strong>machine learning engineering</strong>: training models, tuning hyperparameters, comparing architectures, and managing the full experimental lifecycle. This is sometimes called “AI for ML” or “agentic AutoML.”</p>
+<section id="kaggle-competition-agents" class="level3">
+<h3 class="anchored" data-anchor-id="kaggle-competition-agents">Kaggle Competition Agents</h3>
+<p>The Kaggle arena provides a natural benchmark for ML engineering agents: well-defined tasks, real data, objective leaderboard rankings, and a human comparison baseline of hundreds of thousands of competitors. <a href="https://arxiv.org/abs/2410.07095">MLE-bench</a> (Chan et al., 2024; arXiv:2410.07095), developed by OpenAI, formalizes this into a <strong>75-competition benchmark</strong> spanning diverse ML tasks — image classification, tabular regression, NLP, and time series forecasting.</p>
+<p>The AIDE-based agent (o1-preview + AIDE scaffolding) achieving bronze-level performance in ~17% of competitions represents a meaningful milestone. It demonstrates that current agents can, on a subset of tasks, produce solutions competitive with the bottom quartile of human Kaggle participants — though the gap to expert performance remains enormous.</p>
+<p><a href="https://arxiv.org/abs/2402.17453">DS-Agent’s</a> case-based retrieval from Kaggle notebooks reflects the same intuition: competition notebooks are a rich repository of expert solutions that agents can learn from, paralleling how junior data scientists develop their skills by reading and adapting others’ work.</p>
+</section>
+<section id="hyperparameter-optimization-and-architecture-search" class="level3">
+<h3 class="anchored" data-anchor-id="hyperparameter-optimization-and-architecture-search">Hyperparameter Optimization and Architecture Search</h3>
+<p>Traditional <strong>AutoML</strong> tools (Auto-sklearn, FLAML, Optuna, NAS systems) automate hyperparameter search but require the user to define the search space and pipeline structure. LLM agents add a new capability: the ability to <em>reason about</em> why a model is underperforming and propose changes to the architecture or feature engineering strategy rather than just tuning existing knobs.</p>
+<p>AIDE’s tree-search formulation is a direct embodiment of this: the agent doesn’t just vary hyperparameters within a fixed space, it edits code and explores fundamentally different approaches (e.g., switching from gradient boosting to a neural network, or adding feature interactions). This represents a step toward the kind of strategic experimentation that expert data scientists perform.</p>
+<p><a href="https://arxiv.org/abs/2410.02958">AutoML-Agent</a> exemplifies a more structured version of this — coordinating retrieval, preprocessing, feature engineering, model selection, and evaluation through a team of specialized sub-agents, each responsible for one part of the pipeline.</p>
+</section>
+<section id="experiment-management-and-reporting" class="level3">
+<h3 class="anchored" data-anchor-id="experiment-management-and-reporting">Experiment Management and Reporting</h3>
+<p>Tracking which runs used which configurations, comparing results across multiple experiments, and writing up findings are repetitive but cognitively demanding tasks. Agents connected to experiment tracking tools like <a href="https://wandb.ai/">Weights &amp; Biases</a> or <a href="https://mlflow.org/">MLflow</a> can potentially automate large portions of this workflow: querying run history, identifying best configurations, generating comparison tables, and drafting experiment reports.</p>
+<p>This remains an area where production deployment is nascent — existing tools offer “AI assistant” features for interpreting results, but fully autonomous experiment management agents are not yet standard practice.</p>
+<hr>
+</section>
+</section>
+<section id="visualization-reporting-agents" class="level2">
+<h2 class="anchored" data-anchor-id="visualization-reporting-agents">Visualization &amp; Reporting Agents</h2>
+<section id="lida" class="level3">
+<h3 class="anchored" data-anchor-id="lida">LIDA</h3>
+<p><strong><a href="https://arxiv.org/abs/2303.02927">LIDA</a></strong> (Dibia, 2023; ACL 2023; arXiv:2303.02927) from Microsoft Research is an LLM-based system for automatic generation of visualizations and infographics. It operates as a four-module pipeline:</p>
+<ol type="1">
+<li><strong>Summarizer</strong> — converts a dataset into a compact natural language summary</li>
+<li><strong>Goal Explorer</strong> — enumerates plausible visualization goals given the data summary</li>
+<li><strong>VizGenerator</strong> — generates, refines, executes, and filters visualization code</li>
+<li><strong>Infographer</strong> — produces stylized, data-faithful graphics using image generation models</li>
+</ol>
+<p>LIDA is <strong>grammar-agnostic</strong>: the same pipeline generates matplotlib, seaborn, altair, or D3.js code depending on the target library. It was accepted at ACL 2023 (System Demonstrations) and is open-source at <a href="https://github.com/microsoft/lida">github.com/microsoft/lida</a>. In internal evaluations, LIDA achieved an error rate of under 3.5% on over 2,200 visualizations generated, compared to a baseline error rate above 10% <em>(unverified: from GitHub README)</em>.</p>
+</section>
+<section id="chartqa-and-chart-understanding" class="level3">
+<h3 class="anchored" data-anchor-id="chartqa-and-chart-understanding">ChartQA and Chart Understanding</h3>
+<p><strong><a href="https://arxiv.org/abs/2203.10244">ChartQA</a></strong> (Masry et al., 2022; arXiv:2203.10244) addresses the complementary problem of <em>reading</em> charts rather than generating them — given a chart image, answer questions about it. This is relevant for data agents that encounter existing visualizations (e.g., in PDFs or dashboards) and need to extract information. Modern multimodal LLMs (GPT-4V, Gemini, Claude) have dramatically improved chart understanding, enabling agents to reason about visual data representations in addition to tabular data.</p>
+</section>
+<section id="nl-to-visualization-pipelines" class="level3">
+<h3 class="anchored" data-anchor-id="nl-to-visualization-pipelines">NL-to-Visualization Pipelines</h3>
+<p>A common agent architecture for reporting chains natural language → SQL → data retrieval → chart code → rendered visualization, all within a single agent loop. This allows business users to ask questions like “show me revenue by region for Q3” against a connected database and receive a chart. The pipeline composition requires robust text-to-SQL (see next section), reliable code execution, and some understanding of visualization best practices.</p>
+<p>The main challenges in these pipelines are <em>semantic alignment</em> (the chart should answer the question the user actually asked, not a literal interpretation) and <em>visualization appropriateness</em> (bar chart vs.&nbsp;line chart vs.&nbsp;scatter plot — not all chart types are equally informative for a given data shape).</p>
+<p><strong>Narrative data stories</strong> — where an agent produces not just a chart but a written interpretation of it — are an emerging capability. Rather than simply rendering a plot, the agent identifies the key trend, contextualizes it, and writes a few sentences of explanation. Products like Tableau Pulse and Google’s “Insights” feature in Looker take this approach in limited production form. The full realization of automated analyst narratives raises significant concerns about hallucinated interpretations (see Open Problems).</p>
+<hr>
+</section>
+</section>
+<section id="nl-to-sql-database-agents" class="level2">
+<h2 class="anchored" data-anchor-id="nl-to-sql-database-agents">NL-to-SQL &amp; Database Agents</h2>
+<p>Natural language to SQL is one of the most practically important capabilities underlying data science agents. It allows non-technical users to query databases without knowing SQL syntax and enables agents to retrieve structured data on demand.</p>
+<section id="spider-benchmark" class="level3">
+<h3 class="anchored" data-anchor-id="spider-benchmark">Spider Benchmark</h3>
+<p><strong><a href="https://arxiv.org/abs/1809.08887">Spider</a></strong> (Yu et al., 2018; arXiv:1809.08887) from Yale remains the standard NL-to-SQL benchmark. It contains <strong>10,181 questions</strong> and <strong>5,693 unique SQL queries</strong> across <strong>200 databases</strong> covering multiple tables and diverse domains. Spider’s cross-domain structure — models must generalize to databases they haven’t seen during training — made it a genuine test of systematic SQL understanding rather than pattern matching.</p>
+</section>
+<section id="bird-benchmark" class="level3">
+<h3 class="anchored" data-anchor-id="bird-benchmark">BIRD Benchmark</h3>
+<p><strong><a href="https://arxiv.org/abs/2305.03111">BIRD</a></strong> (Li et al., 2023; arXiv:2305.03111) — Big Bench for Large-Scale Database Grounded Text-to-SQL — was developed to address the gap between controlled benchmarks and real-world complexity. It contains <strong>12,751 text-to-SQL pairs</strong> across <strong>95 databases</strong> totaling <strong>33.4 GB</strong> spanning <strong>37 professional domains</strong>. BIRD emphasizes database <em>content</em> (not just schema structure): correct SQL requires understanding actual data values, external domain knowledge, and SQL execution efficiency.</p>
+<p>At time of publication, the best models achieved around 40% execution accuracy on BIRD, compared to human performance of ~93% — a sobering reminder of the gap between benchmark performance and production deployment. More recent models have improved substantially, but the benchmark remains challenging.</p>
+</section>
+<section id="din-sql" class="level3">
+<h3 class="anchored" data-anchor-id="din-sql">DIN-SQL</h3>
+<p><strong><a href="https://arxiv.org/abs/2304.11015">DIN-SQL</a></strong> (Pourreza &amp; Rafiei, 2023; arXiv:2304.11015) — Decomposed In-Context Learning for Text-to-SQL — improved NL-to-SQL performance by breaking the translation into manageable sub-problems: schema linking, query classification, sub-query decomposition, and self-correction. By feeding solutions to sub-problems back into context, DIN-SQL substantially improved performance on Spider and related benchmarks over monolithic prompting approaches.</p>
+</section>
+<section id="sqlcoder" class="level3">
+<h3 class="anchored" data-anchor-id="sqlcoder">SQLCoder</h3>
+<p><strong><a href="https://github.com/defog-ai/sqlcoder">SQLCoder</a></strong> (Defog AI, 2023) is an open-source, fine-tuned model specifically for text-to-SQL tasks. The original 15B-parameter model outperformed GPT-3.5-turbo on generic SQL generation at launch, and subsequent versions (SQLCoder2, SQLCoder-7B) extended coverage to smaller form factors. SQLCoder demonstrates that fine-tuning on domain-specific data remains an effective approach, complementing general-purpose LLM prompting strategies.</p>
+</section>
+<section id="beyond-select-agentic-database-interaction" class="level3">
+<h3 class="anchored" data-anchor-id="beyond-select-agentic-database-interaction">Beyond SELECT: Agentic Database Interaction</h3>
+<p>Most NL-to-SQL work focuses on read-only SELECT queries. But data science pipelines often need more: inserting cleaned data into staging tables, updating schema definitions, creating materialized views, or modifying data quality flags. Full-featured database agents that safely handle DML (INSERT, UPDATE, DELETE) and DDL (CREATE, ALTER, DROP) operations require more careful design — especially permission scoping, rollback capability, and user confirmation for destructive operations.</p>
+<p><strong>Spider 2.0</strong> — the enterprise text-to-SQL successor to Spider — addresses part of this gap. <a href="https://arxiv.org/abs/2411.07763">Spider 2.0</a> (Lei et al., 2024; arXiv:2411.07763) is an evaluation framework of <strong>632 real-world workflow problems</strong> from enterprise analytics, including complex multi-step data transformations, not just single-query SQL. It evaluates complete data workflows involving tools like BigQuery, dbt, and Python, capturing the reality that professional data work is a pipeline of operations rather than a single query. This remains largely an open engineering challenge for the broader community.</p>
+<hr>
+</section>
+</section>
+<section id="production-data-pipelines" class="level2">
+<h2 class="anchored" data-anchor-id="production-data-pipelines">Production Data Pipelines</h2>
+<p>The most mature deployments of data science agents are tools that assist with <strong>data engineering workflows</strong> — the infrastructure that feeds analytical systems.</p>
+<section id="dbt-and-pipeline-agents" class="level3">
+<h3 class="anchored" data-anchor-id="dbt-and-pipeline-agents">dbt and Pipeline Agents</h3>
+<p><strong>dbt</strong> (data build tool) is the dominant framework for transforming data in modern analytics stacks. <strong><a href="https://www.getdbt.com/blog/dbt-copilot">dbt Copilot</a></strong> (dbt Labs, 2023) integrates LLM assistance directly into the dbt workflow, helping analysts write SQL transformations, generate documentation, and create tests from natural language descriptions. This represents a commercially deployed, production-grade data agent integrated into an existing workflow — rather than a research system that replaces it.</p>
+<p>dbt Copilot is representative of a broader trend: rather than building standalone agent systems, tooling companies are embedding LLM capabilities into existing workflow tools where users already spend their time. This reduces adoption friction and keeps the agent in a context where its outputs can be immediately reviewed and tested.</p>
+<p>Similar capabilities are emerging in platforms like Databricks (with its AI-assisted notebook features), Snowflake Cortex (conversational SQL and data exploration), and Google BigQuery’s Gemini integration. These are production systems handling enterprise-scale data pipelines — a meaningful signal about the maturity of the technology.</p>
+</section>
+<section id="automated-data-quality" class="level3">
+<h3 class="anchored" data-anchor-id="automated-data-quality">Automated Data Quality</h3>
+<p>Data quality checking — validating that columns have expected distributions, detecting schema drift, identifying anomalous values — is a high-value but tedious task. LLM agents can generate <strong>data quality rules</strong> from natural language descriptions, suggest anomaly thresholds based on historical patterns, and explain detected anomalies in business terms. Tools like <a href="https://greatexpectations.io/">Great Expectations</a> provide the execution framework; agents can increasingly generate the expectations themselves.</p>
+</section>
+<section id="schema-inference-and-documentation" class="level3">
+<h3 class="anchored" data-anchor-id="schema-inference-and-documentation">Schema Inference and Documentation</h3>
+<p>An underappreciated capability: LLM agents can <strong>infer intent from data</strong>. Given a table with column names like <code>cust_acct_type_cd</code> and sample values, an agent can produce a human-readable description, suggest display names, and write documentation — tasks that traditionally required significant manual effort from data engineers. This pairs well with data catalog tools.</p>
+</section>
+<section id="etl-automation" class="level3">
+<h3 class="anchored" data-anchor-id="etl-automation">ETL Automation</h3>
+<p>Full ETL automation — extracting data from heterogeneous sources, transforming it to match target schemas, and loading it into warehouses — remains aspirational. Individual steps can be assisted by agents (e.g., generating transformation logic, writing connectors, debugging failed jobs), but orchestrating an entire ETL pipeline autonomously, with appropriate error handling and monitoring, requires capabilities that current agents don’t reliably provide at production scale.</p>
+<p>Agents can be particularly effective at <strong>one-time migration tasks</strong>: given a legacy schema and a target schema, generate the transformation logic, identify ambiguous mappings, and flag fields that require domain decisions. This is more tractable than continuous ETL management because the scope is bounded and human review before deployment is standard practice.</p>
+</section>
+<section id="agents-in-notebooks" class="level3">
+<h3 class="anchored" data-anchor-id="agents-in-notebooks">Agents in Notebooks</h3>
+<p>Jupyter notebooks are the primary working environment for data scientists. Several systems embed agents directly into notebook workflows — generating cells based on natural language instructions, explaining existing code, suggesting next steps, or debugging failing cells. <a href="https://github.com/features/copilot">GitHub Copilot</a> in JupyterLab, Google’s Gemini in Colab, and similar tools represent the production frontier of this approach. These are “copilot” systems rather than fully autonomous agents — they suggest rather than execute — but they reduce the friction of translating analytical intent into working code substantially.</p>
+<hr>
+</section>
+</section>
+<section id="open-problems" class="level2">
+<h2 class="anchored" data-anchor-id="open-problems">Open Problems</h2>
+<section id="correctness-verification" class="level3">
+<h3 class="anchored" data-anchor-id="correctness-verification">Correctness Verification</h3>
+<p>How do you know a statistical analysis produced by an agent is correct? Unlike code that either passes tests or crashes, a wrong statistical analysis looks exactly like a right one. Agents can produce plausible-sounding summaries of data that misstate the actual figures, apply incorrect statistical tests, or fail to account for confounders. Verification requires either human review (which partially defeats the purpose) or automated statistical validity checking (an open research problem).</p>
+<p>One partial mitigation is <strong>code-level verification</strong>: the agent produces Python or SQL code, which can be independently reviewed and re-executed. If the code is correct and the data is correct, the result should be correct. This is the implicit contract that makes code-generating agents safer than agents that state facts directly. But even correct code can implement the wrong statistical test — and detecting that requires domain expertise, not just code review.</p>
+</section>
+<section id="large-dataset-handling" class="level3">
+<h3 class="anchored" data-anchor-id="large-dataset-handling">Large Dataset Handling</h3>
+<p>Context windows, however large, are not databases. Most agents operating on data load a sample or summary into context. For datasets with millions of rows, this means the agent’s “understanding” of the data is necessarily incomplete. Techniques like data summarization (LIDA’s Summarizer module), SQL-based aggregation before loading, and sketch-based summaries help, but the fundamental limitation — that LLMs cannot currently reason over data at database scale — remains.</p>
+<p>The practical workaround is <strong>tool use</strong>: an agent doesn’t need to see all the data if it can write SQL to query it, call a database for aggregations, or invoke a statistical function that summarizes a distribution. The agent reasons about the data through operations, not by holding it in context. This is how human analysts work too — no one loads a 10GB table into their head; they formulate queries that extract the relevant slice. Making this work reliably requires agents that are good at understanding what they need to know before committing to a query, and that recognize when their query returned an uninformative result.</p>
+</section>
+<section id="reproducibility" class="level3">
+<h3 class="anchored" data-anchor-id="reproducibility">Reproducibility</h3>
+<p>Agent-generated analyses are rarely reproducible in the scientific sense. The same prompt on the same data may produce different code on different runs (due to temperature), and intermediate steps are often not logged in a way that supports replication. For scientific or regulatory contexts that require audit trails, this is a serious limitation. Emerging approaches include recording the full agent trace and generated code as first-class artifacts, setting temperature to zero to reduce stochasticity, and pinning model versions. But agent pipelines are not yet designed with reproducibility as a first-class concern. This is in contrast to traditional data pipelines, where determinism is a default property.</p>
+</section>
+<section id="hallucinated-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="hallucinated-statistics">Hallucinated Statistics</h3>
+<p>Perhaps the most dangerous failure mode: an agent that confidently reports a statistic that is simply wrong. Unlike hallucinated code (which fails at runtime), a hallucinated correlation coefficient or p-value passes silently. This is compounded by the tendency of LLMs to hedge less when operating in “analyst mode” — the confident, authoritative tone expected of a data analyst may actively suppress appropriate uncertainty signals.</p>
+<p>This problem is particularly acute for <strong>derived statistics</strong>: agents may correctly load a dataset and correctly write code, but interpret the output incorrectly (e.g., misidentifying which column corresponds to which variable). The agent “did the analysis” but the answer is wrong. Testing against known ground-truth statistics is the safest mitigation, but it requires having them — which somewhat defeats the purpose of autonomous analysis.</p>
+</section>
+<section id="the-analyst-in-the-loop" class="level3">
+<h3 class="anchored" data-anchor-id="the-analyst-in-the-loop">The Analyst in the Loop</h3>
+<p>When should the agent ask for human input, and when should it proceed autonomously? Current agents tend to err in both directions: sometimes halting to ask unnecessary clarifying questions, sometimes forging ahead with incorrect assumptions. The ideal is an agent that knows what it doesn’t know — that can recognize when a decision requires domain expertise it lacks, and surface that decision to the human at the right moment. This requires well-calibrated uncertainty, which remains an active research area.</p>
+<p>The practical implication: data science agents are best deployed in <strong>human-in-the-loop</strong> configurations where the agent performs the tedious steps (cleaning, transformation, initial modeling) and surfaces decisions and findings for human review. Fully autonomous data science agents — that take raw data as input and produce published insights without human review — are not reliably safe for high-stakes domains.</p>
+</section>
+<section id="evaluation-difficulty" class="level3">
+<h3 class="anchored" data-anchor-id="evaluation-difficulty">Evaluation Difficulty</h3>
+<p>A challenge cutting across all of data science: <strong>how do you evaluate a data analysis?</strong> Code correctness has unit tests. Text quality has BLEU or human preference ratings. But the quality of an EDA walkthrough, or the appropriateness of a chosen visualization, or the relevance of a discovered insight, is much harder to quantify. Benchmarks like InsightBench and InfiAgent-DABench use closed-form answer formats (specific numerical values) to enable automation, but this selects for a narrow slice of data analysis tasks. The broader challenge of evaluating judgment-intensive analytical work remains open.</p>
+<hr>
+</section>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<section id="papers" class="level3">
+<h3 class="anchored" data-anchor-id="papers">Papers</h3>
+<ul>
+<li>Hong, S. et al.&nbsp;(2024). <strong>Data Interpreter: An LLM Agent For Data Science.</strong> arXiv:2402.18679. <a href="https://arxiv.org/abs/2402.18679" class="uri">https://arxiv.org/abs/2402.18679</a></li>
+<li>Guo, S. et al.&nbsp;(2024). <strong>DS-Agent: Automated Data Science by Empowering Large Language Models with Case-Based Reasoning.</strong> ICML 2024. arXiv:2402.17453. <a href="https://arxiv.org/abs/2402.17453" class="uri">https://arxiv.org/abs/2402.17453</a></li>
+<li>Huang, Q. et al.&nbsp;(2023/2024). <strong>MLAgentBench: Evaluating Language Agents on Machine Learning Experimentation.</strong> arXiv:2310.03302. <a href="https://arxiv.org/abs/2310.03302" class="uri">https://arxiv.org/abs/2310.03302</a></li>
+<li>Wu, Y. et al.&nbsp;(2025). <strong>AIDE: AI-Driven Exploration in the Space of Code.</strong> arXiv:2502.13138. <a href="https://arxiv.org/abs/2502.13138" class="uri">https://arxiv.org/abs/2502.13138</a></li>
+<li>Chan, J. et al.&nbsp;(2024). <strong>MLE-bench: Evaluating Machine Learning Agents on Machine Learning Engineering.</strong> arXiv:2410.07095. <a href="https://arxiv.org/abs/2410.07095" class="uri">https://arxiv.org/abs/2410.07095</a></li>
+<li>Trirat, P., Jeong, W., &amp; Hwang, S.J. (2024). <strong>AutoML-Agent: A Multi-Agent LLM Framework for Full-Pipeline AutoML.</strong> arXiv:2410.02958. <a href="https://arxiv.org/abs/2410.02958" class="uri">https://arxiv.org/abs/2410.02958</a></li>
+<li>Sahu, G. et al.&nbsp;(2024). <strong>InsightBench: Evaluating Business Analytics Agents Through Multi-Step Insight Generation.</strong> arXiv:2407.06423. <a href="https://arxiv.org/abs/2407.06423" class="uri">https://arxiv.org/abs/2407.06423</a></li>
+<li>Hu, X. et al.&nbsp;(2024). <strong>InfiAgent-DABench: Evaluating Agents on Data Analysis Tasks.</strong> arXiv:2401.05507. <a href="https://arxiv.org/abs/2401.05507" class="uri">https://arxiv.org/abs/2401.05507</a></li>
+<li>Cao, R. et al.&nbsp;(2024). <strong>Spider2-V: How Far Are Multimodal Agents From Automating Data Science and Engineering Workflows?</strong> NeurIPS 2024. arXiv:2407.10956. <a href="https://arxiv.org/abs/2407.10956" class="uri">https://arxiv.org/abs/2407.10956</a></li>
+<li>Dibia, V. (2023). <strong>LIDA: A Tool for Automatic Generation of Grammar-Agnostic Visualizations and Infographics using Large Language Models.</strong> ACL 2023. arXiv:2303.02927. <a href="https://arxiv.org/abs/2303.02927" class="uri">https://arxiv.org/abs/2303.02927</a></li>
+<li>Pourreza, M. &amp; Rafiei, D. (2023). <strong>DIN-SQL: Decomposed In-Context Learning of Text-to-SQL with Self-Correction.</strong> NeurIPS 2023. arXiv:2304.11015. <a href="https://arxiv.org/abs/2304.11015" class="uri">https://arxiv.org/abs/2304.11015</a></li>
+<li>Yu, T. et al.&nbsp;(2018). <strong>Spider: A Large-Scale Human-Labeled Dataset for Complex and Cross-Domain Semantic Parsing and Text-to-SQL Task.</strong> EMNLP 2018. arXiv:1809.08887. <a href="https://arxiv.org/abs/1809.08887" class="uri">https://arxiv.org/abs/1809.08887</a></li>
+<li>Li, J. et al.&nbsp;(2023). <strong>Can LLM Already Serve as A Database Interface? A BIg Bench for Large-Scale Database Grounded Text-to-SQLs.</strong> NeurIPS 2023. arXiv:2305.03111. <a href="https://arxiv.org/abs/2305.03111" class="uri">https://arxiv.org/abs/2305.03111</a></li>
+<li>Lei, F. et al.&nbsp;(2024). <strong>Spider 2.0: Evaluating Language Models on Real-World Enterprise Text-to-SQL Workflows.</strong> arXiv:2411.07763. <a href="https://arxiv.org/abs/2411.07763" class="uri">https://arxiv.org/abs/2411.07763</a></li>
+<li>Masry, A. et al.&nbsp;(2022). <strong>ChartQA: A Benchmark for Question Answering about Charts with Visual and Logical Reasoning.</strong> ACL 2022 Findings. arXiv:2203.10244. <a href="https://arxiv.org/abs/2203.10244" class="uri">https://arxiv.org/abs/2203.10244</a></li>
+</ul>
+</section>
+<section id="blog-posts-resources" class="level3">
+<h3 class="anchored" data-anchor-id="blog-posts-resources">Blog Posts &amp; Resources</h3>
+<ul>
+<li>OpenAI. (2023). <strong>Data analysis with ChatGPT.</strong> <a href="https://help.openai.com/en/articles/8437071-data-analysis-with-chatgpt" class="uri">https://help.openai.com/en/articles/8437071-data-analysis-with-chatgpt</a></li>
+<li>Defog AI. (2023). <strong>Open-sourcing SQLCoder: a state-of-the-art LLM for SQL generation.</strong> <a href="https://defog.ai/blog/open-sourcing-sqlcoder" class="uri">https://defog.ai/blog/open-sourcing-sqlcoder</a></li>
+<li>dbt Labs. (2023). <strong>dbt Copilot: AI-powered data transformation.</strong> <a href="https://www.getdbt.com/blog/dbt-copilot" class="uri">https://www.getdbt.com/blog/dbt-copilot</a></li>
+<li>Microsoft Research. <strong>LIDA: Automated Visualizations with LLMs.</strong> <a href="https://microsoft.github.io/lida/" class="uri">https://microsoft.github.io/lida/</a></li>
+<li>Yale LILY Lab. <strong>Spider: Yale Semantic Parsing and Text-to-SQL Challenge.</strong> <a href="https://yale-lily.github.io/spider" class="uri">https://yale-lily.github.io/spider</a></li>
+<li>BIRD Benchmark. <a href="https://bird-bench.github.io/" class="uri">https://bird-bench.github.io/</a></li>
+<li>New York Times. (2023). <strong>What to Know About ChatGPT’s New Code Interpreter Feature.</strong> <a href="https://www.nytimes.com/2023/07/11/technology/what-to-know-chatgpt-code-interpreter.html" class="uri">https://www.nytimes.com/2023/07/11/technology/what-to-know-chatgpt-code-interpreter.html</a></li>
+<li>Spider2-V Project Page. <a href="https://spider2-v.github.io/" class="uri">https://spider2-v.github.io/</a></li>
+</ul>
+</section>
+<section id="code-projects" class="level3">
+<h3 class="anchored" data-anchor-id="code-projects">Code &amp; Projects</h3>
+<ul>
+<li><strong>Data Interpreter</strong> (MetaGPT): <a href="https://github.com/geekan/MetaGPT" class="uri">https://github.com/geekan/MetaGPT</a> (part of MetaGPT framework)</li>
+<li><strong>DS-Agent</strong> (official): <a href="https://github.com/guosyjlu/DS-Agent" class="uri">https://github.com/guosyjlu/DS-Agent</a></li>
+<li><strong>MLAgentBench</strong> (Stanford SNAP): <a href="https://github.com/snap-stanford/MLAgentBench" class="uri">https://github.com/snap-stanford/MLAgentBench</a></li>
+<li><strong>MLE-bench</strong> (OpenAI): <a href="https://github.com/openai/mle-bench" class="uri">https://github.com/openai/mle-bench</a></li>
+<li><strong>LIDA</strong> (Microsoft): <a href="https://github.com/microsoft/lida" class="uri">https://github.com/microsoft/lida</a></li>
+<li><strong>InfiAgent-DABench</strong>: <a href="https://infiagent.github.io/" class="uri">https://infiagent.github.io/</a></li>
+<li><strong>InsightBench</strong> (ServiceNow): <a href="https://github.com/ServiceNow/insight-bench" class="uri">https://github.com/ServiceNow/insight-bench</a></li>
+<li><strong>Spider2-V</strong>: <a href="https://github.com/xlang-ai/Spider2-V" class="uri">https://github.com/xlang-ai/Spider2-V</a></li>
+<li><strong>Spider 2.0</strong>: <a href="https://github.com/xlang-ai/Spider2" class="uri">https://github.com/xlang-ai/Spider2</a></li>
+<li><strong>SQLCoder</strong> (Defog): <a href="https://github.com/defog-ai/sqlcoder" class="uri">https://github.com/defog-ai/sqlcoder</a></li>
+<li><strong>Great Expectations</strong> (data quality framework): <a href="https://greatexpectations.io/" class="uri">https://greatexpectations.io/</a></li>
+</ul>
+<hr>
+<p><em>Back to <a href="./topics.html">Topics →</a> · See also: <a href="./coding-agents.html">Coding Agents →</a> · <a href="./science-agents.html">Science &amp; Research Agents →</a> · <a href="./economics.html">Economics →</a></em></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/llm-agents-survey\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
