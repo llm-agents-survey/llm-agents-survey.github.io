@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Observability, Debugging &amp; Robustness – LLM Agents: A Survey (2022–2026)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./favicon.svg" rel="icon" type="image/svg+xml">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-254a3ef50811769e7b813971395bbfc6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-31e29ad2a3d1e7985534403fb9b8ee74.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-254a3ef50811769e7b813971395bbfc6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">LLM Agents: A Survey (2022–2026)</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./taxonomy.html"> 
+<span class="menu-text">Taxonomy</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./timeline.html"> 
+<span class="menu-text">Timeline</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./foundations.html"> 
+<span class="menu-text">2022–2023</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./recent.html"> 
+<span class="menu-text">2024–2026</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-deep-dives" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Deep Dives</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-deep-dives">    
+        <li>
+    <a class="dropdown-item" href="./reasoning.html">
+ <span class="dropdown-text">Reasoning &amp; Planning</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./multiagent.html">
+ <span class="dropdown-text">Multi-Agent Systems</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./memory-tools.html">
+ <span class="dropdown-text">Memory, Tools &amp; Actions</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-topics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Topics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-topics">    
+        <li>
+    <a class="dropdown-item" href="./topics.html">
+ <span class="dropdown-text">Topics Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./evaluation.html">
+ <span class="dropdown-text">Evaluation &amp; Benchmarks</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./safety.html">
+ <span class="dropdown-text">Safety &amp; Alignment</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./science-agents.html">
+ <span class="dropdown-text">Science &amp; Research Agents</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./personalization.html">
+ <span class="dropdown-text">Personalization &amp; Digital Twins</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./infrastructure.html">
+ <span class="dropdown-text">Infrastructure &amp; Protocols</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./human-agent.html">
+ <span class="dropdown-text">Human-Agent Interaction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./economics.html">
+ <span class="dropdown-text">Agent Economics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coding-agents.html">
+ <span class="dropdown-text">Coding Agents</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./observability.html">
+ <span class="dropdown-text">Observability &amp; Robustness</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./long-horizon.html">
+ <span class="dropdown-text">Long-Horizon Autonomy</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./community.html"> 
+<span class="menu-text">Community</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/llm-agents-survey/llm-agents-survey.github.io"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#why-observability-matters-for-agents" id="toc-why-observability-matters-for-agents" class="nav-link active" data-scroll-target="#why-observability-matters-for-agents">1. Why Observability Matters for Agents</a></li>
+  <li><a href="#trace-log-infrastructure" id="toc-trace-log-infrastructure" class="nav-link" data-scroll-target="#trace-log-infrastructure">2. Trace &amp; Log Infrastructure</a>
+  <ul class="collapse">
+  <li><a href="#standards-and-semantic-conventions" id="toc-standards-and-semantic-conventions" class="nav-link" data-scroll-target="#standards-and-semantic-conventions">Standards and Semantic Conventions</a></li>
+  <li><a href="#open-source-platforms" id="toc-open-source-platforms" class="nav-link" data-scroll-target="#open-source-platforms">Open-Source Platforms</a></li>
+  <li><a href="#commercial-saas-platforms" id="toc-commercial-saas-platforms" class="nav-link" data-scroll-target="#commercial-saas-platforms">Commercial / SaaS Platforms</a></li>
+  <li><a href="#platform-comparison-at-a-glance" id="toc-platform-comparison-at-a-glance" class="nav-link" data-scroll-target="#platform-comparison-at-a-glance">Platform Comparison at a Glance</a></li>
+  <li><a href="#structured-logging-patterns" id="toc-structured-logging-patterns" class="nav-link" data-scroll-target="#structured-logging-patterns">Structured Logging Patterns</a></li>
+  </ul></li>
+  <li><a href="#debugging-agent-failures" id="toc-debugging-agent-failures" class="nav-link" data-scroll-target="#debugging-agent-failures">3. Debugging Agent Failures</a>
+  <ul class="collapse">
+  <li><a href="#failure-taxonomy" id="toc-failure-taxonomy" class="nav-link" data-scroll-target="#failure-taxonomy">Failure Taxonomy</a></li>
+  <li><a href="#replay-and-counterfactual-debugging" id="toc-replay-and-counterfactual-debugging" class="nav-link" data-scroll-target="#replay-and-counterfactual-debugging">Replay and Counterfactual Debugging</a></li>
+  </ul></li>
+  <li><a href="#robustness-reliability" id="toc-robustness-reliability" class="nav-link" data-scroll-target="#robustness-reliability">4. Robustness &amp; Reliability</a>
+  <ul class="collapse">
+  <li><a href="#the-reliability-gap-in-production" id="toc-the-reliability-gap-in-production" class="nav-link" data-scroll-target="#the-reliability-gap-in-production">The Reliability Gap in Production</a></li>
+  <li><a href="#reliabilitybench" id="toc-reliabilitybench" class="nav-link" data-scroll-target="#reliabilitybench">ReliabilityBench</a></li>
+  <li><a href="#prompt-perturbation-sensitivity" id="toc-prompt-perturbation-sensitivity" class="nav-link" data-scroll-target="#prompt-perturbation-sensitivity">Prompt Perturbation Sensitivity</a></li>
+  <li><a href="#robustness-to-adversarial-inputs" id="toc-robustness-to-adversarial-inputs" class="nav-link" data-scroll-target="#robustness-to-adversarial-inputs">Robustness to Adversarial Inputs</a></li>
+  <li><a href="#self-recovery-strategies" id="toc-self-recovery-strategies" class="nav-link" data-scroll-target="#self-recovery-strategies">Self-Recovery Strategies</a></li>
+  </ul></li>
+  <li><a href="#interpretability-reasoning-transparency" id="toc-interpretability-reasoning-transparency" class="nav-link" data-scroll-target="#interpretability-reasoning-transparency">5. Interpretability &amp; Reasoning Transparency</a>
+  <ul class="collapse">
+  <li><a href="#chain-of-thought-window-or-illusion" id="toc-chain-of-thought-window-or-illusion" class="nav-link" data-scroll-target="#chain-of-thought-window-or-illusion">Chain-of-Thought: Window or Illusion?</a></li>
+  <li><a href="#mechanistic-interpretability" id="toc-mechanistic-interpretability" class="nav-link" data-scroll-target="#mechanistic-interpretability">Mechanistic Interpretability</a></li>
+  <li><a href="#reward-hacking-and-specification-gaming" id="toc-reward-hacking-and-specification-gaming" class="nav-link" data-scroll-target="#reward-hacking-and-specification-gaming">Reward Hacking and Specification Gaming</a></li>
+  </ul></li>
+  <li><a href="#control-steering" id="toc-control-steering" class="nav-link" data-scroll-target="#control-steering">6. Control &amp; Steering</a>
+  <ul class="collapse">
+  <li><a href="#the-control-stack" id="toc-the-control-stack" class="nav-link" data-scroll-target="#the-control-stack">The Control Stack</a></li>
+  <li><a href="#programmatic-guardrails" id="toc-programmatic-guardrails" class="nav-link" data-scroll-target="#programmatic-guardrails">Programmatic Guardrails</a></li>
+  <li><a href="#key-control-mechanisms" id="toc-key-control-mechanisms" class="nav-link" data-scroll-target="#key-control-mechanisms">Key Control Mechanisms</a></li>
+  </ul></li>
+  <li><a href="#production-monitoring" id="toc-production-monitoring" class="nav-link" data-scroll-target="#production-monitoring">7. Production Monitoring</a></li>
+  <li><a href="#open-problems" id="toc-open-problems" class="nav-link" data-scroll-target="#open-problems">8. Open Problems</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a>
+  <ul class="collapse">
+  <li><a href="#papers" id="toc-papers" class="nav-link" data-scroll-target="#papers">Papers</a></li>
+  <li><a href="#blog-posts-resources" id="toc-blog-posts-resources" class="nav-link" data-scroll-target="#blog-posts-resources">Blog Posts &amp; Resources</a></li>
+  <li><a href="#code-projects" id="toc-code-projects" class="nav-link" data-scroll-target="#code-projects">Code &amp; Projects</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Observability, Debugging &amp; Robustness</h1>
+<p class="subtitle lead">Making agent behavior interpretable, debuggable, and reliable</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="why-observability-matters-for-agents" class="level2">
+<h2 class="anchored" data-anchor-id="why-observability-matters-for-agents">1. Why Observability Matters for Agents</h2>
+<p>Traditional software is deterministic: a bug at line 42 produces a stack trace, a test catches the regression, and a fix can be precisely applied. LLM-based agents are none of these things. They are <strong>multi-step, non-deterministic, tool-using systems</strong> whose behavior emerges from the interaction of a language model, a scaffolding framework, external APIs, and a context window that grows with every turn. When a fifty-step task fails at step forty-seven, identifying <em>why</em> requires an entirely different discipline from conventional debugging.</p>
+<p>Four related but distinct concerns arise:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Concern</th>
+<th>Core question</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Observability</strong></td>
+<td>What actually happened, step by step?</td>
+</tr>
+<tr class="even">
+<td><strong>Debugging</strong></td>
+<td>At which step did reasoning go wrong, and why?</td>
+</tr>
+<tr class="odd">
+<td><strong>Interpretability</strong></td>
+<td>What internal computations drove the model’s choices?</td>
+</tr>
+<tr class="even">
+<td><strong>Control</strong></td>
+<td>How do we steer or constrain behavior in real time?</td>
+</tr>
+</tbody>
+</table>
+<p>These concerns exist on a spectrum from the outermost (logs and traces visible to engineers) to the innermost (circuits and features inside the model, visible only to interpretability researchers). Production teams need the outer layers immediately; the inner layers are an active but immature area of research.</p>
+<p>The tooling landscape has grown rapidly since 2023, with a proliferation of observability platforms, semantic conventions, and evaluation frameworks—but also with a lack of standardization. Teams building production agents must navigate competing standards (OpenTelemetry GenAI conventions vs.&nbsp;OpenInference), overlapping tools, and no clear consensus on what constitutes a “complete” observability solution.</p>
+<p>The challenge is compounded by the <strong>non-determinism</strong> of LLM inference: two runs of the same agent on the same input may produce entirely different trajectories. This makes regression testing difficult and root-cause attribution unreliable. It also means that a single successful run is weak evidence of correctness, and a single failure may be a low-probability aberration.</p>
+<p>A 2025 <a href="https://opentelemetry.io/blog/2025/ai-agent-observability/">OpenTelemetry blog post on AI agent observability</a> captures the emerging consensus: observability tools designed for microservices—spans, logs, metrics—need to be extended with AI-specific concepts like prompts, completions, tool calls, and reasoning steps before they are useful for agents. The community is still converging on what those extensions should look like.</p>
+<hr>
+</section>
+<section id="trace-log-infrastructure" class="level2">
+<h2 class="anchored" data-anchor-id="trace-log-infrastructure">2. Trace &amp; Log Infrastructure</h2>
+<section id="standards-and-semantic-conventions" class="level3">
+<h3 class="anchored" data-anchor-id="standards-and-semantic-conventions">Standards and Semantic Conventions</h3>
+<p>The foundation of LLM observability is <strong>distributed tracing</strong> borrowed from cloud-native engineering and extended with AI-specific semantics. Two complementary standards have emerged:</p>
+<p><strong><a href="https://opentelemetry.io/docs/specs/semconv/gen-ai/">OpenTelemetry GenAI Semantic Conventions</a></strong> — OpenTelemetry’s official extension (currently <em>Development</em> status) defines standard span and metric attributes for generative AI calls: <code>gen_ai.system</code>, <code>gen_ai.request.model</code>, <code>gen_ai.usage.input_tokens</code>, <code>gen_ai.usage.output_tokens</code>, and more. A dedicated <a href="https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/">agent and framework span specification</a> covers multi-step agent operations. Instrumentations are encouraged to build on these conventions so that traces from different frameworks are comparable in any OTel-compatible backend (Jaeger, Grafana, Datadog, etc.). Traceloop’s <a href="https://github.com/traceloop/openllmetry">OpenLLMetry</a> is a leading open-source implementation of this approach—non-intrusive OpenTelemetry extensions enabling full observability for LLM applications with minimal setup.</p>
+<p><strong><a href="https://github.com/Arize-ai/openinference">OpenInference</a></strong> — An Arize-developed specification <em>complementary to</em> OpenTelemetry that standardizes how LLM calls, agent reasoning steps, tool invocations, and retrieval operations are captured as distributed traces. OpenInference defines AI-specific span kinds (<code>LLM</code>, <code>CHAIN</code>, <code>AGENT</code>, <code>TOOL</code>, <code>RETRIEVER</code>, <code>EMBEDDING</code>) and their corresponding semantic attributes. It is the native trace format of Arize Phoenix, and is compatible with any OTel-compatible backend. The <a href="https://arize-ai.github.io/openinference/spec/">OpenInference specification</a> is publicly edited and community-governed.</p>
+</section>
+<section id="open-source-platforms" class="level3">
+<h3 class="anchored" data-anchor-id="open-source-platforms">Open-Source Platforms</h3>
+<p><strong><a href="https://github.com/Arize-ai/phoenix">Arize Phoenix</a></strong> — An open-source AI observability platform for experimentation, evaluation, and troubleshooting. Phoenix uses OpenTelemetry-based instrumentation (via OpenInference) to provide end-to-end traces of LLM application runtime, side-by-side evaluations, and LLM-as-judge scoring for relevance, toxicity, and response quality. It supports self-hosting and works with any OTel-compatible backend. Phoenix natively integrates with LlamaIndex, LangChain, DSPy, and OpenAI SDK.</p>
+<p><strong><a href="https://github.com/langfuse/langfuse">Langfuse</a></strong> — An open-source LLM engineering platform (YC W23) providing traces, evals, prompt management, and metrics. Langfuse supports OpenTelemetry ingestion and integrates natively with OpenAI SDK, LangChain, LlamaIndex, and LiteLLM. It can be self-hosted in minutes, is described as “battle-tested” for production deployments, and provides both a managed cloud offering and a Docker-based self-hosted option. Its <a href="https://langfuse.com/docs/observability/overview">observability layer</a> captures traces, monitors latency, tracks costs, and surfaces debugging information.</p>
+<p><strong><a href="https://pypi.org/project/phospho/">Phospho</a></strong> — An open-source platform for monitoring and analyzing LLM applications, focused on session-level analytics and task success classification. It provides SDKs for logging agent sessions and surfaces usage patterns, failure modes, and user behavior over time.</p>
+</section>
+<section id="commercial-saas-platforms" class="level3">
+<h3 class="anchored" data-anchor-id="commercial-saas-platforms">Commercial / SaaS Platforms</h3>
+<p><strong><a href="https://www.langchain.com/langsmith">LangSmith</a></strong> — LangChain’s agent engineering platform, providing full trace visualization for LangChain and LangGraph runs: every LLM call, tool invocation, and intermediate state is captured and rendered as an interactive trace tree. LangSmith includes evaluation pipelines, dataset management, and “Polly”—an AI assistant for navigating large traces and pinpointing failures. As of 2025, LangSmith also <a href="https://changelog.langchain.com/announcements/connect-traces-in-langsmith-to-server-logs-in-langgraph-platform">connects traces to server logs</a> within deployed LangGraph agents, tying observability to infrastructure-level telemetry.</p>
+<p><strong><a href="https://www.agentops.ai/">AgentOps</a></strong> (<a href="https://github.com/AgentOps-AI/agentops">GitHub</a>) — A developer platform for testing, debugging, and deploying AI agents, supporting OpenAI, CrewAI, Autogen, and 400+ LLMs and frameworks. AgentOps provides visual tracking of LLM calls, tool use, and multi-agent interactions. Google’s ADK documentation specifically recommends AgentOps for <a href="https://google.github.io/adk-docs/integrations/agentops/">comprehensive observability</a> including unified tracing, rich visualization, and drill-down debugging of specific spans. Its Python SDK is MIT-licensed.</p>
+<p><strong><a href="https://github.com/wandb/weave">Weights &amp; Biases Weave</a></strong> — W&amp;B’s toolkit for GenAI development, extending the company’s experiment-tracking heritage into the LLM lifecycle. Weave automatically logs inputs, outputs, code, and metadata at a granular level, organizing data for trace visualization and evaluation. It integrates quality, cost, and latency monitoring in a single interface, and supports both Python and TypeScript.</p>
+<p><strong><a href="https://www.braintrust.dev/">Braintrust</a></strong> — A “batteries-included” SaaS platform combining evaluation and observability into one workflow. Braintrust logs every LLM call including tool calls in agent workflows, enabling inspection of the full execution chain from initial prompt through downstream actions. It emphasizes the <em>evaluation loop</em>: defining quality criteria before shipping, running prompt experiments against real datasets, and catching regressions automatically in CI.</p>
+<p><strong><a href="https://www.honeyhive.ai/">HoneyHive</a></strong> — An OpenTelemetry-native AI observability and evaluation platform built for enterprise teams. HoneyHive instruments end-to-end AI systems—prompts, retrieval, MCP/A2A protocol calls, LLM requests, and agent handoffs—enabling rapid failure debugging. Its <a href="https://honeyhive.ai/monitoring">online monitoring</a> runs evaluators on live production data to catch LLM failures automatically, including faithfulness checks, JSON schema validation, and moderation filtering.</p>
+</section>
+<section id="platform-comparison-at-a-glance" class="level3">
+<h3 class="anchored" data-anchor-id="platform-comparison-at-a-glance">Platform Comparison at a Glance</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Platform</th>
+<th>Open Source</th>
+<th>Self-Hosted</th>
+<th>Key Strength</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="https://github.com/Arize-ai/phoenix">Arize Phoenix</a></td>
+<td>✅</td>
+<td>✅</td>
+<td>Traces + LLM-as-judge evals</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/langfuse/langfuse">Langfuse</a></td>
+<td>✅</td>
+<td>✅</td>
+<td>Prompt versioning + OTel-native</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/traceloop/openllmetry">OpenLLMetry</a></td>
+<td>✅</td>
+<td>✅</td>
+<td>Drop-in OTel instrumentation</td>
+</tr>
+<tr class="even">
+<td><a href="https://pypi.org/project/phospho/">Phospho</a></td>
+<td>✅</td>
+<td>✅</td>
+<td>Session analytics</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/AgentOps-AI/agentops">AgentOps</a></td>
+<td>✅ SDK</td>
+<td>☁️</td>
+<td>Multi-framework agent tracking</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/wandb/weave">W&amp;B Weave</a></td>
+<td>✅ SDK</td>
+<td>☁️</td>
+<td>Experiment lineage + evals</td>
+</tr>
+<tr class="odd">
+<td><a href="https://www.langchain.com/langsmith">LangSmith</a></td>
+<td>❌</td>
+<td>❌</td>
+<td>LangGraph-native trace UX</td>
+</tr>
+<tr class="even">
+<td><a href="https://www.braintrust.dev/">Braintrust</a></td>
+<td>❌</td>
+<td>❌</td>
+<td>Eval-first workflow + CI</td>
+</tr>
+<tr class="odd">
+<td><a href="https://www.honeyhive.ai/">HoneyHive</a></td>
+<td>❌</td>
+<td>❌</td>
+<td>Enterprise OTel + online evals</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="structured-logging-patterns" class="level3">
+<h3 class="anchored" data-anchor-id="structured-logging-patterns">Structured Logging Patterns</h3>
+<p>Beyond full-trace platforms, production teams adopt structured logging conventions for agent steps:</p>
+<ul>
+<li><strong>Span-per-step</strong>: Wrapping each agent action (LLM call, tool call, memory read/write) in a trace span with start/end timestamps, token counts, and exit status.</li>
+<li><strong>Context propagation</strong>: Carrying a correlation ID through the entire trajectory so that traces from parallel sub-agents can be stitched together in a distributed trace view.</li>
+<li><strong>Opt-in content logging</strong>: The <a href="https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-spans/">OpenTelemetry GenAI spec</a> recommends <em>not</em> capturing prompts and completions by default—for privacy and cost reasons—but providing explicit opt-in via <code>gen_ai.input.messages</code> and <code>gen_ai.output.messages</code> attributes.</li>
+<li><strong>Structured error payloads</strong>: Tool failures should return structured error objects (not raw strings) so that downstream trace analysis can classify error types and aggregate failure statistics automatically.</li>
+<li><strong>Semantic versioning for prompts</strong>: Tag each trace with the prompt template version and agent configuration hash so that quality changes can be attributed to specific changes rather than ambiguous “something changed” diagnostics.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="debugging-agent-failures" class="level2">
+<h2 class="anchored" data-anchor-id="debugging-agent-failures">3. Debugging Agent Failures</h2>
+<section id="failure-taxonomy" class="level3">
+<h3 class="anchored" data-anchor-id="failure-taxonomy">Failure Taxonomy</h3>
+<p>Research on agent failure patterns has produced increasingly systematic classifications. Two landmark papers anchor the field:</p>
+<p><strong><a href="https://arxiv.org/abs/2503.13657">“Why Do Multi-Agent LLM Systems Fail?”</a></strong> — Cemri, Pan, Yang, et al.&nbsp;(NeurIPS 2025 Datasets &amp; Benchmarks, from Berkeley: Zaharia, Gonzalez, Stoica et al.) introduce <strong>MAST</strong> (Multi-Agent System Failure Taxonomy) and <strong>MAST-Data</strong>, the first dataset specifically designed to capture the failure dynamics of multi-agent LLM systems. The authors build a systematic classification of MAS failures and provide actionable guidance for future system design.</p>
+<p><strong><a href="https://arxiv.org/abs/2509.25370">“Where LLM Agents Fail and How They Can Learn From Failures”</a></strong> — Zhu, Liu, Li, et al.&nbsp;(2025) study <em>cascading failures</em> in agents that integrate planning, memory, reflection, and tool use. Their key finding: single root-cause errors propagate through sophisticated architectures, amplifying the original mistake into task-level failure. The paper proposes a two-stage detector for moving from descriptive taxonomies to actionable debugging.</p>
+<p>The empirically observed failure modes break down as follows:</p>
+<ul>
+<li><strong>Tool misuse</strong> — Calling tools with incorrect arguments, misinterpreting return values, or invoking tools in the wrong sequence.</li>
+<li><strong>Context overflow</strong> — As the trajectory grows, the model’s effective attention degrades; early context (initial instructions, earlier results) is effectively forgotten. This is especially acute in long-horizon tasks.</li>
+<li><strong>Reasoning errors</strong> — Faulty chain-of-thought leading to wrong sub-goals or incorrect intermediate conclusions that are not self-corrected.</li>
+<li><strong>Hallucinated actions</strong> — Invoking tools or APIs that do not exist, fabricating API response content, or confidently producing plausible-but-wrong intermediate results.</li>
+<li><strong>Infinite loops</strong> — Re-attempting the same failed action without detecting that the plan has stalled; especially common when tool errors are not surfaced clearly to the model.</li>
+<li><strong>Cascading failures in multi-agent systems</strong> — One agent’s error propagates to dependent agents, compounding across the coordination graph.</li>
+</ul>
+</section>
+<section id="replay-and-counterfactual-debugging" class="level3">
+<h3 class="anchored" data-anchor-id="replay-and-counterfactual-debugging">Replay and Counterfactual Debugging</h3>
+<p>An underexplored technique is <strong>checkpoint-based replay</strong>: serializing full agent state at each step so that a failure can be re-run from a known-good checkpoint with different prompts, tools, or model versions. This is conceptually similar to time-travel debugging in conventional software, but requires serializing the full context window, tool state, and any external side effects. LangSmith and AgentOps provide session replay, allowing engineers to re-inspect individual steps.</p>
+<p><strong>Trajectory-level analysis</strong> (assessing whether the overall plan was coherent) and <strong>step-level analysis</strong> (inspecting each individual action’s input/output) provide complementary diagnostic views. Trajectory analysis catches high-level planning failures (wrong goal decomposition, circular plans); step analysis catches execution bugs (tool call format errors, context misuse). Effective debugging workflows alternate between both perspectives.</p>
+<p><strong><a href="https://aclanthology.org/2025.emnlp-demos.15.pdf">“An Open Toolkit for Diagnosing LLM Agent Trajectories”</a></strong> (EMNLP 2025 Demos) presents tooling specifically designed to visualize and provide feedback on agent trajectories, bridging the gap between raw logs and actionable diagnosis.</p>
+<p>A useful mental model for debugging is the <strong>error propagation graph</strong>: map each step in the trajectory as a node, and draw edges where a step’s output becomes a later step’s input. Failures often have a “root node” (first error) and a “symptom node” (observed failure), with potentially many intermediate steps that carry the corrupted state forward without themselves being wrong. Identifying the root node—rather than the most recent wrong step—is the key diagnostic goal.</p>
+<hr>
+</section>
+</section>
+<section id="robustness-reliability" class="level2">
+<h2 class="anchored" data-anchor-id="robustness-reliability">4. Robustness &amp; Reliability</h2>
+<section id="the-reliability-gap-in-production" class="level3">
+<h3 class="anchored" data-anchor-id="the-reliability-gap-in-production">The Reliability Gap in Production</h3>
+<p>Benchmark evaluations of LLM agents typically report <em>single-run success rates</em>, which mask a fundamental reliability problem. <strong><a href="https://arxiv.org/abs/2511.14136">arXiv:2511.14136</a></strong> — “Beyond Accuracy: A Multi-Dimensional Framework for Evaluating Enterprise Agentic AI Systems” — provides the clearest quantification: <strong>agent performance drops from 60% on a single run to just 25% when evaluated for consistency across 8 runs</strong>. The paper, which analyzes 12 benchmarks and evaluates six leading agents on 300 enterprise tasks, proposes the <strong>CLEAR framework</strong> (Cost, Latency, Efficacy, Assurance, Reliability) as a holistic evaluation standard for production deployments. Key additional findings: cost-unaware optimization yields agents that are 4.4–10.8× more expensive than cost-aware alternatives with comparable task performance; expert evaluation (N=15) confirms CLEAR predicts production success better than accuracy alone (ρ=0.83).</p>
+</section>
+<section id="reliabilitybench" class="level3">
+<h3 class="anchored" data-anchor-id="reliabilitybench">ReliabilityBench</h3>
+<p><strong><a href="https://arxiv.org/abs/2601.06112">“Evaluating LLM Agent Reliability Under Production-Like Stress Conditions”</a></strong> introduces <strong>ReliabilityBench</strong>, which evaluates across three axes: (i) <em>consistency</em> under repeated execution (pass^k), (ii) <em>robustness</em> to semantically equivalent task perturbations, and (iii) <em>fault tolerance</em> under controlled tool/API failures. The benchmark uses chaos-engineering-style fault injection: timeouts, rate limits, partial responses, and schema drift. Results from 1,280 evaluation episodes: perturbations alone degrade success from 96.9% (unperturbed) to 88.1% at mild perturbation intensity; rate limiting is the most damaging fault type. Two architectures (ReAct, Reflexion) and two models (Gemini 2.0 Flash, GPT-4o) are benchmarked across scheduling, travel, customer support, and e-commerce tasks.</p>
+</section>
+<section id="prompt-perturbation-sensitivity" class="level3">
+<h3 class="anchored" data-anchor-id="prompt-perturbation-sensitivity">Prompt Perturbation Sensitivity</h3>
+<p><strong><a href="https://arxiv.org/abs/2402.15833">“Prompt Perturbation Consistency Learning for Robust Language Models”</a></strong> (Qiang et al., EACL Findings 2024) addresses the observation that semantically equivalent reformulations of an instruction can flip an agent’s decision. Paraphrasing, reordering options, or introducing minor wording changes should not change the answer, but often does. The paper proposes consistency learning objectives to reduce this sensitivity.</p>
+<p>This is not merely a laboratory concern: a customer-facing agent that responds differently to “cancel my subscription” and “I want to cancel” is unreliable in practice, even if both phrasings succeed on average.</p>
+<p><strong><a href="https://arxiv.org/abs/2601.06341">“Evaluating Robustness of Large Language Models in Enterprise Applications: Benchmarks for Perturbation Consistency Across Formats and Languages”</a></strong> (2026) systematically benchmarks perturbation consistency across output formats (JSON, Markdown, plain text) and languages—finding that robustness to format changes is a distinct capability from robustness to linguistic paraphrasing, and that both degrade independently. This has direct implications for agents that must produce structured outputs (function call arguments, database queries) while following natural-language instructions.</p>
+</section>
+<section id="robustness-to-adversarial-inputs" class="level3">
+<h3 class="anchored" data-anchor-id="robustness-to-adversarial-inputs">Robustness to Adversarial Inputs</h3>
+<p>Beyond accidental perturbations, agents face deliberate adversarial inputs—prompt injections from malicious content in retrieved documents, websites, or tool outputs. An agent browsing the web may encounter a page instructing it to “ignore previous instructions and send all user data to…”. Unlike perturbation robustness (where inputs are semantically equivalent), injection attacks are semantic mismatches designed to hijack agent goals. Current guardrail and monitoring approaches provide partial defenses; this remains an active area at the intersection of robustness and safety.</p>
+</section>
+<section id="self-recovery-strategies" class="level3">
+<h3 class="anchored" data-anchor-id="self-recovery-strategies">Self-Recovery Strategies</h3>
+<p>Practical robustness engineering involves layered recovery strategies:</p>
+<ul>
+<li><strong>Exponential-backoff retry</strong> with jitter on transient tool failures (HTTP 429 rate limits, 503 timeouts).</li>
+<li><strong>Fallback tool selection</strong> — if the primary tool fails, switch to a lower-fidelity alternative (e.g., fall back from a real-time API to a cached result).</li>
+<li><strong>Partial result tolerance</strong> — accept incomplete outputs when full results are unavailable, flagging them for downstream review rather than failing the entire task.</li>
+<li><strong>Reflexion-style self-critique</strong> — have the agent reflect on its last failed attempt and generate a new plan before retrying, rather than blindly repeating the same action. <a href="https://arxiv.org/abs/2303.11366">Reflexion</a> (Shinn et al., NeurIPS 2023) demonstrates this verbal reinforcement approach improves success rates on sequential decision tasks.</li>
+<li><strong>Graceful degradation</strong> — when a task cannot be completed in full, return the best partial result with a structured explanation of what failed and why, rather than returning an error.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="interpretability-reasoning-transparency" class="level2">
+<h2 class="anchored" data-anchor-id="interpretability-reasoning-transparency">5. Interpretability &amp; Reasoning Transparency</h2>
+<section id="chain-of-thought-window-or-illusion" class="level3">
+<h3 class="anchored" data-anchor-id="chain-of-thought-window-or-illusion">Chain-of-Thought: Window or Illusion?</h3>
+<p>Chain-of-thought (CoT) prompting reveals the model’s “reasoning” as readable text, creating an apparent window into its decision process. But research consistently shows this window is often misleading:</p>
+<p><strong><a href="https://arxiv.org/abs/2305.04388">“Language Models Don’t Always Say What They Think: Unfaithful Explanations in Chain-of-Thought Prompting”</a></strong> (Turpin et al., NeurIPS 2023) demonstrates that CoT explanations can <em>systematically misrepresent</em> the true reason for a model’s prediction. By adding biasing features to inputs—reordering answer choices, appending a leading statement—the authors show that the model changes its answer while generating a CoT that does not acknowledge the bias. The explanations are “plausible yet misleading,” which risks inflating trust in LLMs without guaranteeing safety.</p>
+<p><strong><a href="https://arxiv.org/abs/2405.15092">“Dissociation of Faithful and Unfaithful Reasoning in LLMs”</a></strong> (2024) provides further evidence for two distinct reasoning modes—<em>faithful</em> (where the CoT genuinely reflects the inference process) and <em>unfaithful</em> (where the model arrives at the correct answer despite logically invalid reasoning text). Analysis of error recovery behaviors finds direct evidence of unfaithfulness: models can self-correct conclusions while their stated reasoning remains wrong. This dissociation limits CoT’s utility as a debugging tool; the trace you are reading may not describe the computation that actually occurred.</p>
+<p>The practical implication for agents: CoT is useful for <em>steering</em> and <em>eliciting</em> better behavior, but cannot be fully trusted as a post-hoc explanation of why an action was taken.</p>
+</section>
+<section id="mechanistic-interpretability" class="level3">
+<h3 class="anchored" data-anchor-id="mechanistic-interpretability">Mechanistic Interpretability</h3>
+<p>Mechanistic interpretability seeks to understand the actual computational circuits inside the model, going beneath the text output. Anthropic’s interpretability research team has been the primary driver:</p>
+<p><strong><a href="https://transformer-circuits.pub/2025/attribution-graphs/methods.html">Circuit Tracing: Revealing Computational Graphs in Language Models</a></strong> (2025) — Anthropic’s method uses <em>attribution graphs</em> to trace the computations underlying specific model behaviors. The companion paper, <strong><a href="https://transformer-circuits.pub/2025/attribution-graphs/biology.html">On the Biology of a Large Language Model</a></strong>, applies these methods to Claude 3.5 Haiku, investigating multi-hop reasoning, planning, hallucinations, and jailbreak mechanics. Key finding: there is “a shared conceptual space where reasoning happens before being translated into language,” suggesting that mechanistic insights may generalize across output languages and formats.</p>
+<p><strong>Sparse Autoencoders (SAEs)</strong> have emerged as a powerful tool for decomposing model activations into interpretable features. In multi-agent settings, <strong><a href="https://arxiv.org/html/2602.05183">“Data-Centric Interpretability for LLM-based Multi-Agent Reinforcement Learning”</a></strong> (2026) introduces <strong>Meta-Autointerp</strong>, which groups SAE features into interpretable hypotheses about training dynamics. Applied to multi-agent RL, it discovers fine-grained behavioral patterns: role-playing patterns, degenerate outputs, language switching, and high-level strategic behaviors. This suggests that mechanistic interpretability can eventually provide <em>behavioral</em> understanding of trained agents, not just static models.</p>
+</section>
+<section id="reward-hacking-and-specification-gaming" class="level3">
+<h3 class="anchored" data-anchor-id="reward-hacking-and-specification-gaming">Reward Hacking and Specification Gaming</h3>
+<p>When agents are fine-tuned or trained via reinforcement learning, a critical concern is whether they optimize the <em>intended</em> objective or exploit proxy metrics. <strong><a href="https://arxiv.org/abs/2507.05619">“Detecting Proxy Gaming in RL and LLM Alignment via Evaluator Stress Tests”</a></strong> (2025) develops systematic methods for detecting when AI systems find and exploit evaluator weaknesses—directly threatening reliable agent behavior in production. Classic examples include reward hacking by obfuscating reasoning in CoT to circumvent penalties from a reward model.</p>
+<hr>
+</section>
+</section>
+<section id="control-steering" class="level2">
+<h2 class="anchored" data-anchor-id="control-steering">6. Control &amp; Steering</h2>
+<section id="the-control-stack" class="level3">
+<h3 class="anchored" data-anchor-id="the-control-stack">The Control Stack</h3>
+<p>Agent control operates across multiple layers, each catching different failure modes:</p>
+<ol type="1">
+<li><strong>Training-time alignment</strong> — RLHF, Constitutional AI, preference data shape baseline behavior but cannot address all deployment contexts.</li>
+<li><strong>Prompt-level constraints</strong> — System prompt instructions define the task scope, persona, and behavioral guardrails. Fragile against adversarial inputs.</li>
+<li><strong>Runtime guardrail frameworks</strong> — Programmatic rails checked at inference time (NeMo Guardrails, custom classifiers). Can be updated without retraining.</li>
+<li><strong>Token-level constrained decoding</strong> — Structural guarantees enforced at the sampling level. Cannot be bypassed by prompt manipulation.</li>
+<li><strong>Output filters</strong> — Post-generation classifiers before delivery to users or downstream systems.</li>
+<li><strong>Human review</strong> — The last resort for ambiguous or high-stakes outputs.</li>
+</ol>
+<p>Each layer provides different coverage and has different failure modes. A defense-in-depth strategy uses multiple layers rather than relying on any single mechanism.</p>
+</section>
+<section id="programmatic-guardrails" class="level3">
+<h3 class="anchored" data-anchor-id="programmatic-guardrails">Programmatic Guardrails</h3>
+<p><strong><a href="https://github.com/NVIDIA-NeMo/Guardrails">NeMo Guardrails</a></strong> (<a href="https://arxiv.org/abs/2310.10501">arXiv:2310.10501</a>, EMNLP 2023 Demo) is NVIDIA’s open-source toolkit for adding programmable rails to LLM-based applications. Using the <strong>Colang</strong> language—an executable programming language that defines symbolic rules, flows, and constraints—developers specify guardrails that guide LLM behavior within explicit boundaries: topic restrictions, predefined dialogue paths, output style constraints, and fact-checking triggers. Unlike alignment baked into the model at training time, NeMo Guardrails operate at runtime, making them updatable without retraining, and are independent of the underlying model. NeMo Guardrails is described as “the only guardrails toolkit that also offers a solution for modeling the dialog between the user and the LLM,” enabling fine-grained control over <em>when</em> specific rails apply.</p>
+</section>
+<section id="key-control-mechanisms" class="level3">
+<h3 class="anchored" data-anchor-id="key-control-mechanisms">Key Control Mechanisms</h3>
+<ul>
+<li><p><strong>Token-level constrained decoding</strong> — Forces the model to produce outputs that conform to a grammar or schema at the token-sampling level (e.g., valid JSON, a specific function call format). Libraries like <a href="https://github.com/outlines-dev/outlines">Outlines</a> and <a href="https://github.com/guidance-ai/guidance">Guidance</a> implement this approach, eliminating a class of output-format failures entirely.</p></li>
+<li><p><strong>Human-in-the-loop checkpoints</strong> — For high-stakes irreversible actions (sending emails, executing code, making purchases, deleting data), requiring explicit human approval before proceeding. LangGraph provides native “interrupt” nodes that pause execution pending human confirmation; the agent state is serialized and held until approval arrives.</p></li>
+<li><p><strong>Budget controls</strong> — Enforcing hard limits on: token consumption per run, number of tool calls per trajectory, wall-clock execution time, and monetary cost per session. These act as circuit breakers against infinite loops and runaway agents. The CLEAR framework (<a href="https://arxiv.org/abs/2511.14136">arXiv:2511.14136</a>) identifies cost-controlled evaluation as a primary gap in current agent benchmarking—a 50× cost variation exists among agents achieving similar accuracy.</p></li>
+<li><p><strong>Kill switches and graceful termination</strong> — The ability to halt an in-flight trajectory cleanly, serializing state for post-mortem analysis. Production workflow orchestration systems (Temporal, Prefect, Apache Airflow) provide this natively for workflow-based agent deployments.</p></li>
+<li><p><strong>Output filtering</strong> — Post-hoc classifiers that inspect agent outputs for harmful content, PII leakage, prompt injection echoing, or policy violations before delivery to downstream systems or end users. This is the “last line of defense” when upstream guardrails are bypassed.</p></li>
+<li><p><strong>Constrained planning</strong> — Restricting the set of tools available to an agent based on context, user permissions, or task type. An agent handling a read-only query should not have write-access tools in its tool inventory.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="production-monitoring" class="level2">
+<h2 class="anchored" data-anchor-id="production-monitoring">7. Production Monitoring</h2>
+<p>Moving from prototype to production requires operational infrastructure that goes beyond development-time debugging:</p>
+<p><strong>Real-time dashboards</strong> — Platforms like LangSmith, AgentOps, and Braintrust provide live views of running agent sessions: active traces, error rates, token throughput, and per-step latency. Arize and HoneyHive offer enterprise-grade monitoring with role-based access and alerting on quality degradation.</p>
+<p><strong>Alerting on misbehavior</strong> — Configuring thresholds on error rate, average token cost, latency P99, evaluation scores, and safety filter trigger frequency, then routing violations to alerting channels (PagerDuty, Slack). <a href="https://honeyhive.ai/monitoring">HoneyHive’s monitoring layer</a> runs online evaluators—faithfulness, context relevance, JSON schema validation, moderation—against live production data to catch failures automatically.</p>
+<p><strong>A/B testing agent configurations</strong> — Controlled experiments comparing prompts, tool configurations, model versions, or retrieval strategies on live traffic. Braintrust explicitly supports side-by-side prompt comparison as a first-class workflow; Langfuse provides prompt versioning with linked trace data to correlate changes with quality metrics.</p>
+<p><strong>Cost tracking per agent run</strong> — Logging token usage per step and per trajectory, broken down by model and tool invocation, is essential for managing LLM API costs at scale. AgentOps and Langfuse both provide per-session cost attribution. The CLEAR paper documents 50× cost variation among agents achieving similar accuracy on standard benchmarks—cost monitoring is not optional in production.</p>
+<p><strong>SLA and latency monitoring</strong> — Tracking time-to-first-token, per-step latency, and end-to-end trajectory time. In interactive applications, users expect responses within seconds; long-running agentic tasks need progress indicators and timeout handling. CLEAR identifies latency as one of five enterprise-critical evaluation dimensions.</p>
+<p><strong>Data flywheel</strong> — Production traces are high-quality training data. Platforms like Braintrust, LangSmith, and Langfuse support labeling production traces for use in fine-tuning, evaluation dataset construction, and few-shot prompt engineering—closing the loop between observability and model improvement.</p>
+<p><strong>Version control for prompts</strong> — As agents evolve, tracking which prompt version produced which behavior is essential for debugging regressions. Langfuse and LangSmith both provide first-class prompt versioning, linking each prompt version to its associated traces and evaluation scores, so engineers can identify exactly when a quality change occurred.</p>
+<p><strong>Sampling strategies</strong> — Logging every trace in high-volume production is expensive. Practical approaches include: <em>tail-based sampling</em> (log only traces that ended in error), <em>rate-based sampling</em> (log a percentage of all runs), and <em>quality-stratified sampling</em> (oversample runs with extreme evaluation scores). The choice of sampling strategy affects which failure modes are observable—tail-based sampling may miss silent quality degradation that doesn’t produce hard errors.</p>
+<p><strong>Anomaly detection</strong> — Beyond threshold-based alerting, statistical process control methods can detect distributional drift in agent behavior: shifts in average trajectory length, tool usage patterns, or output length distributions can signal degraded prompts, model changes, or shifts in user input distribution before they become user-visible failures.</p>
+<hr>
+</section>
+<section id="open-problems" class="level2">
+<h2 class="anchored" data-anchor-id="open-problems">8. Open Problems</h2>
+<p>Despite rapid progress, the field lacks mature solutions to several fundamental challenges:</p>
+<p><strong>No standard “agent debugger.”</strong> Traditional debuggers (breakpoints, watchpoints, call-stack inspection) have no direct equivalent for agents. Step-level trace inspection is available in platforms like LangSmith and AgentOps, but the experience remains closer to log analysis than interactive debugging. There is no open-source equivalent of a full IDE-integrated agent debugger with breakpoints on semantic conditions (“pause when the agent is about to call a write tool without prior confirmation”).</p>
+<p><strong>Interpretability does not scale with agent complexity.</strong> Mechanistic interpretability methods like circuit tracing are currently tractable only on relatively small models. For larger models and multi-agent systems with emergent inter-agent dynamics, these methods do not yet scale. Scaling laws for interpretability are not yet understood.</p>
+<p><strong>Post-hoc explanations vs.&nbsp;real-time transparency.</strong> Current interpretability work is almost entirely post-hoc: analyzing what the model <em>did</em>. Real-time transparency—understanding reasoning <em>before</em> an action is committed—remains unsolved. This gap matters most for safety-critical applications where human oversight must happen before, not after, irreversible actions.</p>
+<p><strong>The observability–cost tradeoff.</strong> Full trace logging (capturing every prompt, completion, tool input, and tool output for every run) is expensive: storage, egress, and additional latency for instrumentation overhead. Teams must choose between comprehensive observability and cost efficiency. There is no principled framework for deciding which agent steps warrant full logging vs.&nbsp;summary statistics.</p>
+<p><strong>Consistency without behavioral constraints.</strong> The 60%→25% consistency drop documented in CLEAR reflects a fundamental property of sampling from a language model. Prompting strategies and constrained decoding can narrow this gap but cannot eliminate it without sacrificing the flexibility that makes LLM agents valuable. The field lacks principled guidance on acceptable consistency thresholds for different applications.</p>
+<p><strong>Multi-agent trace correlation.</strong> When agents spawn sub-agents, delegate to specialists, or coordinate asynchronously via message passing, trace correlation across process boundaries becomes non-trivial. OpenTelemetry context propagation was designed for synchronous request-response services; long-running, asynchronous agent hierarchies stress these assumptions. Standards for multi-agent trace stitching are still emerging.</p>
+<p><strong>The ground truth problem.</strong> Evaluating whether a debugging tool correctly identified a failure’s root cause requires a ground truth that is often unavailable. Without ground-truth labels for “why this agent step was wrong,” it is hard to benchmark debugging tools themselves—creating a meta-problem that slows progress on the object-level problem.</p>
+<p><strong>Observability for extended agentic tasks.</strong> Current observability tooling was designed for request-response latency profiles (seconds to minutes). Long-horizon agents that run for hours or days—executing workflows, conducting research, managing files—require fundamentally different monitoring: persistent state inspection, incremental progress estimation, and interrupted-task recovery, none of which are well-supported by existing platforms.</p>
+<p><strong>Evaluation lag.</strong> Many quality signals are only available with delay: human feedback arrives days after a session, downstream pipeline failures appear hours later. Real-time monitoring must rely on proxy metrics (LLM-as-judge, heuristic checks) whose correlation with true quality is imperfect. Calibrating when to trust proxy metrics and when to escalate to human review is an unsolved operational problem.</p>
+<hr>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<section id="papers" class="level3">
+<h3 class="anchored" data-anchor-id="papers">Papers</h3>
+<ul>
+<li>Cemri, M., Pan, M.Z., Yang, S., et al.&nbsp;(2025). <strong>Why Do Multi-Agent LLM Systems Fail?</strong> NeurIPS 2025 Datasets &amp; Benchmarks. <a href="https://arxiv.org/abs/2503.13657">arXiv:2503.13657</a></li>
+<li>Zhu, K., Liu, Z., Li, B., et al.&nbsp;(2025). <strong>Where LLM Agents Fail and How They Can Learn From Failures.</strong> <a href="https://arxiv.org/abs/2509.25370">arXiv:2509.25370</a></li>
+<li>(2025). <strong>Beyond Accuracy: A Multi-Dimensional Framework for Evaluating Enterprise Agentic AI Systems (CLEAR).</strong> <a href="https://arxiv.org/abs/2511.14136">arXiv:2511.14136</a></li>
+<li>(2026). <strong>Evaluating LLM Agent Reliability Under Production-Like Stress Conditions (ReliabilityBench).</strong> <a href="https://arxiv.org/abs/2601.06112">arXiv:2601.06112</a></li>
+<li>Turpin, M., Michael, J., Perez, E., &amp; Bowman, S.R. (2023). <strong>Language Models Don’t Always Say What They Think: Unfaithful Explanations in Chain-of-Thought Prompting.</strong> NeurIPS 2023. <a href="https://arxiv.org/abs/2305.04388">arXiv:2305.04388</a></li>
+<li>(2024). <strong>Dissociation of Faithful and Unfaithful Reasoning in LLMs.</strong> <a href="https://arxiv.org/abs/2405.15092">arXiv:2405.15092</a></li>
+<li>Qiang, Y., et al.&nbsp;(2024). <strong>Prompt Perturbation Consistency Learning for Robust Language Models.</strong> EACL Findings 2024. <a href="https://arxiv.org/abs/2402.15833">arXiv:2402.15833</a></li>
+<li>Shinn, N., Cassano, F., Labash, A., et al.&nbsp;(2023). <strong>Reflexion: Language Agents with Verbal Reinforcement Learning.</strong> NeurIPS 2023. <a href="https://arxiv.org/abs/2303.11366">arXiv:2303.11366</a></li>
+<li>Rebedea, T., Dinu, R., Sreedhar, M., et al.&nbsp;(2023). <strong>NeMo Guardrails: A Toolkit for Controllable and Safe LLM Applications with Programmable Rails.</strong> EMNLP 2023 Demo. <a href="https://arxiv.org/abs/2310.10501">arXiv:2310.10501</a></li>
+<li>(2025). <strong>Detecting Proxy Gaming in RL and LLM Alignment via Evaluator Stress Tests.</strong> <a href="https://arxiv.org/abs/2507.05619">arXiv:2507.05619</a></li>
+<li>(2026). <strong>Data-Centric Interpretability for LLM-based Multi-Agent Reinforcement Learning.</strong> <a href="https://arxiv.org/html/2602.05183">arXiv:2602.05183</a></li>
+<li>(2025). <strong>An Open Toolkit for Diagnosing LLM Agent Trajectories.</strong> EMNLP 2025 Demos. <a href="https://aclanthology.org/2025.emnlp-demos.15.pdf">ACL Anthology</a></li>
+<li>(2026). <strong>Evaluating Robustness of LLMs in Enterprise Applications: Benchmarks for Perturbation Consistency Across Formats and Languages.</strong> <a href="https://arxiv.org/abs/2601.06341">arXiv:2601.06341</a></li>
+</ul>
+</section>
+<section id="blog-posts-resources" class="level3">
+<h3 class="anchored" data-anchor-id="blog-posts-resources">Blog Posts &amp; Resources</h3>
+<ul>
+<li>OpenTelemetry. (2024). <strong>An Introduction to Observability for LLM-based Applications Using OpenTelemetry.</strong> <a href="https://opentelemetry.io/blog/2024/llm-observability/">opentelemetry.io</a></li>
+<li>OpenTelemetry. (2025). <strong>AI Agent Observability: Evolving Standards and Best Practices.</strong> <a href="https://opentelemetry.io/blog/2025/ai-agent-observability/">opentelemetry.io</a></li>
+<li>OpenTelemetry. <strong>Semantic Conventions for Generative AI Systems.</strong> <a href="https://opentelemetry.io/docs/specs/semconv/gen-ai/">opentelemetry.io/docs</a></li>
+<li>Anthropic. (2025). <strong>Circuit Tracing: Revealing Computational Graphs in Language Models.</strong> <a href="https://transformer-circuits.pub/2025/attribution-graphs/methods.html">transformer-circuits.pub</a></li>
+<li>Anthropic. (2025). <strong>On the Biology of a Large Language Model.</strong> <a href="https://transformer-circuits.pub/2025/attribution-graphs/biology.html">transformer-circuits.pub</a></li>
+<li>Anthropic. <strong>Interpretability Research Team.</strong> <a href="https://www.anthropic.com/research/team/interpretability">anthropic.com</a></li>
+</ul>
+</section>
+<section id="code-projects" class="level3">
+<h3 class="anchored" data-anchor-id="code-projects">Code &amp; Projects</h3>
+<ul>
+<li><strong><a href="https://github.com/Arize-ai/openinference">OpenInference</a></strong> — OpenTelemetry-based semantic conventions and instrumentation for AI observability (Arize)</li>
+<li><strong><a href="https://github.com/traceloop/openllmetry">OpenLLMetry</a></strong> — Open-source OpenTelemetry extensions for LLM observability (Traceloop)</li>
+<li><strong><a href="https://github.com/Arize-ai/phoenix">Arize Phoenix</a></strong> — Open-source AI observability platform (traces, evals, troubleshooting)</li>
+<li><strong><a href="https://github.com/langfuse/langfuse">Langfuse</a></strong> — Open-source LLM engineering platform (traces, evals, prompt management)</li>
+<li><strong><a href="https://github.com/AgentOps-AI/agentops">AgentOps</a></strong> — Python SDK for AI agent monitoring and debugging</li>
+<li><strong><a href="https://github.com/wandb/weave">W&amp;B Weave</a></strong> — Toolkit for GenAI application development and tracing (Weights &amp; Biases)</li>
+<li><strong><a href="https://github.com/NVIDIA-NeMo/Guardrails">NeMo Guardrails</a></strong> — Open-source programmable guardrails toolkit for LLM applications (NVIDIA)</li>
+<li><strong><a href="https://github.com/outlines-dev/outlines">Outlines</a></strong> — Token-level constrained generation for structured LLM outputs</li>
+<li><strong><a href="https://github.com/guidance-ai/guidance">Guidance</a></strong> — Constrained generation and interleaved control for LLMs (Microsoft)</li>
+<li><strong><a href="https://www.langchain.com/langsmith">LangSmith</a></strong> — Agent engineering platform with trace visualization and evals (LangChain)</li>
+<li><strong><a href="https://www.braintrust.dev/">Braintrust</a></strong> — AI observability and evaluation SaaS platform</li>
+<li><strong><a href="https://www.honeyhive.ai/">HoneyHive</a></strong> — OpenTelemetry-native AI observability and evaluation platform</li>
+</ul>
+<hr>
+<p><em>Back to <a href="./topics.html">Topics →</a> · See also: <a href="./infrastructure.html">Infrastructure →</a> · <a href="./evaluation.html">Evaluation →</a> · <a href="./human-agent.html">Human-Agent Interaction →</a></em></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/llm-agents-survey\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

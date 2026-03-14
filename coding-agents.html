@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Coding Agents – LLM Agents: A Survey (2022–2026)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./favicon.svg" rel="icon" type="image/svg+xml">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-254a3ef50811769e7b813971395bbfc6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-31e29ad2a3d1e7985534403fb9b8ee74.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-254a3ef50811769e7b813971395bbfc6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">LLM Agents: A Survey (2022–2026)</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./taxonomy.html"> 
+<span class="menu-text">Taxonomy</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./timeline.html"> 
+<span class="menu-text">Timeline</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./foundations.html"> 
+<span class="menu-text">2022–2023</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./recent.html"> 
+<span class="menu-text">2024–2026</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-deep-dives" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Deep Dives</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-deep-dives">    
+        <li>
+    <a class="dropdown-item" href="./reasoning.html">
+ <span class="dropdown-text">Reasoning &amp; Planning</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./multiagent.html">
+ <span class="dropdown-text">Multi-Agent Systems</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./memory-tools.html">
+ <span class="dropdown-text">Memory, Tools &amp; Actions</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-topics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Topics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-topics">    
+        <li>
+    <a class="dropdown-item" href="./topics.html">
+ <span class="dropdown-text">Topics Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./evaluation.html">
+ <span class="dropdown-text">Evaluation &amp; Benchmarks</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./safety.html">
+ <span class="dropdown-text">Safety &amp; Alignment</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./science-agents.html">
+ <span class="dropdown-text">Science &amp; Research Agents</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./personalization.html">
+ <span class="dropdown-text">Personalization &amp; Digital Twins</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./infrastructure.html">
+ <span class="dropdown-text">Infrastructure &amp; Protocols</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./human-agent.html">
+ <span class="dropdown-text">Human-Agent Interaction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./economics.html">
+ <span class="dropdown-text">Agent Economics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coding-agents.html">
+ <span class="dropdown-text">Coding Agents</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./observability.html">
+ <span class="dropdown-text">Observability &amp; Robustness</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./long-horizon.html">
+ <span class="dropdown-text">Long-Horizon Autonomy</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./community.html"> 
+<span class="menu-text">Community</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/llm-agents-survey/llm-agents-survey.github.io"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview-history" id="toc-overview-history" class="nav-link active" data-scroll-target="#overview-history">Overview &amp; History</a></li>
+  <li><a href="#why-coding-is-the-killer-app-for-agents" id="toc-why-coding-is-the-killer-app-for-agents" class="nav-link" data-scroll-target="#why-coding-is-the-killer-app-for-agents">Why Coding Is the Killer App for Agents</a></li>
+  <li><a href="#major-coding-agent-systems" id="toc-major-coding-agent-systems" class="nav-link" data-scroll-target="#major-coding-agent-systems">Major Coding Agent Systems</a>
+  <ul class="collapse">
+  <li><a href="#research-systems" id="toc-research-systems" class="nav-link" data-scroll-target="#research-systems">Research Systems</a></li>
+  <li><a href="#commercial-systems" id="toc-commercial-systems" class="nav-link" data-scroll-target="#commercial-systems">Commercial Systems</a></li>
+  </ul></li>
+  <li><a href="#benchmarks-evaluation" id="toc-benchmarks-evaluation" class="nav-link" data-scroll-target="#benchmarks-evaluation">Benchmarks &amp; Evaluation</a>
+  <ul class="collapse">
+  <li><a href="#swe-bench-family" id="toc-swe-bench-family" class="nav-link" data-scroll-target="#swe-bench-family">SWE-bench Family</a></li>
+  <li><a href="#function-level-benchmarks" id="toc-function-level-benchmarks" class="nav-link" data-scroll-target="#function-level-benchmarks">Function-Level Benchmarks</a></li>
+  <li><a href="#holistic-harder-benchmarks" id="toc-holistic-harder-benchmarks" class="nav-link" data-scroll-target="#holistic-harder-benchmarks">Holistic &amp; Harder Benchmarks</a></li>
+  <li><a href="#real-world-metrics" id="toc-real-world-metrics" class="nav-link" data-scroll-target="#real-world-metrics">Real-World Metrics</a></li>
+  </ul></li>
+  <li><a href="#architectures-techniques" id="toc-architectures-techniques" class="nav-link" data-scroll-target="#architectures-techniques">Architectures &amp; Techniques</a>
+  <ul class="collapse">
+  <li><a href="#edit-test-debug-loops" id="toc-edit-test-debug-loops" class="nav-link" data-scroll-target="#edit-test-debug-loops">Edit-Test-Debug Loops</a></li>
+  <li><a href="#agent-computer-interfaces-aci" id="toc-agent-computer-interfaces-aci" class="nav-link" data-scroll-target="#agent-computer-interfaces-aci">Agent-Computer Interfaces (ACI)</a></li>
+  <li><a href="#repository-understanding" id="toc-repository-understanding" class="nav-link" data-scroll-target="#repository-understanding">Repository Understanding</a></li>
+  <li><a href="#multi-file-editing-strategies" id="toc-multi-file-editing-strategies" class="nav-link" data-scroll-target="#multi-file-editing-strategies">Multi-File Editing Strategies</a></li>
+  <li><a href="#test-generation-as-verification" id="toc-test-generation-as-verification" class="nav-link" data-scroll-target="#test-generation-as-verification">Test Generation as Verification</a></li>
+  <li><a href="#speculative-editing-and-patch-sampling" id="toc-speculative-editing-and-patch-sampling" class="nav-link" data-scroll-target="#speculative-editing-and-patch-sampling">Speculative Editing and Patch Sampling</a></li>
+  <li><a href="#retrieval-augmented-code-editing" id="toc-retrieval-augmented-code-editing" class="nav-link" data-scroll-target="#retrieval-augmented-code-editing">Retrieval-Augmented Code Editing</a></li>
+  <li><a href="#multi-agent-and-orchestrated-workflows" id="toc-multi-agent-and-orchestrated-workflows" class="nav-link" data-scroll-target="#multi-agent-and-orchestrated-workflows">Multi-Agent and Orchestrated Workflows</a></li>
+  <li><a href="#training-for-agentic-coding" id="toc-training-for-agentic-coding" class="nav-link" data-scroll-target="#training-for-agentic-coding">Training for Agentic Coding</a></li>
+  <li><a href="#sandboxed-execution-environments" id="toc-sandboxed-execution-environments" class="nav-link" data-scroll-target="#sandboxed-execution-environments">Sandboxed Execution Environments</a></li>
+  </ul></li>
+  <li><a href="#the-agent-vs.-tool-spectrum" id="toc-the-agent-vs.-tool-spectrum" class="nav-link" data-scroll-target="#the-agent-vs.-tool-spectrum">The Agent vs.&nbsp;Tool Spectrum</a>
+  <ul class="collapse">
+  <li><a href="#human-in-the-loop-patterns" id="toc-human-in-the-loop-patterns" class="nav-link" data-scroll-target="#human-in-the-loop-patterns">Human-in-the-Loop Patterns</a></li>
+  </ul></li>
+  <li><a href="#open-problems" id="toc-open-problems" class="nav-link" data-scroll-target="#open-problems">Open Problems</a>
+  <ul class="collapse">
+  <li><a href="#hallucinated-apis-and-imports" id="toc-hallucinated-apis-and-imports" class="nav-link" data-scroll-target="#hallucinated-apis-and-imports">Hallucinated APIs and Imports</a></li>
+  <li><a href="#context-window-limits-for-large-repos" id="toc-context-window-limits-for-large-repos" class="nav-link" data-scroll-target="#context-window-limits-for-large-repos">Context Window Limits for Large Repos</a></li>
+  <li><a href="#evaluating-code-quality-beyond-test-pass-rates" id="toc-evaluating-code-quality-beyond-test-pass-rates" class="nav-link" data-scroll-target="#evaluating-code-quality-beyond-test-pass-rates">Evaluating Code Quality Beyond Test Pass Rates</a></li>
+  <li><a href="#security-implications-of-autonomous-code-generation" id="toc-security-implications-of-autonomous-code-generation" class="nav-link" data-scroll-target="#security-implications-of-autonomous-code-generation">Security Implications of Autonomous Code Generation</a></li>
+  <li><a href="#long-horizon-planning-for-complex-features" id="toc-long-horizon-planning-for-complex-features" class="nav-link" data-scroll-target="#long-horizon-planning-for-complex-features">Long-Horizon Planning for Complex Features</a></li>
+  <li><a href="#benchmark-saturation-and-what-comes-next" id="toc-benchmark-saturation-and-what-comes-next" class="nav-link" data-scroll-target="#benchmark-saturation-and-what-comes-next">Benchmark Saturation and What Comes Next</a></li>
+  <li><a href="#the-vibe-coding-shift-and-its-discontents" id="toc-the-vibe-coding-shift-and-its-discontents" class="nav-link" data-scroll-target="#the-vibe-coding-shift-and-its-discontents">The “Vibe Coding” Shift and Its Discontents</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a>
+  <ul class="collapse">
+  <li><a href="#papers" id="toc-papers" class="nav-link" data-scroll-target="#papers">Papers</a></li>
+  <li><a href="#blog-posts-resources" id="toc-blog-posts-resources" class="nav-link" data-scroll-target="#blog-posts-resources">Blog Posts &amp; Resources</a></li>
+  <li><a href="#code-projects" id="toc-code-projects" class="nav-link" data-scroll-target="#code-projects">Code &amp; Projects</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Coding Agents</h1>
+<p class="subtitle lead">From code completion to autonomous software engineers: how LLM agents are transforming software development</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview-history" class="level2">
+<h2 class="anchored" data-anchor-id="overview-history">Overview &amp; History</h2>
+<p>Software engineering represents perhaps the most natural domain for LLM agents. Code is formal, executable, and self-evaluating — when an agent writes a function, unit tests immediately reveal whether it is correct. This tight feedback loop, combined with the possibility of formal verification and the enormous corpus of open-source code available for training, makes coding the <em>killer application</em> for agentic AI.</p>
+<p>The journey began with <strong>code completion</strong>. <a href="https://github.com/features/copilot">GitHub Copilot</a> (launched 2021), powered by OpenAI Codex, demonstrated that LLMs could suggest syntactically plausible completions in-context. But completion is not programming. Real software engineering involves understanding repositories, reasoning about dependencies, writing tests, debugging regressions, and navigating sprawling legacy codebases — tasks requiring multi-step reasoning and persistent interaction with the environment.</p>
+<p>The shift from <em>completion</em> to <em>chat</em> was incremental. Tools like Copilot Chat, ChatGPT Code Interpreter, and early Cursor brought conversational code assistance. The decisive leap came in 2024–2025, when <strong>autonomous coding agents</strong> emerged: systems that accept a natural-language issue description and independently navigate a repository, write patches, run tests, and submit pull requests — with little or no human intervention. The release of <a href="https://arxiv.org/abs/2310.06770">SWE-bench</a> as an evaluation framework in October 2023 crystallized this ambition into measurable progress.</p>
+</section>
+<section id="why-coding-is-the-killer-app-for-agents" class="level2">
+<h2 class="anchored" data-anchor-id="why-coding-is-the-killer-app-for-agents">Why Coding Is the Killer App for Agents</h2>
+<ul>
+<li><strong>Fast feedback loops.</strong> Running a test suite takes seconds; an agent can iterate tens of times before a human reviewer sees the result.</li>
+<li><strong>Well-defined success criteria.</strong> Test suites and type checkers provide ground truth. The agent knows when it is done.</li>
+<li><strong>Formal verification is possible.</strong> Unlike most creative tasks, code correctness is checkable by execution.</li>
+<li><strong>Rich environment interaction.</strong> Bash, file systems, package managers, debuggers — all accessible through a terminal interface.</li>
+<li><strong>Economic stakes are clear.</strong> Every resolved bug or implemented feature has quantifiable value, enabling straightforward ROI calculations.</li>
+</ul>
+<hr>
+</section>
+<section id="major-coding-agent-systems" class="level2">
+<h2 class="anchored" data-anchor-id="major-coding-agent-systems">Major Coding Agent Systems</h2>
+<section id="research-systems" class="level3">
+<h3 class="anchored" data-anchor-id="research-systems">Research Systems</h3>
+<p><strong><a href="https://swe-agent.com">SWE-agent</a></strong> (Princeton &amp; Stanford, May 2024) is the foundational academic system. The <a href="https://arxiv.org/abs/2405.15793">NeurIPS 2024 paper</a> (Yang et al.) introduced the concept of the <em>agent-computer interface</em> (ACI): a purpose-built shell interface that gives language models structured access to files, search, and test execution — analogous to how IDEs help human developers. SWE-agent achieved 12.5% pass@1 on the original SWE-bench benchmark and 87.7% on HumanEvalFix, far exceeding prior non-interactive approaches. The <a href="https://github.com/SWE-agent/SWE-agent">GitHub repo</a> has since evolved into a full framework supporting cybersecurity and competitive programming tasks. A streamlined descendant, <a href="https://mini-swe-agent.com">mini-SWE-agent</a>, achieves &gt;74% on SWE-bench Verified in just ~100 lines of Python, demonstrating that as models improve, scaffolding complexity can decrease dramatically.</p>
+<p><strong><a href="https://arxiv.org/abs/2407.01489">Agentless</a></strong> (UIUC, July 2024) challenged the assumption that autonomous agents are necessary. Rather than allowing an LLM to freely plan and act, Agentless uses a fixed three-phase <em>workflow</em> — localization, repair, and patch validation — without dynamic tool selection. On SWE-bench Lite, it achieved 32% resolution at a cost of only $0.70 per task, outperforming all open-source agents at the time. The <a href="https://github.com/OpenAutoCoder/Agentless">GitHub repo</a> and accompanying paper from Xia et al.&nbsp;reframed the field’s debate: structured pipelines can match or exceed complex agent loops, especially when the underlying model is strong.</p>
+<p><strong><a href="https://arxiv.org/abs/2404.05427">AutoCodeRover</a></strong> (NUS, April 2024) takes a software-engineering-oriented perspective, combining LLMs with AST (abstract syntax tree) analysis and code-structure-aware search. Rather than treating a project as a flat collection of files, AutoCodeRover exploits class and method hierarchies to localize bugs and generate targeted patches. Its GitHub repository is at <a href="https://github.com/nus-apr/auto-code-rover">github.com/nus-apr/auto-code-rover</a>.</p>
+<p><strong><a href="https://openhands.dev">OpenHands</a></strong> (formerly OpenDevin) is an open-source platform for building AI software agents, described in <a href="https://arxiv.org/abs/2407.16741">arXiv:2407.16741</a> (Wang et al.). OpenHands provides a sandboxed runtime where agents can write code, run commands, browse the web, and interact with APIs — mirroring the full toolkit of a human developer. The <a href="https://github.com/OpenHands/OpenHands">GitHub repo</a> has become one of the most-starred open-source coding agent projects. Devstral (Mistral AI × All Hands AI) was trained specifically for the OpenHands platform.</p>
+<p><strong><a href="https://github.com/aorwall/moatless-tools">Moatless Tools</a></strong> is an open-source toolkit emphasizing cost-efficient SWE-bench performance. It uses structured code-search actions and careful edit strategies. A related project, <a href="https://github.com/aorwall/moatless-tree-search">SWE-Search</a>, incorporates Monte Carlo Tree Search and iterative refinement over candidate patches.</p>
+</section>
+<section id="commercial-systems" class="level3">
+<h3 class="anchored" data-anchor-id="commercial-systems">Commercial Systems</h3>
+<p><strong><a href="https://cognition.ai/blog/introducing-devin">Devin</a></strong> (Cognition Labs, announced March 12, 2024) was the first system marketed as a fully autonomous “AI software engineer.” Devin operates inside a persistent development environment — its own shell, browser, and code editor — and accepts multi-step engineering tasks. At launch, it claimed state-of-the-art performance on SWE-bench and demonstrated completing freelance jobs on Upwork. Devin sparked intense public debate about AI’s capability to replace software engineers, though independent evaluations highlighted significant limitations on complex real-world tasks.</p>
+<p><strong><a href="https://claude.com/product/claude-code">Claude Code</a></strong> (Anthropic, research preview February 2025, GA May 2025) is a terminal-based agentic coding tool that runs as a CLI application inside the developer’s own environment. It uses “agentic search” to understand project structure and dependencies, integrates with GitHub and GitLab, and can handle entire workflows from reading issues to submitting pull requests. Unlike cloud sandboxes, Claude Code operates directly on the developer’s filesystem, enabling zero-configuration local development. The <a href="https://github.com/anthropics/claude-code">GitHub repo</a> includes plugin APIs for extending its capabilities.</p>
+<p><strong><a href="https://cursor.com">Cursor</a></strong> (Anysphere, founded 2022) is an AI-first IDE built as a fork of Visual Studio Code. It offers context-aware autocomplete, inline chat, and a Composer/Agent mode that can make coordinated multi-file changes. With over a million users by 2025, Cursor became the dominant AI IDE for professional developers and a cultural symbol of the “vibe coding” era.</p>
+<p><strong><a href="https://windsurf.com">Windsurf</a></strong> (Codeium, launched November 2024) positions itself as “the first agentic IDE,” featuring a collaborative agent called <em>Cascade</em> with deep codebase understanding. Launched by the team behind <a href="https://codeium.com">Codeium</a> — an AI code completion tool — Windsurf integrates the Cascade agent front-and-center, blending copilot and agent paradigms in a single UI.</p>
+<p><strong><a href="https://github.com/features/copilot">GitHub Copilot Coding Agent</a></strong> (GitHub/Microsoft, announced at Microsoft Build 2025, GA September 2025) evolved from GitHub Copilot Workspace into a fully asynchronous autonomous agent embedded directly in GitHub. Developers assign issues to the coding agent, which opens a sandboxed branch, implements changes, runs CI, and opens a pull request for review. It supports third-party models including Claude and OpenAI Codex via GitHub’s model picker.</p>
+<p><strong><a href="https://openai.com/codex/">OpenAI Codex</a></strong> (OpenAI, May 2025) — distinct from the older Codex language model — is a cloud-based software engineering agent powered by the <code>codex-1</code> model. Integrated into ChatGPT Pro and the Codex app, it runs tasks asynchronously in isolated cloud environments, supporting parallel workstreams. The agent can read, edit, and run code entirely in its own sandbox before presenting results.</p>
+<p><strong><a href="https://aws.amazon.com/q/developer/">Amazon Q Developer</a></strong> (Amazon, rebranded from CodeWhisperer April 2024) adds agentic capabilities on top of cloud-integrated code assistance. Q Developer can autonomously implement features, write documentation, generate tests, and refactor code across AWS-integrated codebases, while also providing console error diagnostics and security scanning.</p>
+<p><strong><a href="https://www.augmentcode.com">Augment Code</a></strong> offers AI coding agents with a self-described “superior context engine” capable of indexing codebases up to 100M lines. It targets enterprise developers working with large legacy systems, providing IDE plugins for VS Code and JetBrains alongside CLI and code-review integrations.</p>
+<p><strong><a href="https://aider.chat">Aider</a></strong> (<a href="https://github.com/Aider-AI/aider">GitHub</a>) is the leading open-source terminal coding agent. Unlike cloud-hosted agents, Aider runs locally, editing files in the developer’s git repository and committing changes. It supports dozens of LLM providers (GPT-4o, Claude 3.x/4.x, DeepSeek, etc.), uses a custom diff format for reliable edits, and publishes an <a href="https://aider.chat/docs/leaderboards/">LLM leaderboard</a> based on its own benchmark suite. Aider introduced the influential <em>repo map</em> concept: a compact, ctags-based summary of a repository’s symbol graph that fits within context windows and helps models navigate large codebases without loading all files.</p>
+<p><strong><a href="https://mistral.ai/news/devstral">Devstral</a></strong> (Mistral AI × All Hands AI, 2025) is an open-weight model (Apache 2.0) fine-tuned specifically for agentic software engineering within the OpenHands framework. Devstral 2, a 123B-parameter model, reached 72.2% on SWE-bench Verified, establishing it as among the best open-weight coding agents available.</p>
+<hr>
+</section>
+</section>
+<section id="benchmarks-evaluation" class="level2">
+<h2 class="anchored" data-anchor-id="benchmarks-evaluation">Benchmarks &amp; Evaluation</h2>
+<section id="swe-bench-family" class="level3">
+<h3 class="anchored" data-anchor-id="swe-bench-family">SWE-bench Family</h3>
+<p><strong><a href="https://arxiv.org/abs/2310.06770">SWE-bench</a></strong> (Jimenez et al., ICLR 2024) is the canonical benchmark for autonomous coding agents. It draws 2,294 real GitHub issues from 12 popular Python repositories (including Django, Flask, NumPy, and pandas), pairing each issue with the corresponding pull request as a reference solution. An agent receives the repository codebase and issue description and must produce a passing patch. When introduced, the best model (Claude 2) resolved only 1.96% of issues, establishing a clear frontier for future work. The benchmark website at <a href="https://www.swebench.com">swebench.com</a> hosts official leaderboards.</p>
+<p><strong>SWE-bench Lite</strong> reduces the full set to 300 carefully selected problems, offering a cheaper evaluation proxy widely used in 2024. Agentless achieved 32% here; many systems now exceed 50%.</p>
+<p><strong>SWE-bench Verified</strong> (introduced by <a href="https://openai.com/index/introducing-swe-bench-verified/">OpenAI in August 2024</a>) is a human-vetted subset of 500 problems where annotators confirmed that each issue is unambiguous and that the reference tests are appropriate. It has become the primary comparison target. As of early 2026, top systems include Bytedance’s agent at ~75.2%, Verdent at ~76.1%, and Gemini 3 Pro + Live-SWE-agent at ~77.4%, with the benchmark now approaching the upper end of what automated test suites can distinguish.</p>
+<p><strong><a href="https://arxiv.org/abs/2410.03859">SWE-bench Multimodal</a></strong> (Yang et al., October 2024) extends the benchmark to JavaScript front-end repositories where issues involve visual elements (screenshots, UI bugs). It tests whether agents generalize across languages and modalities; top SWE-bench systems resolve only ~12% of SWE-bench M tasks, revealing significant gaps.</p>
+</section>
+<section id="function-level-benchmarks" class="level3">
+<h3 class="anchored" data-anchor-id="function-level-benchmarks">Function-Level Benchmarks</h3>
+<p><strong><a href="https://arxiv.org/abs/2107.03374">HumanEval</a></strong> (Chen et al., OpenAI, 2021) is the original code-generation benchmark: 164 hand-crafted Python programming problems, each with a docstring and unit tests. Models are evaluated by <code>pass@k</code> — the probability that at least one of k generated solutions passes all tests. Modern frontier models exceed 90% pass@1. HumanEval is largely saturated but remains a historical reference point.</p>
+<p><strong><a href="https://arxiv.org/abs/2108.07732">MBPP</a></strong> (Austin et al., Google, 2021) — “Mostly Basic Python Problems” — consists of ~974 entry-level programming problems (427 in the sanitized split) sourced from crowdsourcing. It complements HumanEval by testing breadth across varied problem types. Like HumanEval, MBPP is now largely solved by top models.</p>
+</section>
+<section id="holistic-harder-benchmarks" class="level3">
+<h3 class="anchored" data-anchor-id="holistic-harder-benchmarks">Holistic &amp; Harder Benchmarks</h3>
+<p><strong><a href="https://arxiv.org/abs/2403.07974">LiveCodeBench</a></strong> (<a href="https://livecodebench.github.io">website</a>) addresses data contamination by continuously collecting new problems from LeetCode, AtCoder, and Codeforces timed contests. Because problems are gathered after model training cutoffs, contamination is structurally prevented. The benchmark evaluates not just solution generation but self-repair, code execution simulation, and test output prediction — a broader view of coding competence.</p>
+<p><strong><a href="https://aider.chat/2024/12/21/polyglot.html">Aider Polyglot Benchmark</a></strong> tests code-editing (not just generation) across six languages — C++, Go, Java, JavaScript, Python, and Rust — using 225 of Exercism’s most challenging problems. Models get two attempts; on the second attempt, they receive unit test feedback from the first. This design specifically tests edit-correct cycles rather than generation from scratch, making it more relevant to real coding agent workflows.</p>
+<p><strong><a href="https://arxiv.org/abs/2601.11868">Terminal-Bench</a></strong> (<a href="https://www.tbench.ai">tbench.ai</a>) evaluates agents on realistic tasks in command-line interfaces: configuring servers, managing processes, debugging shell scripts, and navigating Linux environments. Introduced in May 2025 by the Laude Institute, Terminal-Bench tests the practical “last mile” of autonomous agents that must operate in real terminal environments.</p>
+</section>
+<section id="real-world-metrics" class="level3">
+<h3 class="anchored" data-anchor-id="real-world-metrics">Real-World Metrics</h3>
+<p>Beyond benchmark pass rates, practitioners track: - <strong>Cost per resolved issue.</strong> Agentless demonstrated $0.70/task on SWE-bench Lite; production systems often target &lt;$5 for medium-complexity issues. - <strong>Time to resolution.</strong> How long before a patch is ready for human review — minutes for focused bug fixes, potentially hours for feature additions. - <strong>False positive rate.</strong> Patches that pass tests but introduce subtle regressions or security vulnerabilities. - <strong>Human override rate.</strong> How often a developer discards or substantially rewrites an agent’s solution.</p>
+<hr>
+</section>
+</section>
+<section id="architectures-techniques" class="level2">
+<h2 class="anchored" data-anchor-id="architectures-techniques">Architectures &amp; Techniques</h2>
+<section id="edit-test-debug-loops" class="level3">
+<h3 class="anchored" data-anchor-id="edit-test-debug-loops">Edit-Test-Debug Loops</h3>
+<p>The core of most coding agents is an <strong>edit-test-debug loop</strong>: propose a change → run the test suite → observe failures → revise. This mirrors human TDD practice and provides grounded feedback at each step. The number of iterations, the cost of each test run, and the agent’s ability to interpret test output are critical performance drivers.</p>
+</section>
+<section id="agent-computer-interfaces-aci" class="level3">
+<h3 class="anchored" data-anchor-id="agent-computer-interfaces-aci">Agent-Computer Interfaces (ACI)</h3>
+<p><a href="https://arxiv.org/abs/2405.15793">SWE-agent’s key contribution</a> was demonstrating that <em>how</em> an agent interfaces with the computer matters as much as the underlying model. A well-designed ACI provides: - <strong>Structured file viewing</strong> with windowed context (avoiding context overflow on large files) - <strong>Search operations</strong> (grep, regex, semantic search) that return localized results - <strong>Edit commands</strong> that apply targeted changes rather than rewriting whole files - <strong>Test execution</strong> with formatted, interpretable output</p>
+<p>Poor ACI design leads agents to make redundant file reads, lose track of changes, or produce diffs that fail to apply cleanly.</p>
+</section>
+<section id="repository-understanding" class="level3">
+<h3 class="anchored" data-anchor-id="repository-understanding">Repository Understanding</h3>
+<p>Coding agents must understand code <em>at scale</em>. Techniques include: - <strong>Repo maps</strong> (<a href="https://aider.chat">Aider’s approach</a>): compact summaries of a repository’s structure — file names, class/function signatures, and call relationships — that fit within context windows. - <strong>Hierarchical search</strong>: AutoCodeRover uses AST analysis so agents can navigate by class and method rather than raw text. - <strong>Semantic code retrieval</strong>: Agentless embeds issue descriptions and code chunks, retrieving the most similar files via cosine similarity before attempting repair. - <strong>BM25 / keyword search</strong>: lightweight retrieval when semantic embeddings are too expensive.</p>
+</section>
+<section id="multi-file-editing-strategies" class="level3">
+<h3 class="anchored" data-anchor-id="multi-file-editing-strategies">Multi-File Editing Strategies</h3>
+<p>Real bugs often span multiple files. Agents use several strategies: - <strong>Sequential edits</strong> with test-driven validation between each change - <strong>Speculative editing</strong>: generating all changes simultaneously, then validating as a batch - <strong>Diff-based formats</strong> (unified diff, search-replace blocks) that are more robust than full-file rewrites</p>
+</section>
+<section id="test-generation-as-verification" class="level3">
+<h3 class="anchored" data-anchor-id="test-generation-as-verification">Test Generation as Verification</h3>
+<p>When no test directly exercises the reported bug, some agents <em>generate new tests</em> before attempting the fix. This “test-first” approach from <a href="https://arxiv.org/abs/2407.01489">Agentless</a> and others provides a verification signal even when existing coverage is sparse. Generated tests can also be included in the patch, improving long-term code quality.</p>
+</section>
+<section id="speculative-editing-and-patch-sampling" class="level3">
+<h3 class="anchored" data-anchor-id="speculative-editing-and-patch-sampling">Speculative Editing and Patch Sampling</h3>
+<p>Rather than committing to a single edit trajectory, some systems generate multiple candidate patches in parallel and select among them using a discriminator. <a href="https://arxiv.org/abs/2407.01489">Agentless</a> generates multiple candidate repairs via sampling and uses a <em>patch validation</em> phase — running the existing test suite on each candidate — to rank and filter solutions before returning any result. This sampling-and-ranking approach trades inference cost for reliability, and is especially effective when the model has high recall but imprecise precision.</p>
+</section>
+<section id="retrieval-augmented-code-editing" class="level3">
+<h3 class="anchored" data-anchor-id="retrieval-augmented-code-editing">Retrieval-Augmented Code Editing</h3>
+<p>Agents operating on large repositories cannot load entire codebases into context. Retrieval-augmented approaches combine: - <strong>BM25 keyword search</strong> for fast lexical matching against identifiers and strings - <strong>Embedding-based semantic search</strong> for matching natural-language issue descriptions against code semantics - <strong>Dependency graph traversal</strong> to find all callers/callees of a changed function - <strong>Repo maps</strong> (popularized by <a href="https://aider.chat">Aider</a>) — a compact, tag-based summary of all symbols across the codebase</p>
+<p>The choice of retrieval strategy substantially affects which bugs an agent can localize, and remains an active area of study.</p>
+</section>
+<section id="multi-agent-and-orchestrated-workflows" class="level3">
+<h3 class="anchored" data-anchor-id="multi-agent-and-orchestrated-workflows">Multi-Agent and Orchestrated Workflows</h3>
+<p>As individual agent capabilities mature, systems increasingly use <em>multi-agent orchestration</em>: separate specialist agents for planning, code writing, test generation, and review. <a href="https://github.com/OpenHands/OpenHands">OpenHands</a> provides a platform for composing such agents; <a href="https://github.com/features/copilot">GitHub Copilot Coding Agent</a> dispatches parallel agents when multiple issues are assigned simultaneously. Anthropic’s Claude Code now supports <a href="https://thenewstack.io/anthropic-launches-a-multi-agent-code-review-tool-for-claude-code/">multi-agent code review</a>, spinning up parallel reviewer agents to evaluate pull requests. Multi-agent approaches raise new coordination challenges: resolving conflicting edits, managing shared context, and preventing agent “echo chambers” where reviewer and author agents reinforce each other’s errors.</p>
+</section>
+<section id="training-for-agentic-coding" class="level3">
+<h3 class="anchored" data-anchor-id="training-for-agentic-coding">Training for Agentic Coding</h3>
+<p>Beyond prompting general-purpose models, a growing trend is fine-tuning models specifically on software engineering agent trajectories. <a href="https://mistral.ai/news/devstral">Devstral</a> was trained by Mistral AI in collaboration with All Hands AI on agentic coding traces collected through the OpenHands framework. Similarly, <a href="https://swesmith.com">SWE-smith</a> (from the SWE-bench team) provides a large-scale synthetic training dataset of agent-environment interactions for SWE-bench-style tasks. Training on agentic trajectories — full multi-step sequences of tool calls, observations, and edits — rather than individual code completions produces models that are substantially better at maintaining coherent state across long coding sessions.</p>
+</section>
+<section id="sandboxed-execution-environments" class="level3">
+<h3 class="anchored" data-anchor-id="sandboxed-execution-environments">Sandboxed Execution Environments</h3>
+<p>Autonomous agents must run arbitrary code safely. Production systems use: - <strong>Container isolation</strong> (Docker, microVMs): each task runs in a fresh, ephemeral environment - <strong>Network restrictions</strong>: preventing agents from exfiltrating data or making unintended API calls - <strong>Filesystem snapshots</strong>: enabling rollback to a clean state after failed attempts - <strong>Resource limits</strong>: timeouts and CPU/memory caps preventing runaway processes</p>
+<p>GitHub Copilot Coding Agent and OpenAI Codex both run in cloud-managed sandboxes; Claude Code and Aider operate directly on the developer’s local machine, shifting the sandboxing responsibility to the developer.</p>
+<hr>
+</section>
+</section>
+<section id="the-agent-vs.-tool-spectrum" class="level2">
+<h2 class="anchored" data-anchor-id="the-agent-vs.-tool-spectrum">The Agent vs.&nbsp;Tool Spectrum</h2>
+<p>Coding AI exists on a spectrum of autonomy. It is important to match the right level of automation to the task: higher autonomy does not always mean better outcomes, especially when requirements are ambiguous or when mistakes are costly to reverse.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 26%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Level</th>
+<th>Example</th>
+<th>Human Involvement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Autocomplete</td>
+<td>Copilot inline suggestions</td>
+<td>Accepts/rejects each suggestion</td>
+</tr>
+<tr class="even">
+<td>Chat</td>
+<td>ChatGPT, Copilot Chat</td>
+<td>Reviews and applies each code block</td>
+</tr>
+<tr class="odd">
+<td>Agentic edit</td>
+<td>Cursor Composer, Claude Code</td>
+<td>Reviews final diff</td>
+</tr>
+<tr class="even">
+<td>Autonomous agent</td>
+<td>Devin, Copilot Coding Agent</td>
+<td>Reviews pull request</td>
+</tr>
+<tr class="odd">
+<td>Fully autonomous</td>
+<td><em>Research frontier</em></td>
+<td>Post-hoc audit</td>
+</tr>
+</tbody>
+</table>
+<p>The <strong>inner loop</strong> (writing a specific function, fixing a specific bug) is largely solved for well-specified tasks. The <strong>outer loop</strong> — understanding vague requirements, decomposing features into subtasks, managing cross-cutting concerns — remains challenging.</p>
+<p><strong>When to use each level:</strong> - <strong>Autocomplete</strong>: Fastest, lowest risk, best for boilerplate and well-understood APIs - <strong>Chat</strong>: For exploration, understanding unfamiliar code, or one-off scripts - <strong>Agentic edit</strong>: For multi-file refactors or feature additions in familiar codebases - <strong>Autonomous agent</strong>: For well-defined, testable tasks (bug fixes, dependency upgrades, test generation) where the cost of human review is acceptable</p>
+<section id="human-in-the-loop-patterns" class="level3">
+<h3 class="anchored" data-anchor-id="human-in-the-loop-patterns">Human-in-the-Loop Patterns</h3>
+<ul>
+<li><strong>Iterative clarification</strong>: Agent asks targeted questions before proceeding (reduces misunderstandings)</li>
+<li><strong>Checkpoint approval</strong>: Human approves intermediate plans before execution (prevents costly mistakes)</li>
+<li><strong>Pull-request review</strong>: Standard software engineering workflow applied to agent output</li>
+<li><strong>Parallel agents + voting</strong>: Multiple agents attempt the same task independently; a reviewer picks the best patch</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="open-problems" class="level2">
+<h2 class="anchored" data-anchor-id="open-problems">Open Problems</h2>
+<section id="hallucinated-apis-and-imports" class="level3">
+<h3 class="anchored" data-anchor-id="hallucinated-apis-and-imports">Hallucinated APIs and Imports</h3>
+<p>Agents frequently invoke functions, classes, or module attributes that do not exist — producing code that looks plausible but fails at runtime. This is especially common for less-popular libraries underrepresented in training data, recent APIs introduced after training cutoffs, and internal/proprietary codebases with no public documentation. Grounding agents in the actual installed package versions (via <code>pip show</code>, <code>--help</code> output, or indexed docs) partially mitigates this.</p>
+</section>
+<section id="context-window-limits-for-large-repos" class="level3">
+<h3 class="anchored" data-anchor-id="context-window-limits-for-large-repos">Context Window Limits for Large Repos</h3>
+<p>Industrial codebases can contain millions of lines across thousands of files — orders of magnitude beyond even the longest context windows. Current agents rely on retrieval and compression (repo maps, semantic search) to select relevant context. These retrieval heuristics can fail when the relevant code is structurally distant from the issue description. <a href="https://arxiv.org/abs/2509.16941">SWE-bench Pro</a> (ICLR 2025 workshop) specifically benchmarks “long-horizon” tasks requiring hours of human work, finding current agents fall far short.</p>
+</section>
+<section id="evaluating-code-quality-beyond-test-pass-rates" class="level3">
+<h3 class="anchored" data-anchor-id="evaluating-code-quality-beyond-test-pass-rates">Evaluating Code Quality Beyond Test Pass Rates</h3>
+<p>Test suites measure functional correctness for <em>anticipated</em> inputs but miss: - <strong>Security vulnerabilities</strong> introduced by agent patches - <strong>Performance regressions</strong> in code paths not tested - <strong>Maintainability degradation</strong> (increased complexity, poor naming, dead code) - <strong>Correctness of edge cases</strong> not covered by existing tests</p>
+<p>The field is actively developing richer evaluation protocols. <a href="https://arxiv.org/abs/2509.16941">SWE-bench Pro</a> includes human expert assessment; <a href="https://arxiv.org/abs/2503.15223">Are “Solved Issues” Really Solved Correctly?</a> (2025) showed that some benchmark “resolutions” contain subtle errors missed by automated tests.</p>
+</section>
+<section id="security-implications-of-autonomous-code-generation" class="level3">
+<h3 class="anchored" data-anchor-id="security-implications-of-autonomous-code-generation">Security Implications of Autonomous Code Generation</h3>
+<p>Autonomous agents with write access to codebases and the ability to run arbitrary shell commands represent significant attack surface: - <strong>Prompt injection via repository content</strong>: malicious comments or docstrings directing agent behavior - <strong>Supply chain attacks</strong>: agents installing or invoking unexpected packages - <strong>Credential exfiltration</strong>: agents inadvertently reading <code>.env</code> files or API keys - <strong>Unintended web requests</strong>: agents calling external services during task execution</p>
+<p>Sandboxing, network egress filtering, and human-in-the-loop checkpoints are standard mitigations, but formal threat models for coding agents remain an active research area. OpenHands and similar platforms expose security configuration APIs; best practices remain a moving target as agent capabilities expand.</p>
+</section>
+<section id="long-horizon-planning-for-complex-features" class="level3">
+<h3 class="anchored" data-anchor-id="long-horizon-planning-for-complex-features">Long-Horizon Planning for Complex Features</h3>
+<p>Current agents excel at scoped, well-defined tasks (fix this bug, add this unit test) but struggle with open-ended feature development requiring sustained multi-session context, architectural decision-making, and coordination across teams. The <a href="https://arxiv.org/abs/2509.16941">SWE-bench Pro</a> benchmark (tasks estimated to take 1–8+ hours for a human engineer) reveals that even state-of-the-art agents dramatically underperform on tasks requiring deep contextual understanding and cross-file architectural changes.</p>
+</section>
+<section id="benchmark-saturation-and-what-comes-next" class="level3">
+<h3 class="anchored" data-anchor-id="benchmark-saturation-and-what-comes-next">Benchmark Saturation and What Comes Next</h3>
+<p>SWE-bench Verified is approaching saturation: top systems in early 2026 resolve over 75% of its 500 tasks, and the marginal gap between human expert performance and agent performance on these specific instances is narrowing. This has accelerated development of harder benchmarks: - <a href="https://arxiv.org/abs/2509.16941">SWE-bench Pro</a> targets enterprise-level, multi-day tasks - <a href="https://www.swebench.com/multilingual-leaderboard.html">SWE-bench Multilingual</a> extends evaluation to non-Python repositories - <a href="https://arxiv.org/abs/2601.11868">Terminal-Bench</a> focuses on system administration and shell tasks beyond pure code editing</p>
+<p>The community also grapples with reproducibility: many high-scoring leaderboard submissions use proprietary scaffolds, undisclosed sampling parameters, or non-standard evaluation scripts, making direct comparison unreliable. OpenAI’s <a href="https://openai.com/index/introducing-swe-bench-verified/">SWE-bench Verified announcement</a> introduced human annotation to ensure problem quality, but did not standardize evaluation protocols. The <a href="https://www.swebench.com">official leaderboard</a> now encourages submitters to disclose scaffold details.</p>
+<p>The community faces a methodological tension: benchmarks rigorous enough to reflect real-world complexity are expensive to construct and may be resolved too quickly; easier benchmarks provide rapid iteration but lose signal as models improve.</p>
+<p>A deeper concern, highlighted in <a href="https://arxiv.org/abs/2503.15223"><em>Are “Solved Issues” in SWE-bench Really Solved Correctly?</em></a> (2025), is that benchmark test suites may inadequately distinguish correct from superficially correct patches — an agent that deletes a failing test technically “passes” but has not fixed anything. Robust evaluation requires human expert review alongside automated testing.</p>
+</section>
+<section id="the-vibe-coding-shift-and-its-discontents" class="level3">
+<h3 class="anchored" data-anchor-id="the-vibe-coding-shift-and-its-discontents">The “Vibe Coding” Shift and Its Discontents</h3>
+<p>The availability of capable coding agents has given rise to “vibe coding” — a practice where developers describe desired behavior in natural language and iterate on agent output without reading the generated code in detail. While this dramatically accelerates prototyping, it raises questions about code ownership, accountability, and the deskilling of software engineering. <a href="https://claude.com/product/claude-code">Claude Code</a>, <a href="https://cursor.com">Cursor</a>, and <a href="https://windsurf.com">Windsurf</a> all facilitate this workflow; critics argue it can produce “slop code” that accumulates technical debt invisibly, while proponents view it as a natural evolution of abstraction — comparable to the shift from assembly to high-level languages.</p>
+<hr>
+</section>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<section id="papers" class="level3">
+<h3 class="anchored" data-anchor-id="papers">Papers</h3>
+<ul>
+<li>Jimenez, C. E., Yang, J., Wettig, A., Yao, S., Pei, K., Press, O., &amp; Narasimhan, K. (2024). <strong>SWE-bench: Can Language Models Resolve Real-World GitHub Issues?</strong> ICLR 2024. <a href="https://arxiv.org/abs/2310.06770">arXiv:2310.06770</a></li>
+<li>Yang, J., Jimenez, C. E., Wettig, A., Lieret, K., Yao, S., Narasimhan, K., &amp; Press, O. (2024). <strong>SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering.</strong> NeurIPS 2024. <a href="https://arxiv.org/abs/2405.15793">arXiv:2405.15793</a></li>
+<li>Xia, C. S., Deng, Y., Dunn, S., &amp; Zhang, L. (2024). <strong>Agentless: Demystifying LLM-based Software Engineering Agents.</strong> <a href="https://arxiv.org/abs/2407.01489">arXiv:2407.01489</a></li>
+<li>Zhang, Y., Ruan, H., Fan, Z., &amp; Roychoudhury, A. (2024). <strong>AutoCodeRover: Autonomous Program Improvement.</strong> ISSTA 2024. <a href="https://arxiv.org/abs/2404.05427">arXiv:2404.05427</a></li>
+<li>Wang, X., Li, B., Song, Y., et al.&nbsp;(2024). <strong>OpenHands: An Open Platform for AI Software Developers as Generalist Agents.</strong> <a href="https://arxiv.org/abs/2407.16741">arXiv:2407.16741</a></li>
+<li>Yang, J., Jimenez, C. E., Zhang, A. L., et al.&nbsp;(2024). <strong>SWE-bench Multimodal: Do AI Systems Generalize to Visual Software Domains?</strong> <a href="https://arxiv.org/abs/2410.03859">arXiv:2410.03859</a></li>
+<li>Chen, M., Tworek, J., Jun, H., et al.&nbsp;(2021). <strong>Evaluating Large Language Models Trained on Code.</strong> <a href="https://arxiv.org/abs/2107.03374">arXiv:2107.03374</a></li>
+<li>Austin, J., Odena, A., Nye, M., et al.&nbsp;(2021). <strong>Program Synthesis with Large Language Models.</strong> <a href="https://arxiv.org/abs/2108.07732">arXiv:2108.07732</a></li>
+<li>Jain, N., Han, K., Gu, A., et al.&nbsp;(2024). <strong>LiveCodeBench: Holistic and Contamination Free Evaluation of Large Language Models for Code.</strong> <a href="https://arxiv.org/abs/2403.07974">arXiv:2403.07974</a></li>
+<li>Merrill, M. A., Shaw, A. G., Carlini, N., et al.&nbsp;(2025). <strong>Terminal-Bench: Benchmarking Agents on Hard, Realistic Tasks in Command Line Interfaces.</strong> <a href="https://arxiv.org/abs/2601.11868">arXiv:2601.11868</a></li>
+<li>Deng, X., Da, J., Pan, E., et al.&nbsp;(2025). <strong>Can AI Agents Solve Long-Horizon Software Engineering Tasks?</strong> (SWE-bench Pro) <a href="https://arxiv.org/abs/2509.16941">arXiv:2509.16941</a></li>
+<li>(2025). <strong>Are “Solved Issues” in SWE-bench Really Solved Correctly? An Empirical Study.</strong> <a href="https://arxiv.org/abs/2503.15223">arXiv:2503.15223</a></li>
+</ul>
+</section>
+<section id="blog-posts-resources" class="level3">
+<h3 class="anchored" data-anchor-id="blog-posts-resources">Blog Posts &amp; Resources</h3>
+<ul>
+<li>Cognition Labs. (March 12, 2024). <a href="https://cognition.ai/blog/introducing-devin">Introducing Devin, the first AI software engineer.</a></li>
+<li>OpenAI. (August 2024). <a href="https://openai.com/index/introducing-swe-bench-verified/">Introducing SWE-bench Verified.</a></li>
+<li>OpenAI. (May 2025). <a href="https://openai.com/index/introducing-codex/">Introducing Codex.</a></li>
+<li>GitHub. (May 2025). <a href="https://github.com/newsroom/press-releases/coding-agent-for-github-copilot">GitHub Introduces Coding Agent For GitHub Copilot.</a></li>
+<li>Mistral AI. (2025). <a href="https://mistral.ai/news/devstral">Introducing Devstral.</a> · <a href="https://mistral.ai/news/devstral-2-vibe-cli">Devstral 2.</a></li>
+<li>Codeium. (November 2024). <a href="https://windsurf.com">Introducing Windsurf, the first agentic IDE.</a></li>
+<li>Aider. (December 2024). <a href="https://aider.chat/2024/12/21/polyglot.html">o1 tops aider’s new polyglot leaderboard.</a></li>
+<li>Aider. <a href="https://aider.chat/docs/leaderboards/">LLM Leaderboards.</a></li>
+</ul>
+</section>
+<section id="code-projects" class="level3">
+<h3 class="anchored" data-anchor-id="code-projects">Code &amp; Projects</h3>
+<ul>
+<li><a href="https://github.com/SWE-agent/SWE-agent">SWE-agent</a> — Princeton/Stanford, NeurIPS 2024</li>
+<li><a href="https://github.com/SWE-agent/mini-swe-agent">mini-SWE-agent</a> — 100-line agent, &gt;74% on SWE-bench Verified</li>
+<li><a href="https://github.com/OpenAutoCoder/Agentless">Agentless</a> — UIUC, structured pipeline approach</li>
+<li><a href="https://github.com/OpenHands/OpenHands">OpenHands</a> — open-source platform (formerly OpenDevin)</li>
+<li><a href="https://github.com/nus-apr/auto-code-rover">AutoCodeRover</a> — NUS, AST-based code search</li>
+<li><a href="https://github.com/aorwall/moatless-tools">Moatless Tools</a> — cost-efficient SWE-bench toolkit</li>
+<li><a href="https://github.com/Aider-AI/aider">Aider</a> — open-source terminal coding agent</li>
+<li><a href="https://github.com/LiveCodeBench/LiveCodeBench">LiveCodeBench</a> — contamination-resistant benchmark</li>
+<li><a href="https://github.com/swe-bench/SWE-bench">SWE-bench</a> — official benchmark repository</li>
+<li><a href="https://github.com/laude-institute/terminal-bench">Terminal-Bench</a> — CLI agent benchmark</li>
+<li><a href="https://www.swebench.com/multilingual-leaderboard.html">SWE-bench Multilingual</a> — cross-language evaluation</li>
+<li><a href="https://cursor.com">Cursor</a> — AI-first IDE by Anysphere</li>
+<li><a href="https://windsurf.com">Windsurf</a> — agentic IDE by Codeium</li>
+<li><a href="https://www.augmentcode.com">Augment Code</a> — enterprise coding agents</li>
+<li><a href="https://aws.amazon.com/q/developer/">Amazon Q Developer</a> — AWS-integrated coding agent</li>
+<li><a href="https://mistral.ai/news/devstral">Devstral (Mistral AI)</a> — open-weight coding model</li>
+<li><a href="https://mistral.ai/news/devstral-2-vibe-cli">Devstral 2</a> — 123B, 72.2% SWE-bench Verified</li>
+<li><a href="https://github.com/anthropics/claude-code">Claude Code</a> — Anthropic’s terminal coding agent</li>
+</ul>
+<hr>
+<p><em>Back to <a href="./topics.html">Topics →</a> · See also: <a href="./infrastructure.html">Infrastructure →</a> · <a href="./evaluation.html">Evaluation →</a> · <a href="./economics.html">Economics →</a></em></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/llm-agents-survey\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
