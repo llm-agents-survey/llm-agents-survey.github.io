@@ -90,6 +90,30 @@ Making agent behavior interpretable, debuggable, and reliable — tracing infras
 Agents that work for hours, days, or indefinitely — error accumulation, memory architectures for sustained operation, hierarchical planning, METR time-horizon evaluations, and the autonomy spectrum.
 :::
 
+::: {.survey-card}
+::: {.card-icon}
+🏘️
+:::
+### [Agent Societies & Simulation](agent-societies.qmd)
+Multi-agent worlds and emergent collective behavior — Generative Agents (Smallville), CAMEL, MetaGPT, ChatDev, Concordia, Project Sid, economic simulations, and the open question of whether LLM societies model human behavior.
+:::
+
+::: {.survey-card}
+::: {.card-icon}
+⚖️
+:::
+### [Governance & Regulation](governance.qmd)
+Legal liability, the EU AI Act, US and UK frameworks, industry self-governance (RSP, Preparedness Framework), cascading delegation, agent identity, and the race between regulation and capability.
+:::
+
+::: {.survey-card}
+::: {.card-icon}
+🎓
+:::
+### [Agent Training & RL](agent-training.qmd)
+How agents learn from experience — RL for agents (GRPO, WebRL, Agent Q), trajectory learning (AgentTrek, SWE-smith), tool use training (Toolformer, Gorilla, ToolBench), test-time compute, and small model agents.
+:::
+
 :::
 
 ---

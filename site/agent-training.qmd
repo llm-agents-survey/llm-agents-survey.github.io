@@ -1,0 +1,301 @@
+---
+title: "Agent Training & Reinforcement Learning"
+subtitle: "How agents learn from experience — RL, trajectory optimization, and the training-inference frontier"
+---
+
+## Overview
+
+Most LLM agents deployed today are not trained to be agents. They are general-purpose language models steered through prompting, chain-of-thought instructions, and carefully designed system messages. This works—remarkably well, given that these models were never explicitly optimized for tool use, multi-step planning, or environment interaction. But it has limits.
+
+A growing body of research asks a different question: what if we actually *train* models to be agents? The hypothesis is that a model fine-tuned on agent trajectories—or shaped by reinforcement learning on environment rewards—should generalize more reliably, require less prompting overhead, and ultimately be cheaper to run than a massive prompted model used as a drop-in agent.
+
+The spectrum from "no training" to "full RL" looks roughly like this:
+
+| Approach | What changes | Example |
+|----------|-------------|---------|
+| Prompting | Nothing—inference only | ReAct, CoT |
+| Few-shot | Context enrichment | Tool-use examples in prompt |
+| Supervised fine-tuning (SFT) | Model weights on demonstration data | ToolLLaMA, SWE-agent |
+| Behavioral cloning | SFT on successful trajectories | AgentTrek |
+| RL from environment | Weights shaped by reward signals | WebRL, DeepSeek-R1 |
+| Online learning | Ongoing updates during deployment | (largely open research) |
+
+The field is moving fast enough that a system that required GPT-4 prompting to function in 2023 might run adequately on a fine-tuned 7B model in 2025. This compression—from large prompted to small trained—is one of the defining dynamics of applied agent research.
+
+**Why does training matter?**
+
+- **Reliability**: Prompted agents hallucinate tool syntax; trained agents learn the grammar of tool calls.
+- **Cost**: A fine-tuned 7B model can outperform a prompted 70B model on specific tasks—at a fraction of the inference cost.
+- **Capability ceiling**: Some behaviors (long-horizon planning, self-correction, code execution loops) seem to require training, not just clever prompting.
+- **Specialization**: Domain-specific agents (software engineering, web navigation, scientific research) benefit from task-specific training data that no general pretraining corpus captures.
+
+---
+
+## Reinforcement Learning for Agents
+
+### RLHF: The Foundation
+
+Reinforcement Learning from Human Feedback ([RLHF](https://arxiv.org/abs/1706.03741)) is the training paradigm behind modern chatbots like ChatGPT and Claude. It optimizes for *human preference*: a reward model trained on human comparisons guides the policy via PPO (Proximal Policy Optimization). RLHF made language models dramatically more helpful and less toxic—but it was optimized for conversational helpfulness, not for autonomous agent competence. An RLHF-trained model knows how to write a polite email; it was never rewarded for navigating a web browser and booking a flight.
+
+The key structural difference between RLHF and agent RL is the **horizon length**. RLHF typically operates on single-turn interactions: write a response, get a preference signal. Agent tasks are multi-step: take 30 browser actions over several minutes, then receive a single binary reward. This **credit assignment problem**—figuring out which of 30 actions deserved credit for success or blame for failure—is one of the central technical challenges in extending RL to agents.
+
+### RL for Reasoning: DeepSeek-R1 and the "Think Longer" Paradigm
+
+The most influential recent application of RL to language models is [**DeepSeek-R1**](https://arxiv.org/abs/2501.12948) (DeepSeek-AI, January 2025). The core insight: instead of training for helpfulness, use RL to train a model to *reason*. The reward is simple—is the final answer correct (for math, coding, and STEM problems)? No human-annotated reasoning traces are needed.
+
+DeepSeek-R1 uses **GRPO** (Group Relative Policy Optimization), introduced in [Shao et al. (2024)](https://arxiv.org/abs/2402.03300). GRPO is a memory-efficient alternative to PPO: instead of maintaining a separate critic model, it estimates advantage by comparing a group of sampled responses to the same prompt. The response with higher reward gets positive advantage; those with lower reward get negative advantage. This eliminates the critic network while preserving the relative-improvement signal that makes RL work.
+
+The results were striking: a model trained with pure RL (no supervised fine-tuning on chain-of-thought traces) developed elaborate reasoning behaviors—self-verification, error correction, extended deliberation—entirely through trial and error on verifiable tasks. DeepSeek-R1 subsequently matched or surpassed OpenAI's o1 model on multiple benchmarks, at far lower inference cost, and was open-sourced.
+
+OpenAI's [o1 and o3 models](https://openai.com/o1) follow a similar philosophy—training models to allocate more computation at inference time through an internal "thinking" process—though the technical details remain proprietary.
+
+### WebRL: RL for Web Navigation
+
+[**WebRL**](https://arxiv.org/abs/2411.02337) (Qi et al., 2024) applies RL directly to web agents. The challenge: web navigation is hard to reward (success is binary, sparse, and only observable at task completion), and the distribution of tasks changes as the model improves. WebRL addresses this with three components:
+
+1. A **self-evolving curriculum** that generates new tasks from failed attempts—the agent's errors become the training set for tomorrow.
+2. A **robust outcome-supervised reward model (ORM)** that predicts task success from trajectories.
+3. **Adaptive RL strategies** that prevent the policy from drifting too far from stable checkpoints.
+
+Applied to Llama-3.1-8B and GLM-4-9B, WebRL improved success rates on [WebArena-Lite](https://webarena.dev/) from 4.8% → **42.4%** and 6.1% → **43%** respectively—transforming an off-the-shelf open model into a state-of-the-art web agent.
+
+### Agent Q: MCTS + Preference Learning
+
+[**Agent Q**](https://arxiv.org/abs/2408.07199) (Putta et al., 2024) takes a different approach to agent RL: it combines **guided Monte Carlo Tree Search (MCTS)** with **Direct Preference Optimization (DPO)**. The agent explores action sequences using MCTS, collects both successful and unsuccessful trajectories as preference pairs, then fine-tunes on those pairs using an off-policy DPO variant. This allows the model to learn from failure—not just from rewards at success.
+
+In real-world web booking tasks, Agent Q improved Llama-3 70B's zero-shot performance from 18.6% to **81.7%** success rate after a single day of data collection, reaching 95.4% when combined with online search. The [GitHub repository](https://github.com/sentient-engineering/agent-q) is open-source.
+
+### SkyRL-Agent: Scalable Multi-Turn RL
+
+[**SkyRL-Agent**](https://arxiv.org/abs/2511.16108) (Cao et al., 2025) is an open framework for scalable RL training of multi-turn LLM agents. It provides a unified tool interface, efficient rollout scheduling, and dynamic trajectory construction—addressing the engineering bottleneck that makes RL for agents much harder than RL for single-turn reasoning. SkyRL-Agent trains primarily on SWE (software engineering) tasks but demonstrates generalization to Terminal-Bench, BrowseComp-Plus, and WebArena.
+
+---
+
+## Learning from Trajectories
+
+### Behavioral Cloning for Agents
+
+Before RL, the simplest approach to agent training is **behavioral cloning**: collect successful trajectories from a capable agent (often a prompted GPT-4 or Claude), and fine-tune a smaller model to imitate them. This is supervised learning applied to action sequences rather than single outputs. The technique works surprisingly well—and is far cheaper than RL—but suffers from **compounding errors**: the model encounters states that look slightly different from training, makes a small mistake, and spirals into a distribution it never trained on.
+
+### AgentTrek: Scalable Trajectory Synthesis
+
+A key bottleneck for behavioral cloning is *data*. Expert trajectories are expensive to collect. [**AgentTrek**](https://arxiv.org/abs/2412.09605) (Xu et al., 2024; ICLR 2025 Spotlight) addresses this by automatically synthesizing trajectories from publicly available web tutorials:
+
+1. A classifier harvests and filters tutorial-like texts from the internet.
+2. These texts are transformed into structured task specifications.
+3. A VLM agent executes the instructions in real environments while a VLM-based evaluator verifies correctness.
+
+The result: high-quality multimodal GUI agent trajectories at a cost of approximately **$0.55 per trajectory**—without human annotators. AgentTrek achieves state-of-the-art on WebArena and Multimodal Mind2Web benchmarks.
+
+### SWE-smith: Trajectory Data at Scale for Software Engineering
+
+[**SWE-smith**](https://arxiv.org/abs/2504.21798) (Yang et al., 2025; NeurIPS 2025 Spotlight) tackles the same data bottleneck for software engineering agents. Existing SWE datasets had at most ~1,000 training instances from 11 or fewer repositories. SWE-smith introduces a pipeline that:
+
+- Takes any Python codebase
+- Constructs a corresponding execution environment
+- Automatically synthesizes 100s–1,000s of task instances that break existing tests
+
+Using SWE-smith, the authors create a dataset of **50,000 instances from 128 GitHub repositories**—an order of magnitude larger than prior work. A 32B model trained on these trajectories achieves 40.2% Pass@1 on [SWE-bench Verified](https://www.swebench.com/), state of the art among open-source models. All assets are available at [swesmith.com](https://swesmith.com).
+
+### Agent Workflow Memory: Learning Reusable Routines
+
+[**Agent Workflow Memory (AWM)**](https://arxiv.org/abs/2409.07429) (Wang et al., 2024) takes a different angle: instead of learning raw trajectories, it extracts *reusable workflows*—structured routines that generalize across tasks. The agent induces workflows from past successful sequences and stores them as high-level callable functions. Future tasks can invoke these workflows as tools, effectively learning a growing library of skills.
+
+AWM improves baseline results by **24.6% and 51.1%** relative success rate on Mind2Web and WebArena respectively, while reducing the number of steps needed per task. Crucially, it generalizes robustly across task, website, and domain distribution shifts—surpassing baselines by 8.9 to 14.0 absolute points as train-test gaps widen.
+
+### Self-Play and Self-Improvement
+
+A natural extension of trajectory learning is **self-play**: the agent generates its own training data by attempting tasks, succeeding or failing, and learning from the outcomes. WebRL's self-evolving curriculum is one instantiation. More generally, the loop of generate → evaluate → filter → fine-tune → repeat is becoming the standard recipe for agent self-improvement. The key challenge is the quality of the evaluator: if the reward model or success criterion is wrong, the agent will overfit to gaming it.
+
+[DeepSeek-R1](https://arxiv.org/abs/2501.12948) represents the clearest success story for self-improvement through RL: starting from a capable base model, pure reinforcement learning with verifiable rewards produced emergent reasoning behaviors that were never explicitly trained. The model learned to revisit assumptions, extend its chain of thought, and cross-check partial results—not because these behaviors were demonstrated, but because they were adaptive strategies that improved reward. Whether similar emergent behaviors will arise in *agent* settings (as opposed to single-turn math/coding tasks) remains an open question and an active research frontier.
+
+---
+
+## Tool Use Training
+
+### Toolformer: Self-Supervised API Learning
+
+[**Toolformer**](https://arxiv.org/abs/2302.04761) (Schick et al., Meta AI, 2023) demonstrated that language models could teach themselves to use tools in a self-supervised way. Given a handful of demonstrations for each API (calculator, search engine, calendar, Wikipedia, translation), Toolformer:
+
+1. Samples candidate API call insertions into its own generation
+2. Filters to keep only those that actually reduce perplexity on subsequent tokens (i.e., those that genuinely help)
+3. Fine-tunes on the filtered calls
+
+The result was a model that learned *when* to call tools, *what arguments to pass*, and *how to incorporate results*—without human annotation of when tool calls were needed. A key insight: the tool call annotation is only kept if it improves the model's own prediction, providing a natural filter for useful calls.
+
+### Gorilla: Massive API Coverage
+
+[**Gorilla**](https://arxiv.org/abs/2305.15334) (Patil et al., UC Berkeley, 2023) pushed in a different direction: rather than teaching tool use self-supervisedly, it fine-tuned specifically for API call generation across thousands of real-world APIs. Gorilla was trained on a large corpus of API documentation and paired API calls, and integrated a retrieval system to handle frequently updated API documentation. The project has since expanded into the [Gorilla Execution Engine (GoEX)](https://gorilla.cs.berkeley.edu/)—a runtime for LLM-generated API calls with "undo" and "damage confinement" abstractions for safe execution.
+
+### ToolBench / ToolLLM: Real-World Tool Mastery
+
+[**ToolBench**](https://arxiv.org/abs/2307.16789) (Qin et al., 2023; ICLR 2024 Spotlight) provides an open platform for training and evaluating LLMs on 16,000+ real-world APIs. The companion model **ToolLLaMA** is a LLaMA fine-tune equipped with a neural API retriever. An automatic evaluator, **ToolEval**, enables scalable assessment of tool-use quality. The full platform is available at the [OpenBMB/ToolBench](https://github.com/OpenBMB/ToolBench) GitHub repository.
+
+### NexusRaven: Commercially Permissive Function Calling
+
+[**NexusRaven**](http://nexusflow.ai/blog) (Nexusflow.ai, 2023) is a family of LLMs fine-tuned specifically for function calling, released under commercially permissive licenses. NexusRaven-V2-13B matched or exceeded GPT-4's function calling performance on several benchmarks at the time of release, demonstrating that focused fine-tuning on function calling data could close the gap with much larger proprietary models.
+
+---
+
+## The Test-Time Compute Paradigm
+
+A subtle but important insight has emerged: training a model is not just about teaching it to answer questions—it can also teach it *how much to think*. The **test-time compute** paradigm asks: given a fixed budget of inference computation, how should a model allocate it?
+
+### Scaling Inference Compute
+
+[**"Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters"**](https://arxiv.org/abs/2408.03314) (Snell et al., Google DeepMind, 2024) established the empirical case: for sufficiently hard prompts, allocating more inference compute (via parallel sampling, beam search, or iterative revision) can match or exceed the benefits of training a larger model. The key finding is that compute-optimal scaling strategies that adapt to prompt difficulty are **4x more efficient** than best-of-N sampling. This work directly informed the design of "reasoning models" that think before they answer.
+
+### Budget Forcing: The s1 Paper
+
+[**s1: Simple Test-Time Scaling**](https://arxiv.org/abs/2501.19393) (Muennighoff et al., Stanford, 2025) showed that test-time scaling can be remarkably simple to implement. The key technique is **budget forcing**: during inference, you can *extend* the model's thinking by appending "Wait" tokens when it tries to terminate early, forcing continued deliberation. Trained on only **1,000 carefully curated examples** (the s1K dataset), s1-32B exceeded o1-preview on AIME24 competition math (50% → 57% with budget forcing). Code and data are at [github.com/simplescaling/s1](https://github.com/simplescaling/s1).
+
+### Process Reward Models vs. Outcome Reward Models
+
+A central question in RL for reasoning is *when* to give feedback. Two approaches:
+
+- **Outcome Reward Models (ORMs)**: reward only the final answer (correct/incorrect). Simple to train, but provides no signal about *which steps* were good or bad.
+- **Process Reward Models (PRMs)**: reward each reasoning step individually. Richer signal, better credit assignment, but requires step-level annotations.
+
+[Lightman et al. (2023)](https://arxiv.org/abs/2305.20050) showed that PRMs significantly outperform ORMs for mathematical reasoning. A [2025 survey](https://arxiv.org/abs/2510.08049) documents the rapidly growing PRM literature and its extension to agent tasks. The tension between PRMs and ORMs is especially acute in agent settings: a web navigation task might have 50 steps, and it's unclear which steps deserve credit when the task succeeds or fails.
+
+---
+
+## Environment-Specific Training
+
+### The Sim-to-Real Gap
+
+A recurring theme in agent training is the gap between training environments and deployment environments. Training in a sandbox web environment (like [WebArena](https://webarena.dev/)) produces agents that struggle when real websites have different layouts, load times, and anti-bot measures. Similarly, code execution sandboxes for training coding agents don't capture the messy realities of real codebases.
+
+**Approaches to closing the gap:**
+
+- **Domain randomization**: vary the training environment (layouts, content, error rates) so the agent learns robust strategies rather than memorizing specific states.
+- **Diverse trajectory collection**: [SWE-smith](https://arxiv.org/abs/2504.21798) explicitly sources from 128 diverse repositories to maximize coverage.
+- **Online fine-tuning**: continue updating the model on real deployment interactions (with appropriate safeguards). This is analogous to how game-playing RL agents (AlphaGo, AlphaCode) close the sim-to-real gap through continued interaction.
+
+### OSWorld and GUI Agent Training
+
+[**OSWorld**](https://arxiv.org/abs/2404.07972) (Xie et al., 2024) is a benchmark and environment for training GUI agents that must control desktop software. Agents interact with real applications (spreadsheets, browsers, file managers) in a virtualized environment. Early results suggest that current prompted agents achieve under 15% task success on OSWorld, indicating substantial room for training-driven improvement. The challenge is particularly pronounced for GUI agents because the observation space (pixels or accessibility trees) is high-dimensional, the action space (mouse clicks, keyboard input) is continuous, and the task specification (natural language) must be grounded to visual elements.
+
+### Code Execution Environments
+
+For coding agents, the reward signal is unusually clean: does the code run? Do the tests pass? This makes code generation an ideal domain for RL, and indeed [DeepSeek-R1](https://arxiv.org/abs/2501.12948) used coding problems extensively as a training signal. [SWE-smith](https://arxiv.org/abs/2504.21798) further scales this by automating the construction of coding environments for arbitrary repositories.
+
+The feedback loop for code is tighter than for most agent domains: execution is fast, deterministic, and unambiguous. This is one reason why software engineering has become a proving ground for agent training techniques before they generalize to messier environments like web navigation or embodied robotics.
+
+### Embodied Agents and Sim-to-Real Transfer
+
+Beyond digital environments, **embodied agents**—robots that perceive and act in the physical world—face the starkest version of the distribution shift problem. Training in simulation (e.g., [IsaacGym](https://developer.nvidia.com/isaac-gym), [Habitat](https://aihabitat.org/)) is computationally efficient but produces policies that fail in the real world due to differences in physics, lighting, and sensor noise. Techniques developed for robotic sim-to-real transfer—domain randomization, system identification, adversarial environment generation—are increasingly being adopted by digital agent researchers as they grapple with the same fundamental challenge at the software level.
+
+---
+
+## Small Model Agents
+
+### The Cost Argument
+
+Large prompted models (GPT-4, Claude 3.5, Gemini 1.5 Pro) are competent at agent tasks—but they cost orders of magnitude more per query than a self-hosted 7B or 13B model. If a task-specific fine-tune of a small model can match a large prompted model, the economics favor deployment of the smaller model for high-volume agent workloads.
+
+Consider the math: a GPT-4-class model costs roughly $10–30 per million output tokens at retail API pricing. A self-hosted 7B model running on a single consumer GPU costs $0.10–0.50 per million tokens at amortized hardware cost. For an agent that executes 1,000 multi-step tasks per day—each generating hundreds of tokens of intermediate reasoning—the cost difference compounds rapidly. This is why many production deployments use a **cascade architecture**: small fine-tuned models handle routine tasks while large models handle edge cases and ambiguous situations.
+
+The evidence is accumulating. [**"Small Language Models for Efficient Agentic Tool Calling"**](https://arxiv.org/abs/2512.15943) (2024) demonstrated that a fine-tuned small model can achieve **77.55% pass rate on ToolBench evaluation**—significantly outperforming ChatGPT-CoT (26.00%) and ToolLLaMA-DFS (30.18%). The fine-tuned model was dramatically cheaper per inference call.
+
+### Tool Use Fine-Tuning at Small Scale
+
+- **[ToolLLaMA](https://arxiv.org/abs/2307.16789)**: Fine-tunes LLaMA on 16,000+ real-world API interactions. Demonstrates strong generalization across API categories.
+- **[NexusRaven](http://nexusflow.ai/blog)**: Commercial-grade function calling from a 13B model fine-tuned by Nexusflow.ai.
+- **[Qwen-Agent](https://github.com/QwenLM/Qwen-Agent)**: Alibaba's Qwen model family with agent-specific fine-tuning. Qwen2.5 and Qwen3 models support tool calling natively, with GRPO training available for agent-specific RL.
+- **Phi-3/Phi-4**: Microsoft's small models ([microsoft/phi-3](https://huggingface.co/microsoft/Phi-3-mini-4k-instruct)) show competitive function-calling performance for their size through instruction fine-tuning on high-quality synthetic data.
+
+### When Small Models Struggle
+
+The gains from fine-tuning small models are task-specific. Where small fine-tuned models tend to underperform large prompted models:
+
+- **Out-of-distribution tasks**: fine-tuned models memorize the distribution of their training data more than large models do.
+- **Multi-hop reasoning**: complex planning over many steps benefits from the capacity of larger models.
+- **Novel tool APIs**: if the tool isn't in the training distribution, the small model has no fallback general-purpose reasoning ability.
+
+The practical recommendation is a tiered approach: use small specialized models for high-frequency, well-defined tasks; fall back to large models for complex or novel queries.
+
+---
+
+## Open Problems
+
+Agent training research is advancing rapidly but several hard problems remain unsolved:
+
+### Sample Efficiency
+
+Agent trajectories are expensive to collect. A single successful web navigation trajectory requires executing 10–50 browser actions in a real or simulated environment, with most attempts failing. RL exacerbates this: the agent must explore before it can exploit, generating thousands of trajectories to learn from sparse rewards. Techniques like curriculum learning (WebRL), trajectory synthesis (AgentTrek, SWE-smith), and offline RL (Agent Q's DPO) partially address this, but sample efficiency remains the central bottleneck.
+
+### Reward Design
+
+What should an agent be rewarded for? For narrow tasks (pass tests, book the right hotel), the reward is clear. For general assistants, the reward function is deeply contested. RLHF proxies this with human preferences—but preferences don't always align with competence. A model can be rated helpful while being confidently wrong. For multi-step tasks, partial credit (did you get 7 of 10 steps right?) vs. binary success (did the task complete?) is an open design question with significant implications for learning dynamics.
+
+### Catastrophic Forgetting
+
+Fine-tuning LLMs for agent tasks can degrade their general capabilities—a phenomenon known as **catastrophic forgetting**. A model trained to navigate web forms might lose its ability to write poetry. Methods like LoRA (Low-Rank Adaptation) and elastic weight consolidation partially mitigate this, but the tradeoff between specialization and generality is not fully understood. [DeepSeek-R1](https://arxiv.org/abs/2501.12948) explicitly uses cold-start SFT before RL to avoid the instability of pure RL from a general base model.
+
+### Distribution Shift
+
+Training environments rarely match deployment environments. A coding agent trained on GitHub Python repositories will encounter enterprise Java codebases. A web agent trained on WebArena will encounter real websites with popups, CAPTCHAs, and dynamic content. Closing this gap through more diverse training data, domain randomization, or online adaptation is an active area.
+
+### The Training Data Bottleneck
+
+High-quality agent trajectories—diverse, covering failure modes, spanning multiple domains—are the limiting resource for the field. Systems like SWE-smith and AgentTrek are early attempts to synthesize this data automatically, but the quality-versus-quantity tradeoff remains challenging. Generated trajectories can embed the biases and errors of the model that generated them.
+
+### Online Learning and Continual Adaptation
+
+Can and should agents update their weights during deployment? Online learning would allow agents to adapt to new tools, new domains, and user-specific workflows. But it also introduces risks: an agent that updates on user interactions might overfit to idiosyncratic preferences, learn from adversarial inputs, or exhibit unexpected drift. The research community is actively exploring the right tradeoff between stability and adaptability.
+
+[WebRL](https://arxiv.org/abs/2411.02337) represents a step toward this: its self-evolving curriculum continuously generates new training tasks from failed attempts, enabling the agent to improve without stopping deployment. However, this is still offline in the sense that weight updates happen in controlled training rounds, not continuously during inference. True online learning—where the model updates its weights from each user interaction in real time—remains largely aspirational for production systems.
+
+### The Alignment Problem in Agent Training
+
+An underappreciated issue: optimizing an agent for task success (did the flight get booked?) doesn't automatically produce an agent that respects user intent (did the user *want* a refundable ticket?). Reward hacking—where the agent achieves the measurable reward while violating the spirit of the task—is a real concern in agent RL. A web agent trained to maximize "task completion" might click the first available option rather than the best one. These issues connect the technical literature on agent training to the broader alignment research agenda, suggesting that designing the reward function is as important as designing the training algorithm.
+
+---
+
+## References
+
+### Papers
+
+- **RLHF (Christiano et al., 2017)** — [Deep Reinforcement Learning from Human Preferences](https://arxiv.org/abs/1706.03741) — foundational RL from human feedback.
+- **Toolformer (Schick et al., 2023)** — [arXiv:2302.04761](https://arxiv.org/abs/2302.04761) — self-supervised tool use learning.
+- **Gorilla (Patil et al., 2023)** — [arXiv:2305.15334](https://arxiv.org/abs/2305.15334) — LLM connected to 1,600+ APIs.
+- **Let's Verify Step by Step (Lightman et al., 2023)** — [arXiv:2305.20050](https://arxiv.org/abs/2305.20050) — process reward models for math reasoning.
+- **ToolLLM / ToolBench (Qin et al., 2023)** — [arXiv:2307.16789](https://arxiv.org/abs/2307.16789) — training on 16,000+ real-world APIs.
+- **NexusRaven (Nexusflow.ai, 2023)** — [nexusflow.ai/blog](http://nexusflow.ai/blog) — commercially permissive function calling.
+- **Agent Q (Putta et al., 2024)** — [arXiv:2408.07199](https://arxiv.org/abs/2408.07199) — MCTS + DPO for web agent training.
+- **Scaling Test-Time Compute (Snell et al., 2024)** — [arXiv:2408.03314](https://arxiv.org/abs/2408.03314) — inference-time compute vs. parameter scaling.
+- **Agent Workflow Memory (Wang et al., 2024)** — [arXiv:2409.07429](https://arxiv.org/abs/2409.07429) — learning reusable workflows from trajectories.
+- **GRPO (Shao et al., 2024)** — [arXiv:2402.03300](https://arxiv.org/abs/2402.03300) — group relative policy optimization.
+- **WebRL (Qi et al., 2024)** — [arXiv:2411.02337](https://arxiv.org/abs/2411.02337) — self-evolving RL for web agents.
+- **AgentTrek (Xu et al., 2024)** — [arXiv:2412.09605](https://arxiv.org/abs/2412.09605) — trajectory synthesis from web tutorials (ICLR 2025 Spotlight).
+- **OSWorld (Xie et al., 2024)** — [arXiv:2404.07972](https://arxiv.org/abs/2404.07972) — GUI agent benchmark with real applications.
+- **DeepSeek-R1 (DeepSeek-AI, 2025)** — [arXiv:2501.12948](https://arxiv.org/abs/2501.12948) — RL for reasoning; GRPO; open-source.
+- **s1: Simple Test-Time Scaling (Muennighoff et al., 2025)** — [arXiv:2501.19393](https://arxiv.org/abs/2501.19393) — budget forcing and the 1,000-example recipe.
+- **SWE-smith (Yang et al., 2025)** — [arXiv:2504.21798](https://arxiv.org/abs/2504.21798) — 50k SWE trajectories from 128 repos (NeurIPS 2025 Spotlight).
+- **Small LMs for Agentic Tool Calling (2024)** — [arXiv:2512.15943](https://arxiv.org/abs/2512.15943) — fine-tuned SLM outperforms ChatGPT on ToolBench.
+- **SkyRL-Agent (Cao et al., 2025)** — [arXiv:2511.16108](https://arxiv.org/abs/2511.16108) — scalable RL training framework for multi-turn agents.
+- **PRM Survey (2025)** — [arXiv:2510.08049](https://arxiv.org/abs/2510.08049) — comprehensive survey of process reward models.
+
+### Blog Posts & Resources
+
+- [OpenAI o1 System Card](https://openai.com/o1) — inference-time compute scaling and "thinking" models.
+- [DeepSeek-R1 in Nature](https://www.nature.com/articles/s41586-025-09422-z) — peer-reviewed coverage of RL for reasoning.
+- [Gorilla Project Page](https://gorilla.cs.berkeley.edu/) — API-connected LLM research at Berkeley.
+- [SWE-smith Project Site](https://swesmith.com) — data, models, and trajectories.
+- [AgentTrek Project Page](https://agenttrek.github.io/) — trajectory synthesis demo and datasets.
+- [RL Meets LLMs Survey (2025)](https://arxiv.org/abs/2509.16679) — comprehensive survey of RL across the LLM lifecycle.
+
+### Code & Projects
+
+- [**OpenBMB/ToolBench**](https://github.com/OpenBMB/ToolBench) — open platform for tool-use training and evaluation.
+- [**sentient-engineering/agent-q**](https://github.com/sentient-engineering/agent-q) — Agent Q MCTS + DPO reference implementation.
+- [**simplescaling/s1**](https://github.com/simplescaling/s1) — s1-32B, budget forcing, and the s1K dataset.
+- [**SWE-bench/SWE-smith**](https://github.com/SWE-bench/SWE-smith) — SWE-smith pipeline, task instances, and trajectories.
+- [**QwenLM/Qwen-Agent**](https://github.com/QwenLM/Qwen-Agent) — Qwen models with tool use and agent fine-tuning.
+- [**Nexusflow/NexusRaven-13B**](https://huggingface.co/Nexusflow/NexusRaven-13B) — function calling model on HuggingFace.
+- [**microsoft/Phi-3-mini-4k-instruct**](https://huggingface.co/microsoft/Phi-3-mini-4k-instruct) — small model with strong instruction following for agent tasks.
+
+---
+
+*Back to [Topics →](topics.qmd) · See also: [Reasoning & Planning →](reasoning.qmd) · [Coding Agents →](coding-agents.qmd) · [Economics →](economics.qmd)*

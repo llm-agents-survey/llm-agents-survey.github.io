@@ -21,6 +21,9 @@ project:
     - coding-agents.qmd
     - observability.qmd
     - long-horizon.qmd
+    - agent-societies.qmd
+    - governance.qmd
+    - agent-training.qmd
     - community.qmd
     - resources.qmd
 
@@ -71,6 +74,12 @@ website:
             text: Observability & Robustness
           - href: long-horizon.qmd
             text: Long-Horizon Autonomy
+          - href: agent-societies.qmd
+            text: Agent Societies & Simulation
+          - href: governance.qmd
+            text: Governance & Regulation
+          - href: agent-training.qmd
+            text: Agent Training & RL
       - href: community.qmd
         text: Community
       - href: resources.qmd

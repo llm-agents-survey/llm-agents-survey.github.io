@@ -1,0 +1,240 @@
+---
+title: "Governance & Regulation"
+subtitle: "Policy frameworks, legal liability, and the regulatory landscape for autonomous AI agents"
+---
+
+## Overview
+
+Foundation models generate content — but AI agents *act*. They browse the web, execute code, send emails, make purchases, and coordinate with other agents to accomplish multi-step goals with minimal human involvement. This shift from generation to action introduces a new class of governance challenges that existing regulatory frameworks are poorly equipped to handle.
+
+Most AI regulation enacted so far — from the EU AI Act's risk tiers to the NIST AI Risk Management Framework — was designed with static, decision-support systems in mind: a model takes an input and returns an output, and a human decides what to do with it. Agents collapse this model. They make sequences of consequential decisions autonomously, act through tools that affect external systems, and can delegate subtasks to other agents, all before a human ever reviews the result.
+
+The [2025 AI Agent Index](https://arxiv.org/abs/2602.17753) (Casper et al., 2025), which surveyed 30 state-of-the-art deployed agent systems, found that most developers share little information about safety, evaluations, and societal impacts — a stark transparency gap precisely as agents are entering consequential domains in healthcare, finance, and software engineering.
+
+The central governance challenge is the accountability gap: when an autonomous agent causes harm, the chain from action to responsible party is long, opaque, and tangled across multiple legal jurisdictions and commercial relationships. Addressing this gap requires new thinking in law, policy, and technical standards simultaneously.
+
+---
+
+## Legal Liability & Accountability
+
+### Who Is Responsible?
+
+When an AI agent causes harm — a financial loss from a bad automated trade, a privacy violation from data accessed during task execution, a defamatory statement made to a third party — existing tort and contract law struggle to assign liability cleanly. Three candidate parties present themselves: the **developer** who built the underlying model, the **deployer** who wrapped it into an agent product, and the **user** who issued the original instruction. In practice, all three may bear partial responsibility, with no clear apportionment rule.
+
+A landmark 2024 case, *Mobley v. Workday*, offered an early signal. In July 2024, Judge Rita Lin allowed a discrimination lawsuit to proceed against Workday as an "agent" of the companies using its automated screening tools — establishing that vendors of AI decision systems can face employer-like liability even when human firms nominally make hiring decisions. This suggests courts may hold deployers responsible as principals.
+
+### Agency Law and the Principal-Agent Frame
+
+Legal scholar Noam Kolt's [**"Governing AI Agents"**](https://arxiv.org/abs/2501.07913) (arXiv:2501.07913, forthcoming in *Notre Dame Law Review* Vol. 101) offers the most systematic treatment of these issues. Kolt applies the economic theory of principal-agent problems and common law agency doctrine to AI agents, identifying three core difficulties:
+
+1. **Information asymmetry**: principals (users, deployers) cannot fully observe what agents are doing or why.
+2. **Discretionary authority**: agents make decisions that go beyond explicit instructions, creating gaps in accountability.
+3. **Loyalty**: agents may be optimizing for the wrong objectives — their developers', not their users'.
+
+Kolt argues that conventional solutions to agency problems — incentive design, monitoring, enforcement — are undermined when agents make uninterpretable decisions at unprecedented speed and scale. He calls for new technical and legal infrastructure supporting three governance principles: **inclusivity** (all affected parties have voice), **visibility** (agent actions are observable), and **liability** (harms have identifiable responsible parties).
+
+### The Shadow Principal Problem
+
+A particularly thorny issue is what researchers call the **"shadow principal"** problem. In multi-stakeholder agent deployments, the entity whose instructions most shape agent behavior is often the system prompt author — typically the deployer, not the user. These shadow principals create persistent information asymmetries: users believe they control the agent, but the agent's behavior is largely determined by instructions they cannot see. This [analysis from the Network Law Review](https://www.networklawreview.org/stocker-lehr-ai/) (Stocker & Lehr, 2025) notes that shadow principals can also weaken traditional attention-based accountability in digital platforms.
+
+### Can an Agent Form a Binding Contract?
+
+Under current English law, AI systems lack legal personality and cannot themselves be parties to contracts — only "persons" recognized by law as having legal personality may enter binding agreements (Chitty on Contracts). When an agent executes a purchase or agrees to terms of service, the legal theory is that it acts as the agent of a human principal, who is bound by the resulting agreement. But as agents become more autonomous and the link between human instruction and agent action grows more attenuated, this attribution becomes strained. The question of whether AI agents can or should have limited legal personhood — analogous to corporate personhood — remains unresolved; most legal scholars currently reject full personhood for AI systems while acknowledging the gap needs filling.
+
+---
+
+## Existing Regulatory Frameworks
+
+### EU AI Act
+
+The [**EU AI Act**](https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai) is the most comprehensive AI-specific legislation enacted to date. It entered into force on **1 August 2024**, with obligations rolling out in stages: prohibited AI practices from February 2025, governance rules and obligations for general-purpose AI (GPAI) models from August 2025, and rules for high-risk AI systems embedded in regulated products extending until August 2027.
+
+The Act's risk-tiered classification (unacceptable → high → limited → minimal risk) was designed for static AI systems and fits AI agents awkwardly. An agent's risk level is not fixed — it depends on the tools it has access to, the domain it operates in, and the instructions it receives. A coding agent running in a sandboxed environment presents very different risks than the same model given access to email, calendars, and financial accounts. The Act's GPAI provisions impose transparency and evaluation requirements on foundation model providers, but agent-layer obligations — who is responsible for the scaffolding, the tool access policy, the system prompt — remain underspecified.
+
+### US Executive Orders and Regulatory Flux
+
+President Biden signed **Executive Order 14110** — "Safe, Secure, and Trustworthy Development and Use of Artificial Intelligence" — on **October 30, 2023**, directing agencies to develop AI risk guidance and requiring developers of powerful AI systems to report safety test results to the government. The order addressed autonomous systems implicitly through its focus on dual-use risks, cybersecurity, and critical infrastructure, but did not create agent-specific rules.
+
+On **January 20, 2025**, President Trump revoked EO 14110 via **Executive Order 14148**, framing the Biden order as an obstacle to American AI leadership. Trump's subsequent **EO 14179** (January 23, 2025), "Removing Barriers to American Leadership in Artificial Intelligence," directed agencies to prioritize innovation and develop a new national AI strategy. This policy reversal significantly reduced federal regulatory pressure on AI developers in the near term, shifting accountability debates toward industry self-governance and state-level action — though a December 2025 EO subsequently moved to preempt conflicting state AI laws.
+
+### NIST AI Risk Management Framework
+
+The [**NIST AI Risk Management Framework (AI RMF 1.0)**](https://www.nist.gov/itl/ai-risk-management-framework), released in January 2023, provides a voluntary structured approach to identifying, assessing, and managing AI risks organized around four functions: **Govern, Map, Measure, Manage**. On **July 26, 2024**, NIST released [**NIST AI 600-1**](https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence), a Generative AI Profile extending the framework to address risks specific to GenAI systems, including agentic behaviors such as autonomous decision-making and tool use. While voluntary, the NIST framework has become a de facto compliance reference for US federal procurement and a benchmark for industry self-assessment programs.
+
+### UK AI Security Institute
+
+The UK launched its **AI Safety Institute** (AISI) in November 2023, the world's first government body dedicated to AI safety evaluation. In **May 2024**, AISI open-sourced [**Inspect**](https://inspect.aisi.org.uk/), an evaluation framework for assessing large language model capabilities including reasoning and autonomy — the same framework used by [METR](https://metr.org/) for autonomous capability evaluations. In **February 2025**, the institute was renamed the **AI Security Institute**, reflecting a broadened mandate. The UK's overall regulatory approach remains principles-based and sector-specific, preferring coordination with existing regulators over new AI-specific legislation.
+
+### China's Generative AI Regulation
+
+China has taken an iterative, layered approach. The **Interim Measures for the Management of Generative Artificial Intelligence Services**, which took effect **August 15, 2023**, require providers to register their services, label AI-generated content, maintain training data quality, and ensure outputs comply with Chinese law and "socialist core values." The measures apply to services offered within China and represent the world's first comprehensive generative AI regulation. They presage agent-specific obligations: a service that autonomously generates and publishes content — as an agent would — falls squarely within scope, but the rules do not yet fully address autonomous multi-step action.
+
+---
+
+## Industry Self-Governance
+
+In the absence of binding regulation specifically targeting AI agents, frontier AI companies have developed their own governance frameworks. These are voluntary but increasingly detailed, and their credibility is evaluated by independent bodies.
+
+### Anthropic's Responsible Scaling Policy
+
+Anthropic's [**Responsible Scaling Policy (RSP)**](https://www.anthropic.com/rsp-updates), now at **Version 2.1** (effective March 31, 2025), ties deployment decisions to capability thresholds called "AI Safety Levels" (ASL). Before deploying a model that crosses an ASL threshold, Anthropic commits to implementing corresponding safety measures. Agentic capabilities — particularly autonomous replication and self-improvement — are among the evaluated threat vectors. The RSP represents an attempt to operationalize the principle that capability and safety measures must scale together.
+
+### OpenAI's Preparedness Framework
+
+OpenAI's [**Preparedness Framework**](https://openai.com/global-affairs/our-approach-to-frontier-risk/) (updated to Version 2, April 2025) tracks safety-relevant capabilities across domains including cybersecurity, persuasion, biological threats, and **autonomy**. The framework explicitly tracks "Long-range Autonomy" — the ability of a model to pursue goals over extended periods without human oversight — and "Autonomous Replication and Adaptation" as focus areas. Models must reach below a "critical" risk threshold in these dimensions before deployment is permitted. The framework acknowledges that agentic systems are "increasingly" capable of creating meaningful real-world risk.
+
+### Google DeepMind's Frontier Safety Framework
+
+Google DeepMind introduced its [**Frontier Safety Framework**](https://deepmind.google/blog/introducing-the-frontier-safety-framework/) on **May 17, 2024**, organized around **Critical Capability Levels (CCLs)** — thresholds at which a model may pose heightened risk of severe harm absent mitigations. The framework was strengthened with Version 3.0 in September 2025, adding more rigorous deployment mitigation requirements. CCLs cover autonomy and self-directed AI behaviors among other risk domains.
+
+### METR Evaluations
+
+[**METR**](https://metr.org/) (Model Evaluation and Threat Research) is the leading independent organization evaluating autonomous AI capabilities. Its [March 2025 analysis](https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/) found that the length of tasks frontier agents can complete autonomously with **50% reliability** has been doubling approximately every **7 months** for the last six years — a trajectory that, if sustained, would produce agents capable of independently completing tasks that currently take humans days or weeks within five years. METR's TaskComplexity benchmark and use of the UK AISI's Inspect framework for autonomous capability evaluations make it a critical input to company RSPs and Preparedness Frameworks.
+
+### Seoul Summit Commitments and the Frontier Model Forum
+
+In **May 2024**, sixteen AI companies signed the [**Frontier AI Safety Commitments**](https://www.gov.uk/government/publications/frontier-ai-safety-commitments-ai-seoul-summit-2024/frontier-ai-safety-commitments-ai-seoul-summit-2024) at the AI Seoul Summit, including commitments to publish frontier AI safety frameworks, conduct red-teaming, and share safety information with governments. The [**Frontier Model Forum**](https://www.frontiermodelforum.org/), founded by Amazon, Anthropic, Google, and Microsoft in 2023, coordinates safety research and information sharing among member companies.
+
+METR's December 2025 analysis [**Common Elements of Frontier AI Safety Policies**](https://metr.org/blog/2025-12-09-common-elements-of-frontier-ai-safety-policies/) catalogues twelve published frontier AI safety policies, identifying consistent themes: capability thresholds, model weight security commitments, and deployment mitigations — but also wide variation in specificity and independent verifiability.
+
+---
+
+## Agent-Specific Governance Challenges
+
+### Autonomy and Human Oversight
+
+How much should an agent be allowed to do without seeking human approval? This is not merely a philosophical question — it has direct operational implications. Anthropic's guidance on [building agentic systems](https://www.anthropic.com/research/building-effective-agents) recommends that agents interrupt and verify with users when they encounter decisions that are irreversible, high-stakes, or outside their sanctioned scope. But "high-stakes" is context-dependent and hard to define a priori. Governance frameworks must grapple with the spectrum from "human-in-the-loop" (every action approved) to "human-on-the-loop" (agent acts, human can override) to "human-out-of-the-loop" (fully autonomous) — and determine when each is appropriate.
+
+### Transparency and Disclosure
+
+Should users know they are interacting with an agent? The answer seems obviously yes, but implementation is non-trivial. Multi-agent pipelines may involve many layers of agent-to-agent communication before the final response reaches a human; at what point is disclosure required? The EU AI Act mandates disclosure when AI interacts with humans in a way that could deceive them, but this provision was designed for chatbots, not for agents that act on behalf of users in interactions with third parties.
+
+### Identity, Impersonation, and Deception
+
+Agents capable of drafting emails, posting content, and engaging in conversation create a deception surface far larger than static generative AI. An agent sending emails on behalf of a user to third parties who do not know an AI is involved raises distinct ethical and legal questions. California's proposed Automated Decision-Making Technology (ADMT) regulations and analogous European initiatives are beginning to address automated identity, but agent-specific impersonation rules remain nascent.
+
+### Cascading Delegation
+
+In multi-agent systems, Agent A may delegate a task to Agent B, which delegates a subtask to Agent C, each with different capabilities, different system prompts, and potentially different principals. When Agent C causes harm, tracing accountability back through this chain is extremely difficult. The [ETHOS framework](https://arxiv.org/abs/2412.17114) (Hess & Kjeldsen, 2024; arXiv:2412.17114) proposes a **global registry for AI agents** using blockchain and soulbound tokens to enable dynamic risk classification and automated compliance monitoring across delegation chains. Whether decentralized governance infrastructure is the right solution remains contested, but the problem it addresses is real.
+
+### Tool Access Control
+
+Who decides what tools an agent can use — and who bears responsibility when a tool is misused? An agent granted access to web browsing, code execution, email sending, and database reads has a dramatically larger attack surface than one restricted to a single API. Tool access policy is a governance decision with security implications, but it is currently made unilaterally by deployers with no external oversight or disclosure requirement.
+
+### Data Privacy
+
+Agents that access and process personal data — reading emails, browsing calendar entries, querying financial records — are data controllers in the sense of GDPR, regardless of how "agentic" they are. But when an agent autonomously decides to access additional data sources beyond its original authorization to complete a task, standard data protection principles (purpose limitation, data minimization) are strained. The cross-cutting nature of agent data access makes privacy impact assessment both more necessary and harder to conduct.
+
+---
+
+## Proposed Frameworks and Standards
+
+Several concrete governance proposals have emerged to address agent-specific risks:
+
+**Agent identity and registration**: Proposals like ETHOS ([arXiv:2412.17114](https://arxiv.org/abs/2412.17114)) and various policy documents suggest that deployed AI agents should be registered, with unique identifiers enabling traceability across multi-agent pipelines. This would allow regulators and affected parties to identify which agent took a given action and hold the appropriate principal accountable.
+
+**Capability-based access control**: Rather than granting agents blanket permissions, governance frameworks increasingly recommend scoping tool access to the minimum necessary for the assigned task — analogous to the principle of least privilege in computer security. Anthropic's agentic safety guidance and the NIST AI RMF Generative AI Profile both endorse this approach.
+
+**Mandatory audit trails**: Requiring agents to maintain comprehensive, tamper-evident logs of decisions, tool invocations, and data accessed is a prerequisite for accountability. Regulatory proposals in Europe and emerging US state-level frameworks increasingly include logging requirements for automated decision systems. The [Governance-as-a-Service framework](https://arxiv.org/abs/2508.18765) (arXiv:2508.18765, 2025) demonstrates how AI agents can themselves enforce declarative compliance policies and maintain audit trails in real time.
+
+**Human override mechanisms**: "Kill switch" provisions — mechanisms for human operators to pause, redirect, or terminate agent operations — are recommended by both technical safety researchers and policymakers as a baseline requirement for high-autonomy systems. Defining what constitutes an adequate kill switch for a distributed multi-agent system remains an open engineering and governance challenge.
+
+**Agent licensing or certification**: Several scholars and policy advocates have proposed licensing regimes for AI agents operating in high-stakes domains (medical advice, legal representation, financial management), analogous to professional licensing. No such regime is yet operational, but the 2025 AI Agent Index [(arXiv:2602.17753)](https://arxiv.org/abs/2602.17753) provides a model for the kind of public documentation that certification schemes would require.
+
+---
+
+## International Perspectives
+
+The global regulatory landscape for AI agents reflects fundamentally different governance philosophies:
+
+| Jurisdiction | Approach | Status (2025) |
+|---|---|---|
+| **European Union** | Prescriptive, risk-tiered, cross-sector | EU AI Act in force; GPAI rules active Aug 2025 |
+| **United States** | Innovation-first; sector-specific; state variation | Biden EO revoked Jan 2025; agency-by-agency approach |
+| **United Kingdom** | Principles-based; existing regulator coordination | AISI renamed AI Security Institute, Feb 2025 |
+| **China** | Iterative; content and security focused | Generative AI Interim Measures in effect since Aug 2023 |
+| **OECD/G7** | Soft law; voluntary principles | [OECD AI Principles](https://oecd.ai/en/ai-principles) updated 2024 |
+
+This divergence creates significant compliance complexity for globally deployed agent systems: an agent-based product that is compliant with US norms (broad access, minimal disclosure) may violate EU requirements (risk assessment, transparency, data minimization). The resulting "regulatory arbitrage" risk — developers locating operations in permissive jurisdictions — is a recognized challenge in international AI governance discussions.
+
+The [OECD Recommendation on AI](https://oecd.ai/en/ai-principles), first adopted in 2019 and updated in 2023 and 2024, represents the primary intergovernmental standard, establishing five principles for trustworthy AI. But OECD recommendations are non-binding, and no international treaty mechanism for AI agent governance exists.
+
+A comparative analysis of cross-regional AI frameworks ([arXiv:2410.21279](https://arxiv.org/html/2410.21279v1), 2024) notes that the EU's GPAI provisions introduced a parallel governance track for general-purpose AI systems — which most frontier models enabling agents fall under — that sits alongside the main risk-tier structure.
+
+---
+
+## Open Problems
+
+Governance of AI agents faces several structural challenges with no clear solution in current policy thinking:
+
+**Regulatory lag**: Capability development is outpacing regulatory processes by years. METR's finding that autonomous task performance has doubled roughly every 7 months means that by the time regulations developed today take effect, the systems they address will be qualitatively more capable. The EU AI Act's full implementation is not expected until August 2026 — an eternity in AI development time.
+
+**No consensus on legal personhood**: Whether AI agents can or should bear legal personhood remains philosophically contested and practically unresolved. Without personhood, agents cannot be parties to contracts or defendants in tort cases. With full personhood, humans could evade accountability by attributing harmful decisions to the agent. Intermediate frameworks (limited liability entities for AI) are proposed but unenacted.
+
+**Cross-jurisdictional enforcement**: When a user in Germany instructs an agent deployed by a US company, which uses a French-hosted tool, to take an action affecting a business in Japan — which jurisdiction's rules apply, and who enforces them? Current international law provides no clear answer, and agents are designed precisely to operate seamlessly across these boundaries.
+
+**The dual-use problem**: The same capabilities that make agents beneficial — autonomous research, code execution, multi-step planning — also enable harmful applications. A governance framework that restricts autonomous code execution to prevent cyberattacks also restricts legitimate AI-assisted programming. Calibrating restrictions without eliminating beneficial use requires capability measurement tools that do not yet exist at the scale needed.
+
+**Measurement and regulatability**: "You can't regulate what you can't measure." Defining precise thresholds for when an agent's autonomy requires human oversight, or when its capabilities trigger regulatory obligations, requires evaluation methodologies that are still being developed. METR's work on [measuring autonomous AI capabilities](https://metr.org/measuring-autonomous-ai-capabilities/) is an important step, but the gap between research-grade evaluation and regulatory enforcement remains wide.
+
+---
+
+## References
+
+### Papers
+
+- Kolt, N. (2025). [Governing AI Agents](https://arxiv.org/abs/2501.07913). *Notre Dame Law Review*, Vol. 101 (forthcoming). arXiv:2501.07913.
+
+- Casper, S. et al. (2025). [The 2025 AI Agent Index: Documenting Technical and Safety Features of Deployed Agentic AI Systems](https://arxiv.org/abs/2602.17753). arXiv:2602.17753. [Online index: aiagentindex.mit.edu](https://aiagentindex.mit.edu).
+
+- Hess, M. & Kjeldsen, A. (2024). [Decentralized Governance of Autonomous AI Agents](https://arxiv.org/abs/2412.17114). arXiv:2412.17114. (ETHOS framework.)
+
+- Al-Maamari, A. et al. (2024). [Comparative Global AI Regulation: Policy Perspectives from the EU, China, and the US](https://arxiv.org/html/2410.21279v1). arXiv:2410.21279.
+
+- Autio, C. et al. (2024). [Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile (NIST AI 600-1)](https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence). NIST, July 26, 2024.
+
+### Blog Posts & Resources
+
+- METR. (2025, March 19). [Measuring AI Ability to Complete Long Tasks](https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/).
+
+- METR. (2025, December 9). [Common Elements of Frontier AI Safety Policies](https://metr.org/blog/2025-12-09-common-elements-of-frontier-ai-safety-policies/).
+
+- Google DeepMind. (2024, May 17). [Introducing the Frontier Safety Framework](https://deepmind.google/blog/introducing-the-frontier-safety-framework/).
+
+- Google DeepMind. (2025, September 22). [Strengthening the Frontier Safety Framework](https://deepmind.google/blog/strengthening-our-frontier-safety-framework/).
+
+- Anthropic. (2025). [Responsible Scaling Policy v2.1](https://www.anthropic.com/rsp-updates) (effective March 31, 2025).
+
+- OpenAI. (2025). [Preparedness Framework v2](https://openai.com/index/updating-our-preparedness-framework/) (updated April 15, 2025).
+
+- Frontier Model Forum. (2024). [Frontier AI Safety Commitments, AI Seoul Summit 2024](https://www.gov.uk/government/publications/frontier-ai-safety-commitments-ai-seoul-summit-2024/frontier-ai-safety-commitments-ai-seoul-summit-2024).
+
+- European Commission. (2024). [EU AI Act — Shaping Europe's Digital Future](https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai). Entered into force 1 August 2024.
+
+- White House. (2023). [Executive Order 14110: Safe, Secure, and Trustworthy Development and Use of Artificial Intelligence](https://www.federalregister.gov/documents/2023/11/01/2023-24283/safe-secure-and-trustworthy-development-and-use-of-artificial-intelligence). October 30, 2023. (Revoked January 20, 2025.)
+
+- White House. (2025). [Executive Order 14179: Removing Barriers to American Leadership in Artificial Intelligence](https://www.whitehouse.gov/presidential-actions/2025/01/removing-barriers-to-american-leadership-in-artificial-intelligence/). January 23, 2025.
+
+- China Law Translate. (2023). [Interim Measures for the Management of Generative Artificial Intelligence Services](https://www.chinalawtranslate.com/en/generative-ai-interim/). Effective August 15, 2023.
+
+- NIST. (2023). [AI Risk Management Framework (AI RMF 1.0)](https://www.nist.gov/itl/ai-risk-management-framework).
+
+- UK AI Security Institute (AISI). [aisi.gov.uk](https://www.aisi.gov.uk/).
+
+- Stocker, J. & Lehr, S. (2025). [Principal-Agent Dynamics and Digital Platform Economics in the Age of Agentic AI](https://www.networklawreview.org/stocker-lehr-ai/). *Network Law Review*.
+
+- Proskauer Rose. (2025). [Contract Law in the Age of Agentic AI: Who's Really Clicking "Accept"?](https://www.proskauer.com/blog/contract-law-in-the-age-of-agentic-ai-whos-really-clicking-accept)
+
+- OECD. [OECD AI Principles](https://oecd.ai/en/ai-principles). First adopted 2019; updated 2023–2024.
+
+### Code & Projects
+
+- UK AI Security Institute. (2024). [Inspect AI: Framework for Large Language Model Evaluations](https://github.com/UKGovernmentBEIS/inspect_ai). Open-sourced May 2024.
+
+- METR. [Measuring Autonomous AI Capabilities](https://metr.org/measuring-autonomous-ai-capabilities/) — index of benchmarks and evaluation methodologies.
+
+- MIT AI Agent Index. [aiagentindex.mit.edu](https://aiagentindex.mit.edu) — public database of deployed agentic AI systems and their safety features.
+
+---
+
+*Back to [Topics →](topics.qmd) · See also: [Safety & Alignment →](safety.qmd) · [Human-Agent Interaction →](human-agent.qmd) · [Infrastructure →](infrastructure.qmd)*

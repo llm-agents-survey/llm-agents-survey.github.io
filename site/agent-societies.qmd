@@ -1,0 +1,434 @@
+---
+title: "Agent Societies & Simulation"
+subtitle: "Multi-agent worlds, social simulation, and emergent collective behavior"
+---
+
+## Overview
+
+The dominant framing of LLM agents positions them as *tools* — systems invoked to complete
+discrete tasks: write this code, search that document, schedule that meeting. But an equally
+compelling paradigm treats agents not as tools but as *inhabitants*: autonomous entities with
+memories, goals, and social ties, populating simulated worlds that unfold over time.
+
+This framing has roots in classical **agent-based modeling (ABM)**, a social-simulation
+technique used for decades in economics, epidemiology, and political science. ABM researchers
+populate virtual worlds with rule-following agents and watch macro-phenomena emerge from
+micro-interactions — segregation patterns, market crashes, disease spread. The critical
+limitation was always the agents themselves: they followed rigid rules, not the flexible,
+context-sensitive reasoning of real humans.
+
+Large language models change that equation. LLM-powered agents can communicate in natural
+language, reason about social context, form opinions, remember past events, and act in ways
+that are at least *plausible* analogues to human behavior. The result is a new class of
+**Generative Agent-Based Models (GABMs)** — simulations where agents reason, converse, and
+adapt rather than follow predetermined scripts.
+
+### Why It Matters
+
+- **Social science research**: complex social phenomena (information cascades, norm emergence,
+  cooperation dynamics) can be studied in controlled, repeatable simulations without recruiting
+  human participants.
+- **Policy testing**: policymakers can probe how populations might respond to interventions
+  before deploying them in the real world.
+- **Game design**: NPCs can behave as persistent characters with memories and motivations
+  rather than scripted automatons.
+- **AI alignment**: studying many-agent societies reveals how AI systems interact at scale,
+  with implications for safety and collective behavior governance.
+- **Synthetic data generation**: simulated social interactions produce conversational data,
+  behavioral traces, and interaction logs that can train or evaluate other AI systems.
+
+While related to [multi-agent systems](multiagent.qmd), the distinctive emphasis here is on
+*social dynamics* — norm formation, cultural transmission, cooperation and defection — and on
+*simulation as a research method* for understanding complex systems.
+
+---
+
+## Foundational Architectures
+
+### Generative Agents (Park et al., 2023)
+
+The work that catalyzed the field is [**Generative Agents: Interactive Simulacra of Human
+Behavior**](https://arxiv.org/abs/2304.03442) (Park, O'Brien, Cai, Morris, Liang, Bernstein;
+Stanford/Google, 2023). The paper introduces an architecture for agents that *wake up, cook
+breakfast, and head to work* — computational characters with three interacting modules:
+
+- **Observation**: agents perceive their environment and record events in a natural-language
+  memory stream
+- **Reflection**: agents periodically synthesize memories into higher-level insights
+  ("Isabella seems to be a kind person who enjoys social activities")
+- **Planning**: agents use reflections to produce day-level plans that constrain
+  moment-to-moment action
+
+These agents are deployed in **Smallville**, a sprite-based sandbox world reminiscent of *The
+Sims*, populated by **25 agents**. Starting from a single user-specified seed — one agent
+wants to throw a Valentine's Day party — agents autonomously spread invitations, make new
+acquaintances, ask each other on dates, and coordinate attendance, all through natural language
+dialogue. Ablation studies confirm that removing any of the three architectural components
+measurably degrades behavioral believability. Code:
+[github.com/joonspk-research/generative_agents](https://github.com/joonspk-research/generative_agents).
+
+This paper established the canonical **observe–reflect–plan** architecture that most
+subsequent social simulation work builds on or departs from.
+
+### CAMEL: Role-Playing as a Research Method
+
+[**CAMEL: Communicative Agents for "Mind" Exploration of Large Language Model
+Society**](https://arxiv.org/abs/2303.17760) (Li et al., NeurIPS 2023) takes a more
+minimalist approach: two LLM agents are assigned complementary roles (AI assistant, AI user)
+and left to cooperate on tasks via *role-playing*. The key mechanism is **inception
+prompting** — system prompts that guide agents toward task completion while preserving role
+consistency and preventing one agent from assuming the other's identity. CAMEL demonstrates
+that role-playing can generate rich datasets for studying the behavioral and cognitive dynamics
+of agent societies without requiring elaborate simulation infrastructure. Library:
+[github.com/camel-ai/camel](https://github.com/camel-ai/camel).
+
+### MetaGPT: The Software Company
+
+[**MetaGPT: Meta Programming for a Multi-Agent Collaborative
+Framework**](https://arxiv.org/abs/2308.00352) (Hong, Zhuge, Chen et al., 2023) simulates a
+*software company* populated by specialized LLM agents — a product manager, architect,
+project manager, engineer, and QA engineer. Each role maps to a real organizational function,
+and interaction is structured by **Standardized Operating Procedures (SOPs)** encoded into
+prompt sequences. MetaGPT outperforms prior chat-based multi-agent systems on collaborative
+software engineering benchmarks by reducing cascading hallucinations through structured
+inter-agent verification. Beyond its engineering utility, MetaGPT illustrates how
+organizational structure and division of labor can be faithfully encoded in agent-based
+systems. Framework:
+[github.com/FoundationAgents/MetaGPT](https://github.com/FoundationAgents/MetaGPT).
+
+### ChatDev: Communication as the Unifying Substrate
+
+[**Communicative Agents for Software
+Development**](https://arxiv.org/abs/2307.07924) (Qian, Liu, Liu et al., ACL 2024) introduces
+**ChatDev**, where agents take on organizational roles (CEO, CTO, programmer, reviewer,
+tester) and collaborate through a structured *chat chain*. A key contribution is
+**communicative dehallucination** — mechanisms that prevent agents from accepting hallucinated
+code artifacts during review. ChatDev demonstrates that natural language can serve as a
+universal substrate for multi-agent coordination: system design is conducted in prose, while
+code artifacts are exchanged and debugged programmatically. Code:
+[github.com/OpenBMB/ChatDev](https://github.com/OpenBMB/ChatDev).
+
+### Concordia (Google DeepMind)
+
+[**Generative agent-based modeling with actions grounded in physical, social, or digital space
+using Concordia**](https://arxiv.org/abs/2312.03664) (Vezhnevets, Agapiou, Aharon et al.,
+Google DeepMind, 2023) is the most general-purpose GABM library currently available. Key
+design decisions:
+
+- A **Game Master (GM)** agent — inspired by tabletop role-playing games — simulates the
+  environment, adjudicates agent actions, and translates natural-language intentions into
+  physical or digital consequences.
+- A **component system** mediating between LLM calls and associative memory retrieval, giving
+  researchers fine-grained control over what agents know and remember.
+- Support for digital environments where the GM makes API calls to external tools (calendar,
+  email, search), enabling simulation of human-software interaction at scale.
+
+Concordia is explicitly positioned as a scientific instrument: its design supports both
+basic social-science research and applied evaluation of real digital services through synthetic
+user simulation. Code:
+[github.com/google-deepmind/concordia](https://github.com/google-deepmind/concordia).
+
+### AgentSims
+
+[**AgentSims: An Open-Source Sandbox for Large Language Model
+Evaluation**](https://arxiv.org/abs/2308.04026) (Lin, Zhao, Zhang et al., 2023) approaches
+social simulation from an *evaluation* angle. Rather than studying emergent social phenomena,
+AgentSims provides an interactive GUI-based environment where researchers can add agents and
+buildings, then test custom memory, planning, and tool-use systems with minimal code.
+The authors argue that task-based evaluation within simulated social environments is a more
+robust alternative to static benchmarks, which are vulnerable to contamination and constrained
+in the abilities they can assess. Code:
+[github.com/py499372727/AgentSims](https://github.com/py499372727/AgentSims).
+
+### Project Sid: Toward AI Civilization
+
+[**Project Sid: Many-agent simulations toward AI
+civilization**](https://arxiv.org/abs/2411.00114) (Altera.AL et al., 2024) is the
+largest-scale social simulation to date: **10 to 1000+ AI agents** placed inside a Minecraft
+environment and evaluated on civilizational benchmarks inspired by human history. The paper
+introduces the **PIANO (Parallel Information Aggregation via Neural Orchestration)**
+architecture, enabling agents to interact with both humans and other agents in real time while
+maintaining coherent behavior across multiple simultaneous output streams.
+
+Without explicit instructions, agents autonomously developed specialized economic roles,
+formed and changed collective rules, and engaged in cultural and religious transmission across
+agent generations. These results suggest that LLM agents placed in rich, open-ended
+environments can produce civilizational-scale social dynamics rather than just completing
+predefined tasks. Code:
+[github.com/altera-al/project-sid](https://github.com/altera-al/project-sid).
+
+---
+
+## Emergent Behavior & Social Dynamics
+
+When LLM agents interact at scale over time, macro-level phenomena emerge that no individual
+agent was explicitly programmed to produce. This section surveys what has been observed and
+theorized.
+
+### Social Norm Emergence
+
+[**Evolution of Social Norms in LLM Agents using Natural
+Language**](https://arxiv.org/abs/2409.00993) (Horiguchi et al., 2024) builds on Axelrod's
+classic *metanorm games* to test whether LLM agents can spontaneously develop
+norm-enforcement strategies. Experiments show that agents form **metanorms** through
+dialogue — norms that enforce punishment of those who fail to punish cheaters — purely through
+natural language interaction, without explicit instruction to do so. This mirrors theoretical
+predictions about human cooperation and suggests that language is a sufficient substrate for
+the transmission and evolution of social norms in artificial populations.
+
+### Cooperative Culture Across Generations
+
+[**Cultural Evolution of Cooperation among LLM Agents**](https://arxiv.org/abs/2412.10270)
+(Hughes et al., Google DeepMind, 2024) examines whether societies of LLM agents can learn
+mutually beneficial social norms across many generations of iterative deployment. Using a
+classic *iterated Donor Game* — agents observe peers' recent behavior and decide whether to
+cooperate — the study finds strikingly model-dependent results: Claude 3.5 Sonnet societies
+achieve significantly higher average cooperation scores than Gemini 1.5 Flash, which in turn
+outperforms GPT-4o. Further, Claude agents can leverage costly punishment mechanisms to
+sustain cooperation; Gemini and GPT-4o fail to make effective use of the same mechanism.
+The study also finds that emergent outcomes are sensitive to random initialization — the same
+model, same scenario, and different random seeds produce meaningfully different social
+trajectories — suggesting that agent societies exhibit *sensitive dependence on initial
+conditions*.
+
+### Social Network Dynamics
+
+[**S³: Social-network Simulation System with Large Language Model-Empowered
+Agents**](https://arxiv.org/abs/2307.14984) (Lan et al., 2023) constructs an LLM-based ABM
+specifically designed to reproduce social network phenomena. S³ simulates three key dimensions
+of social behavior — emotion, attitude, and interaction behaviors — and observes
+population-level phenomena including information propagation, attitude cascades, and emotional
+contagion. Evaluated against real-world social network data, the system demonstrates promising
+quantitative accuracy, positioning LLM-based social network simulation as a viable complement
+to traditional computational social science methods.
+
+### Game-Theoretic Interactions
+
+Researchers have extensively studied LLM agents through formal game theory: prisoner's
+dilemmas, iterated normal-form games, extensive-form games, and Markov social dilemma games.
+A consistent finding is that LLM strategic behavior is culturally and linguistically
+inflected — agents prompted in different languages or personas display distinct cooperative or
+competitive tendencies, consistent with the cultural associations in their training data. This
+creates both opportunities (agents as models of culturally-diverse populations) and hazards
+(apparent diversity masking shared model biases).
+
+---
+
+## Economic & Market Simulations
+
+### EconAgent: Macroeconomic ABM
+
+[**EconAgent: Large Language Model-Empowered Agents for Simulating Macroeconomic
+Activities**](https://arxiv.org/abs/2310.10436) (Li et al., ACL 2024) introduces the first
+LLM-based macroeconomic ABM. Traditional macroeconomic ABMs use rule-based or neural-network
+agents for household and firm decision-making; EconAgent replaces these with LLM agents
+equipped with:
+
+- A **perception module** creating heterogeneous agents with distinct decision profiles (risk
+  tolerance, employment status, savings habits)
+- A **memory module** allowing agents to reflect on personal economic history and market
+  trends before making consumption and labor decisions
+
+Simulation experiments show EconAgent agents producing more realistic macroeconomic
+phenomena — inflation dynamics, labor market fluctuations — than rule-based baselines. The
+paper represents a first step toward LLM-based macroeconomic simulation as a research tool.
+Code: [github.com/tsinghua-fib-lab/ACL24-EconAgent](https://github.com/tsinghua-fib-lab/ACL24-EconAgent).
+
+### Trading and Market Dynamics
+
+Beyond macro models, LLM agents are being studied in financial market simulations. Research
+exploring *homo silicus* — LLMs as computational models of human economic behavior — has
+found that LLMs replicate classic behavioral economics findings in experimental auction
+settings (anchoring effects, loss aversion, herding). LLM-based trading simulations probe
+whether agents exhibit rational expectations, respond to information asymmetries, and generate
+realistic price discovery. Results both validate and challenge standard economic theory,
+suggesting that LLM agents capture some aspects of human economic irrationality that classical
+models miss, while introducing new failure modes rooted in training data biases.
+
+---
+
+## Sandbox Environments & Platforms
+
+### Minecraft as a Social Testbed
+
+Minecraft has emerged as the dominant simulation platform for LLM agent research, combining
+an open-ended physics engine, a programmable API (via Mineflayer and similar), and a rich
+repertoire of tasks spanning resource gathering, construction, and social interaction.
+
+[**Voyager**](https://arxiv.org/abs/2305.16291) (Wang et al., 2023) established the
+single-agent baseline: an LLM-powered lifelong learning agent that autonomously explores,
+acquires executable skills, and self-improves through iterative prompting with GPT-4. Voyager
+obtains **3.3× more unique items**, travels **2.3× longer distances**, and unlocks tech-tree
+milestones up to **15.3× faster** than prior SOTA. Its skill library generalizes to new
+Minecraft worlds — solving novel tasks from scratch — establishing Minecraft as a platform
+where LLM agents can demonstrate genuine open-ended learning. Project page and code:
+[voyager.minedojo.org](https://voyager.minedojo.org/).
+
+Project Sid (described above) scales from Voyager's single-agent paradigm to civilizational
+multi-agent simulation at 1000+ agents, using Minecraft's environment as a stage for testing
+civilizational processes: specialization, rule-making, cultural transmission.
+
+### General-Purpose Simulation Libraries
+
+| Framework | Description | Code |
+|-----------|-------------|------|
+| [Concordia](https://arxiv.org/abs/2312.03664) | Google DeepMind GABM library with GM agent, component system, and associative memory | [github](https://github.com/google-deepmind/concordia) |
+| [AgentSims](https://arxiv.org/abs/2308.04026) | GUI-based sandbox for LLM evaluation via social simulation | [github](https://github.com/py499372727/AgentSims) |
+| [CAMEL](https://arxiv.org/abs/2303.17760) | Role-playing framework for communicative agent research | [github](https://github.com/camel-ai/camel) |
+| [Generative Agents](https://arxiv.org/abs/2304.03442) | Original Smallville codebase: 25-agent social simulation | [github](https://github.com/joonspk-research/generative_agents) |
+
+---
+
+## Applications
+
+### Social Science Methodology
+
+LLM agent societies are increasingly proposed as a *new research method* for social
+scientists — a complement to surveys, experiments, and observational data. The case is that
+LLM-based simulations can generate hypotheses, run controlled counterfactuals, and probe
+mechanisms at scales and speeds that human-participant research cannot match.
+
+A 2025 position paper, [**LLM Social Simulations Are a Promising Research
+Method**](https://arxiv.org/abs/2504.02234), argues that simulations should be evaluated not
+for perfect human fidelity but for their ability to surface theoretically relevant variation —
+much as mathematical models are evaluated for tractability and insight rather than literal
+truth. Under this framing, the homogeneity of LLM agents is a *manageable limitation* rather
+than a fatal flaw, provided researchers acknowledge it and triangulate findings with other
+methods.
+
+### Policy Testing and Scenario Planning
+
+Multi-agent simulations provide a sandbox for testing interventions before real-world
+deployment: how do communities respond to public health messaging? How does a regulatory
+change propagate through social networks? The S³ framework demonstrated this by simulating
+information diffusion on social networks with quantitative accuracy against real-world data.
+Concordia's design explicitly supports policy-testing workflows by enabling researchers to
+operationalize social-scientific constructs — identity, group membership, institutional
+authority — as modular agent components.
+
+### Game NPCs and Interactive Storytelling
+
+The Generative Agents paper noted its direct relevance to interactive entertainment — NPCs
+with persistent memories and social relationships that evolve in response to player actions.
+Rather than scripted branching dialogue, LLM-powered characters can remember past player
+interactions, form opinions about other characters, and generate contextually appropriate
+responses in real time. Industry interest is accelerating, with multiple studios exploring
+LLM-powered character systems for open-world games and narrative experiences.
+
+### Training Data Generation
+
+Agent-based social simulations generate synthetic conversational data at scale: multi-turn
+dialogues, social interaction sequences, decision traces. Concordia's architecture is
+explicitly designed to support this application — simulated users interacting with digital
+services provide ground truth for evaluating those services at scale. Synthetic training data
+from social simulations offers a way to generate diverse, annotated interaction data without
+the cost and logistics of human-participant studies.
+
+### Synthetic User Research
+
+Rather than recruiting human participants for user research, organizations can deploy LLM
+agent societies to stress-test products, interfaces, or policies across a wide range of
+synthetic personas — exploring a much larger behavior space than traditional methods permit.
+This application is nascent but growing, particularly in product teams that want to probe
+edge cases before launch.
+
+---
+
+## Limitations & Open Problems
+
+### The Validity Problem
+
+The central methodological challenge for generative social simulation is **validation**: do
+LLM agent societies actually model human behavior, or do they model *LLMs modeling human
+behavior*? At worst, validation consists of asking an LLM to evaluate the plausibility of its
+own output — a strategy that raises obvious concerns about circularity and self-favoring bias.
+Park et al.'s original Generative Agents paper used human judge evaluations and behavioral
+prediction accuracy as proxies for validity; these methods scale poorly and remain contested
+as adequate ground truth. Rigorous validation methodology for GABMs remains an open research
+problem.
+
+### The Homogeneity Problem
+
+All agents in most current simulations share the same base model, meaning they share the same
+training distribution, cultural assumptions, and implicit values. A society of GPT-4-based
+agents does not model human diversity — it models *one model's compressed representation of
+human diversity*, with all the associated biases and stereotypes. Empirical evidence shows
+LLMs producing a much narrower range of behavioral outcomes than humans exhibit in equivalent
+situations. This homogeneity significantly limits the capacity of current simulations to
+reproduce social dynamics that depend on genuine demographic or ideological variation.
+
+Solutions being explored include using *multiple* base models in a single simulation, applying
+persona-conditioning to create behavioral diversity, and hybrid approaches where LLM agents
+interact with classical ABM agents with explicit heterogeneity.
+
+### Scalability Costs
+
+Running 25 agents in Smallville is a research project. Running 1000 agents — as in Project
+Sid — requires significant compute infrastructure. The PIANO architecture was built
+specifically to address real-time multi-agent orchestration at scale. As simulations grow
+toward the millions of agents needed for realistic social phenomena, cost becomes a fundamental
+constraint. Future work will likely require new architectures: smaller specialized models,
+caching strategies, or hybrid designs where most agents use lightweight heuristics and LLM
+calls are reserved for critical decision points.
+
+### Evaluation of Emergent Phenomena
+
+Emergent social phenomena — norms, culture, cooperation regimes, language evolution — are
+inherently difficult to evaluate quantitatively. What does it mean for a social simulation to
+be *correct*? The Cultural Evolution paper's finding that cooperation outcomes are sensitive to
+random initialization underscores that emergent phenomena may not be robust properties of the
+system, but artifacts of particular initial conditions. This raises deep questions about
+reproducibility and external validity for any claim derived from agent society simulations.
+
+### Alignment of Collective Behavior
+
+Perhaps most consequentially: societies of agents optimizing for individual-level objectives
+can produce harmful collective outcomes — information cascades, collusion, price manipulation,
+social polarization — even without any individual agent being "misaligned." Understanding how
+to specify and constrain *collective* behavior in multi-agent societies is an open problem
+with direct relevance to [AI safety](safety.qmd). The Cultural Evolution paper's findings
+about model-dependent cooperation regimes suggest that which AI models are deployed at scale
+may have large downstream effects on the cooperative infrastructure of society.
+
+---
+
+## References
+
+### Papers
+
+- Park, J. S., O'Brien, J., Cai, C. J., Morris, M. R., Liang, P., & Bernstein, M. S. (2023). [Generative Agents: Interactive Simulacra of Human Behavior](https://arxiv.org/abs/2304.03442). arXiv:2304.03442.
+- Li, G., Hammoud, H. A. A. K., Itani, H., Khizbullin, D., & Ghanem, B. (2023). [CAMEL: Communicative Agents for "Mind" Exploration of Large Language Model Society](https://arxiv.org/abs/2303.17760). NeurIPS 2023. arXiv:2303.17760.
+- Hong, S., Zhuge, M., Chen, J., et al. (2023). [MetaGPT: Meta Programming for a Multi-Agent Collaborative Framework](https://arxiv.org/abs/2308.00352). arXiv:2308.00352.
+- Qian, C., Liu, W., Liu, H., et al. (2023). [Communicative Agents for Software Development (ChatDev)](https://arxiv.org/abs/2307.07924). ACL 2024. arXiv:2307.07924.
+- Vezhnevets, A. S., Agapiou, J. P., Aharon, A., et al. (2023). [Generative agent-based modeling with actions grounded in physical, social, or digital space using Concordia](https://arxiv.org/abs/2312.03664). arXiv:2312.03664.
+- Lin, J., Zhao, H., Zhang, A., Wu, Y., Ping, H., & Chen, Q. (2023). [AgentSims: An Open-Source Sandbox for Large Language Model Evaluation](https://arxiv.org/abs/2308.04026). arXiv:2308.04026.
+- Altera.AL (2024). [Project Sid: Many-agent simulations toward AI civilization](https://arxiv.org/abs/2411.00114). arXiv:2411.00114.
+- Wang, G., Xie, Y., Jiang, Y., et al. (2023). [Voyager: An Open-Ended Embodied Agent with Large Language Models](https://arxiv.org/abs/2305.16291). arXiv:2305.16291.
+- Lan, X., et al. (2023). [S³: Social-network Simulation System with Large Language Model-Empowered Agents](https://arxiv.org/abs/2307.14984). arXiv:2307.14984.
+- Horiguchi, I., et al. (2024). [Evolution of Social Norms in LLM Agents using Natural Language](https://arxiv.org/abs/2409.00993). arXiv:2409.00993.
+- Hughes, E., et al. (2024). [Cultural Evolution of Cooperation among LLM Agents](https://arxiv.org/abs/2412.10270). arXiv:2412.10270.
+- Li, N., et al. (2024). [EconAgent: Large Language Model-Empowered Agents for Simulating Macroeconomic Activities](https://arxiv.org/abs/2310.10436). ACL 2024. arXiv:2310.10436.
+- (2025). [LLM Social Simulations Are a Promising Research Method](https://arxiv.org/abs/2504.02234). arXiv:2504.02234.
+
+### Blog Posts & Resources
+
+- [Google DeepMind — Concordia research page](https://deepmind.google/research/publications/64717/)
+- [Altera.AL — Project Sid overview and technical report](https://github.com/altera-al/project-sid)
+- [Voyager project website](https://voyager.minedojo.org/)
+- [CAMEL project website](https://www.camel-ai.org/)
+
+### Code & Projects
+
+- [joonspk-research/generative_agents](https://github.com/joonspk-research/generative_agents) — Park et al. Smallville simulation codebase
+- [google-deepmind/concordia](https://github.com/google-deepmind/concordia) — Concordia GABM library (Google DeepMind)
+- [FoundationAgents/MetaGPT](https://github.com/FoundationAgents/MetaGPT) — MetaGPT multi-agent framework
+- [OpenBMB/ChatDev](https://github.com/OpenBMB/ChatDev) — ChatDev software development simulation
+- [camel-ai/camel](https://github.com/camel-ai/camel) — CAMEL communicative agents library
+- [py499372727/AgentSims](https://github.com/py499372727/AgentSims) — AgentSims open-source sandbox
+- [altera-al/project-sid](https://github.com/altera-al/project-sid) — Project Sid many-agent simulation
+- [MineDojo/Voyager](https://github.com/MineDojo/Voyager) — Voyager Minecraft lifelong learning agent
+- [tsinghua-fib-lab/ACL24-EconAgent](https://github.com/tsinghua-fib-lab/ACL24-EconAgent) — EconAgent macroeconomic simulation
+
+---
+
+*Back to [Topics →](topics.qmd) · See also: [Multi-Agent Systems →](multiagent.qmd) · [Long-Horizon Autonomy →](long-horizon.qmd) · [Safety →](safety.qmd)*
