@@ -526,18 +526,19 @@ window.Quarto = {
 </ul>
 <section id="metrs-time-horizon-framework" class="level3">
 <h3 class="anchored" data-anchor-id="metrs-time-horizon-framework">METR’s Time-Horizon Framework</h3>
-<p><a href="https://metr.org/">METR</a> (Model Evaluation &amp; Threat Research) has developed the most rigorous framework for quantifying long-horizon capability. Their <a href="https://arxiv.org/abs/2503.14499">March 2025 paper, “Measuring AI Ability to Complete Long Software Tasks”</a> (Kwa et al., 2025) introduces the <strong>task-completion time horizon</strong>: the task duration (measured by human expert completion time) at which an AI agent succeeds with a given level of reliability.</p>
-<p>Their methodology: 1. Gather 100+ diverse software tasks (from <a href="https://metr.org/blog/2024-11-22-evaluating-r-d-capabilities-of-llms/">RE-Bench</a>, <a href="https://arxiv.org/html/2503.17354v1">HCAST</a>, and novel tasks spanning software engineering, ML, and cybersecurity). 2. Have human experts attempt each task and measure completion times. 3. Fit a logistic curve to agent success rates as a function of human task duration. 4. Report the duration at which the curve hits 50% (or 80%) success probability.</p>
+<p><a href="https://metr.org/">METR</a> (Model Evaluation &amp; Threat Research) has developed the most rigorous framework for quantifying long-horizon capability. Their paper, <a href="https://arxiv.org/abs/2503.14499">“Measuring AI Ability to Complete Long Software Tasks”</a> (Kwa et al., NeurIPS 2025) introduces the <strong>task-completion time horizon</strong>: the task duration (measured by human expert completion time) at which an AI agent succeeds with a given level of reliability.</p>
+<p>Their methodology: 1. Gather 100+ diverse software tasks (from <a href="https://metr.org/blog/2024-11-22-evaluating-r-d-capabilities-of-llms/">RE-Bench</a>, <a href="https://arxiv.org/abs/2503.17354">HCAST</a>, and novel tasks spanning software engineering, ML, and cybersecurity). 2. Have human experts attempt each task and measure completion times. 3. Fit a logistic curve to agent success rates as a function of human task duration. 4. Report the duration at which the curve hits 50% (or 80%) success probability.</p>
 <p>Key findings from METR:</p>
 <ul>
-<li>The <strong>50%-time horizon has doubled every ~7 months</strong> for the past 6 years.</li>
+<li>The <strong>50%-time horizon has doubled every ~7 months</strong> for the past 6 years (since 2019).</li>
 <li>In mid-2020, frontier models could complete tasks a human expert finishes in ~9 seconds.</li>
 <li>By early 2023, that threshold reached ~4 minutes.</li>
-<li>By late 2024, it reached approximately <strong>40 minutes</strong> (<a href="https://www.technologyreview.com/2026/02/05/1132254/this-is-the-most-misunderstood-graph-in-ai/">MIT Technology Review, February 2026</a>).</li>
+<li>By early 2025 (measured against Claude 3.7 Sonnet), frontier models reached approximately <strong>50 minutes</strong> (<a href="https://arxiv.org/abs/2503.14499">Kwa et al., NeurIPS 2025</a>).</li>
+<li>By late 2025 (Claude Opus 4.5), METR measured a 50%-time horizon of approximately <strong>~5 hours</strong> (<a href="https://www.technologyreview.com/2026/02/05/1132254/this-is-the-most-misunderstood-graph-in-ai/">MIT Technology Review, February 2026</a>; <a href="https://metr.org/time-horizons/">METR live tracker</a>).</li>
 <li>METR has observed this trend may be <strong>accelerating to a doubling every ~4 months</strong> in 2024–2025 (<a href="https://metr.org/blog/2025-07-14-how-does-time-horizon-vary-across-domains/">METR domain analysis, July 2025</a>).</li>
 </ul>
 <p>Extrapolating this trend, METR predicts that within a decade, AI agents could autonomously complete tasks that currently take humans <strong>days or weeks</strong>. The <a href="https://metr.org/time-horizons/">live time-horizon tracker</a> is updated as new frontier models are evaluated.</p>
-<p>Despite rapid progress, as of early 2026 <strong>no agent reliably completes tasks requiring more than a few hours of human expert effort</strong> end-to-end, without human oversight or intervention.</p>
+<p>Despite rapid progress, as of early 2026, while frontier models have achieved ~50% success rates on tasks requiring ~5 hours (Claude Opus 4.5), <strong>no agent consistently completes multi-hour tasks with high (&gt;80%) reliability</strong> end-to-end without human oversight or intervention.</p>
 <hr>
 </section>
 </section>
@@ -579,8 +580,8 @@ window.Quarto = {
 </section>
 <section id="nuances-not-all-errors-are-equal" class="level3">
 <h3 class="anchored" data-anchor-id="nuances-not-all-errors-are-equal">Nuances: Not All Errors Are Equal</h3>
-<p><a href="https://arxiv.org/abs/2505.24187">Shinn et al.&nbsp;(2025)</a>, “Beyond Exponential Decay: Rethinking Error Accumulation in Large Language Models,” challenge the simple exponential decay model. Their analysis finds that LLM errors are <strong>not uniformly distributed</strong> across tokens or steps: roughly <strong>5–10% of tokens represent “key decision junctions”</strong> where errors cluster. This means targeted strategies at critical branching points may outperform brute-force reliability improvements across all steps.</p>
-<p>Similarly, work on <a href="https://arxiv.org/html/2510.04886v2">error propagation in multi-agent systems</a> (Bonner et al., 2025, “Where Did It All Go Wrong?”) shows that <strong>a single root-cause failure can cascade</strong> through subsequent agents and steps, derailing the entire pipeline. Identifying which agent and which step originated the error is itself a hard research problem.</p>
+<p><a href="https://arxiv.org/abs/2505.24187">Shvets (2025)</a>, “Beyond Exponential Decay: Rethinking Error Accumulation in Large Language Models,” challenges the simple exponential decay model. The analysis finds that LLM errors are <strong>not uniformly distributed</strong> across tokens or steps: roughly <strong>5–10% of tokens represent “key decision junctions”</strong> where errors cluster. This means targeted strategies at critical branching points may outperform brute-force reliability improvements across all steps.</p>
+<p>Similarly, work on <a href="https://arxiv.org/abs/2510.04886">error attribution in multi-agent systems</a> (Banerjee et al., 2025, “Where Did It All Go Wrong?”) shows that <strong>a single root-cause failure can cascade</strong> through subsequent agents and steps, derailing the entire pipeline. Identifying which agent and which step originated the error is itself a hard research problem; the paper proposes ECHO (Error attribution through Contextual Hierarchy and Objective consensus analysis) as an approach.</p>
 </section>
 <section id="recovery-strategies" class="level3">
 <h3 class="anchored" data-anchor-id="recovery-strategies">Recovery Strategies</h3>
@@ -589,7 +590,7 @@ window.Quarto = {
 <li><strong>Checkpointing and rollback</strong>: Saving verified intermediate states and reverting to the last known-good checkpoint when errors are detected.</li>
 <li><strong>Human intervention triggers</strong>: The agent flags uncertain or high-stakes decisions for human review rather than proceeding autonomously. Anthropic <a href="https://www.anthropic.com/research/measuring-agent-autonomy">reports</a> that on complex Claude Code tasks, the model stops to ask for clarification <strong>more than twice as often</strong> as humans interrupt it — a form of autonomous safety behavior.</li>
 <li><strong>Verification steps</strong>: Interleaving execution with explicit checks (tests, assertions, self-critique) to catch errors before they propagate.</li>
-<li><strong>Multi-path exploration</strong>: Maintaining multiple parallel execution paths and selecting the most promising, as proposed in <a href="https://arxiv.org/abs/2505.24187">Shinn et al.&nbsp;(2025)</a>.</li>
+<li><strong>Multi-path exploration</strong>: Maintaining multiple parallel execution paths and selecting the most promising, as proposed in <a href="https://arxiv.org/abs/2505.24187">Shvets (2025)</a>.</li>
 <li><strong>Episodic reflection</strong>: <a href="https://arxiv.org/abs/2303.11366">Reflexion</a> (Shinn et al., 2023) stores verbal reflections in an episodic memory buffer, allowing agents to learn from failures without weight updates.</li>
 </ul>
 <hr>
@@ -605,7 +606,7 @@ window.Quarto = {
 </section>
 <section id="memory-architectures-for-long-horizon-agents" class="level3">
 <h3 class="anchored" data-anchor-id="memory-architectures-for-long-horizon-agents">Memory Architectures for Long-Horizon Agents</h3>
-<p>A comprehensive survey, <a href="https://arxiv.org/abs/2512.13564">“Memory in the Age of AI Agents”</a> (Liu et al., 2025), identifies several major architectural approaches:</p>
+<p>A comprehensive survey, <a href="https://arxiv.org/abs/2512.13564">“Memory in the Age of AI Agents”</a> (Hu et al., 2025), identifies several major architectural approaches:</p>
 <p><strong>1. Sliding Window / Summarization</strong><br>
 The simplest approach: keep only the most recent <span class="math inline">\(K\)</span> tokens, discarding older context. A common refinement is <strong>recursive summarization</strong>: compress older exchanges into progressively shorter summaries. The risk is information loss — summaries may omit details that turn out to be critical.</p>
 <p><strong>2. Retrieval-Augmented Memory (RAG over past actions)</strong><br>
@@ -613,11 +614,11 @@ Store all past observations, actions, and outcomes in a vector database. When th
 <p><strong>3. Episodic Memory</strong><br>
 Explicitly record completed episodes (what was attempted, what worked, what failed) in a structured store. <a href="https://arxiv.org/abs/2303.11366">Reflexion</a> (Shinn et al., 2023) uses verbal reflections as episodic memories. <a href="https://arxiv.org/abs/2305.16291">Voyager</a> (Wang et al., 2023), an open-ended Minecraft agent, builds a <strong>skill library</strong> of verified, reusable code solutions — a form of procedural episodic memory that enables lifelong learning.</p>
 <p><strong>4. Hierarchical / Tiered Memory</strong><br>
-Inspired by human cognition, these systems separate <strong>working memory</strong> (immediate context), <strong>episodic memory</strong> (specific past events), and <strong>semantic/long-term memory</strong> (generalized knowledge). <a href="https://arxiv.org/abs/2401.02777">RAISE</a> (Ye et al., 2024) extends the ReAct framework with a dual-component memory system mirroring human short-term and long-term memory, maintaining conversational context and continuity across sessions.</p>
+Inspired by human cognition, these systems separate <strong>working memory</strong> (immediate context), <strong>episodic memory</strong> (specific past events), and <strong>semantic/long-term memory</strong> (generalized knowledge). <a href="https://arxiv.org/abs/2401.02777">RAISE</a> (Liu et al., 2024) extends the ReAct framework with a dual-component memory system mirroring human short-term and long-term memory, maintaining conversational context and continuity across sessions.</p>
 <p><strong>5. MemGPT / Letta — Virtual Context Management</strong><br>
 <a href="https://arxiv.org/abs/2310.08560">MemGPT</a> (Packer et al., 2023) takes an OS-inspired approach: the LLM acts like an operating system managing a memory hierarchy. A small <strong>main context</strong> (analogous to RAM) holds immediately relevant information; the LLM can issue function calls to <strong>page information in and out</strong> from external storage (analogous to disk). The MemGPT research has since evolved into <a href="https://www.letta.com/">Letta</a>, a production framework for building stateful agents with persistent, manageable memory.</p>
 <p><strong>6. Agentic Memory Learning</strong><br>
-Recent work like <a href="https://arxiv.org/abs/2601.01885">AgeMem</a> (2026) goes further: rather than hard-coding memory management logic, it trains the LLM to autonomously decide <strong>what and when to store, retrieve, update, summarize, or discard</strong> information using tool-based memory actions.</p>
+Recent work like <a href="https://arxiv.org/abs/2601.01885">AgeMem</a> (Yu et al., 2026) goes further: rather than hard-coding memory management logic, it trains the LLM to autonomously decide <strong>what and when to store, retrieve, update, summarize, or discard</strong> information using tool-based memory actions.</p>
 <hr>
 </section>
 </section>
@@ -640,7 +641,7 @@ Recent work like <a href="https://arxiv.org/abs/2601.01885">AgeMem</a> (2026) go
 <li><a href="https://arxiv.org/abs/2303.17580">HuggingGPT</a> (Shen et al., 2023) uses ChatGPT as a controller to decompose complex tasks into sub-tasks executed by specialized HuggingFace models — an early multi-model orchestration system.</li>
 <li><a href="https://arxiv.org/abs/2302.01560">DEPS (Describe, Explain, Plan and Select)</a> (Wang et al., 2023) targets open-world multi-task agents in Minecraft, using LLMs to generate and iteratively refine plans while a trainable selector ranks candidate sub-goals.</li>
 <li><a href="https://arxiv.org/abs/2311.05772">ADaPT (As-Needed Decomposition and Planning with Language Models)</a> (Prasad et al., 2023) dynamically adjusts decomposition depth to match task complexity and executor capability — simple tasks are executed directly, while complex tasks are recursively decomposed.</li>
-<li><a href="https://arxiv.org/html/2503.09572v3">Plan-and-Act</a> (2025) proposes training data generation for hierarchical planning on web tasks, arguing that prompting alone cannot instill robust planning.</li>
+<li><a href="https://arxiv.org/abs/2503.09572">Plan-and-Act</a> (Erdogan et al., ICML 2025) proposes training data generation for hierarchical planning on web tasks, arguing that prompting alone cannot instill robust planning; it achieves a state-of-the-art 57.58% on WebArena-Lite.</li>
 </ul>
 </section>
 <section id="re-planning-and-recovery" class="level3">
@@ -661,13 +662,13 @@ Recent work like <a href="https://arxiv.org/abs/2601.01885">AgeMem</a> (2026) go
 <h3 class="anchored" data-anchor-id="software-engineering-agents">Software Engineering Agents</h3>
 <p><strong><a href="https://cognition.ai/blog/introducing-devin">Devin</a></strong> (Cognition AI, March 2024) was the first widely-publicized “fully autonomous AI software engineer,” marketed for multi-hour coding tasks. Devin resolves real-world GitHub issues end-to-end, operating within a persistent development environment (shell, browser, editor). At launch, it achieved 13.86% on the <a href="https://www.swebench.com/">SWE-bench</a> benchmark — far ahead of GPT-4 (1.7%) and Claude 2 (4.8%) at the time.</p>
 <p><strong><a href="https://www.anthropic.com/claude-code">Claude Code</a></strong> (Anthropic) is Anthropic’s agentic coding product. Anthropic’s <a href="https://www.anthropic.com/research/measuring-agent-autonomy">real-world autonomy study</a> shows that among the longest-running Claude Code sessions, <strong>the time working autonomously before stopping has nearly doubled in three months, from under 25 minutes to over 45 minutes</strong>. Experienced users increasingly grant full auto-approval (over 40% of sessions), intervening only when needed.</p>
-<p><strong><a href="https://www.swebench.com/">SWE-bench</a></strong> (Jimenez et al., 2023) serves as a key proxy benchmark: each task involves resolving a real GitHub issue, which often requires hours of human developer time. Top agents (as of early 2026) exceed 50% on the standard benchmark — a dramatic rise from 1.96% at launch — though performance on harder variants like <a href="https://labs.scale.com/leaderboard/swe_bench_pro_public">SWE-bench Pro</a> remains below 25%.</p>
+<p><strong><a href="https://www.swebench.com/">SWE-bench</a></strong> (Jimenez et al., 2023) serves as a key proxy benchmark: each task involves resolving a real GitHub issue, which often requires hours of human developer time. SWE-bench was released in October 2023 with an initial RAG baseline of just 1.96%. Top agents (as of early 2026) exceed 50% on the standard benchmark — a dramatic rise — though performance on harder variants like <a href="https://labs.scale.com/leaderboard/swe_bench_pro_public">SWE-bench Pro</a> remains below 25%.</p>
 </section>
 <section id="computer-use-agents" class="level3">
 <h3 class="anchored" data-anchor-id="computer-use-agents">Computer-Use Agents</h3>
 <p><strong><a href="https://os-world.github.io/">OSWorld</a></strong> (Xie et al., NeurIPS 2024; <a href="https://arxiv.org/abs/2404.07972">arXiv:2404.07972</a>) benchmarks multimodal agents on open-ended tasks in real computer environments (Linux, Windows, macOS). Tasks involve multi-step sequences across applications (web browser, file manager, spreadsheet). Initial evaluations showed significant deficiencies in all tested agents; the benchmark has since become a standard testbed for computer-use agents.</p>
 <p><strong><a href="https://arxiv.org/abs/2307.13854">WebArena</a></strong> (Zhou et al., 2024) provides realistic, self-hosted web environments for evaluating autonomous agents on multi-step web tasks (e-commerce, forums, code repositories). Initial GPT-4 performance was 14.41% vs.&nbsp;78.24% human performance; by 2025, top agents reached ~60% (<a href="https://medium.com/@adnanmasood/webarena-benchmark-and-the-state-of-agentic-ai-c22697e8e192">Medium, September 2025</a>).</p>
-<p><strong><a href="https://github.com/web-arena-x/visualwebarena">VisualWebArena</a></strong> (Koh et al., 2024; <a href="https://arxiv.org/abs/2401.13649">arXiv:2401.13649</a>) extends WebArena with multimodal (vision-based) tasks.</p>
+<p><strong><a href="https://github.com/web-arena-x/visualwebarena">VisualWebArena</a></strong> (Koh et al., ACL 2024; <a href="https://arxiv.org/abs/2401.13649">arXiv:2401.13649</a>) extends WebArena with multimodal (vision-based) tasks.</p>
 </section>
 <section id="scientific-research-agents" class="level3">
 <h3 class="anchored" data-anchor-id="scientific-research-agents">Scientific Research Agents</h3>
@@ -675,7 +676,7 @@ Recent work like <a href="https://arxiv.org/abs/2601.01885">AgeMem</a> (2026) go
 </section>
 <section id="general-purpose-autonomous-agents" class="level3">
 <h3 class="anchored" data-anchor-id="general-purpose-autonomous-agents">General-Purpose Autonomous Agents</h3>
-<p><strong><a href="https://manus.im/">Manus</a></strong> (Monica.im, March 2025) is a general-purpose autonomous agent developed in China, designed to execute complex multi-step tasks (research, web browsing, coding, document generation) without continuous human input. It attracted significant attention as an early example of general-purpose agentic AI capable of extended autonomous operation across diverse domains (<a href="https://www.forbes.com/sites/craigsmith/2025/03/08/chinas-autonomous-agent-manus-changes-everything/">Forbes, March 2025</a>). A technical analysis appears in <a href="https://arxiv.org/abs/2505.02024">arXiv:2505.02024</a>.</p>
+<p><strong><a href="https://manus.im/">Manus</a></strong> (Monica.im, March 2025) is a general-purpose autonomous agent developed in China, designed to execute complex multi-step tasks (research, web browsing, coding, document generation) without continuous human input. It attracted significant attention as an early example of general-purpose agentic AI capable of extended autonomous operation across diverse domains (<a href="https://www.forbes.com/sites/craigsmith/2025/03/08/chinas-autonomous-agent-manus-changes-everything/">Forbes, March 2025</a>). A third-party technical overview appears in <a href="https://arxiv.org/abs/2505.02024">arXiv:2505.02024</a>.</p>
 <p><strong><a href="https://www.letta.com/">Letta</a></strong> (formerly MemGPT) is an open-source framework for building stateful, long-running agents with persistent memory — designed explicitly for extended autonomous operation. The <a href="https://github.com/letta-ai/letta">GitHub repository</a> provides tools for memory management, multi-session continuity, and background agent operation.</p>
 <hr>
 </section>
@@ -740,7 +741,7 @@ Recent work like <a href="https://arxiv.org/abs/2601.01885">AgeMem</a> (2026) go
 </tr>
 </tbody>
 </table>
-<p><strong><a href="https://arxiv.org/abs/2311.12983">GAIA</a></strong> (Mialon et al., 2023) — “a benchmark for General AI Assistants” — proposes real-world questions requiring multi-modal reasoning, web browsing, and tool use. Its 450 questions are tiered by difficulty, with Level 3 requiring sophisticated multi-step strategies that most agents still fail consistently. Humans score ~92%; early GPT-4 with plugins scored ~15%.</p>
+<p><strong><a href="https://arxiv.org/abs/2311.12983">GAIA</a></strong> (Mialon et al., 2023) — “a benchmark for General AI Assistants” — proposes real-world questions requiring multi-modal reasoning, web browsing, and tool use. Its 466 questions are tiered by difficulty, with Level 3 requiring sophisticated multi-step strategies that most agents still fail consistently. Humans score ~92%; early GPT-4 with plugins scored ~15%.</p>
 <p><strong><a href="https://metr.org/blog/2024-11-22-evaluating-r-d-capabilities-of-llms/">RE-Bench</a></strong> (METR, 2024) evaluates AI R&amp;D capabilities against human expert ML researchers on open-ended research tasks — tasks that take humans 8 hours. It serves as one of the task sets for METR’s time-horizon measurements.</p>
 <hr>
 </section>
@@ -821,7 +822,7 @@ Recent work like <a href="https://arxiv.org/abs/2601.01885">AgeMem</a> (2026) go
 <section id="papers" class="level3">
 <h3 class="anchored" data-anchor-id="papers">Papers</h3>
 <ul>
-<li>Kwa, T., West, B., Becker, J., et al.&nbsp;(2025). <a href="https://arxiv.org/abs/2503.14499">Measuring AI Ability to Complete Long Software Tasks</a>. <em>METR Technical Report</em>.</li>
+<li>Kwa, T., West, B., Becker, J., et al.&nbsp;(2025). <a href="https://arxiv.org/abs/2503.14499">Measuring AI Ability to Complete Long Software Tasks</a>. <em>NeurIPS 2025</em>.</li>
 <li>Packer, C., et al.&nbsp;(2023). <a href="https://arxiv.org/abs/2310.08560">MemGPT: Towards LLMs as Operating Systems</a>. <em>arXiv:2310.08560</em>.</li>
 <li>Shinn, N., Cassano, F., Labash, B., et al.&nbsp;(2023). <a href="https://arxiv.org/abs/2303.11366">Reflexion: Language Agents with Verbal Reinforcement Learning</a>. <em>arXiv:2303.11366</em>.</li>
 <li>Wang, G., Xie, Y., Jiang, Y., et al.&nbsp;(2023). <a href="https://arxiv.org/abs/2305.16291">Voyager: An Open-Ended Embodied Agent with Large Language Models</a>. <em>arXiv:2305.16291</em>.</li>
@@ -831,13 +832,15 @@ Recent work like <a href="https://arxiv.org/abs/2601.01885">AgeMem</a> (2026) go
 <li>Prasad, A., et al.&nbsp;(2023). <a href="https://arxiv.org/abs/2311.05772">ADaPT: As-Needed Decomposition and Planning with Language Models</a>. <em>NAACL 2024 Findings</em>.</li>
 <li>Mialon, G., Fourrier, C., Swift, C., et al.&nbsp;(2023). <a href="https://arxiv.org/abs/2311.12983">GAIA: A Benchmark for General AI Assistants</a>. <em>arXiv:2311.12983</em>.</li>
 <li>Zhou, S., Xu, F. F., Zhu, H., et al.&nbsp;(2024). <a href="https://arxiv.org/abs/2307.13854">WebArena: A Realistic Web Environment for Building Autonomous Agents</a>. <em>ICLR 2024</em>.</li>
-<li>Koh, J. Y., Lo, R., Jang, L., et al.&nbsp;(2024). <a href="https://arxiv.org/abs/2401.13649">VisualWebArena: Evaluating Multimodal Agents on Realistic Visual Web Tasks</a>. <em>arXiv:2401.13649</em>.</li>
+<li>Koh, J. Y., Lo, R., Jang, L., et al.&nbsp;(2024). <a href="https://arxiv.org/abs/2401.13649">VisualWebArena: Evaluating Multimodal Agents on Realistic Visual Web Tasks</a>. <em>ACL 2024</em>.</li>
 <li>Xie, T., Zhang, D., Chen, J., et al.&nbsp;(2024). <a href="https://arxiv.org/abs/2404.07972">OSWorld: Benchmarking Multimodal Agents for Open-Ended Tasks in Real Computer Environments</a>. <em>NeurIPS 2024</em>.</li>
-<li>Ye, R., et al.&nbsp;(2024). <a href="https://arxiv.org/abs/2401.02777">RAISE: From LLM to Conversational Agent: A Memory Enhanced Architecture</a>. <em>arXiv:2401.02777</em>.</li>
+<li>Liu, N., Chen, L., Tian, X., et al.&nbsp;(2024). <a href="https://arxiv.org/abs/2401.02777">RAISE: From LLM to Conversational Agent — A Memory Enhanced Architecture with Fine-Tuning of Large Language Models</a>. <em>arXiv:2401.02777</em>.</li>
 <li>Zhang, Z., et al.&nbsp;(2024). <a href="https://arxiv.org/abs/2404.13501">A Survey on the Memory Mechanism of Large Language Model based Agents</a>. <em>arXiv:2404.13501</em>.</li>
-<li>Liu, S., et al.&nbsp;(2025). <a href="https://arxiv.org/abs/2512.13564">Memory in the Age of AI Agents: A Survey</a>. <em>arXiv:2512.13564</em>.</li>
-<li>Shinn, N., et al.&nbsp;(2025). <a href="https://arxiv.org/abs/2505.24187">Beyond Exponential Decay: Rethinking Error Accumulation in Large Language Models</a>. <em>arXiv:2505.24187</em>.</li>
-<li>Bonner, et al.&nbsp;(2025). <a href="https://arxiv.org/html/2510.04886v2">Where Did It All Go Wrong? A Hierarchical Look into Multi-Agent Error Attribution</a>. <em>arXiv:2510.04886</em>.</li>
+<li>Hu, Y., Liu, S., Yue, Y., et al.&nbsp;(2025). <a href="https://arxiv.org/abs/2512.13564">Memory in the Age of AI Agents: A Survey</a>. <em>arXiv:2512.13564</em>.</li>
+<li>Shvets, A. (2025). <a href="https://arxiv.org/abs/2505.24187">Beyond Exponential Decay: Rethinking Error Accumulation in Large Language Models</a>. <em>arXiv:2505.24187</em>.</li>
+<li>Banerjee, A., Nair, A., and Borogovac, T. (2025). <a href="https://arxiv.org/abs/2510.04886">Where Did It All Go Wrong? A Hierarchical Look into Multi-Agent Error Attribution</a>. <em>arXiv:2510.04886</em>.</li>
+<li>Erdogan, L. E., Lee, N., Kim, S., et al.&nbsp;(2025). <a href="https://arxiv.org/abs/2503.09572">Plan-and-Act: Improving Planning of Agents for Long-Horizon Tasks</a>. <em>ICML 2025</em>.</li>
+<li>Yu, Y., et al.&nbsp;(2026). <a href="https://arxiv.org/abs/2601.01885">AgeMem: Learning Unified Long-Term and Short-Term Memory Management for Large Language Model Agents</a>. <em>arXiv:2601.01885</em>.</li>
 </ul>
 </section>
 <section id="blog-posts-resources" class="level3">
