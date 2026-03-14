@@ -594,7 +594,7 @@ window.Quarto = {
 </section>
 <section id="soar" class="level2">
 <h2 class="anchored" data-anchor-id="soar">SOAR</h2>
-<p>SOAR was developed by <a href="https://www.sciencedirect.com/science/article/abs/pii/0004370287900506">John E. Laird, Allen Newell, and Paul S. Rosenbloom</a> and published in its canonical form in <a href="https://dl.acm.org/doi/10.1016/0004-3702(87)90050-6"><em>Artificial Intelligence</em>, Vol. 33 (1987)</a>, pp.&nbsp;1–64. It has been actively developed for nearly four decades; the current system is documented at <a href="http://soar.eecs.umich.edu/">soar.eecs.umich.edu</a>.</p>
+<p>SOAR was developed by <a href="https://www.sciencedirect.com/science/article/abs/pii/0004370287900506">John E. Laird, Allen Newell, and Paul S. Rosenbloom</a> and published in its canonical form in <a href="https://doi.org/10.1016/0004-3702(87)90050-6"><em>Artificial Intelligence</em>, Vol. 33 (1987)</a>, pp.&nbsp;1–64. It has been actively developed for nearly four decades; the current system is documented at <a href="http://soar.eecs.umich.edu/">soar.eecs.umich.edu</a>.</p>
 <section id="core-design" class="level3">
 <h3 class="anchored" data-anchor-id="core-design">Core design</h3>
 <p>All cognition in SOAR takes place within <strong>problem spaces</strong>: the agent selects a problem space, a current <em>state</em>, and applicable <em>operators</em>, then applies an operator to generate a new state. This uniform formulation is SOAR’s most elegant property — <strong>every cognitive process, including learning and metacognition, uses the same problem-space mechanism</strong>. There is no special metacognitive module; the agent thinks about thinking the same way it thinks about anything else.</p>
@@ -703,10 +703,10 @@ window.Quarto = {
 </section>
 <section id="lida-learning-intelligent-distribution-agent" class="level2">
 <h2 class="anchored" data-anchor-id="lida-learning-intelligent-distribution-agent">LIDA — Learning Intelligent Distribution Agent</h2>
-<p>LIDA was developed by Stan Franklin and collaborators at the University of Memphis, beginning around 2006, as described in <a href="https://link.springer.com/chapter/10.1007/978-3-642-22887-2_14">Franklin &amp; Patterson (2006)</a> and elaborated in subsequent work. LIDA implements <strong>Global Workspace Theory</strong> (see below) as a computational cognitive cycle.</p>
+<p>LIDA was developed by Stan Franklin and collaborators at the University of Memphis, beginning around 2006, as described in <a href="https://www.semanticscholar.org/paper/THE-LIDA-ARCHITECTURE%3A-ADDING-NEW-MODES-OF-LEARNING-Franklin-Feinstone/b6a205cbcad4055898e896f789c721e6fb008abb">Franklin, Feinstone &amp; Patterson (2006)</a> and elaborated in subsequent work. LIDA implements <strong>Global Workspace Theory</strong> (see below) as a computational cognitive cycle.</p>
 <section id="the-cognitive-cycle" class="level3">
 <h3 class="anchored" data-anchor-id="the-cognitive-cycle">The cognitive cycle</h3>
-<p>LIDA’s cognitive cycle runs at roughly 200–500 ms per iteration:</p>
+<p>LIDA’s cognitive cycle runs at roughly 300–600 ms per iteration (Madl, Baars, &amp; Franklin, 2011):</p>
 <ol type="1">
 <li><strong>Perception</strong> — sensory stimuli activate nodes in a <em>Perceptual Associative Memory</em></li>
 <li><strong>Understanding</strong> — recognized structures are assembled into a <em>Current Situational Model</em></li>
@@ -737,7 +737,7 @@ window.Quarto = {
 <section id="bdi-belief-desire-intention" class="level2">
 <h2 class="anchored" data-anchor-id="bdi-belief-desire-intention">BDI — Belief, Desire, Intention</h2>
 <p>BDI architectures descend from Michael Bratman’s philosophical theory of practical reasoning, laid out in <a href="https://books.google.com/books/about/Intention_Plans_and_Practical_Reason.html"><em>Intention, Plans, and Practical Reason</em></a> (Harvard University Press, 1987). Bratman’s insight: <strong>intentions are not just desires weighted by belief</strong>. Once an agent commits to a plan, that commitment persists and constrains future reasoning — it would be irrational to reconsider every intention at every step.</p>
-<p>Rao &amp; Georgeff translated this philosophy into a formal logic and a computational architecture. <a href="https://www.aaai.org/Library/ICMAS/1995/icmas95-038.php">Rao &amp; Georgeff (1995)</a>, “BDI Agents: From Theory to Practice,” <em>Proceedings of ICMAS-1995</em>, pp.&nbsp;312–319, defined the core BDI model that became the foundation of agent programming languages.</p>
+<p>Rao &amp; Georgeff translated this philosophy into a formal logic and a computational architecture. <a href="https://aaai.org/papers/icmas95-042-bdi-agents-from-theory-to-practice/">Rao &amp; Georgeff (1995)</a>, “BDI Agents: From Theory to Practice,” <em>Proceedings of ICMAS-1995</em> <em>(page numbers unverified)</em>, defined the core BDI model that became the foundation of agent programming languages.</p>
 <section id="the-three-attitudes" class="level3">
 <h3 class="anchored" data-anchor-id="the-three-attitudes">The three attitudes</h3>
 <table class="caption-top table">
@@ -883,7 +883,7 @@ window.Quarto = {
 <li><p>Bratman, M.E. (1987). <a href="https://books.google.com/books?id=IntentionPlansBratman"><em>Intention, Plans, and Practical Reason</em></a>. Harvard University Press.</p></li>
 <li><p>Baars, B.J. (1988). <a href="https://books.google.com/books/about/A_Cognitive_Theory_of_Consciousness.html"><em>A Cognitive Theory of Consciousness</em></a>. Cambridge University Press.</p></li>
 <li><p>Anderson, J.R., Bothell, D., Byrne, M.D., Douglass, S., Lebiere, C., &amp; Qin, Y. (2004). <a href="https://doi.org/10.1037/0033-295X.111.4.1036">An Integrated Theory of the Mind</a>. <em>Psychological Review</em>, 111(4), 1036–1060.</p></li>
-<li><p>Rao, A.S. &amp; Georgeff, M.P. (1995). <a href="https://www.aaai.org/Library/ICMAS/1995/icmas95-038.php">BDI Agents: From Theory to Practice</a>. <em>Proceedings of ICMAS-1995</em>, 312–319.</p></li>
+<li><p>Rao, A.S. &amp; Georgeff, M.P. (1995). <a href="https://aaai.org/papers/icmas95-042-bdi-agents-from-theory-to-practice/">BDI Agents: From Theory to Practice</a>. <em>Proceedings of ICMAS-1995</em> <em>(page numbers unverified)</em>.</p></li>
 </ul>
 </section>
 <section id="modern-papers" class="level3">
