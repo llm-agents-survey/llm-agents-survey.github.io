@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Agent Composition Patterns – LLM Agents: A Survey (2022–2026)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./favicon.svg" rel="icon" type="image/svg+xml">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-254a3ef50811769e7b813971395bbfc6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-31e29ad2a3d1e7985534403fb9b8ee74.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-254a3ef50811769e7b813971395bbfc6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">LLM Agents: A Survey (2022–2026)</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./taxonomy.html"> 
+<span class="menu-text">Taxonomy</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./timeline.html"> 
+<span class="menu-text">Timeline</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./foundations.html"> 
+<span class="menu-text">2022–2023</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./recent.html"> 
+<span class="menu-text">2024–2026</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-deep-dives" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Deep Dives</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-deep-dives">    
+        <li>
+    <a class="dropdown-item" href="./reasoning.html">
+ <span class="dropdown-text">Reasoning &amp; Planning</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./multiagent.html">
+ <span class="dropdown-text">Multi-Agent Systems</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./memory-tools.html">
+ <span class="dropdown-text">Memory, Tools &amp; Actions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./agent-training.html">
+ <span class="dropdown-text">Agent Training &amp; RL</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./infrastructure.html">
+ <span class="dropdown-text">Infrastructure &amp; Protocols</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./observability.html">
+ <span class="dropdown-text">Observability &amp; Robustness</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./composition-patterns.html">
+ <span class="dropdown-text">Agent Composition Patterns</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./agentic-rag.html">
+ <span class="dropdown-text">Agentic RAG</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-topics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Topics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-topics">    
+        <li>
+    <a class="dropdown-item" href="./topics.html">
+ <span class="dropdown-text">Topics Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./evaluation.html">
+ <span class="dropdown-text">Evaluation &amp; Benchmarks</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./safety.html">
+ <span class="dropdown-text">Safety &amp; Alignment</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./human-agent.html">
+ <span class="dropdown-text">Human-Agent Interaction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./economics.html">
+ <span class="dropdown-text">Agent Economics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./long-horizon.html">
+ <span class="dropdown-text">Long-Horizon Autonomy</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./agent-societies.html">
+ <span class="dropdown-text">Agent Societies &amp; Simulation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./governance.html">
+ <span class="dropdown-text">Governance &amp; Regulation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./personalization.html">
+ <span class="dropdown-text">Personalization &amp; Digital Twins</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-by-domain" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">By Domain</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-by-domain">    
+        <li>
+    <a class="dropdown-item" href="./by-domain.html">
+ <span class="dropdown-text">By Domain Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coding-agents.html">
+ <span class="dropdown-text">Coding Agents</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./science-agents.html">
+ <span class="dropdown-text">Science &amp; Research Agents</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./data-science-agents.html">
+ <span class="dropdown-text">Data Science &amp; Analytics Agents</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./domain-agents.html">
+ <span class="dropdown-text">Domain-Specific Agents</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./community.html"> 
+<span class="menu-text">Community</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/llm-agents-survey/llm-agents-survey.github.io"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#core-topologies" id="toc-core-topologies" class="nav-link" data-scroll-target="#core-topologies">Core Topologies</a>
+  <ul class="collapse">
+  <li><a href="#orchestratorworker-hub-and-spoke" id="toc-orchestratorworker-hub-and-spoke" class="nav-link" data-scroll-target="#orchestratorworker-hub-and-spoke">1. Orchestrator–Worker (Hub-and-Spoke)</a></li>
+  <li><a href="#sequential-pipeline" id="toc-sequential-pipeline" class="nav-link" data-scroll-target="#sequential-pipeline">2. Sequential Pipeline</a></li>
+  <li><a href="#parallel-fan-out-fan-in" id="toc-parallel-fan-out-fan-in" class="nav-link" data-scroll-target="#parallel-fan-out-fan-in">3. Parallel Fan-Out / Fan-In</a></li>
+  <li><a href="#blackboard-architecture" id="toc-blackboard-architecture" class="nav-link" data-scroll-target="#blackboard-architecture">4. Blackboard Architecture</a></li>
+  <li><a href="#event-driven-reactive" id="toc-event-driven-reactive" class="nav-link" data-scroll-target="#event-driven-reactive">5. Event-Driven / Reactive</a></li>
+  <li><a href="#hierarchical-decomposition" id="toc-hierarchical-decomposition" class="nav-link" data-scroll-target="#hierarchical-decomposition">6. Hierarchical Decomposition</a></li>
+  </ul></li>
+  <li><a href="#design-principles" id="toc-design-principles" class="nav-link" data-scroll-target="#design-principles">Design Principles</a>
+  <ul class="collapse">
+  <li><a href="#separation-of-concerns" id="toc-separation-of-concerns" class="nav-link" data-scroll-target="#separation-of-concerns">Separation of Concerns</a></li>
+  <li><a href="#idempotency" id="toc-idempotency" class="nav-link" data-scroll-target="#idempotency">Idempotency</a></li>
+  <li><a href="#checkpointing" id="toc-checkpointing" class="nav-link" data-scroll-target="#checkpointing">Checkpointing</a></li>
+  <li><a href="#graceful-degradation" id="toc-graceful-degradation" class="nav-link" data-scroll-target="#graceful-degradation">Graceful Degradation</a></li>
+  <li><a href="#context-management" id="toc-context-management" class="nav-link" data-scroll-target="#context-management">Context Management</a></li>
+  </ul></li>
+  <li><a href="#when-to-use-which-pattern" id="toc-when-to-use-which-pattern" class="nav-link" data-scroll-target="#when-to-use-which-pattern">When to Use Which Pattern</a></li>
+  <li><a href="#frameworks-and-implementation" id="toc-frameworks-and-implementation" class="nav-link" data-scroll-target="#frameworks-and-implementation">Frameworks and Implementation</a>
+  <ul class="collapse">
+  <li><a href="#langgraph" id="toc-langgraph" class="nav-link" data-scroll-target="#langgraph">LangGraph</a></li>
+  <li><a href="#autogen" id="toc-autogen" class="nav-link" data-scroll-target="#autogen">AutoGen</a></li>
+  <li><a href="#crewai" id="toc-crewai" class="nav-link" data-scroll-target="#crewai">CrewAI</a></li>
+  <li><a href="#semantic-kernel" id="toc-semantic-kernel" class="nav-link" data-scroll-target="#semantic-kernel">Semantic Kernel</a></li>
+  <li><a href="#durable-execution-temporal-and-inngest" id="toc-durable-execution-temporal-and-inngest" class="nav-link" data-scroll-target="#durable-execution-temporal-and-inngest">Durable Execution: Temporal and Inngest</a></li>
+  </ul></li>
+  <li><a href="#emerging-patterns" id="toc-emerging-patterns" class="nav-link" data-scroll-target="#emerging-patterns">Emerging Patterns</a>
+  <ul class="collapse">
+  <li><a href="#speculative-execution" id="toc-speculative-execution" class="nav-link" data-scroll-target="#speculative-execution">Speculative Execution</a></li>
+  <li><a href="#criticgenerator-loops" id="toc-criticgenerator-loops" class="nav-link" data-scroll-target="#criticgenerator-loops">Critic–Generator Loops</a></li>
+  <li><a href="#constitutional-agents" id="toc-constitutional-agents" class="nav-link" data-scroll-target="#constitutional-agents">Constitutional Agents</a></li>
+  <li><a href="#agent-as-tool" id="toc-agent-as-tool" class="nav-link" data-scroll-target="#agent-as-tool">Agent-as-Tool</a></li>
+  <li><a href="#routing-classifier-first" id="toc-routing-classifier-first" class="nav-link" data-scroll-target="#routing-classifier-first">Routing / Classifier-First</a></li>
+  <li><a href="#automated-workflow-search" id="toc-automated-workflow-search" class="nav-link" data-scroll-target="#automated-workflow-search">Automated Workflow Search</a></li>
+  </ul></li>
+  <li><a href="#open-problems" id="toc-open-problems" class="nav-link" data-scroll-target="#open-problems">Open Problems</a>
+  <ul class="collapse">
+  <li><a href="#no-standard-pattern-language" id="toc-no-standard-pattern-language" class="nav-link" data-scroll-target="#no-standard-pattern-language">No Standard Pattern Language</a></li>
+  <li><a href="#debugging-is-harder" id="toc-debugging-is-harder" class="nav-link" data-scroll-target="#debugging-is-harder">Debugging Is Harder</a></li>
+  <li><a href="#cost-explosion" id="toc-cost-explosion" class="nav-link" data-scroll-target="#cost-explosion">Cost Explosion</a></li>
+  <li><a href="#error-propagation-across-agent-boundaries" id="toc-error-propagation-across-agent-boundaries" class="nav-link" data-scroll-target="#error-propagation-across-agent-boundaries">Error Propagation Across Agent Boundaries</a></li>
+  <li><a href="#emergence-of-agent-personalities" id="toc-emergence-of-agent-personalities" class="nav-link" data-scroll-target="#emergence-of-agent-personalities">Emergence of Agent Personalities</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a>
+  <ul class="collapse">
+  <li><a href="#papers" id="toc-papers" class="nav-link" data-scroll-target="#papers">Papers</a></li>
+  <li><a href="#blog-posts-resources" id="toc-blog-posts-resources" class="nav-link" data-scroll-target="#blog-posts-resources">Blog Posts &amp; Resources</a></li>
+  <li><a href="#code-projects" id="toc-code-projects" class="nav-link" data-scroll-target="#code-projects">Code &amp; Projects</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Agent Composition Patterns</h1>
+<p class="subtitle lead">Architectural patterns for combining agents — orchestration, pipelines, and multi-agent topologies</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>A single LLM call, however capable, has limits. It can’t parallelize reasoning across many dimensions simultaneously, maintain persistent memory across weeks, or specialize in twenty domains at once. <strong>Agent composition</strong> is the practice of combining multiple agents — each with its own role, context, and capabilities — into systems that exceed what any one agent could do alone.</p>
+<p>This page focuses on <em>architectural topology</em>: the structural patterns for how agents connect, delegate, and communicate. It is deliberately distinct from the <a href="./multiagent.html">Multi-Agent Systems →</a> page, which covers coordination protocols, communication standards, and emergent collective behavior. Here, the question is simpler and more engineering-oriented: <strong>what shape should a multi-agent system take?</strong></p>
+<p>The analogy to software engineering is instructive. The Gang of Four’s <em>Design Patterns</em> (1994) gave software developers a shared vocabulary — Factory, Observer, Decorator — for recurring structural problems. Agent systems are now reaching a similar inflection point: the same architectural problems keep reappearing (task decomposition, parallel execution, shared state, event-driven triggering), and a pattern vocabulary is emerging. Unlike GoF patterns, however, agent patterns come with <em>probabilistic semantics</em>: outputs are not deterministic, errors propagate non-trivially, and “correctness” is harder to define.</p>
+<p>Anthropic’s widely-cited guide <a href="https://www.anthropic.com/engineering/building-effective-agents"><em>Building Effective Agents</em></a> (2024) distills experience from working with dozens of production agent teams. Its central thesis: the most successful implementations use <strong>simple, composable patterns</strong> rather than heavyweight frameworks. That principle animates this page.</p>
+<hr>
+</section>
+<section id="core-topologies" class="level2">
+<h2 class="anchored" data-anchor-id="core-topologies">Core Topologies</h2>
+<section id="orchestratorworker-hub-and-spoke" class="level3">
+<h3 class="anchored" data-anchor-id="orchestratorworker-hub-and-spoke">1. Orchestrator–Worker (Hub-and-Spoke)</h3>
+<p><strong>Structure:</strong> A central <em>orchestrator</em> agent receives a task, decomposes it dynamically, and dispatches subtasks to specialized <em>worker</em> agents. Workers return results; the orchestrator synthesizes and decides next steps.</p>
+<pre><code>         ┌─────────────┐
+         │ Orchestrator │
+         └──────┬──────┘
+        ┌───────┼───────┐
+        ▼       ▼       ▼
+   [Worker A] [Worker B] [Worker C]
+   (search)   (code)     (write)</code></pre>
+<p>This is the dominant pattern in production agentic systems. <a href="https://www.anthropic.com/engineering/building-effective-agents">Anthropic’s guide</a> describes it as the go-to topology “for complex tasks where you can’t predict the subtasks needed” — the orchestrator only decides what to delegate once it sees the full problem.</p>
+<p><strong>Key examples:</strong></p>
+<ul>
+<li><p><strong><a href="https://arxiv.org/abs/2308.00352">MetaGPT</a></strong> (Hong et al., 2023) — Encodes human software-development workflows (Standardized Operating Procedures) into a structured pipeline where a Product Manager agent decomposes requirements, an Architect designs the system, Engineers implement code, and QA agents verify output. Notably, MetaGPT uses an “assembly line paradigm” with structured shared artifacts (design docs, API specs) rather than purely conversational handoffs, reducing cascading hallucinations compared to chat-based approaches.</p></li>
+<li><p><strong><a href="https://arxiv.org/abs/2308.08155">AutoGen</a></strong> (Wu et al., 2023) — Microsoft’s open-source framework explicitly supports a “GroupChat with Manager” pattern where a manager agent routes conversational turns among specialized agents. Both natural language and code can define the conversation protocol.</p></li>
+<li><p><strong><a href="https://langchain.com/langgraph">LangGraph Supervisor pattern</a></strong> — LangGraph’s <code>StateGraph</code> allows a supervisor node to conditionally route to worker subgraphs based on accumulated state, with explicit human-in-the-loop checkpoints.</p></li>
+<li><p><strong><a href="https://github.com/crewAIInc/crewAI">CrewAI</a></strong> — A role-based orchestration framework where a “Manager” agent assigns tasks to crew members with defined roles, goals, and backstories. Supports both sequential and hierarchical task processing.</p></li>
+</ul>
+<p><strong>When to use:</strong> Tasks with clear decomposition into heterogeneous subtasks; specialized sub-agents that must operate with domain-specific context; work that benefits from parallelism across independent dimensions.</p>
+<p><strong>Failure modes:</strong> - <strong>Orchestrator bottleneck</strong>: All context flows through one agent, creating a single point of failure and a potential context-window limit. - <strong>Hallucination propagation</strong>: If a worker produces a flawed intermediate result and the orchestrator doesn’t validate it, errors compound downstream — MetaGPT directly addresses this by requiring structured intermediate artifacts. - <strong>Coordination overhead</strong>: Each dispatch incurs latency and cost. Hierarchies that are too deep can become slower than a single agent.</p>
+<hr>
+</section>
+<section id="sequential-pipeline" class="level3">
+<h3 class="anchored" data-anchor-id="sequential-pipeline">2. Sequential Pipeline</h3>
+<p><strong>Structure:</strong> Agents arranged in a fixed chain, each processing the output of the previous: A → B → C → result.</p>
+<pre><code>[Agent A] ──► [Agent B] ──► [Agent C] ──► Output
+(extract)     (transform)    (format)</code></pre>
+<p>The sequential pipeline is the simplest multi-agent topology and maps directly to <em>prompt chaining</em> — a core workflow described in <a href="https://www.anthropic.com/engineering/building-effective-agents">Anthropic’s building guide</a>. Each step is small, verifiable, and specialized.</p>
+<p><strong>Key examples:</strong> - Document processing pipelines: OCR agent → extraction agent → summarization agent → quality-check agent. - Code review chains: static analysis agent → security review agent → style check agent → synthesis agent. - Data transformation workflows in ML pipelines, where each agent handles a distinct data-cleaning or enrichment stage.</p>
+<p><strong>Tradeoffs vs.&nbsp;orchestrator pattern:</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Dimension</th>
+<th>Sequential Pipeline</th>
+<th>Orchestrator–Worker</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Predictability</td>
+<td>High (fixed flow)</td>
+<td>Lower (dynamic)</td>
+</tr>
+<tr class="even">
+<td>Latency</td>
+<td>Additive (serial)</td>
+<td>Potentially parallel</td>
+</tr>
+<tr class="odd">
+<td>Flexibility</td>
+<td>Low</td>
+<td>High</td>
+</tr>
+<tr class="even">
+<td>Debugging</td>
+<td>Easier (inspect each step)</td>
+<td>Harder</td>
+</tr>
+<tr class="odd">
+<td>Cost</td>
+<td>Proportional to chain length</td>
+<td>Variable</td>
+</tr>
+</tbody>
+</table>
+<p><strong>When to use:</strong> Deterministic, well-understood workflows where each transformation stage is well-defined and order matters. The key signal: if you can draw the flowchart before the task starts, a pipeline is appropriate. If the task structure is only knowable at runtime, use an orchestrator.</p>
+<hr>
+</section>
+<section id="parallel-fan-out-fan-in" class="level3">
+<h3 class="anchored" data-anchor-id="parallel-fan-out-fan-in">3. Parallel Fan-Out / Fan-In</h3>
+<p><strong>Structure:</strong> A dispatcher agent fans out the same (or related) work to multiple agents in parallel; a reducer agent aggregates the results.</p>
+<pre><code>              ┌─► [Agent A] ─┐
+[Dispatcher] ─┼─► [Agent B] ─┼─► [Aggregator] ──► Output
+              └─► [Agent C] ─┘</code></pre>
+<p>This is the agent analog of MapReduce: parallelize when work can be divided along independent dimensions, then consolidate.</p>
+<p><strong>Key examples:</strong></p>
+<ul>
+<li><p><strong><a href="https://arxiv.org/abs/2305.14325">Improving Factuality via Multiagent Debate</a></strong> (Du et al., 2023) — Multiple LLM instances independently generate answers and reasoning, then debate over multiple rounds to converge on a final answer. The paper reports significant improvements in mathematical and strategic reasoning and reduced hallucinations, using a pure fan-out/fan-in topology applied iteratively.</p></li>
+<li><p><strong><a href="https://arxiv.org/abs/2406.04692">Mixture-of-Agents (MoA)</a></strong> (Wang et al., 2024) — Constructs a <em>layered</em> fan-out architecture where each layer contains multiple LLM agents. Agents in each layer take all outputs from the previous layer as auxiliary context. MoA using only open-source LLMs achieved a score of 65.1% on AlpacaEval 2.0, surpassing GPT-4 Omni’s 57.5% at the time of publication.</p></li>
+<li><p><strong>Multi-perspective research</strong>: <a href="https://arxiv.org/abs/2402.14207">STORM</a> (Shao et al., 2024) uses multiple simulated “writer” agents with distinct perspectives to independently question a topic expert, then aggregates findings into a Wikipedia-like outline. Compared to a single-agent outline-driven baseline, STORM-generated articles were deemed more organized (+25% absolute) and broader in coverage (+10%) by human evaluators.</p></li>
+<li><p><strong><a href="https://arxiv.org/abs/2310.04406">LATS (Language Agent Tree Search)</a></strong> (Zhou et al., 2023) — Integrates Monte Carlo Tree Search with LLM agents, running multiple parallel <em>rollouts</em> (branches) of the reasoning tree simultaneously. Fan-out here is over possible reasoning trajectories rather than problem dimensions. LATS achieves 92.7% pass@1 on HumanEval with GPT-4.</p></li>
+</ul>
+<p><strong>When to use:</strong> Tasks that benefit from diverse perspectives; independent evaluations that catch errors single-agent chains miss; situations where variance in outputs is a problem and ensemble averaging helps. Also valuable for speculative execution (see §6).</p>
+<p><strong>Cost warning:</strong> Parallelism multiplies API calls. A depth-3 MoA with 5 agents per layer costs ~16× the API calls of a single agent for the same task (3 layers × 5 agents + 1 final aggregator = 16 calls).</p>
+<hr>
+</section>
+<section id="blackboard-architecture" class="level3">
+<h3 class="anchored" data-anchor-id="blackboard-architecture">4. Blackboard Architecture</h3>
+<p><strong>Structure:</strong> A shared, mutable <em>blackboard</em> (data store) that all agents read from and write to. Agents are triggered when the blackboard state matches their competency, update it with their contributions, and yield to others.</p>
+<pre><code>     ┌──────────────────────────────┐
+     │         BLACKBOARD           │
+     │  {task, partial_results,     │
+     │   current_plan, artifacts}   │
+     └──┬──────┬──────┬─────────────┘
+        │      │      │
+   [Agent A] [Agent B] [Agent C]
+   (reads &amp;  (reads &amp;  (reads &amp;
+    writes)   writes)   writes)</code></pre>
+<p>The blackboard pattern originates in classical AI (the HEARSAY-II speech recognition system, ca. 1980), and maps naturally to LLM agent systems via <em>shared state</em>. <a href="https://langchain.com/langgraph">LangGraph’s StateGraph</a> is essentially a typed blackboard: nodes read from and write to a shared <code>State</code> object, and edges conditionally route based on its content.</p>
+<p><strong>Differences from pipeline:</strong> Pipelines are push-based (output of A goes to B). Blackboards are pull-based: agents consult shared state and contribute when ready. This makes them better suited to <em>heterogeneous</em> work where the order of contributions is not predetermined.</p>
+<p><strong>When to use:</strong> Complex, long-horizon tasks where multiple agents contribute asynchronously; tasks requiring shared context that grows over time (research projects, multi-session workflows); when agents have heterogeneous specializations that are hard to order in a fixed pipeline.</p>
+<p><strong>Challenges:</strong> Shared mutable state introduces write-conflict risks. Schema evolution (the blackboard’s structure changing mid-task) is tricky. Debugging requires inspecting state at each transition.</p>
+<hr>
+</section>
+<section id="event-driven-reactive" class="level3">
+<h3 class="anchored" data-anchor-id="event-driven-reactive">5. Event-Driven / Reactive</h3>
+<p><strong>Structure:</strong> Agents are not called explicitly — they <em>subscribe</em> to event streams and trigger when matching events arrive.</p>
+<pre><code>[Email arrives] ──► [Email agent]
+[Calendar event] ──► [Schedule agent]  ──► [Synthesis agent] ──► Action
+[Sensor reading] ──► [Monitoring agent]</code></pre>
+<p>Event-driven architectures use message queues (Kafka, RabbitMQ, AWS SQS) or pub-sub systems to decouple producers from consumers. This pattern underlies most <em>ambient</em> or <em>background</em> agents — systems that operate continuously, waiting for the world to change rather than processing a single query.</p>
+<p><strong>Key examples:</strong> - An email-watching agent that triggers a calendar scheduling agent when meeting requests arrive. - Monitoring agents that observe system metrics and spawn remediation agents when thresholds are crossed. - Customer service pipelines where incoming tickets trigger triage, routing, and response agents.</p>
+<p><strong>Connection to ambient agents:</strong> The event-driven pattern is the natural habitat for agents that operate autonomously over extended periods — a major research focus in <a href="./long-horizon.html">long-horizon task completion</a>. The challenge is state management: agents need durable state that survives between events, which is where platforms like <a href="https://temporal.io">Temporal</a> become relevant (see §5).</p>
+<p><strong>When to use:</strong> Background automation; integrations with external systems that push events; when agents need to react to the real world continuously rather than in discrete sessions.</p>
+<hr>
+</section>
+<section id="hierarchical-decomposition" class="level3">
+<h3 class="anchored" data-anchor-id="hierarchical-decomposition">6. Hierarchical Decomposition</h3>
+<p><strong>Structure:</strong> Agents recursively spawn sub-agents to handle sub-problems, creating a tree of delegations.</p>
+<pre><code>[Root Agent]
+├── [Sub-Agent A]
+│   ├── [Sub-Sub-Agent A1]
+│   └── [Sub-Sub-Agent A2]
+└── [Sub-Agent B]
+    └── [Sub-Sub-Agent B1]</code></pre>
+<p>This pattern enables <em>recursive</em> problem-solving: an agent decomposes its goal into sub-goals, spawns agents to solve them, and synthesizes results — with each sub-agent potentially doing the same.</p>
+<p><strong>Key examples:</strong></p>
+<ul>
+<li><p><strong><a href="https://arxiv.org/abs/2402.14207">STORM</a></strong> (Shao et al., 2024) — Spawns multiple perspective-specific research agents, each of which conducts its own multi-turn interviews, then passes results to an outline-generation agent, then a writing agent. The hierarchy is shallow (3 levels) but explicit.</p></li>
+<li><p><strong><a href="https://arxiv.org/abs/2310.04406">LATS</a></strong> (Zhou et al., 2023) — The tree search creates a dynamic hierarchy of reasoning agents, where each node in the MCTS tree corresponds to an agent state. Value functions (also LLM-based) prune branches.</p></li>
+<li><p>Complex research tasks in <a href="./coding-agents.html">agentic coding systems</a>: a lead agent spawns a requirements analyst, who spawns a test writer, who spawns an edge-case generator.</p></li>
+</ul>
+<p><strong>Depth limits and costs:</strong> Hierarchical decomposition has sharp cost implications. A tree of depth <em>d</em> with branching factor <em>b</em> costs O(<em>b^d</em>) API calls. Practical systems limit depth to 2–3 levels and prune aggressively. LATS finds its compute-performance sweet spot around 25–50 MCTS rollouts per problem (per empirical evaluation in the paper).</p>
+<p><strong>When to use:</strong> Tasks that are naturally recursive (research, code generation with tests); when sub-problems require specialized context that the parent agent can’t hold; when depth of exploration (not just breadth) matters.</p>
+<hr>
+</section>
+</section>
+<section id="design-principles" class="level2">
+<h2 class="anchored" data-anchor-id="design-principles">Design Principles</h2>
+<section id="separation-of-concerns" class="level3">
+<h3 class="anchored" data-anchor-id="separation-of-concerns">Separation of Concerns</h3>
+<p>Each agent should do one thing well. The value of composition comes from <em>specialization</em>: an agent with a focused role, a tightly scoped system prompt, and a small tool set is more reliable than a generalist agent with a large context and many tools. <a href="https://arxiv.org/abs/2308.00352">MetaGPT</a> operationalizes this through its SOP-based role definitions; <a href="https://github.com/crewAIInc/crewAI">CrewAI</a> through explicit <code>role</code>, <code>goal</code>, and <code>backstory</code> fields that shape each agent’s behavior.</p>
+</section>
+<section id="idempotency" class="level3">
+<h3 class="anchored" data-anchor-id="idempotency">Idempotency</h3>
+<p>Where possible, agent operations should produce the same output given the same input. This supports retries (a failed call can be rerun without side effects), caching (memoize deterministic sub-computations), and testability (unit-test individual agents in isolation). In practice, LLMs are non-deterministic — design around this by making downstream agents tolerant of variation in upstream outputs, or by post-processing to normalize formats.</p>
+</section>
+<section id="checkpointing" class="level3">
+<h3 class="anchored" data-anchor-id="checkpointing">Checkpointing</h3>
+<p>Long multi-agent workflows should save state at meaningful boundaries. If a 20-minute research pipeline fails at step 18, it should resume from step 17, not restart from scratch. <a href="https://langchain.com/langgraph">LangGraph</a> provides first-class checkpointing via its persistence layer; <a href="https://temporal.io">Temporal</a> offers durable execution that survives process crashes by persisting workflow history. <a href="https://www.anthropic.com/engineering/building-effective-agents">Anthropic’s guide</a> recommends building checkpoints at every meaningful stage for long-horizon agentic tasks.</p>
+</section>
+<section id="graceful-degradation" class="level3">
+<h3 class="anchored" data-anchor-id="graceful-degradation">Graceful Degradation</h3>
+<p>Composed systems fail in complex ways. Design for partial failure: if a worker agent times out, can the orchestrator proceed with partial results? Can it retry with a different strategy? Can it fall back to a simpler approach? <a href="https://arxiv.org/abs/2308.08155">AutoGen’s</a> conversation framework includes termination conditions and fallback patterns. The key insight: <em>fail loudly at boundaries, not silently inside agents</em>.</p>
+</section>
+<section id="context-management" class="level3">
+<h3 class="anchored" data-anchor-id="context-management">Context Management</h3>
+<p>Context is the connective tissue of agent composition. How information flows between agents determines both quality and cost. Three strategies:</p>
+<ol type="1">
+<li><strong>Full context passing</strong> — pass all context at each hand-off. High quality, high cost.</li>
+<li><strong>Summary-based</strong> — each agent summarizes its contribution; downstream agents receive summaries. Lossy but scalable.</li>
+<li><strong>Shared store</strong> — blackboard/shared state that agents query selectively. Efficient but requires schema discipline.</li>
+</ol>
+<p>The right choice depends on the topology: pipelines favor full passing (each step builds on the previous), blackboards favor selective querying, orchestrators often use summaries to avoid context explosion.</p>
+<hr>
+</section>
+</section>
+<section id="when-to-use-which-pattern" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-use-which-pattern">When to Use Which Pattern</h2>
+<p>Choosing a composition pattern is primarily a function of <strong>task structure</strong>:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 43%">
+<col style="width: 56%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Task Structure</th>
+<th>Recommended Pattern</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Clear fixed stages, order matters</td>
+<td>Sequential Pipeline</td>
+</tr>
+<tr class="even">
+<td>Subtasks are independent, can parallelize</td>
+<td>Parallel Fan-Out / Fan-In</td>
+</tr>
+<tr class="odd">
+<td>Subtask structure unknown until runtime</td>
+<td>Orchestrator–Worker</td>
+</tr>
+<tr class="even">
+<td>Agents contribute asynchronously to shared work</td>
+<td>Blackboard</td>
+</tr>
+<tr class="odd">
+<td>Agents react to external events</td>
+<td>Event-Driven</td>
+</tr>
+<tr class="even">
+<td>Problem is recursively decomposable</td>
+<td>Hierarchical Decomposition</td>
+</tr>
+<tr class="odd">
+<td>Multiple approaches, use best result</td>
+<td>Speculative Execution</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The simplicity principle:</strong> <a href="https://www.anthropic.com/engineering/building-effective-agents">Anthropic’s guide</a> explicitly recommends starting with the simplest topology that works and only adding complexity when performance demands it. Many tasks that seem to need orchestration are better solved with a well-designed single-agent loop.</p>
+<p><strong>Cost implications:</strong> - Sequential pipelines scale linearly with chain length. - Fan-out scales with the number of parallel agents × layers. - Hierarchical decomposition scales exponentially with depth — budget carefully. - Blackboards and event-driven patterns scale with activity frequency, not task complexity.</p>
+<p><a href="https://langchain.com/langgraph">LangGraph’s documentation</a> offers a useful heuristic: prefer <strong>StateGraph</strong> (explicit state machine) over dynamic agent loops when the workflow can be pre-specified; prefer dynamic agents when branching logic must emerge from model reasoning.</p>
+<hr>
+</section>
+<section id="frameworks-and-implementation" class="level2">
+<h2 class="anchored" data-anchor-id="frameworks-and-implementation">Frameworks and Implementation</h2>
+<section id="langgraph" class="level3">
+<h3 class="anchored" data-anchor-id="langgraph">LangGraph</h3>
+<p><a href="https://langchain.com/langgraph">LangGraph</a> — LangChain’s low-level agent orchestration framework — expresses agent composition as a <strong>typed state graph</strong>. Nodes are agent functions or subgraphs; edges are conditional routing functions over state. This makes LangGraph a near-universal pattern language: sequential pipelines, orchestrator-worker, fan-out, and hierarchical patterns all map to StateGraph configurations. Key features include built-in persistence (checkpointing), streaming, human-in-the-loop interrupt points, and a cloud deployment target (LangGraph Platform).</p>
+</section>
+<section id="autogen" class="level3">
+<h3 class="anchored" data-anchor-id="autogen">AutoGen</h3>
+<p><a href="https://arxiv.org/abs/2308.08155">AutoGen</a> (Microsoft, 2023) takes a <em>conversation-first</em> view of composition: agents are participants in a multi-turn dialogue, and patterns emerge from who speaks when. Its <code>GroupChat</code> with a <code>GroupChatManager</code> implements orchestrator-worker; its two-agent <code>UserProxy</code>/<code>AssistantAgent</code> pair implements pipeline; custom reply functions implement event-driven triggers. AutoGen v0.4 redesigned the core architecture around event-driven, message-passing agents (similar to the actor model) for better scalability and cross-language support.</p>
+</section>
+<section id="crewai" class="level3">
+<h3 class="anchored" data-anchor-id="crewai">CrewAI</h3>
+<p><a href="https://github.com/crewAIInc/crewAI">CrewAI</a> is purpose-built for role-based orchestration. Agents are defined with roles, goals, and backstories; tasks are assigned to agents with expected outputs; a <code>Crew</code> coordinates execution. It natively supports both sequential and hierarchical process modes. The role-playing framing has proven effective for structured professional workflows (research, content, software teams).</p>
+</section>
+<section id="semantic-kernel" class="level3">
+<h3 class="anchored" data-anchor-id="semantic-kernel">Semantic Kernel</h3>
+<p>Microsoft’s <a href="https://github.com/microsoft/semantic-kernel">Semantic Kernel</a> provides agent composition through its <em>Process Framework</em> — a workflow engine where agents are steps in a stateful process, with events triggering state transitions. Useful for enterprise-grade, long-running workflows with strict control-flow requirements.</p>
+</section>
+<section id="durable-execution-temporal-and-inngest" class="level3">
+<h3 class="anchored" data-anchor-id="durable-execution-temporal-and-inngest">Durable Execution: Temporal and Inngest</h3>
+<p>Pure LLM frameworks handle composition at the prompt level but often lack infrastructure-level durability. <a href="https://temporal.io">Temporal</a> provides <em>durable execution</em>: workflows are code that runs to completion despite process crashes, network failures, or service restarts, by persisting execution history. This is critical for long-running agent pipelines (hours or days). <a href="https://www.inngest.com">Inngest</a> offers a similar model optimized for serverless/edge environments.</p>
+<p>The key insight: for multi-agent workflows that span minutes or hours, you need both <em>agent-level</em> composition (who talks to whom) and <em>infrastructure-level</em> durability (how execution survives failures).</p>
+<hr>
+</section>
+</section>
+<section id="emerging-patterns" class="level2">
+<h2 class="anchored" data-anchor-id="emerging-patterns">Emerging Patterns</h2>
+<section id="speculative-execution" class="level3">
+<h3 class="anchored" data-anchor-id="speculative-execution">Speculative Execution</h3>
+<p>Run multiple agents on the same task in parallel; use the first to succeed (or the best result). This trades API cost for latency and reliability. Useful when individual agent runs have non-trivial failure rates — a single slow or hallucinating agent doesn’t block the whole pipeline. Related to the Mixture-of-Agents <a href="https://arxiv.org/abs/2406.04692">(MoA)</a> pattern but with early-termination semantics.</p>
+</section>
+<section id="criticgenerator-loops" class="level3">
+<h3 class="anchored" data-anchor-id="criticgenerator-loops">Critic–Generator Loops</h3>
+<p>One agent generates a candidate output; a separate <em>critic</em> agent evaluates it against a rubric and provides structured feedback; the generator revises. This loop continues until the critic is satisfied or a budget is exhausted. Natively supported in <a href="https://arxiv.org/abs/2308.08155">AutoGen’s</a> two-agent feedback loop pattern (e.g., code execution driving iterative correction) and LangGraph’s evaluator-optimizer workflow. Conceptually related to <em>self-play</em> in RL: the critic provides a training signal the generator optimizes against.</p>
+<p>The debate pattern in <a href="https://arxiv.org/abs/2305.14325">Du et al.&nbsp;(2023)</a> is a multi-agent variant: multiple generators + implicit mutual critique → convergence.</p>
+</section>
+<section id="constitutional-agents" class="level3">
+<h3 class="anchored" data-anchor-id="constitutional-agents">Constitutional Agents</h3>
+<p>Inspired by <a href="https://arxiv.org/abs/2212.08073">Constitutional AI</a> (Bai et al., 2022) — a technique where an AI evaluates and revises its own outputs according to a set of principles — <em>constitutional agents</em> embed a lightweight evaluator into the agent loop itself. Rather than an external critic, the agent carries its own constitution and self-edits before returning results. This pattern fuses the generator and critic into a single agent, at the cost of transparency (the critique is internal and may not be inspectable).</p>
+</section>
+<section id="agent-as-tool" class="level3">
+<h3 class="anchored" data-anchor-id="agent-as-tool">Agent-as-Tool</h3>
+<p>Treating an entire agent — with its own tool access, memory, and reasoning — as a <em>callable function</em> from another agent. This enables clean hierarchical composition: the orchestrating agent doesn’t need to know how its “tools” are implemented; one of those tools might itself be a full reasoning agent. <a href="https://claude.com/blog/building-multi-agent-systems-when-and-how-to-use-them">Anthropic’s multi-agent guide</a> shows concretely how subagents can be spawned as async tool calls, with the orchestrator aggregating results via <code>asyncio.gather</code>. This is the composition primitive underlying all hierarchical and orchestrator-worker topologies.</p>
+</section>
+<section id="routing-classifier-first" class="level3">
+<h3 class="anchored" data-anchor-id="routing-classifier-first">Routing / Classifier-First</h3>
+<p>A lightweight <em>router</em> agent classifies an incoming request and dispatches it to the most appropriate specialized downstream agent — rather than a full orchestrator that synthesizes output. The router adds minimal latency but dramatically improves downstream agent quality by ensuring each agent only sees tasks it’s good at. <a href="https://www.anthropic.com/engineering/building-effective-agents">Anthropic’s guide</a> calls this “routing” and identifies it as one of the five core workflow patterns.</p>
+</section>
+<section id="automated-workflow-search" class="level3">
+<h3 class="anchored" data-anchor-id="automated-workflow-search">Automated Workflow Search</h3>
+<p>Rather than hand-designing composition topologies, recent work treats workflow structure itself as a search problem. <strong><a href="https://arxiv.org/abs/2410.10762">AFlow</a></strong> (Zhao et al., 2024; ICLR 2025) uses Monte Carlo Tree Search over a space of code-based workflow operators to automatically discover effective agent compositions for a given task, outperforming hand-crafted workflows on benchmarks including HumanEval, MBPP, and HotpotQA. This represents a shift from <em>designing</em> patterns to <em>learning</em> them.</p>
+<hr>
+</section>
+</section>
+<section id="open-problems" class="level2">
+<h2 class="anchored" data-anchor-id="open-problems">Open Problems</h2>
+<section id="no-standard-pattern-language" class="level3">
+<h3 class="anchored" data-anchor-id="no-standard-pattern-language">No Standard Pattern Language</h3>
+<p>Unlike software design patterns, agent composition patterns lack a formal, shared vocabulary. Different frameworks use different terminology (LangGraph says “subgraph,” AutoGen says “nested chat,” CrewAI says “hierarchical process”). There is no agent equivalent of the GoF catalog — no agreed-upon names, diagrams, or implementation contracts.</p>
+</section>
+<section id="debugging-is-harder" class="level3">
+<h3 class="anchored" data-anchor-id="debugging-is-harder">Debugging Is Harder</h3>
+<p>In composed systems, a wrong final answer may originate from any node in a potentially large graph. Stack traces don’t exist; tool calls are probabilistic; intermediate agent outputs may look correct while subtly corrupting downstream state. The <a href="./observability.html">Observability →</a> page covers tooling for tracing multi-agent execution, but the fundamental difficulty remains: emergent failures in stochastic systems are hard to reproduce.</p>
+</section>
+<section id="cost-explosion" class="level3">
+<h3 class="anchored" data-anchor-id="cost-explosion">Cost Explosion</h3>
+<p>Multi-agent composition multiplies API costs. A 5-layer MoA with 5 agents per layer and 2000-token responses generates ~50,000 output tokens per inference pass (25 agent calls × ~2000 tokens each, not counting input context accumulation across layers — total token consumption is considerably higher). Production systems must carefully budget, prune, and cache. The relationship between agent count, depth, and task performance is poorly characterized empirically.</p>
+</section>
+<section id="error-propagation-across-agent-boundaries" class="level3">
+<h3 class="anchored" data-anchor-id="error-propagation-across-agent-boundaries">Error Propagation Across Agent Boundaries</h3>
+<p>Errors in composed systems propagate and amplify. <a href="https://arxiv.org/abs/2308.00352">MetaGPT</a> explicitly identified “cascading hallucinations caused by naively chaining LLMs” as the primary challenge and addressed it with structured intermediate artifacts. But the general solution — validation at every boundary — adds latency and requires human-designed schemas that may not generalize.</p>
+</section>
+<section id="emergence-of-agent-personalities" class="level3">
+<h3 class="anchored" data-anchor-id="emergence-of-agent-personalities">Emergence of Agent Personalities</h3>
+<p>When agents are given strong role definitions, they may develop behaviors unexpected by the system designer — not from capability failures but from role-playing dynamics. Multi-agent systems may need personality auditing as a design practice.</p>
+<hr>
+</section>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<section id="papers" class="level3">
+<h3 class="anchored" data-anchor-id="papers">Papers</h3>
+<ul>
+<li><p>Du, Y., Li, S., Torralba, A., Tenenbaum, J. B., &amp; Mordatch, I. (2023). <strong><a href="https://arxiv.org/abs/2305.14325">Improving Factuality and Reasoning in Language Models through Multiagent Debate</a></strong>. <em>arXiv:2305.14325</em>.</p></li>
+<li><p>Zhou, A., Yan, K., Shlapentokh-Rothman, M., Wang, H., &amp; Wang, Y. (2023). <strong><a href="https://arxiv.org/abs/2310.04406">Language Agent Tree Search Unifies Reasoning Acting and Planning in Language Models</a></strong>. <em>arXiv:2310.04406</em>.</p></li>
+<li><p>Wang, J., Wang, J., Athiwaratkun, B., Zhang, C., &amp; Zou, J. (2024). <strong><a href="https://arxiv.org/abs/2406.04692">Mixture-of-Agents Enhances Large Language Model Capabilities</a></strong>. <em>arXiv:2406.04692</em>.</p></li>
+<li><p>Hong, S., Zhuge, M., Chen, J., et al.&nbsp;(2023). <strong><a href="https://arxiv.org/abs/2308.00352">MetaGPT: Meta Programming for A Multi-Agent Collaborative Framework</a></strong>. <em>arXiv:2308.00352</em>.</p></li>
+<li><p>Wu, Q., Bansal, G., Zhang, J., et al.&nbsp;(2023). <strong><a href="https://arxiv.org/abs/2308.08155">AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation</a></strong>. <em>arXiv:2308.08155</em>.</p></li>
+<li><p>Shao, Y., Gong, Y., Shen, Y., et al.&nbsp;(2024). <strong><a href="https://arxiv.org/abs/2402.14207">Assisting in Writing Wikipedia-like Articles From Scratch with Large Language Models (STORM)</a></strong>. <em>arXiv:2402.14207</em>. NAACL 2024.</p></li>
+<li><p>Bai, Y., Jones, A., Ndousse, K., et al.&nbsp;(2022). <strong><a href="https://arxiv.org/abs/2212.08073">Constitutional AI: Harmlessness from AI Feedback</a></strong>. <em>arXiv:2212.08073</em>.</p></li>
+<li><p>Zhao, J., Liu, Y., Han, W., et al.&nbsp;(2024). <strong><a href="https://arxiv.org/abs/2410.10762">AFlow: Automating Agentic Workflow Generation</a></strong>. <em>arXiv:2410.10762</em>. ICLR 2025.</p></li>
+</ul>
+</section>
+<section id="blog-posts-resources" class="level3">
+<h3 class="anchored" data-anchor-id="blog-posts-resources">Blog Posts &amp; Resources</h3>
+<ul>
+<li><p>Anthropic. (2024). <strong><a href="https://www.anthropic.com/engineering/building-effective-agents">Building Effective Agents</a></strong>. <em>Anthropic Engineering Blog</em>.</p></li>
+<li><p>Anthropic. (2025). <strong><a href="https://claude.com/blog/building-multi-agent-systems-when-and-how-to-use-them">Building multi-agent systems: When and how to use them</a></strong>. <em>Anthropic / Claude Blog</em>.</p></li>
+<li><p>LangChain. <strong><a href="https://langchain.com/langgraph">LangGraph Overview</a></strong>. <em>LangChain Docs</em>.</p></li>
+<li><p>Temporal. <strong><a href="https://temporal.io/blog/durable-execution-meets-ai-why-temporal-is-the-perfect-foundation-for-ai">Durable Execution Meets AI</a></strong>. <em>Temporal Blog</em>.</p></li>
+<li><p>Carpintero, D. (2025). <strong><a href="https://huggingface.co/blog/dcarpintero/design-patterns-for-building-agentic-workflows">Design Patterns for Building Agentic Workflows</a></strong>. <em>Hugging Face Blog</em>.</p></li>
+</ul>
+</section>
+<section id="code-projects" class="level3">
+<h3 class="anchored" data-anchor-id="code-projects">Code &amp; Projects</h3>
+<ul>
+<li><p><strong><a href="https://github.com/langchain-ai/langgraph">LangGraph</a></strong> — Low-level agent orchestration framework (LangChain). StateGraph-based pattern language for agents.</p></li>
+<li><p><strong><a href="https://github.com/microsoft/autogen">AutoGen</a></strong> — Microsoft’s multi-agent conversation framework. Supports diverse agent topologies via customizable conversation patterns.</p></li>
+<li><p><strong><a href="https://github.com/crewAIInc/crewAI">CrewAI</a></strong> — Role-playing multi-agent orchestration framework. Sequential and hierarchical process modes.</p></li>
+<li><p><strong><a href="https://github.com/geekan/MetaGPT">MetaGPT</a></strong> — SOP-driven software-engineering multi-agent system.</p></li>
+<li><p><strong><a href="https://github.com/stanford-oval/storm">STORM</a></strong> — Stanford’s LLM knowledge curation system; hierarchical multi-agent article generation.</p></li>
+<li><p><strong><a href="https://github.com/lapisrocks/LanguageAgentTreeSearch">LATS</a></strong> — Language Agent Tree Search; MCTS-based hierarchical reasoning.</p></li>
+<li><p><strong><a href="https://arxiv.org/abs/2410.10762">AFlow</a></strong> — Automated agentic workflow generation via MCTS over workflow operators. ICLR 2025.</p></li>
+<li><p><strong><a href="https://temporal.io">Temporal</a></strong> — Durable execution engine for long-running agent workflows.</p></li>
+<li><p><strong><a href="https://www.inngest.com">Inngest</a></strong> — Event-driven durable workflow platform for serverless environments.</p></li>
+<li><p><strong><a href="https://github.com/microsoft/semantic-kernel">Semantic Kernel</a></strong> — Microsoft’s agent SDK with a Process Framework for structured workflow composition.</p></li>
+</ul>
+<hr>
+<p><em>Back to <a href="./reasoning.html">Deep Dives →</a> · See also: <a href="./multiagent.html">Multi-Agent Systems →</a> · <a href="./infrastructure.html">Infrastructure &amp; Protocols →</a> · <a href="./observability.html">Observability →</a></em></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/llm-agents-survey\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
