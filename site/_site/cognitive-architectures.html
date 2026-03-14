@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Cognitive Architectures – LLM Agents: A Survey (2022–2026)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./favicon.svg" rel="icon" type="image/svg+xml">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-254a3ef50811769e7b813971395bbfc6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-31e29ad2a3d1e7985534403fb9b8ee74.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-254a3ef50811769e7b813971395bbfc6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">LLM Agents: A Survey (2022–2026)</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./taxonomy.html"> 
+<span class="menu-text">Taxonomy</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./timeline.html"> 
+<span class="menu-text">Timeline</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./foundations.html"> 
+<span class="menu-text">2022–2023</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./recent.html"> 
+<span class="menu-text">2024–2026</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-deep-dives" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Deep Dives</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-deep-dives">    
+        <li>
+    <a class="dropdown-item" href="./reasoning.html">
+ <span class="dropdown-text">Reasoning &amp; Planning</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./multiagent.html">
+ <span class="dropdown-text">Multi-Agent Systems</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./memory-tools.html">
+ <span class="dropdown-text">Memory, Tools &amp; Actions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./agent-training.html">
+ <span class="dropdown-text">Agent Training &amp; RL</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./infrastructure.html">
+ <span class="dropdown-text">Infrastructure &amp; Protocols</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./observability.html">
+ <span class="dropdown-text">Observability &amp; Robustness</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./composition-patterns.html">
+ <span class="dropdown-text">Agent Composition Patterns</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./agentic-rag.html">
+ <span class="dropdown-text">Agentic RAG</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-topics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Topics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-topics">    
+        <li>
+    <a class="dropdown-item" href="./topics.html">
+ <span class="dropdown-text">Topics Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./evaluation.html">
+ <span class="dropdown-text">Evaluation &amp; Benchmarks</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./safety.html">
+ <span class="dropdown-text">Safety &amp; Alignment</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./human-agent.html">
+ <span class="dropdown-text">Human-Agent Interaction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./economics.html">
+ <span class="dropdown-text">Agent Economics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./long-horizon.html">
+ <span class="dropdown-text">Long-Horizon Autonomy</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./agent-societies.html">
+ <span class="dropdown-text">Agent Societies &amp; Simulation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./governance.html">
+ <span class="dropdown-text">Governance &amp; Regulation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./personalization.html">
+ <span class="dropdown-text">Personalization &amp; Digital Twins</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./philosophy-agents.html">
+ <span class="dropdown-text">Agents and Philosophy</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./cybernetics-agents.html">
+ <span class="dropdown-text">Agents and Cybernetics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./cognitive-architectures.html">
+ <span class="dropdown-text">Cognitive Architectures</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-by-domain" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">By Domain</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-by-domain">    
+        <li>
+    <a class="dropdown-item" href="./by-domain.html">
+ <span class="dropdown-text">By Domain Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coding-agents.html">
+ <span class="dropdown-text">Coding Agents</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./science-agents.html">
+ <span class="dropdown-text">Science &amp; Research Agents</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./data-science-agents.html">
+ <span class="dropdown-text">Data Science &amp; Analytics Agents</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./domain-agents.html">
+ <span class="dropdown-text">Domain-Specific Agents</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./community.html"> 
+<span class="menu-text">Community</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/llm-agents-survey/llm-agents-survey.github.io"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-is-a-cognitive-architecture" id="toc-what-is-a-cognitive-architecture" class="nav-link active" data-scroll-target="#what-is-a-cognitive-architecture">What Is a Cognitive Architecture?</a>
+  <ul class="collapse">
+  <li><a href="#criteria-for-a-cognitive-architecture" id="toc-criteria-for-a-cognitive-architecture" class="nav-link" data-scroll-target="#criteria-for-a-cognitive-architecture">Criteria for a cognitive architecture</a></li>
+  <li><a href="#what-cognitive-architectures-get-right-and-what-they-dont" id="toc-what-cognitive-architectures-get-right-and-what-they-dont" class="nav-link" data-scroll-target="#what-cognitive-architectures-get-right-and-what-they-dont">What cognitive architectures get right — and what they don’t</a></li>
+  <li><a href="#production-systems-as-precursors" id="toc-production-systems-as-precursors" class="nav-link" data-scroll-target="#production-systems-as-precursors">Production Systems as Precursors</a></li>
+  </ul></li>
+  <li><a href="#soar" id="toc-soar" class="nav-link" data-scroll-target="#soar">SOAR</a>
+  <ul class="collapse">
+  <li><a href="#core-design" id="toc-core-design" class="nav-link" data-scroll-target="#core-design">Core design</a></li>
+  <li><a href="#chunking-and-impasse-driven-subgoaling" id="toc-chunking-and-impasse-driven-subgoaling" class="nav-link" data-scroll-target="#chunking-and-impasse-driven-subgoaling">Chunking and impasse-driven subgoaling</a></li>
+  <li><a href="#soar-llms" id="toc-soar-llms" class="nav-link" data-scroll-target="#soar-llms">SOAR + LLMs</a></li>
+  </ul></li>
+  <li><a href="#act-r" id="toc-act-r" class="nav-link" data-scroll-target="#act-r">ACT-R</a>
+  <ul class="collapse">
+  <li><a href="#two-memory-systems" id="toc-two-memory-systems" class="nav-link" data-scroll-target="#two-memory-systems">Two memory systems</a></li>
+  <li><a href="#buffers-and-modules" id="toc-buffers-and-modules" class="nav-link" data-scroll-target="#buffers-and-modules">Buffers and modules</a></li>
+  <li><a href="#connection-to-llm-agents" id="toc-connection-to-llm-agents" class="nav-link" data-scroll-target="#connection-to-llm-agents">Connection to LLM agents</a></li>
+  </ul></li>
+  <li><a href="#lida-learning-intelligent-distribution-agent" id="toc-lida-learning-intelligent-distribution-agent" class="nav-link" data-scroll-target="#lida-learning-intelligent-distribution-agent">LIDA — Learning Intelligent Distribution Agent</a>
+  <ul class="collapse">
+  <li><a href="#the-cognitive-cycle" id="toc-the-cognitive-cycle" class="nav-link" data-scroll-target="#the-cognitive-cycle">The cognitive cycle</a></li>
+  </ul></li>
+  <li><a href="#global-workspace-theory" id="toc-global-workspace-theory" class="nav-link" data-scroll-target="#global-workspace-theory">Global Workspace Theory</a>
+  <ul class="collapse">
+  <li><a href="#neural-basis" id="toc-neural-basis" class="nav-link" data-scroll-target="#neural-basis">Neural basis</a></li>
+  <li><a href="#connection-to-transformers" id="toc-connection-to-transformers" class="nav-link" data-scroll-target="#connection-to-transformers">Connection to transformers</a></li>
+  </ul></li>
+  <li><a href="#bdi-belief-desire-intention" id="toc-bdi-belief-desire-intention" class="nav-link" data-scroll-target="#bdi-belief-desire-intention">BDI — Belief, Desire, Intention</a>
+  <ul class="collapse">
+  <li><a href="#the-three-attitudes" id="toc-the-three-attitudes" class="nav-link" data-scroll-target="#the-three-attitudes">The three attitudes</a></li>
+  <li><a href="#bdi-implementations" id="toc-bdi-implementations" class="nav-link" data-scroll-target="#bdi-implementations">BDI implementations</a></li>
+  </ul></li>
+  <li><a href="#the-subsymbolic-challenge" id="toc-the-subsymbolic-challenge" class="nav-link" data-scroll-target="#the-subsymbolic-challenge">The Subsymbolic Challenge</a>
+  <ul class="collapse">
+  <li><a href="#a-decades-old-debate" id="toc-a-decades-old-debate" class="nav-link" data-scroll-target="#a-decades-old-debate">A decades-old debate</a></li>
+  <li><a href="#llms-and-the-unresolved-tension" id="toc-llms-and-the-unresolved-tension" class="nav-link" data-scroll-target="#llms-and-the-unresolved-tension">LLMs and the unresolved tension</a></li>
+  </ul></li>
+  <li><a href="#modern-hybrid-architectures" id="toc-modern-hybrid-architectures" class="nav-link" data-scroll-target="#modern-hybrid-architectures">Modern Hybrid Architectures</a>
+  <ul class="collapse">
+  <li><a href="#coala-cognitive-architectures-for-language-agents" id="toc-coala-cognitive-architectures-for-language-agents" class="nav-link" data-scroll-target="#coala-cognitive-architectures-for-language-agents">CoALA: Cognitive Architectures for Language Agents</a></li>
+  <li><a href="#memgpt" id="toc-memgpt" class="nav-link" data-scroll-target="#memgpt">MemGPT</a></li>
+  <li><a href="#hugginggpt-jarvis" id="toc-hugginggpt-jarvis" class="nav-link" data-scroll-target="#hugginggpt-jarvis">HuggingGPT / JARVIS</a></li>
+  <li><a href="#ghost-in-the-minecraft-gitm" id="toc-ghost-in-the-minecraft-gitm" class="nav-link" data-scroll-target="#ghost-in-the-minecraft-gitm">Ghost in the Minecraft (GITM)</a></li>
+  <li><a href="#what-these-systems-have-in-common" id="toc-what-these-systems-have-in-common" class="nav-link" data-scroll-target="#what-these-systems-have-in-common">What these systems have in common</a></li>
+  </ul></li>
+  <li><a href="#what-cognitive-architectures-teach-llm-agent-designers" id="toc-what-cognitive-architectures-teach-llm-agent-designers" class="nav-link" data-scroll-target="#what-cognitive-architectures-teach-llm-agent-designers">What Cognitive Architectures Teach LLM Agent Designers</a>
+  <ul class="collapse">
+  <li><a href="#working-memory-limits-are-not-bugs-theyre-features" id="toc-working-memory-limits-are-not-bugs-theyre-features" class="nav-link" data-scroll-target="#working-memory-limits-are-not-bugs-theyre-features">1. Working memory limits are not bugs — they’re features</a></li>
+  <li><a href="#long-term-memory-needs-dynamics-not-just-storage" id="toc-long-term-memory-needs-dynamics-not-just-storage" class="nav-link" data-scroll-target="#long-term-memory-needs-dynamics-not-just-storage">2. Long-term memory needs dynamics, not just storage</a></li>
+  <li><a href="#separate-tool-use-from-knowledge-retrieval" id="toc-separate-tool-use-from-knowledge-retrieval" class="nav-link" data-scroll-target="#separate-tool-use-from-knowledge-retrieval">3. Separate tool-use from knowledge retrieval</a></li>
+  <li><a href="#detect-and-handle-impasses-explicitly" id="toc-detect-and-handle-impasses-explicitly" class="nav-link" data-scroll-target="#detect-and-handle-impasses-explicitly">4. Detect and handle impasses explicitly</a></li>
+  <li><a href="#the-homunculus-problem" id="toc-the-homunculus-problem" class="nav-link" data-scroll-target="#the-homunculus-problem">5. The homunculus problem</a></li>
+  <li><a href="#metacognition-is-not-free" id="toc-metacognition-is-not-free" class="nav-link" data-scroll-target="#metacognition-is-not-free">6. Metacognition is not free</a></li>
+  <li><a href="#cognitive-load-theory-applies-to-prompts" id="toc-cognitive-load-theory-applies-to-prompts" class="nav-link" data-scroll-target="#cognitive-load-theory-applies-to-prompts">7. Cognitive load theory applies to prompts</a></li>
+  </ul></li>
+  <li><a href="#open-problems" id="toc-open-problems" class="nav-link" data-scroll-target="#open-problems">Open Problems</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a>
+  <ul class="collapse">
+  <li><a href="#classic-papers-books" id="toc-classic-papers-books" class="nav-link" data-scroll-target="#classic-papers-books">Classic Papers &amp; Books</a></li>
+  <li><a href="#modern-papers" id="toc-modern-papers" class="nav-link" data-scroll-target="#modern-papers">Modern Papers</a></li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Cognitive Architectures</h1>
+<p class="subtitle lead">From SOAR and ACT-R to LLM agents — how cognitive science shapes agent design</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<blockquote class="blockquote">
+<p><em>“The information-processing system must have a memory containing programs, data structures, and the results of its processing.”</em><br>
+— Allen Newell &amp; Herbert Simon, 1976</p>
+</blockquote>
+<section id="what-is-a-cognitive-architecture" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-a-cognitive-architecture">What Is a Cognitive Architecture?</h2>
+<p>A <strong>cognitive architecture</strong> is a theory of the fixed computational structures and processes that underlie all intelligent cognition — implemented as runnable software. It is not a model of one task or one domain; it is a claim about what <em>every</em> mind (biological or artificial) must look like at the architectural level.</p>
+<p>The grand aspiration was stated by Allen Newell in his 1987 William James Lectures, published as <a href="https://archive.org/details/unifiedtheorieso0000newe"><em>Unified Theories of Cognition</em></a> (Harvard University Press, 1990). Newell argued that cognitive science had amassed hundreds of micro-theories — each explaining one phenomenon — but lacked a <strong>unified</strong> account. A cognitive architecture would be to psychology what mechanics is to physics: the deep invariant structure beneath surface diversity.</p>
+<p>The intellectual roots go back further. In their ACM Turing Award lecture, <a href="https://dl.acm.org/doi/10.1145/360018.360022">Newell &amp; Simon (1976)</a>, “Computer Science as Empirical Inquiry: Symbols and Search,” <em>Communications of the ACM</em>, 19(3), proposed the <strong>Physical Symbol System Hypothesis (PSSH)</strong>: any system capable of general intelligent action must manipulate symbolic expressions — that physical symbol systems are both necessary and sufficient for general intelligent action. This framing defined the classical AI project and set the stage for decades of debate with connectionists, embodied cognition theorists, and now large language model researchers.</p>
+<section id="criteria-for-a-cognitive-architecture" class="level3">
+<h3 class="anchored" data-anchor-id="criteria-for-a-cognitive-architecture">Criteria for a cognitive architecture</h3>
+<p>Newell proposed a set of criteria any candidate unified theory must satisfy — what he called the “level of cognitive bands.” A cognitive architecture must account for:</p>
+<ul>
+<li><strong>Real-time performance</strong> (~10ms–1s per step)</li>
+<li><strong>Adaptive behavior</strong> (learning from experience)</li>
+<li><strong>Vast, diverse knowledge</strong> (not a fixed set of facts)</li>
+<li><strong>Dynamic behavior under novelty</strong> (handling situations never seen before)</li>
+<li><strong>Language behavior</strong> (understanding and producing natural language)</li>
+<li><strong>Development</strong> (acquiring competence over time)</li>
+</ul>
+<p>No single LLM agent system satisfies all six today. SOAR and ACT-R satisfy most of them in constrained domains. The criteria serve as a useful audit checklist for evaluating how mature any agent architecture is.</p>
+</section>
+<section id="what-cognitive-architectures-get-right-and-what-they-dont" class="level3">
+<h3 class="anchored" data-anchor-id="what-cognitive-architectures-get-right-and-what-they-dont">What cognitive architectures get right — and what they don’t</h3>
+<p>Cognitive architectures excel at:</p>
+<ul>
+<li><strong>Mechanistic specificity.</strong> They make testable predictions about reaction times, error rates, and learning curves — not just final answers.</li>
+<li><strong>Memory differentiation.</strong> They distinguish working memory, declarative memory, procedural memory, and episodic memory, each with different capacity and access properties.</li>
+<li><strong>Unified scope.</strong> A single architecture handles perception, reasoning, learning, and action.</li>
+<li><strong>Empirical grounding.</strong> Decades of behavioral experiments constrain and validate the architecture.</li>
+</ul>
+<p>LLM-based agents, by contrast, excel at <strong>language fluency</strong>, <strong>broad world knowledge</strong>, and <strong>zero-shot generalization</strong> — but struggle with fine-grained memory management, explicit failure detection, and reproducible behavioral dynamics. The revival of interest in cognitive architectures as LLMs hit their limits is no accident: every mature agent system eventually rediscovers problems that cognitive architects solved (or at least formalized) decades ago.</p>
+<hr>
+</section>
+<section id="production-systems-as-precursors" class="level3">
+<h3 class="anchored" data-anchor-id="production-systems-as-precursors">Production Systems as Precursors</h3>
+<p>Before the modern cognitive architectures, there were <strong>production systems</strong> — rule-based systems that represent knowledge as condition-action pairs and process them through a <strong>recognize-act cycle</strong>. Newell and Simon’s early work on GPS (General Problem Solver) and EPAM pioneered this approach in the 1960s. The essential structure:</p>
+<ol type="1">
+<li>Match left-hand sides of rules against working memory</li>
+<li>Resolve conflicts among multiple matching rules</li>
+<li>Fire the selected rule — update working memory</li>
+<li>Repeat</li>
+</ol>
+<p>Production systems are computationally universal, but they lack learning, structured memory, and explicit goal management. SOAR and ACT-R arose to address precisely these gaps.</p>
+<hr>
+</section>
+</section>
+<section id="soar" class="level2">
+<h2 class="anchored" data-anchor-id="soar">SOAR</h2>
+<p>SOAR was developed by <a href="https://www.sciencedirect.com/science/article/abs/pii/0004370287900506">John E. Laird, Allen Newell, and Paul S. Rosenbloom</a> and published in its canonical form in <a href="https://dl.acm.org/doi/10.1016/0004-3702(87)90050-6"><em>Artificial Intelligence</em>, Vol. 33 (1987)</a>, pp.&nbsp;1–64. It has been actively developed for nearly four decades; the current system is documented at <a href="http://soar.eecs.umich.edu/">soar.eecs.umich.edu</a>.</p>
+<section id="core-design" class="level3">
+<h3 class="anchored" data-anchor-id="core-design">Core design</h3>
+<p>All cognition in SOAR takes place within <strong>problem spaces</strong>: the agent selects a problem space, a current <em>state</em>, and applicable <em>operators</em>, then applies an operator to generate a new state. This uniform formulation is SOAR’s most elegant property — <strong>every cognitive process, including learning and metacognition, uses the same problem-space mechanism</strong>. There is no special metacognitive module; the agent thinks about thinking the same way it thinks about anything else.</p>
+<p>Memory in SOAR is layered:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Memory type</th>
+<th>Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Working memory</strong></td>
+<td>Current activation: goal stack, perceived context</td>
+</tr>
+<tr class="even">
+<td><strong>Procedural memory</strong></td>
+<td>Production rules (IF condition THEN action)</td>
+</tr>
+<tr class="odd">
+<td><strong>Semantic memory</strong></td>
+<td>General world knowledge</td>
+</tr>
+<tr class="even">
+<td><strong>Episodic memory</strong></td>
+<td>Records of past experience</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="chunking-and-impasse-driven-subgoaling" class="level3">
+<h3 class="anchored" data-anchor-id="chunking-and-impasse-driven-subgoaling">Chunking and impasse-driven subgoaling</h3>
+<p>SOAR’s learning mechanism is <strong>chunking</strong>: when an agent reaches an <em>impasse</em> — a state where no operator applies — it automatically creates a subgoal to resolve the impasse. The reasoning done inside that subgoal gets compiled into a new production rule (a <em>chunk</em>), so the same situation is handled faster next time. This is SOAR’s unified theory of learning: all learning is chunking, and all chunking is triggered by impasse.</p>
+<p>The impasse-subgoal mechanism has a direct analog in LLM agent design. When a language model reaches uncertainty — a dead end in a reasoning chain, a tool failure, an ambiguous instruction — it must detect that impasse and spawn a sub-problem. Systems like ReAct and chain-of-thought prompting rediscover this structure informally; SOAR formalizes it as architecture.</p>
+<p>SOAR remains actively developed. The modern SOAR (version 9.x) includes <strong>reinforcement learning</strong>, <strong>inductive learning from examples</strong>, and interfaces for perception and action in robotics and game-playing agents. The architecture is one of the few AI systems that genuinely unifies problem-solving and learning in a single mechanism — a standard that current LLM agent frameworks have not yet matched.</p>
+</section>
+<section id="soar-llms" class="level3">
+<h3 class="anchored" data-anchor-id="soar-llms">SOAR + LLMs</h3>
+<p>Recent work has begun integrating LLMs with SOAR as knowledge sources or rule generators. Yuan et al.&nbsp;(2025), in <a href="https://arxiv.org/abs/2510.09355"><em>Natural Language to Generative Symbolic Rules for SOAR via LLMs</em></a> (arXiv:2510.09355), propose a Generator-Critic framework that uses LLMs to write SOAR production rules from natural language, achieving over 86% success rate on benchmark tasks. This direction — using LLMs as a “front end” that populates a symbolic cognitive architecture — represents one of the most promising hybrid approaches.</p>
+<hr>
+</section>
+</section>
+<section id="act-r" class="level2">
+<h2 class="anchored" data-anchor-id="act-r">ACT-R</h2>
+<p>ACT-R (<strong>Adaptive Control of Thought — Rational</strong>) was developed by <a href="https://act-r.psy.cmu.edu/">John R. Anderson</a> at Carnegie Mellon University. Introduced in 1983 and significantly revised in 1993 and again as ACT-R 7, it has become one of the most empirically validated cognitive architectures in existence, fitting human reaction time data across hundreds of experiments.</p>
+<p>The canonical theoretical statement is <a href="https://pubmed.ncbi.nlm.nih.gov/15482072/">Anderson et al.&nbsp;(2004)</a>, “An Integrated Theory of the Mind,” <em>Psychological Review</em>, 111(4), 1036–1060. DOI: <a href="https://doi.org/10.1037/0033-295X.111.4.1036">10.1037/0033-295X.111.4.1036</a>.</p>
+<section id="two-memory-systems" class="level3">
+<h3 class="anchored" data-anchor-id="two-memory-systems">Two memory systems</h3>
+<p><strong>Declarative memory</strong> holds chunks of factual knowledge. Retrieval is probabilistic: the probability of retrieving a chunk depends on its <strong>activation level</strong>, which decays with time and strengthens with use. The <strong>base-level activation</strong> equation is:</p>
+<p><span class="math display">\[B_i = \ln\!\left(\sum_{j=1}^{n} t_j^{-d}\right)\]</span></p>
+<p>where <span class="math inline">\(t_j\)</span> is the time since the <span class="math inline">\(j\)</span>-th presentation and <span class="math inline">\(d\)</span> is a decay parameter (~0.5 in humans). This single equation predicts the spacing effect (distributed practice beats massed practice), the recency effect (recent memories are more accessible), and the fan effect (more associations → slower retrieval). A vector store with cosine similarity cannot produce any of these effects because it has no notion of time or frequency.</p>
+<p><strong>Procedural memory</strong> holds production rules of the form <em>IF (goal is X and buffer Y contains Z) THEN (do action A and update buffer B)</em>. Only one production fires per cognitive cycle (~50ms), creating a <strong>serial bottleneck</strong> that models human dual-task interference. This is not a limitation — it is a commitment to the view that <em>central cognition is serial</em>, even if peripheral processes (perception, motor control) run in parallel.</p>
+</section>
+<section id="buffers-and-modules" class="level3">
+<h3 class="anchored" data-anchor-id="buffers-and-modules">Buffers and modules</h3>
+<p>ACT-R organizes cognition around <strong>buffers</strong> — limited-capacity communication channels between modules:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Buffer</th>
+<th>Module</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Goal</td>
+<td>Goal tracking</td>
+</tr>
+<tr class="even">
+<td>Retrieval</td>
+<td>Declarative memory</td>
+</tr>
+<tr class="odd">
+<td>Visual</td>
+<td>Perceptual system</td>
+</tr>
+<tr class="even">
+<td>Manual</td>
+<td>Motor system</td>
+</tr>
+<tr class="odd">
+<td>Imaginal</td>
+<td>Problem representation</td>
+</tr>
+</tbody>
+</table>
+<p>Each module operates in parallel; the central procedural system coordinates them via buffer reads and writes.</p>
+</section>
+<section id="connection-to-llm-agents" class="level3">
+<h3 class="anchored" data-anchor-id="connection-to-llm-agents">Connection to LLM agents</h3>
+<p>The ACT-R / LLM analogy is remarkably tight:</p>
+<ul>
+<li><strong>Declarative memory ↔︎ RAG / vector store</strong> — but note: ACT-R’s activation-based retrieval implements <em>spreading activation</em> and forgetting. A flat vector store does neither.</li>
+<li><strong>Procedural memory ↔︎ tool/function calling</strong> — IF the context matches some pattern THEN invoke this function.</li>
+<li><strong>Buffers ↔︎ context window management</strong> — the context window is ACT-R’s goal and imaginal buffers; it is finite and must be managed actively.</li>
+</ul>
+<p>ACT-R’s key lesson for LLM engineers: <strong>spreading activation matters</strong>. Retrieval in human memory is not nearest-neighbor search over frozen embeddings; it is dynamic, decay-sensitive, and associatively structured. Vector stores approximate the <em>form</em> of declarative memory while missing the <em>dynamics</em>.</p>
+<p>ACT-R has also been used extensively in <strong>HCI and educational software</strong> — the ACT-R group’s Cognitive Tutors have successfully taught algebra to thousands of students by modeling exactly which knowledge components students have and have not mastered. This is “AI alignment” in a narrow sense: the system knows, at a fine grain, what the learner knows and doesn’t know. Modern LLM tutors rarely achieve this precision.</p>
+<hr>
+</section>
+</section>
+<section id="lida-learning-intelligent-distribution-agent" class="level2">
+<h2 class="anchored" data-anchor-id="lida-learning-intelligent-distribution-agent">LIDA — Learning Intelligent Distribution Agent</h2>
+<p>LIDA was developed by Stan Franklin and collaborators at the University of Memphis, beginning around 2006, as described in <a href="https://link.springer.com/chapter/10.1007/978-3-642-22887-2_14">Franklin &amp; Patterson (2006)</a> and elaborated in subsequent work. LIDA implements <strong>Global Workspace Theory</strong> (see below) as a computational cognitive cycle.</p>
+<section id="the-cognitive-cycle" class="level3">
+<h3 class="anchored" data-anchor-id="the-cognitive-cycle">The cognitive cycle</h3>
+<p>LIDA’s cognitive cycle runs at roughly 200–500 ms per iteration:</p>
+<ol type="1">
+<li><strong>Perception</strong> — sensory stimuli activate nodes in a <em>Perceptual Associative Memory</em></li>
+<li><strong>Understanding</strong> — recognized structures are assembled into a <em>Current Situational Model</em></li>
+<li><strong>Attention</strong> — <em>codelets</em> (specialized agents) compete for access to the <strong>Global Workspace</strong>; the coalition with highest activation wins and broadcasts its content</li>
+<li><strong>Action selection</strong> — the broadcast triggers selection of a behavior from a <em>Behavior Net</em></li>
+<li><strong>Learning</strong> — multiple forms of learning update various memories after each cycle</li>
+</ol>
+<p>The winner-take-all broadcast is the architecture’s central metaphor: <strong>consciousness as information made globally available</strong>. Everything that can be acted upon must first win the competition for the global workspace.</p>
+<p>LIDA provides one of the clearest computational answers to the question <em>“what is consciousness for?”</em>: consciousness is the broadcast mechanism that integrates the outputs of otherwise encapsulated specialist processes. Without it, each module operates in isolation; the broadcast is what makes the system <em>coherent</em>. This has direct implications for LLM agent design: the context window (or some curated subset of it) functions as a global workspace, and the question of <em>what goes into context</em> is equivalent to the question of <em>what the agent is conscious of</em>.</p>
+<hr>
+</section>
+</section>
+<section id="global-workspace-theory" class="level2">
+<h2 class="anchored" data-anchor-id="global-workspace-theory">Global Workspace Theory</h2>
+<p>Bernard Baars introduced <strong>Global Workspace Theory (GWT)</strong> in <a href="https://books.google.com/books/about/A_Cognitive_Theory_of_Consciousness.html"><em>A Cognitive Theory of Consciousness</em></a> (Cambridge University Press, 1988). The theater metaphor: the brain is a darkened stage; unconscious, specialized processors work in the wings; when one of them wins the spotlight of <strong>attention</strong>, its content is broadcast to the entire theater — all the other processors can now react to it.</p>
+<section id="neural-basis" class="level3">
+<h3 class="anchored" data-anchor-id="neural-basis">Neural basis</h3>
+<p>Stanislas Dehaene and Jean-Pierre Changeux developed the <strong>Global Neuronal Workspace</strong> model, grounding Baars’s functional theory in cortical anatomy. In their landmark review, <a href="https://pubmed.ncbi.nlm.nih.gov/21521609/">Dehaene &amp; Changeux (2011)</a>, “Experimental and Theoretical Approaches to Conscious Processing,” <em>Neuron</em>, 70(2), 200–227, DOI: <a href="https://doi.org/10.1016/j.neuron.2011.03.018">10.1016/j.neuron.2011.03.018</a>, they identify the global workspace with a long-range network of prefrontal and parieto-temporal neurons that “ignite” when a percept crosses a threshold of attention.</p>
+<p>The <strong>theater metaphor</strong> remains useful for LLM agent design: think of the model’s context window as the lit stage, and the various retrieval mechanisms, tool outputs, and memory stores as the wings. The agent’s task is to <em>curate what is on stage</em>. Most current agents do this crudely — append everything and hope the model attends to the right parts. A GWT-inspired design would be more selective: only the current “winner” (the most attention-relevant content) occupies center stage, and everything else waits offstage until needed.</p>
+</section>
+<section id="connection-to-transformers" class="level3">
+<h3 class="anchored" data-anchor-id="connection-to-transformers">Connection to transformers</h3>
+<p>Is the transformer attention mechanism a global workspace? The question is more than metaphorical. In <a href="https://arxiv.org/abs/2011.15091">Goyal &amp; Bengio (arXiv:2011.15091)</a>, “Inductive Biases for Deep Learning of Higher-Level Cognition” (2020/2022), the authors argue explicitly that attention acts as a bottleneck broadcast: a sparse, competition-based mechanism that selects which representations are “globally available” to downstream computations. They propose that future AI systems should build in stronger GWT-like inductive biases — routing information through a learned global workspace rather than flooding every layer with every token.</p>
+<p>The connection is suggestive but imperfect. Transformer attention is not truly <em>winner-take-all</em> within a layer (it’s softmax-weighted), and there is no hard bottleneck — all heads fire on all tokens. But the directional insight stands: <strong>consciousness-like processing may require explicit bottlenecks and selective broadcast</strong>, not just massive parallel computation.</p>
+<hr>
+</section>
+</section>
+<section id="bdi-belief-desire-intention" class="level2">
+<h2 class="anchored" data-anchor-id="bdi-belief-desire-intention">BDI — Belief, Desire, Intention</h2>
+<p>BDI architectures descend from Michael Bratman’s philosophical theory of practical reasoning, laid out in <a href="https://books.google.com/books/about/Intention_Plans_and_Practical_Reason.html"><em>Intention, Plans, and Practical Reason</em></a> (Harvard University Press, 1987). Bratman’s insight: <strong>intentions are not just desires weighted by belief</strong>. Once an agent commits to a plan, that commitment persists and constrains future reasoning — it would be irrational to reconsider every intention at every step.</p>
+<p>Rao &amp; Georgeff translated this philosophy into a formal logic and a computational architecture. <a href="https://www.aaai.org/Library/ICMAS/1995/icmas95-038.php">Rao &amp; Georgeff (1995)</a>, “BDI Agents: From Theory to Practice,” <em>Proceedings of ICMAS-1995</em>, pp.&nbsp;312–319, defined the core BDI model that became the foundation of agent programming languages.</p>
+<section id="the-three-attitudes" class="level3">
+<h3 class="anchored" data-anchor-id="the-three-attitudes">The three attitudes</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Attitude</th>
+<th>Computational analog</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Beliefs</strong></td>
+<td>Context window + retrieved memory — what the agent currently knows</td>
+</tr>
+<tr class="even">
+<td><strong>Desires</strong></td>
+<td>System prompt goals — what the agent is trying to achieve</td>
+</tr>
+<tr class="odd">
+<td><strong>Intentions</strong></td>
+<td>In-progress plans and pending tool calls — what the agent is committed to doing</td>
+</tr>
+</tbody>
+</table>
+<p>The <strong>commitment</strong> mechanism is BDI’s key insight: an agent should not abandon an intention unless it has reason to believe the goal is achieved, unachievable, or no longer relevant. This maps directly to the problem of <em>plan coherence</em> in LLM agents — a model that reconsiders its strategy with every token may thrash instead of making progress.</p>
+<p>BDI also distinguishes between an agent’s <strong>option generation</strong> (what possible courses of action are available?) and <strong>deliberation</strong> (which option to commit to). Most LLM agents conflate these in a single “decide and act” prompt. Separating option generation (e.g., a planning pass) from commitment (e.g., a separate execution pass with memory of what was committed to) can significantly improve robustness.</p>
+</section>
+<section id="bdi-implementations" class="level3">
+<h3 class="anchored" data-anchor-id="bdi-implementations">BDI implementations</h3>
+<p>BDI has been implemented in practical systems, notably <a href="http://jason.sourceforge.net/">Jason</a> (an AgentSpeak(L) interpreter, implemented in Java) and Jadex. These systems provided the architecture for thousands of multi-agent simulation experiments but have not scaled to the rich language understanding that LLMs provide. The natural direction is hybridization: BDI as the planning and commitment layer, LLMs as the language-understanding and knowledge-retrieval layer.</p>
+<hr>
+</section>
+</section>
+<section id="the-subsymbolic-challenge" class="level2">
+<h2 class="anchored" data-anchor-id="the-subsymbolic-challenge">The Subsymbolic Challenge</h2>
+<section id="a-decades-old-debate" class="level3">
+<h3 class="anchored" data-anchor-id="a-decades-old-debate">A decades-old debate</h3>
+<p>The classical cognitive architecture program assumed that intelligence is <strong>symbolic</strong> — that minds manipulate structured representations with combinatorial syntax, much like programs manipulate data structures. This view was challenged by <a href="https://direct.mit.edu/books/monograph/4424/Parallel-Distributed-Processing-Volume">Rumelhart, McClelland &amp; the PDP Research Group (1986)</a>, <em>Parallel Distributed Processing: Explorations in the Microstructure of Cognition</em> (MIT Press, 2 vols.), who argued that cognition emerges from the interaction of many simple, interconnected units — no explicit symbols required.</p>
+<p><a href="https://doi.org/10.1016/0010-0277(88)90031-5">Fodor &amp; Pylyshyn (1988)</a>, “Connectionism and Cognitive Architecture: A Critical Analysis,” <em>Cognition</em>, 28(1–2), 3–71, fired back: connectionist networks lack <strong>systematicity</strong> and <strong>compositionality</strong>. If a system can think <em>“John loves Mary,”</em> it should automatically be able to think <em>“Mary loves John”</em> — this follows from the combinatorial structure of symbols but not from pattern-matched associations.</p>
+</section>
+<section id="llms-and-the-unresolved-tension" class="level3">
+<h3 class="anchored" data-anchor-id="llms-and-the-unresolved-tension">LLMs and the unresolved tension</h3>
+<p>Large language models are deeply subsymbolic: they are trained to predict tokens, not to manipulate explicit symbols. Yet they exhibit apparently systematic reasoning — few-shot generalization, mathematical reasoning, multi-step planning — that looks very symbolic. This is the central empirical puzzle of the current moment.</p>
+<p><strong>Chain-of-thought prompting</strong> (Wei et al., 2022) can be read as symbolic scaffolding on a neural substrate: forcing the model to externalize intermediate representations in natural language, creating a scratchpad that acts like a symbolic working memory. Paul Smolensky’s <em>tensor product representations</em> (mid-1980s/90s) anticipated this: subsymbolic systems can implement compositional structure if they are trained or structured appropriately.</p>
+<p>The debate has not been resolved. Gary Marcus, in <a href="https://www.penguinrandomhouse.com/books/566677/rebooting-ai-by-gary-marcus-and-ernest-davis/"><em>Rebooting AI</em></a> (Marcus &amp; Davis, 2019, Pantheon), continues to argue that language models will hit a ceiling without explicit symbolic reasoning — and that ceiling is now visible in benchmarks requiring systematic generalization and causal reasoning.</p>
+<p>The broader point for agent design: <strong>architecture is not neutral</strong>. The choice between a purely neural agent and a hybrid neuro-symbolic one is not merely an implementation detail — it carries theoretical commitments about the nature of cognition. Cognitive architectures make those commitments explicit. LLM agent designers who ignore this literature are likely to rediscover its problems the hard way.</p>
+<hr>
+</section>
+</section>
+<section id="modern-hybrid-architectures" class="level2">
+<h2 class="anchored" data-anchor-id="modern-hybrid-architectures">Modern Hybrid Architectures</h2>
+<p>The past three years have seen a wave of systems that — consciously or not — recapitulate cognitive architecture ideas inside LLM agent frameworks.</p>
+<section id="coala-cognitive-architectures-for-language-agents" class="level3">
+<h3 class="anchored" data-anchor-id="coala-cognitive-architectures-for-language-agents">CoALA: Cognitive Architectures for Language Agents</h3>
+<p>The canonical synthesis is <a href="https://arxiv.org/abs/2309.02427">Sumers, Yao, Narasimhan &amp; Griffiths (2023)</a>, “Cognitive Architectures for Language Agents” (CoALA), arXiv:2309.02427, published in <em>Transactions on Machine Learning Research</em> (2024). CoALA proposes a unified framework organizing language agents along three dimensions:</p>
+<ol type="1">
+<li><strong>Memory</strong> — working, episodic, semantic, procedural (mirroring ACT-R and SOAR)</li>
+<li><strong>Action space</strong> — internal actions (retrieval, reasoning, learning) vs.&nbsp;external actions (tool calls, environment interaction)</li>
+<li><strong>Decision procedure</strong> — how the agent cycles through perception, planning, and execution</li>
+</ol>
+<p>CoALA retrospectively organizes a large body of LLM agent work and shows that almost every system independently rediscovers one or more components of classical cognitive architectures. It serves as a Rosetta Stone between the cognitive science and AI agent literatures.</p>
+<p>The CoALA <strong>decision cycle</strong> maps closely to the SOAR cycle: the agent perceives, retrieves relevant information from memory, generates candidate actions, selects an action, executes it, and updates memory. The key contribution is identifying which of these steps current LLM agents handle well (generation, selection) and which they handle poorly (structured memory, explicit failure handling, learning from episodes).</p>
+</section>
+<section id="memgpt" class="level3">
+<h3 class="anchored" data-anchor-id="memgpt">MemGPT</h3>
+<p><a href="https://arxiv.org/abs/2310.08560">Packer et al.&nbsp;(2023)</a>, “MemGPT: Towards LLMs as Operating Systems,” arXiv:2310.08560, draws the analogy to operating system memory management explicitly. The LLM’s context window is <em>fast memory</em> (RAM); external storage is <em>slow memory</em> (disk). MemGPT uses the LLM itself to manage paging — deciding what to move into and out of context — mirroring how OS virtual memory managers swap pages. This is ACT-R’s base-level activation equation operationalized as an engineering system.</p>
+<p>The MemGPT system also introduces <strong>self-directed interrupts</strong>: the model can pause its own execution to reorganize memory before continuing. This is a direct implementation of SOAR’s impasse mechanism — when the agent recognizes that its available context is insufficient, it triggers a memory-reorganization subgoal before proceeding.</p>
+</section>
+<section id="hugginggpt-jarvis" class="level3">
+<h3 class="anchored" data-anchor-id="hugginggpt-jarvis">HuggingGPT / JARVIS</h3>
+<p><a href="https://arxiv.org/abs/2303.17580">Shen et al.&nbsp;(2023)</a>, “HuggingGPT: Solving AI Tasks with ChatGPT and its Friends in Hugging Face,” arXiv:2303.17580, uses an LLM as a central <strong>controller</strong> that decomposes user requests into subtasks, selects specialized models from Hugging Face to execute each subtask, and synthesizes the results. This is a SOAR-like problem-space decomposition: the LLM acts as the central planner that assigns operators (specialized models) to sub-problems, then integrates their outputs.</p>
+</section>
+<section id="ghost-in-the-minecraft-gitm" class="level3">
+<h3 class="anchored" data-anchor-id="ghost-in-the-minecraft-gitm">Ghost in the Minecraft (GITM)</h3>
+<p><a href="https://arxiv.org/abs/2305.17144">Zhu et al.&nbsp;(2023)</a>, “Ghost in the Minecraft: Generally Capable Agents for Open-World Environments via Large Language Models with Text-based Knowledge and Memory,” arXiv:2305.17144, shows an LLM-based agent that can complete the entire Minecraft technology tree — a long-horizon, hierarchical planning task requiring sequential goal decomposition across hundreds of steps. GITM uses structured goal decomposition that echoes SOAR’s problem-space hierarchy, with explicit subgoal tracking, text-based memory of past actions, and failure recovery. Crucially, it achieves 99.2% item coverage without any GPU-based training — demonstrating that architectural design (subgoal structure + memory) can substitute for much of what is usually attributed to learned model capacity.</p>
+</section>
+<section id="what-these-systems-have-in-common" class="level3">
+<h3 class="anchored" data-anchor-id="what-these-systems-have-in-common">What these systems have in common</h3>
+<p>Looking across CoALA, MemGPT, HuggingGPT, and GITM, a pattern emerges: each system adds <em>structure</em> to an otherwise unstructured LLM inference loop. That structure is always a partial reinvention of what cognitive architectures formalized decades ago. The field of LLM agents is, in a real sense, running a compressed replay of the history of cognitive science — but without the benefit of the accumulated theory. CoALA’s contribution is to make this connection explicit, so that future systems can build on the cognitive architecture literature rather than rediscover it.</p>
+<hr>
+</section>
+</section>
+<section id="what-cognitive-architectures-teach-llm-agent-designers" class="level2">
+<h2 class="anchored" data-anchor-id="what-cognitive-architectures-teach-llm-agent-designers">What Cognitive Architectures Teach LLM Agent Designers</h2>
+<section id="working-memory-limits-are-not-bugs-theyre-features" class="level3">
+<h3 class="anchored" data-anchor-id="working-memory-limits-are-not-bugs-theyre-features">1. Working memory limits are not bugs — they’re features</h3>
+<p>ACT-R and SOAR both have limited working memories; human cognition does too. The context window limitation of LLMs is not merely an engineering inconvenience — it is structurally analogous to working memory. The lesson: <strong>manage it actively</strong>. ACT-R’s activation-based retrieval tells us that recency and frequency are the right signals for what to keep in context.</p>
+</section>
+<section id="long-term-memory-needs-dynamics-not-just-storage" class="level3">
+<h3 class="anchored" data-anchor-id="long-term-memory-needs-dynamics-not-just-storage">2. Long-term memory needs dynamics, not just storage</h3>
+<p>A vector store is not a memory system; it is a lookup table. ACT-R’s declarative memory spreads activation through associative links, decays with time, and strengthens with rehearsal. Naive RAG ignores all of this. Future systems will need memory representations that implement something closer to spreading activation.</p>
+</section>
+<section id="separate-tool-use-from-knowledge-retrieval" class="level3">
+<h3 class="anchored" data-anchor-id="separate-tool-use-from-knowledge-retrieval">3. Separate tool-use from knowledge retrieval</h3>
+<p>ACT-R distinguishes procedural memory (how to act) from declarative memory (what to know). LLM agents that conflate tool-calling with in-context reasoning tend to be brittle. Explicit separation — a procedural layer for tool dispatch, a declarative layer for knowledge retrieval — may improve reliability.</p>
+</section>
+<section id="detect-and-handle-impasses-explicitly" class="level3">
+<h3 class="anchored" data-anchor-id="detect-and-handle-impasses-explicitly">4. Detect and handle impasses explicitly</h3>
+<p>SOAR’s chunking mechanism exists because failure is expected. Any intelligent agent will reach states where it cannot proceed. LLM agents that lack explicit impasse detection loop, hallucinate, or silently fail. The architecture should make failure a <em>first-class event</em> that triggers a subgoal-creation response.</p>
+</section>
+<section id="the-homunculus-problem" class="level3">
+<h3 class="anchored" data-anchor-id="the-homunculus-problem">5. The homunculus problem</h3>
+<p>In naive LLM agent design, “the model” watches its own context window and decides what to do. But <em>who is watching the model</em>? Cognitive architectures resolve this through mechanisms like the global workspace (no homunculus needed — competition resolves the question). LLM agents that rely on a single model to be both the reasoner and the meta-reasoner face an unresolved version of this problem.</p>
+</section>
+<section id="metacognition-is-not-free" class="level3">
+<h3 class="anchored" data-anchor-id="metacognition-is-not-free">6. Metacognition is not free</h3>
+<p>Thinking about one’s own thinking requires explicit architectural support — SOAR’s chunking from impasses, ACT-R’s goal buffer, LIDA’s global workspace competition. A language model generating tokens does not automatically model its own uncertainty, knowledge boundaries, or reasoning quality. Architectures that add explicit metacognitive layers (e.g., uncertainty estimation, confidence thresholds, reflective reasoning) are trying to solve this problem from the outside.</p>
+</section>
+<section id="cognitive-load-theory-applies-to-prompts" class="level3">
+<h3 class="anchored" data-anchor-id="cognitive-load-theory-applies-to-prompts">7. Cognitive load theory applies to prompts</h3>
+<p>Cognitive load theory (Sweller, 1988) distinguishes <em>intrinsic</em> load (the inherent complexity of the task), <em>extraneous</em> load (complexity from poor presentation), and <em>germane</em> load (processing that builds schemas). Good prompt engineering minimizes extraneous load: clear instructions, well-structured context, elimination of irrelevant information. LLM agents that receive cluttered, overlong prompts suffer from the same performance degradation as humans given poorly designed instructional materials.</p>
+<hr>
+</section>
+</section>
+<section id="open-problems" class="level2">
+<h2 class="anchored" data-anchor-id="open-problems">Open Problems</h2>
+<ol type="1">
+<li><p><strong>No empirical validation standard.</strong> SOAR and ACT-R were validated against human behavioral data (reaction times, learning curves, error distributions). No LLM cognitive architecture has achieved this level of empirical grounding. The field needs benchmarks analogous to the human experiments that validate classical cognitive architectures.</p></li>
+<li><p><strong>Memory management remains ad hoc.</strong> MemGPT is a promising direction, but it addresses context-window paging, not the full richness of human memory dynamics (activation decay, interference, reconsolidation).</p></li>
+<li><p><strong>The binding problem.</strong> How do multiple simultaneous representations get integrated into a coherent percept or thought? Classical cognitive architectures address this through buffers and production rule matching. LLM agents have no principled solution.</p></li>
+<li><p><strong>Time and state.</strong> Classical cognitive architectures have explicit temporal dynamics — a cognitive cycle clock, decay rates, timing of motor commands. Most LLM agents are effectively stateless between turns, losing the continuous-time structure that makes cognitive architectures predictive.</p></li>
+<li><p><strong>Embodiment.</strong> ACT-R has a visual module, a manual module, a perceptual/motor loop. SOAR interfaces with perception and action. LLM agents are typically disembodied — they operate on text and return text. Grounding in a real sensorimotor loop remains an open architectural challenge, especially for robotics and long-horizon physical tasks.</p></li>
+<li><p><strong>Learning from experience.</strong> SOAR learns via chunking; ACT-R learns via production compilation and base-level activation updates. Both learn <em>from doing</em>, updating their architectures as a side effect of task performance. LLM agents typically do not learn from task episodes — their weights are frozen at inference time. Systems like Voyager (arXiv:2305.16291) add a skills library that accumulates across episodes, but this is shallow compared to the tight integration of learning and performance in classical architectures.</p></li>
+<li><p><strong>Multi-agent cognition.</strong> Classical cognitive architectures were designed for single agents. Real intelligence — human and organizational — is massively multi-agent. Extending cognitive architectures to multi-agent settings (shared workspaces, distributed belief, coordination under uncertainty) is an active research area that LLM-based multi-agent systems are beginning to address empirically, often without the theoretical grounding that classical architectures provide.</p></li>
+<li><p><strong>Architectural stability.</strong> Classical cognitive architectures have remained largely stable for decades — SOAR’s core mechanisms from 1987 are recognizable in SOAR 9.x today. LLM agent frameworks are redesigned with each new paper. This instability makes cumulative scientific progress difficult. The field needs architectures robust enough that empirical results from one system generalize to another.</p></li>
+</ol>
+<hr>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<section id="classic-papers-books" class="level3">
+<h3 class="anchored" data-anchor-id="classic-papers-books">Classic Papers &amp; Books</h3>
+<ul>
+<li><p>Newell, A. &amp; Simon, H.A. (1976). <a href="https://dl.acm.org/doi/10.1145/360018.360022">Computer Science as Empirical Inquiry: Symbols and Search</a>. <em>Communications of the ACM</em>, 19(3), 113–126. DOI: 10.1145/360018.360022</p></li>
+<li><p>Newell, A. (1990). <a href="https://archive.org/details/unifiedtheorieso0000newe"><em>Unified Theories of Cognition</em></a>. Harvard University Press.</p></li>
+<li><p>Laird, J.E., Newell, A., &amp; Rosenbloom, P.S. (1987). <a href="https://doi.org/10.1016/0004-3702(87)90050-6">SOAR: An Architecture for General Intelligence</a>. <em>Artificial Intelligence</em>, 33(1), 1–64.</p></li>
+<li><p>Rumelhart, D.E. &amp; McClelland, J.L. (1986). <a href="https://direct.mit.edu/books/monograph/4424/Parallel-Distributed-Processing-Volume"><em>Parallel Distributed Processing: Explorations in the Microstructure of Cognition</em></a>. MIT Press.</p></li>
+<li><p>Fodor, J.A. &amp; Pylyshyn, Z.W. (1988). <a href="https://doi.org/10.1016/0010-0277(88)90031-5">Connectionism and Cognitive Architecture: A Critical Analysis</a>. <em>Cognition</em>, 28(1–2), 3–71.</p></li>
+<li><p>Bratman, M.E. (1987). <a href="https://books.google.com/books?id=IntentionPlansBratman"><em>Intention, Plans, and Practical Reason</em></a>. Harvard University Press.</p></li>
+<li><p>Baars, B.J. (1988). <a href="https://books.google.com/books/about/A_Cognitive_Theory_of_Consciousness.html"><em>A Cognitive Theory of Consciousness</em></a>. Cambridge University Press.</p></li>
+<li><p>Anderson, J.R., Bothell, D., Byrne, M.D., Douglass, S., Lebiere, C., &amp; Qin, Y. (2004). <a href="https://doi.org/10.1037/0033-295X.111.4.1036">An Integrated Theory of the Mind</a>. <em>Psychological Review</em>, 111(4), 1036–1060.</p></li>
+<li><p>Rao, A.S. &amp; Georgeff, M.P. (1995). <a href="https://www.aaai.org/Library/ICMAS/1995/icmas95-038.php">BDI Agents: From Theory to Practice</a>. <em>Proceedings of ICMAS-1995</em>, 312–319.</p></li>
+</ul>
+</section>
+<section id="modern-papers" class="level3">
+<h3 class="anchored" data-anchor-id="modern-papers">Modern Papers</h3>
+<ul>
+<li><p>Dehaene, S. &amp; Changeux, J.-P. (2011). <a href="https://doi.org/10.1016/j.neuron.2011.03.018">Experimental and Theoretical Approaches to Conscious Processing</a>. <em>Neuron</em>, 70(2), 200–227.</p></li>
+<li><p>Goyal, A. &amp; Bengio, Y. (2020/2022). <a href="https://arxiv.org/abs/2011.15091">Inductive Biases for Deep Learning of Higher-Level Cognition</a>. arXiv:2011.15091.</p></li>
+<li><p>Shen, Y. et al.&nbsp;(2023). <a href="https://arxiv.org/abs/2303.17580">HuggingGPT: Solving AI Tasks with ChatGPT and its Friends in Hugging Face</a>. arXiv:2303.17580.</p></li>
+<li><p>Zhu, X. et al.&nbsp;(2023). <a href="https://arxiv.org/abs/2305.17144">Ghost in the Minecraft: Generally Capable Agents for Open-World Environments via Large Language Models</a>. arXiv:2305.17144.</p></li>
+<li><p>Sumers, T.R., Yao, S., Narasimhan, K., &amp; Griffiths, T.L. (2023). <a href="https://arxiv.org/abs/2309.02427">Cognitive Architectures for Language Agents (CoALA)</a>. arXiv:2309.02427. <em>TMLR</em>, 2024.</p></li>
+<li><p>Packer, C. et al.&nbsp;(2023). <a href="https://arxiv.org/abs/2310.08560">MemGPT: Towards LLMs as Operating Systems</a>. arXiv:2310.08560.</p></li>
+<li><p>Yuan, F. et al.&nbsp;(2025). <a href="https://arxiv.org/abs/2510.09355">Natural Language to Generative Symbolic Rules for SOAR Cognitive Architecture via Large Language Models</a>. arXiv:2510.09355.</p></li>
+</ul>
+</section>
+<section id="resources" class="level3">
+<h3 class="anchored" data-anchor-id="resources">Resources</h3>
+<ul>
+<li><a href="http://soar.eecs.umich.edu/">SOAR Cognitive Architecture</a> — University of Michigan, Laird Lab</li>
+<li><a href="https://act-r.psy.cmu.edu/">ACT-R Research Group</a> — Carnegie Mellon University</li>
+<li><a href="http://jason.sourceforge.net/">Jason AgentSpeak Interpreter</a> — BDI implementation in Java</li>
+<li><a href="https://github.com/ysymyth/awesome-language-agents">CoALA Repo: Awesome Language Agents</a> — curated list of LLM agent papers organized by CoALA framework</li>
+<li>Wang, G. et al.&nbsp;(2023). <a href="https://arxiv.org/abs/2305.16291">Voyager: An Open-Ended Embodied Agent with Large Language Models</a>. arXiv:2305.16291 — lifelong skill library accumulation in Minecraft</li>
+<li><a href="https://en.wikipedia.org/wiki/Cognitive_architecture">Wikipedia: Cognitive Architecture</a> — useful overview of the landscape of architectures including EPIC, CLARION, and others not covered here</li>
+</ul>
+<hr>
+<p><em>Back to <a href="./topics.html">Topics →</a> · See also: <a href="./philosophy-agents.html">Agents and Philosophy →</a> · <a href="./reasoning.html">Reasoning &amp; Planning →</a> · <a href="./memory-tools.html">Memory, Tools &amp; Actions →</a></em></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/llm-agents-survey\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

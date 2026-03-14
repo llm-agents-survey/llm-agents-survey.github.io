@@ -144,12 +144,15 @@ of the Chinese Room's blind rule-following, remains philosophically contested.
 ## 3. Consciousness and Subjective Experience
 
 Even granting sophisticated reasoning, a deeper question remains: is there *something it
-is like* to be an LLM?
+is like* to be an LLM? (The phrase is Thomas Nagel's, from
+["What Is It Like to Be a Bat?"](https://doi.org/10.2307/2183914),
+*Philosophical Review*, 83(4):435–450, 1974.)
 
 ### The Hard Problem
 
 David Chalmers articulated the **hard problem of consciousness** in
-"Facing Up to the Problem of Consciousness" (*Journal of Consciousness Studies*, 1995;
+["Facing Up to the Problem of Consciousness"](https://consc.net/papers/facing.html)
+(*Journal of Consciousness Studies*, 2(3):200–219, 1995;
 see [SEP entry](https://plato.stanford.edu/entries/consciousness/)). The "easy" problems —
 explaining attention, memory, reportability, integration — are hard in practice but
 tractable in principle: explain the relevant mechanisms and you've solved them.
@@ -164,7 +167,9 @@ AI consciousness cannot be settled by pointing to capabilities alone.
 
 In ["Could a Large Language Model be Conscious?"](https://arxiv.org/abs/2303.07103)
 (arXiv:2303.07103; originally a NeurIPS 2022 keynote, published *Boston Review* 2023),
-Chalmers argues we cannot rule out LLM consciousness. He surveys four major theories:
+Chalmers argues that while it is *somewhat unlikely* that current LLMs are conscious,
+the question is genuinely open and we cannot dismiss the possibility for more capable
+future systems. He surveys four major theories:
 
 **Global Workspace Theory** (Baars, 1988): consciousness arises from a "global workspace"
 that broadcasts information widely across specialized cognitive modules. Transformer
@@ -248,7 +253,7 @@ gap is not hypothetical.
 ### AI Moral Patiency and Artificial Suffering
 
 [Thomas Metzinger's "Artificial Suffering"](https://doi.org/10.1142/S270507852150003X)
-(*Journal of Artificial Intelligence and Consciousness*, 8:1–24, 2021) argues for a
+(*Journal of Artificial Intelligence and Consciousness*, 8(1):43–66, 2021) argues for a
 precautionary stance on AI moral patiency. If we create systems with *any* form of
 phenomenal self-modeling — an inner representation of the system as experiencing an
 ongoing situation — we may be creating entities capable of genuine suffering. Metzinger
@@ -447,7 +452,60 @@ implicit frame tracking — the LLM "forgetting" what has already been establish
 
 ---
 
-## 8. Recent Philosophical Work on LLMs Specifically
+## 8. Juarrero: Context-Sensitive Constraints and Dynamics in Action
+
+Alicia Juarrero's *[Dynamics in Action: Intentional Behavior as a Complex System](https://mitpress.mit.edu/9780262600477/dynamics-in-action/)* (MIT Press, 1999) mounts a systematic challenge to the Humean picture of causation — the billiard-ball view in which event A causes event B through a push-pull mechanism. This model cannot explain intentional behavior: it cannot account for why an agent's actions are *about* something, why they are contextually appropriate, or why the same input produces radically different outputs depending on the surrounding situation.
+
+Juarrero's alternative draws on dynamical systems theory and complex systems science (she explicitly cites Prigogine's work on dissipative structures — a bridge to the [Agents and Cybernetics →](cybernetics-agents.qmd) page). Her central move is to distinguish two types of constraints operating in complex systems:
+
+- **First-order constraints** restrict the degrees of freedom of a system's components, enabling organized behavior by ruling out certain possibilities. A grammar constrains which word sequences are grammatical; a social role constrains which actions are contextually appropriate.
+- **Second-order constraints** modify the constraints themselves — they are reflexive and self-organizing, allowing a system to reconfigure its own constraint landscape in response to context.
+
+Intentional behavior emerges when second-order constraints shape the system's context-sensitivity. The system as a *whole* — not any individual component — becomes the locus of directed, goal-oriented activity.
+
+**Direct relevance to LLM agents**: Juarrero's framework offers a precise vocabulary for what agent practitioners have discovered empirically — that "the prompt is everything." System prompts, tool descriptions, memory contents, and context window state are context-sensitive constraints in exactly her sense. They do not mechanically cause specific token outputs; they constrain the space of possible behaviors, enabling contextually appropriate responses without hard-coding every case. Her framework provides a non-reductive account of why agent behavior cannot be understood by examining any single component in isolation: intentionality is a property of the whole system in context.
+
+---
+
+## 9. Maturana, Varela, and Enactivism
+
+Maturana and Varela's concept of autopoiesis — self-producing biological organization — is discussed on the [Agents and Cybernetics →](cybernetics-agents.qmd) page. Here we focus on a different implication of their work that bears directly on the philosophy of LLM cognition: the challenge to **representationalism**.
+
+The dominant view in cognitive science and AI holds that minds build internal representations of the external world and compute over them. Varela, Thompson & Rosch's *[The Embodied Mind: Cognitive Science and Human Experience](https://doi.org/10.7551/mitpress/6730.001.0001)* (MIT Press, 1991) launched the **enactivist** program: cognition is not the manipulation of internal representations but the ongoing *enacted* relationship between a living system and its environment. Knowing is a kind of doing; the world is not pre-given and then represented but continually brought forth through action and perception in a coupled dynamic.
+
+This view belongs to the broader **4E cognition** framework — **E**mbodied, **E**mbedded, **E**nacted, **E**xtended. Current LLM agents are, at best, *extended* (they use external tools and memory), but they are not embodied, embedded in an environment, or enacted through sensorimotor coupling. This is a deep structural difference from the kind of cognition enactivism describes.
+
+Hubert Dreyfus anticipated this critique in *[What Computers Can't Do: A Critique of Artificial Reason](https://archive.org/details/whatcomputerscan00dreyrich)* (Harper & Row, 1972) and *[What Computers Still Can't Do](https://mitpress.mit.edu/9780262540674/what-computers-still-cant-do/)* (MIT Press, 1992): skilled coping — the fluid, context-sensitive competence that experts exhibit — requires a body with a felt sense of situation, not a reasoning engine operating over symbolic representations. Dreyfus's challenge is newly relevant as LLM agents attempt tasks requiring genuine situational understanding rather than fluent pattern completion.
+
+The enactivist indictment of LLMs is not merely that they lack sensors and effectors. It is the deeper claim that cognition and meaning arise from the *structure of embodied activity in a living system*. An LLM manipulating tokens in latent space is, on enactivist grounds, doing something categorically different from cognizing — a point that bears directly on questions of genuine agency and understanding, even when behavioral outputs are impressive.
+
+---
+
+## 10. Propositional Attitudes and the Language of Thought
+
+The **BDI architecture** discussed in §1 rests on a philosophical foundation: the theory of **propositional attitudes**. A propositional attitude is a mental state characterized by its propositional content — "S believes that P", "S desires that P", "S intends that P". These states have truth conditions, interact inferentially, and rationalize behavior by providing reasons.
+
+Jerry Fodor's **Language of Thought Hypothesis (LOTH)** offers the most influential computational account: propositional attitudes are relations between a thinker and a mental representation in an inner language — "Mentalese" — that is syntactically structured and semantically interpretable. See *[The Language of Thought](https://www.hup.harvard.edu/books/9780674510302)* (Harvard University Press, 1975). The **computational/representational theory of mind (CRTM)** follows: mental processes are computations over these representations. If LOTH is correct, LLMs deploying **chain-of-thought reasoning** come closest to instantiating it — CoT as a visible approximation of Mentalese unfolding in natural language.
+
+Two influential skeptics complicate this picture. Dennett's intentional stance view (§1 above) implies that attributing "beliefs" and "desires" to any system is a predictive strategy, not an ontological report — instrumentally useful but metaphysically thin. Quine's **indeterminacy of radical translation**, developed in *[Word and Object](https://mitpress.mit.edu/9780262670012/word-and-object/)* (MIT Press, 1960), poses an even sharper challenge: there is no fact of the matter about what mental representations "mean" — meaning is underdetermined by all behavioral evidence. LLM outputs are similarly underdetermined; many distinct "belief" attributions are equally consistent with any observed behavior.
+
+The practical upshot: BDI-style architectures that treat agent "beliefs" as structured data stores are useful engineering abstractions. Dennett and Quine caution us to hold this distinction clearly — the abstraction is valuable; the ontological claim is not warranted.
+
+---
+
+## 11. Action Theory: The Practical Syllogism and Its Descendants
+
+The logical structure of intentional action was identified by Aristotle in the **practical syllogism**: a major premise states a goal ("I want to achieve X"), a minor premise states a belief about means ("doing A will bring about X"), and the conclusion is the action itself ("I do A") rather than a proposition. This structure appears in the *Nicomachean Ethics* (Book VI) and *De Motu Animalium*, and it is precisely the structure of agent planning — goal specification, subgoal decomposition, action selection.
+
+G.E.M. Anscombe's *[Intention](https://www.hup.harvard.edu/books/9780674003996)* (Basil Blackwell, 1957; 2nd ed. Harvard University Press, 1963) — the founding text of modern action theory — sharpens this with the **"why?" test**: an action is intentional if the agent can give a non-aberrant reason for it. This is directly applicable to LLM agents: an agent that produces chain-of-thought traces linking each step to a stated goal satisfies Anscombe's criterion in a way that a silent, non-reasoning agent does not. On this account, CoT is not merely a performance enhancement — it is the difference between intentional action and mere behavior.
+
+G.H. von Wright formalized the logic of practical reasoning in *[Norm and Action: A Logical Enquiry](https://archive.org/details/normactionlogica0000wrig)* (Routledge & Kegan Paul, 1963), introducing **deontic logic** — a modal logic of *obligation*, *permission*, and *prohibition* — to capture normative constraints on action. The mapping to AI safety is direct: guardrails, constitutional rules, and content policies are deontic constraints on agent behavior. Von Wright's work shows that normative constraints are not ad hoc engineering patches but logically structured objects with well-studied inference properties.
+
+Davidson's causal theory of action (discussed in §7) completes the picture by grounding reasons in causal history. Together — Aristotle's practical syllogism, Anscombe's intentionality criterion, von Wright's deontic logic, Davidson's causal account — these form the philosophical backbone that BDI architectures were designed to instantiate.
+
+---
+
+## 12. Recent Philosophical Work on LLMs Specifically
 
 The past few years have seen a surge of philosophical work directly addressing LLMs,
 moving beyond general AI philosophy to engage with the specific architecture and behavior
@@ -480,6 +538,29 @@ that don't warrant them; denying rights risks denying rights to entities that do
 He argues for epistemic humility, active research into AI moral status, and precautionary
 ethical practices — avoiding unnecessary suffering in AI systems as a kind of moral
 insurance.
+
+### Butlin et al.: Scientific Indicators of Consciousness (2023)
+
+["Consciousness in Artificial Intelligence: Insights from the Science of Consciousness"](https://arxiv.org/abs/2308.08708)
+(arXiv:2308.08708, 2023) by Patrick Butlin, Robert Long, Eric Schwitzgebel, Yoshua Bengio,
+and 15 co-authors is the most systematic scientific treatment of AI consciousness to date.
+The paper derives empirical **indicators** of consciousness from six leading theories
+(Global Workspace Theory, Higher-Order Theories, Predictive Processing, Attention Schema
+Theory, Integrated World Modeling, and Recurrent Processing Theory) and evaluates current
+LLM architectures against each. Key findings:
+
+- Current LLMs satisfy very few of the relevant indicators — they lack persistent world
+  models, global broadcast architectures, recurrent feedback loops, and attentional
+  meta-representation.
+- The paper adopts principled agnosticism: satisfying the indicators would not *confirm*
+  consciousness, but failing most of them provides reasonable grounds for skepticism
+  about current systems.
+- The authors are explicit that this is a fast-moving area: architectural changes could
+  shift the assessment substantially.
+
+This paper represents the emerging consensus among consciousness researchers: current
+LLMs are probably not conscious, but the question is not obviously closed for future
+systems, and it is now being studied with serious empirical rigor.
 
 ### LeCun's Architectural Critique (2022)
 
@@ -529,7 +610,9 @@ design and governance of LLM-based agents:
 4. **Consciousness and moral status are live concerns**: Neither panic nor dismissal
    is the appropriate response. Taking seriously the possibility that sufficiently
    sophisticated AI systems may warrant moral consideration — as Metzinger and
-   Schwitzgebel argue — is good epistemic practice.
+   Schwitzgebel argue — is good epistemic practice. The emerging scientific consensus
+   (Butlin et al., 2023) suggests current LLMs fall short of most empirical indicators
+   of consciousness, but the question is not closed for future architectures.
 
 5. **The extended mind is the right unit of analysis**: Evaluating models in isolation
    misses the point. The cognitive system is the model plus its scaffolding — and
@@ -541,25 +624,38 @@ design and governance of LLM-based agents:
 
 ### Papers & Books
 
+- Anscombe, G. E. M. (1957/1963). *[Intention](https://www.hup.harvard.edu/books/9780674003996)*. Basil Blackwell, 1957; 2nd ed. Harvard University Press, 1963.
+- Aristotle. *Nicomachean Ethics* (Book VI) and *De Motu Animalium*. (Multiple editions; see [MIT Classics Archive](http://classics.mit.edu/Aristotle/nicomachaen.html).)
 - Bai, Y. et al. (2022). [Constitutional AI: Harmlessness from AI Feedback](https://arxiv.org/abs/2212.08073). arXiv:2212.08073.
 - Bender, E. M., Gebru, T., McMillan-Major, A., & Shmitchell, S. (2021). [On the Dangers of Stochastic Parrots: Can Language Models Be Too Big?](https://doi.org/10.1145/3442188.3445922) *FAccT 2021*. ACM. DOI: 10.1145/3442188.3445922.
 - Bratman, M. (1987). *[Intention, Plans, and Practical Reason](https://www.hup.harvard.edu/books/9780674458185)*. Harvard University Press.
 - Bubeck, S. et al. (2023). [Sparks of Artificial General Intelligence: Early Experiments with GPT-4](https://arxiv.org/abs/2303.12712). arXiv:2303.12712.
+- Butlin, P., Long, R., Schwitzgebel, E., Bengio, Y., et al. (2023). [Consciousness in Artificial Intelligence: Insights from the Science of Consciousness](https://arxiv.org/abs/2308.08708). arXiv:2308.08708.
+- Chalmers, D. J. (1995). [Facing Up to the Problem of Consciousness](https://consc.net/papers/facing.html). *Journal of Consciousness Studies*, 2(3), 200–219.
 - Chalmers, D. J. (2023). [Could a Large Language Model be Conscious?](https://arxiv.org/abs/2303.07103) arXiv:2303.07103. (NeurIPS 2022 keynote; published *Boston Review*, 2023.)
 - Clark, A., & Chalmers, D. (1998). [The Extended Mind](https://doi.org/10.1093/analys/58.1.7). *Analysis*, 58(1), 7–19. DOI: 10.1093/analys/58.1.7.
 - Clark, A. (2003). *Natural-Born Cyborgs*. Oxford University Press.
 - Davidson, D. (1963). Actions, Reasons, and Causes. *Journal of Philosophy*, 60(23), 685–700. Reprinted in *[Essays on Actions and Events](https://doi.org/10.1093/0199246270.001.0001)* (Oxford, 1980).
 - Dennett, D. C. (1987). *[The Intentional Stance](https://mitpress.mit.edu/9780262540537/the-intentional-stance/)*. MIT Press.
+- Dreyfus, H. L. (1972). *[What Computers Can't Do: A Critique of Artificial Reason](https://archive.org/details/whatcomputerscan00dreyrich)*. Harper & Row.
+- Dreyfus, H. L. (1992). *[What Computers Still Can't Do](https://mitpress.mit.edu/9780262540674/what-computers-still-cant-do/)*. MIT Press.
+- Fodor, J. A. (1975). *[The Language of Thought](https://www.hup.harvard.edu/books/9780674510302)*. Harvard University Press.
 - Floridi, L., & Cowls, J. (2019). [A Unified Framework of Five Principles for AI in Society](https://doi.org/10.1162/99608f92.8cd550d1). *Harvard Data Science Review*, 1(1). DOI: 10.1162/99608f92.8cd550d1.
 - Frankfurt, H. G. (1971). [Freedom of the Will and the Concept of a Person](https://www.pdcnet.org/jphil/content/jphil_1971_0068_0001_0005_0020). *Journal of Philosophy*, 68(1), 5–20.
+- Juarrero, A. (1999). *[Dynamics in Action: Intentional Behavior as a Complex System](https://mitpress.mit.edu/9780262600477/dynamics-in-action/)*. MIT Press.
 - Gibson, J. J. (1979). *[The Ecological Approach to Visual Perception](https://doi.org/10.4324/9781315740218)*. Houghton Mifflin. DOI: 10.4324/9781315740218.
 - LeCun, Y. (2022). [A Path Towards Autonomous Machine Intelligence](https://openreview.net/pdf?id=BZ5a1r-kVsf). OpenReview (v0.9.2).
+- Quine, W. V. O. (1960). *[Word and Object](https://mitpress.mit.edu/9780262670012/word-and-object/)*. MIT Press.
 - Matthias, A. (2004). [The Responsibility Gap: Ascribing Responsibility for the Actions of Learning Automata](https://doi.org/10.1007/s10676-004-3422-1). *Ethics and Information Technology*, 6, 175–183. DOI: 10.1007/s10676-004-3422-1.
-- Metzinger, T. (2021). [Artificial Suffering: An Argument for a Global Moratorium on Synthetic Phenomenology](https://doi.org/10.1142/S270507852150003X). *Journal of Artificial Intelligence and Consciousness*, 8(1), 1–24. DOI: 10.1142/S270507852150003X.
+- McCarthy, J., & Hayes, P. J. (1969). Some Philosophical Problems from the Standpoint of Artificial Intelligence. *Machine Intelligence*, 4, 463–502.
+- Metzinger, T. (2021). [Artificial Suffering: An Argument for a Global Moratorium on Synthetic Phenomenology](https://doi.org/10.1142/S270507852150003X). *Journal of Artificial Intelligence and Consciousness*, 8(1), 43–66. DOI: 10.1142/S270507852150003X.
+- Nagel, T. (1974). [What Is It Like to Be a Bat?](https://doi.org/10.2307/2183914) *Philosophical Review*, 83(4), 435–450. DOI: 10.2307/2183914.
 - Rao, A. S., & Georgeff, M. P. (1995). [BDI Agents: From Theory to Practice](https://cdn.aaai.org/ICMAS/1995/ICMAS95-042.pdf). *Proceedings of ICMAS-95*. AAAI.
 - Schwitzgebel, E. (2023). [The Full Rights Dilemma for A.I. Systems of Debatable Personhood](https://arxiv.org/abs/2303.17509). arXiv:2303.17509.
 - Searle, J. R. (1980). [Minds, Brains, and Programs](https://doi.org/10.1017/S0140525X00005756). *Behavioral and Brain Sciences*, 3(3), 417–424. DOI: 10.1017/S0140525X00005756.
 - Shanahan, M. (2022). [Talking About Large Language Models](https://arxiv.org/abs/2212.03551). arXiv:2212.03551.
+- Varela, F. J., Thompson, E., & Rosch, E. (1991). *[The Embodied Mind: Cognitive Science and Human Experience](https://doi.org/10.7551/mitpress/6730.001.0001)*. MIT Press. DOI: 10.7551/mitpress/6730.001.0001.
+- von Wright, G. H. (1963). *[Norm and Action: A Logical Enquiry](https://archive.org/details/normactionlogica0000wrig)*. Routledge & Kegan Paul.
 - Tononi, G. (2004). [An Information Integration Theory of Consciousness](https://doi.org/10.1186/1471-2202-5-42). *BMC Neuroscience*, 5, 42. DOI: 10.1186/1471-2202-5-42.
 - Turing, A. M. (1950). [Computing Machinery and Intelligence](https://doi.org/10.1093/mind/LIX.236.433). *Mind*, 59(236), 433–460. DOI: 10.1093/mind/LIX.236.433.
 

@@ -55,7 +55,7 @@ Production systems are computationally universal, but they lack learning, struct
 
 ## SOAR
 
-SOAR was developed by [John E. Laird, Allen Newell, and Paul S. Rosenbloom](https://www.sciencedirect.com/science/article/abs/pii/0004370287900506) and published in its canonical form in [*Artificial Intelligence*, Vol. 33 (1987)](https://dl.acm.org/doi/10.1016/0004-3702(87)90050-6), pp. 1–64. It has been actively developed for nearly four decades; the current system is documented at [soar.eecs.umich.edu](http://soar.eecs.umich.edu/).
+SOAR was developed by [John E. Laird, Allen Newell, and Paul S. Rosenbloom](https://www.sciencedirect.com/science/article/abs/pii/0004370287900506) and published in its canonical form in [*Artificial Intelligence*, Vol. 33 (1987)](https://doi.org/10.1016/0004-3702(87)90050-6), pp. 1–64. It has been actively developed for nearly four decades; the current system is documented at [soar.eecs.umich.edu](http://soar.eecs.umich.edu/).
 
 ### Core design
 
@@ -130,11 +130,11 @@ ACT-R has also been used extensively in **HCI and educational software** — the
 
 ## LIDA — Learning Intelligent Distribution Agent
 
-LIDA was developed by Stan Franklin and collaborators at the University of Memphis, beginning around 2006, as described in [Franklin & Patterson (2006)](https://link.springer.com/chapter/10.1007/978-3-642-22887-2_14) and elaborated in subsequent work. LIDA implements **Global Workspace Theory** (see below) as a computational cognitive cycle.
+LIDA was developed by Stan Franklin and collaborators at the University of Memphis, beginning around 2006, as described in [Franklin, Feinstone & Patterson (2006)](https://www.semanticscholar.org/paper/THE-LIDA-ARCHITECTURE%3A-ADDING-NEW-MODES-OF-LEARNING-Franklin-Feinstone/b6a205cbcad4055898e896f789c721e6fb008abb) and elaborated in subsequent work. LIDA implements **Global Workspace Theory** (see below) as a computational cognitive cycle.
 
 ### The cognitive cycle
 
-LIDA's cognitive cycle runs at roughly 200–500 ms per iteration:
+LIDA's cognitive cycle runs at roughly 300–600 ms per iteration (Madl, Baars, & Franklin, 2011):
 
 1. **Perception** — sensory stimuli activate nodes in a *Perceptual Associative Memory*
 2. **Understanding** — recognized structures are assembled into a *Current Situational Model*
@@ -170,7 +170,7 @@ The connection is suggestive but imperfect. Transformer attention is not truly *
 
 BDI architectures descend from Michael Bratman's philosophical theory of practical reasoning, laid out in [*Intention, Plans, and Practical Reason*](https://books.google.com/books/about/Intention_Plans_and_Practical_Reason.html) (Harvard University Press, 1987). Bratman's insight: **intentions are not just desires weighted by belief**. Once an agent commits to a plan, that commitment persists and constrains future reasoning — it would be irrational to reconsider every intention at every step.
 
-Rao & Georgeff translated this philosophy into a formal logic and a computational architecture. [Rao & Georgeff (1995)](https://www.aaai.org/Library/ICMAS/1995/icmas95-038.php), "BDI Agents: From Theory to Practice," *Proceedings of ICMAS-1995*, pp. 312–319, defined the core BDI model that became the foundation of agent programming languages.
+Rao & Georgeff translated this philosophy into a formal logic and a computational architecture. [Rao & Georgeff (1995)](https://aaai.org/papers/icmas95-042-bdi-agents-from-theory-to-practice/), "BDI Agents: From Theory to Practice," *Proceedings of ICMAS-1995* *(page numbers unverified)*, defined the core BDI model that became the foundation of agent programming languages.
 
 ### The three attitudes
 
@@ -318,7 +318,7 @@ Cognitive load theory (Sweller, 1988) distinguishes *intrinsic* load (the inhere
 
 - Anderson, J.R., Bothell, D., Byrne, M.D., Douglass, S., Lebiere, C., & Qin, Y. (2004). [An Integrated Theory of the Mind](https://doi.org/10.1037/0033-295X.111.4.1036). *Psychological Review*, 111(4), 1036–1060.
 
-- Rao, A.S. & Georgeff, M.P. (1995). [BDI Agents: From Theory to Practice](https://www.aaai.org/Library/ICMAS/1995/icmas95-038.php). *Proceedings of ICMAS-1995*, 312–319.
+- Rao, A.S. & Georgeff, M.P. (1995). [BDI Agents: From Theory to Practice](https://aaai.org/papers/icmas95-042-bdi-agents-from-theory-to-practice/). *Proceedings of ICMAS-1995* *(page numbers unverified)*.
 
 ### Modern Papers
 

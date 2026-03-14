@@ -206,7 +206,7 @@ The deepest cybernetic insight applied to agents: **feedback should operate on t
 
 ### Darwin Gödel Machine
 
-The [Darwin Gödel Machine](https://arxiv.org/abs/2505.22954) (Sakana AI, 2025; [arXiv:2505.22954](https://arxiv.org/abs/2505.22954)) is a self-improving system that iteratively modifies its own code, empirically validates each change using coding benchmarks, and accumulates a growing library of improved agent variants via open-ended evolution. Named for Darwin (open-ended evolution) and Gödel (self-reference), it directly implements the cybernetic ideal of a system whose feedback loop targets its own structure. This is not just an agent that learns — it is an agent that evolves.
+The [Darwin Gödel Machine](https://arxiv.org/abs/2505.22954) (Zhang et al., 2025; UBC/Sakana AI; [arXiv:2505.22954](https://arxiv.org/abs/2505.22954)) is a self-improving system that iteratively modifies its own code, empirically validates each change using coding benchmarks, and accumulates a growing library of improved agent variants via open-ended evolution. Named for Darwin (open-ended evolution) and Gödel (self-reference), it directly implements the cybernetic ideal of a system whose feedback loop targets its own structure. This is not just an agent that learns — it is an agent that evolves.
 
 The connection back to Wiener is exact: the DGM applies negative feedback not to the agent's outputs but to the agent's own code. The thermostat principle, operating one level up.
 
@@ -325,7 +325,7 @@ As LLM agents grow more complex — multi-agent, self-modifying, recursively sel
 - Wang, G. et al. (2023). Voyager: An open-ended embodied agent with large language models. [arXiv:2305.16291](https://arxiv.org/abs/2305.16291)
 - Ma, Y.J. et al. (2023). Eureka: Human-level reward design via coding large language models. *ICLR 2024*. [arXiv:2310.12931](https://arxiv.org/abs/2310.12931)
 - Zhang, J. et al. (2024). AFlow: Automating agentic workflow generation. *ICLR 2025 Oral*. [arXiv:2410.10762](https://arxiv.org/abs/2410.10762)
-- Hughes, E. et al. (2025). Darwin Godel Machine: Open-ended evolution of self-improving agents. [arXiv:2505.22954](https://arxiv.org/abs/2505.22954)
+- Zhang, J. et al. (2025). Darwin Godel Machine: Open-ended evolution of self-improving agents. University of British Columbia / Sakana AI. [arXiv:2505.22954](https://arxiv.org/abs/2505.22954)
 - Fernando, C. et al. (2024). PromptBreeder: Self-referential self-improvement via prompt evolution. *ICML 2024*. [arXiv:2309.16797](https://arxiv.org/abs/2309.16797)
 - Colorni, A., Dorigo, M. & Maniezzo, V. (1992). Distributed optimization by ant colonies. *Proc. First European Conference on Artificial Life*, 134–142. [Scholarpedia overview](http://www.scholarpedia.org/article/Ant_colony_optimization)
 - Maass, W., Natschläger, T. & Markram, H. (2002). Real-time computing without stable states: A new framework for neural computation based on perturbations. *Neural Computation*, 14(11), 2531–2560. [Semantic Scholar](https://www.semanticscholar.org/paper/Liquid-State-Machines:-Motivation,-Theory,-and-Maass/c0afa07d27f2335b74e57db1be6c7c16918c90c4)

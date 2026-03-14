@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Agents and Cybernetics – LLM Agents: A Survey (2022–2026)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./favicon.svg" rel="icon" type="image/svg+xml">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-254a3ef50811769e7b813971395bbfc6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-31e29ad2a3d1e7985534403fb9b8ee74.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-254a3ef50811769e7b813971395bbfc6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">LLM Agents: A Survey (2022–2026)</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./taxonomy.html"> 
+<span class="menu-text">Taxonomy</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./timeline.html"> 
+<span class="menu-text">Timeline</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./foundations.html"> 
+<span class="menu-text">2022–2023</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./recent.html"> 
+<span class="menu-text">2024–2026</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-deep-dives" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Deep Dives</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-deep-dives">    
+        <li>
+    <a class="dropdown-item" href="./reasoning.html">
+ <span class="dropdown-text">Reasoning &amp; Planning</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./multiagent.html">
+ <span class="dropdown-text">Multi-Agent Systems</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./memory-tools.html">
+ <span class="dropdown-text">Memory, Tools &amp; Actions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./agent-training.html">
+ <span class="dropdown-text">Agent Training &amp; RL</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./infrastructure.html">
+ <span class="dropdown-text">Infrastructure &amp; Protocols</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./observability.html">
+ <span class="dropdown-text">Observability &amp; Robustness</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./composition-patterns.html">
+ <span class="dropdown-text">Agent Composition Patterns</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./agentic-rag.html">
+ <span class="dropdown-text">Agentic RAG</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-topics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Topics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-topics">    
+        <li>
+    <a class="dropdown-item" href="./topics.html">
+ <span class="dropdown-text">Topics Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./evaluation.html">
+ <span class="dropdown-text">Evaluation &amp; Benchmarks</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./safety.html">
+ <span class="dropdown-text">Safety &amp; Alignment</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./human-agent.html">
+ <span class="dropdown-text">Human-Agent Interaction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./economics.html">
+ <span class="dropdown-text">Agent Economics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./long-horizon.html">
+ <span class="dropdown-text">Long-Horizon Autonomy</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./agent-societies.html">
+ <span class="dropdown-text">Agent Societies &amp; Simulation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./governance.html">
+ <span class="dropdown-text">Governance &amp; Regulation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./personalization.html">
+ <span class="dropdown-text">Personalization &amp; Digital Twins</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./philosophy-agents.html">
+ <span class="dropdown-text">Agents and Philosophy</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./cybernetics-agents.html">
+ <span class="dropdown-text">Agents and Cybernetics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./cognitive-architectures.html">
+ <span class="dropdown-text">Cognitive Architectures</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-by-domain" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">By Domain</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-by-domain">    
+        <li>
+    <a class="dropdown-item" href="./by-domain.html">
+ <span class="dropdown-text">By Domain Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./coding-agents.html">
+ <span class="dropdown-text">Coding Agents</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./science-agents.html">
+ <span class="dropdown-text">Science &amp; Research Agents</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./data-science-agents.html">
+ <span class="dropdown-text">Data Science &amp; Analytics Agents</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./domain-agents.html">
+ <span class="dropdown-text">Domain-Specific Agents</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./community.html"> 
+<span class="menu-text">Community</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/llm-agents-survey/llm-agents-survey.github.io"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#cybernetics-the-original-science-of-control-and-communication" id="toc-cybernetics-the-original-science-of-control-and-communication" class="nav-link active" data-scroll-target="#cybernetics-the-original-science-of-control-and-communication">1. Cybernetics: The Original Science of Control and Communication</a>
+  <ul class="collapse">
+  <li><a href="#the-mccullochpitts-neuron" id="toc-the-mccullochpitts-neuron" class="nav-link" data-scroll-target="#the-mccullochpitts-neuron">The McCulloch–Pitts Neuron</a></li>
+  <li><a href="#the-macy-conferences" id="toc-the-macy-conferences" class="nav-link" data-scroll-target="#the-macy-conferences">The Macy Conferences</a></li>
+  <li><a href="#shannons-information-theory" id="toc-shannons-information-theory" class="nav-link" data-scroll-target="#shannons-information-theory">Shannon’s Information Theory</a></li>
+  </ul></li>
+  <li><a href="#first-and-second-order-cybernetics" id="toc-first-and-second-order-cybernetics" class="nav-link" data-scroll-target="#first-and-second-order-cybernetics">2. First and Second Order Cybernetics</a>
+  <ul class="collapse">
+  <li><a href="#first-order-cybernetics" id="toc-first-order-cybernetics" class="nav-link" data-scroll-target="#first-order-cybernetics">First-Order Cybernetics</a></li>
+  <li><a href="#second-order-cybernetics-the-observer-enters-the-system" id="toc-second-order-cybernetics-the-observer-enters-the-system" class="nav-link" data-scroll-target="#second-order-cybernetics-the-observer-enters-the-system">Second-Order Cybernetics: The Observer Enters the System</a></li>
+  <li><a href="#gregory-bateson-the-difference-that-makes-a-difference" id="toc-gregory-bateson-the-difference-that-makes-a-difference" class="nav-link" data-scroll-target="#gregory-bateson-the-difference-that-makes-a-difference">Gregory Bateson: “The Difference that Makes a Difference”</a></li>
+  </ul></li>
+  <li><a href="#management-cybernetics-stafford-beer-and-the-viable-system-model" id="toc-management-cybernetics-stafford-beer-and-the-viable-system-model" class="nav-link" data-scroll-target="#management-cybernetics-stafford-beer-and-the-viable-system-model">3. Management Cybernetics — Stafford Beer and the Viable System Model</a>
+  <ul class="collapse">
+  <li><a href="#beers-major-works" id="toc-beers-major-works" class="nav-link" data-scroll-target="#beers-major-works">Beer’s Major Works</a></li>
+  <li><a href="#the-viable-system-model-vsm" id="toc-the-viable-system-model-vsm" class="nav-link" data-scroll-target="#the-viable-system-model-vsm">The Viable System Model (VSM)</a></li>
+  <li><a href="#ross-ashby-the-law-of-requisite-variety" id="toc-ross-ashby-the-law-of-requisite-variety" class="nav-link" data-scroll-target="#ross-ashby-the-law-of-requisite-variety">Ross Ashby: The Law of Requisite Variety</a></li>
+  <li><a href="#project-cybersyn-19711973" id="toc-project-cybersyn-19711973" class="nav-link" data-scroll-target="#project-cybersyn-19711973">Project Cybersyn (1971–1973)</a></li>
+  </ul></li>
+  <li><a href="#autopoiesis-self-making-systems" id="toc-autopoiesis-self-making-systems" class="nav-link" data-scroll-target="#autopoiesis-self-making-systems">4. Autopoiesis — Self-Making Systems</a>
+  <ul class="collapse">
+  <li><a href="#maturana-and-varela" id="toc-maturana-and-varela" class="nav-link" data-scroll-target="#maturana-and-varela">Maturana and Varela</a></li>
+  <li><a href="#enactivism-cognition-as-enactment" id="toc-enactivism-cognition-as-enactment" class="nav-link" data-scroll-target="#enactivism-cognition-as-enactment">Enactivism: Cognition as Enactment</a></li>
+  <li><a href="#organizational-closure-and-agent-identity" id="toc-organizational-closure-and-agent-identity" class="nav-link" data-scroll-target="#organizational-closure-and-agent-identity">Organizational Closure and Agent Identity</a></li>
+  <li><a href="#autopoiesis-and-llm-agents" id="toc-autopoiesis-and-llm-agents" class="nav-link" data-scroll-target="#autopoiesis-and-llm-agents">Autopoiesis and LLM Agents</a></li>
+  </ul></li>
+  <li><a href="#self-organization-and-emergence" id="toc-self-organization-and-emergence" class="nav-link" data-scroll-target="#self-organization-and-emergence">5. Self-Organization and Emergence</a>
+  <ul class="collapse">
+  <li><a href="#prigogine-order-from-chaos" id="toc-prigogine-order-from-chaos" class="nav-link" data-scroll-target="#prigogine-order-from-chaos">Prigogine: Order from Chaos</a></li>
+  <li><a href="#kauffman-self-organization-in-biology" id="toc-kauffman-self-organization-in-biology" class="nav-link" data-scroll-target="#kauffman-self-organization-in-biology">Kauffman: Self-Organization in Biology</a></li>
+  <li><a href="#the-free-energy-principle" id="toc-the-free-energy-principle" class="nav-link" data-scroll-target="#the-free-energy-principle">The Free Energy Principle</a></li>
+  </ul></li>
+  <li><a href="#biologically-inspired-computation" id="toc-biologically-inspired-computation" class="nav-link" data-scroll-target="#biologically-inspired-computation">6. Biologically Inspired Computation</a>
+  <ul class="collapse">
+  <li><a href="#evolutionary-algorithms" id="toc-evolutionary-algorithms" class="nav-link" data-scroll-target="#evolutionary-algorithms">Evolutionary Algorithms</a></li>
+  <li><a href="#swarm-intelligence" id="toc-swarm-intelligence" class="nav-link" data-scroll-target="#swarm-intelligence">Swarm Intelligence</a></li>
+  <li><a href="#reservoir-computing" id="toc-reservoir-computing" class="nav-link" data-scroll-target="#reservoir-computing">Reservoir Computing</a></li>
+  <li><a href="#spiking-neural-networks-and-neuromorphic-computing" id="toc-spiking-neural-networks-and-neuromorphic-computing" class="nav-link" data-scroll-target="#spiking-neural-networks-and-neuromorphic-computing">Spiking Neural Networks and Neuromorphic Computing</a></li>
+  <li><a href="#immune-inspired-systems" id="toc-immune-inspired-systems" class="nav-link" data-scroll-target="#immune-inspired-systems">Immune-Inspired Systems</a></li>
+  </ul></li>
+  <li><a href="#self-evolving-agents-the-modern-frontier" id="toc-self-evolving-agents-the-modern-frontier" class="nav-link" data-scroll-target="#self-evolving-agents-the-modern-frontier">7. Self-Evolving Agents — The Modern Frontier</a>
+  <ul class="collapse">
+  <li><a href="#voyager-lifelong-skill-accumulation" id="toc-voyager-lifelong-skill-accumulation" class="nav-link" data-scroll-target="#voyager-lifelong-skill-accumulation">Voyager: Lifelong Skill Accumulation</a></li>
+  <li><a href="#eureka-llm-driven-reward-design" id="toc-eureka-llm-driven-reward-design" class="nav-link" data-scroll-target="#eureka-llm-driven-reward-design">EUREKA: LLM-Driven Reward Design</a></li>
+  <li><a href="#aflow-automated-workflow-search" id="toc-aflow-automated-workflow-search" class="nav-link" data-scroll-target="#aflow-automated-workflow-search">AFlow: Automated Workflow Search</a></li>
+  <li><a href="#darwin-gödel-machine" id="toc-darwin-gödel-machine" class="nav-link" data-scroll-target="#darwin-gödel-machine">Darwin Gödel Machine</a></li>
+  <li><a href="#promptbreeder-and-prompt-evolution" id="toc-promptbreeder-and-prompt-evolution" class="nav-link" data-scroll-target="#promptbreeder-and-prompt-evolution">PromptBreeder and Prompt Evolution</a></li>
+  <li><a href="#the-theoretical-precedent-gödel-machines" id="toc-the-theoretical-precedent-gödel-machines" class="nav-link" data-scroll-target="#the-theoretical-precedent-gödel-machines">The Theoretical Precedent: Gödel Machines</a></li>
+  </ul></li>
+  <li><a href="#cybernetic-concepts-in-modern-llm-agents" id="toc-cybernetic-concepts-in-modern-llm-agents" class="nav-link" data-scroll-target="#cybernetic-concepts-in-modern-llm-agents">8. Cybernetic Concepts in Modern LLM Agents</a>
+  <ul class="collapse">
+  <li><a href="#rlhf-as-cybernetic-regulation" id="toc-rlhf-as-cybernetic-regulation" class="nav-link" data-scroll-target="#rlhf-as-cybernetic-regulation">RLHF as Cybernetic Regulation</a></li>
+  <li><a href="#the-react-loop-as-perceptionaction-cycle" id="toc-the-react-loop-as-perceptionaction-cycle" class="nav-link" data-scroll-target="#the-react-loop-as-perceptionaction-cycle">The ReAct Loop as Perception–Action Cycle</a></li>
+  <li><a href="#the-ooda-loop" id="toc-the-ooda-loop" class="nav-link" data-scroll-target="#the-ooda-loop">The OODA Loop</a></li>
+  <li><a href="#multi-agent-coordination-as-beers-system-2" id="toc-multi-agent-coordination-as-beers-system-2" class="nav-link" data-scroll-target="#multi-agent-coordination-as-beers-system-2">Multi-Agent Coordination as Beer’s System 2</a></li>
+  <li><a href="#tool-use-as-extended-effector" id="toc-tool-use-as-extended-effector" class="nav-link" data-scroll-target="#tool-use-as-extended-effector">Tool Use as Extended Effector</a></li>
+  <li><a href="#memory-as-adaptive-regulation" id="toc-memory-as-adaptive-regulation" class="nav-link" data-scroll-target="#memory-as-adaptive-regulation">Memory as Adaptive Regulation</a></li>
+  <li><a href="#homeostasis-in-agent-behavior" id="toc-homeostasis-in-agent-behavior" class="nav-link" data-scroll-target="#homeostasis-in-agent-behavior">Homeostasis in Agent Behavior</a></li>
+  <li><a href="#amplifying-intelligence-beers-management-amplifiers" id="toc-amplifying-intelligence-beers-management-amplifiers" class="nav-link" data-scroll-target="#amplifying-intelligence-beers-management-amplifiers">Amplifying Intelligence: Beer’s Management Amplifiers</a></li>
+  </ul></li>
+  <li><a href="#the-synthesis-why-cybernetics-matters-for-agent-research" id="toc-the-synthesis-why-cybernetics-matters-for-agent-research" class="nav-link" data-scroll-target="#the-synthesis-why-cybernetics-matters-for-agent-research">The Synthesis: Why Cybernetics Matters for Agent Research</a>
+  <ul class="collapse">
+  <li><a href="#gaps-and-open-questions" id="toc-gaps-and-open-questions" class="nav-link" data-scroll-target="#gaps-and-open-questions">Gaps and Open Questions</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a>
+  <ul class="collapse">
+  <li><a href="#books-classic-papers" id="toc-books-classic-papers" class="nav-link" data-scroll-target="#books-classic-papers">Books &amp; Classic Papers</a></li>
+  <li><a href="#modern-papers" id="toc-modern-papers" class="nav-link" data-scroll-target="#modern-papers">Modern Papers</a></li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Agents and Cybernetics</h1>
+<p class="subtitle lead">Feedback, control, autopoiesis, and self-organization — the cybernetic lineage of intelligent agents</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<blockquote class="blockquote">
+<p><em>“The purpose of a system is what it does.”</em> — Stafford Beer</p>
+</blockquote>
+<p>Modern LLM agents — perceiving, reasoning, acting, and adapting in loops — are not a new idea. They are the latest instantiation of a half-century-old scientific program: <strong>cybernetics</strong>, the science of control and communication in complex systems. This page traces the cybernetic lineage of intelligent agents, from Norbert Wiener’s feedback loops to Stafford Beer’s Viable System Model, through autopoiesis and self-organization, to the self-evolving agents of 2025.</p>
+<p>Cybernetics is not merely a historical precursor to AI — it is an ongoing research tradition with sharper formal tools for analyzing adaptive systems than most of what passes for “agent theory” today. The goal of this page is to make that tradition accessible to researchers building and studying LLM agents, and to show that the most pressing current questions — multi-agent coordination, self-improvement, agent identity, safety, and emergence — all have deep roots in the cybernetic canon.</p>
+<hr>
+<section id="cybernetics-the-original-science-of-control-and-communication" class="level2">
+<h2 class="anchored" data-anchor-id="cybernetics-the-original-science-of-control-and-communication">1. Cybernetics: The Original Science of Control and Communication</h2>
+<p>In 1948, mathematician Norbert Wiener published <em><a href="https://direct.mit.edu/books/oa-monograph/4581/Cybernetics-or-Control-and-Communication-in-the">Cybernetics: Or Control and Communication in the Animal and the Machine</a></em> (MIT Press, 1948; <a href="https://archive.org/details/cybernetics0000norb">archive.org scan</a>), coining the term from the Greek <em>kubernetes</em> — steersman or governor. The book laid the theoretical foundations for a new science of purposive behavior in machines and living systems alike.</p>
+<p>Wiener’s central insight was deceptively simple: <strong>feedback loops allow systems to pursue goals by detecting and correcting error</strong>. A thermostat is the canonical example — it measures the gap between actual and desired temperature, and acts to close it. This is <em>negative feedback</em>: deviation from a target state triggers a corrective response. The revolutionary claim was that this same mechanism could explain <em>teleological</em> (goal-directed) behavior in animals, brains, and machines — without invoking any supernatural purpose. Purposiveness could be a property of mechanism.</p>
+<section id="the-mccullochpitts-neuron" class="level3">
+<h3 class="anchored" data-anchor-id="the-mccullochpitts-neuron">The McCulloch–Pitts Neuron</h3>
+<p>Two years before Wiener’s book, Warren McCulloch and Walter Pitts published <a href="https://doi.org/10.1007/BF02478259">“A Logical Calculus of the Ideas Immanent in Nervous Activity”</a> (<em>Bulletin of Mathematical Biophysics</em>, 5, 115–133, 1943) — the paper that created the artificial neuron. They showed that networks of simple binary threshold units could, in principle, compute any logical function, grounding the possibility of machine cognition in formal logic and neurophysiology.</p>
+</section>
+<section id="the-macy-conferences" class="level3">
+<h3 class="anchored" data-anchor-id="the-macy-conferences">The Macy Conferences</h3>
+<p>The intellectual cradle of cybernetics was the <a href="https://en.wikipedia.org/wiki/Macy_conferences">Macy Conferences on Cybernetics</a> (1946–1953), sponsored by the Josiah Macy Jr.&nbsp;Foundation. These interdisciplinary gatherings brought together Wiener, John von Neumann, Claude Shannon, Gregory Bateson, Margaret Mead, Walter Pitts, and others — creating what may be the most productive scientific conversation of the twentieth century. The agenda: discover the common principles underlying goal-directed behavior in organisms, brains, and machines.</p>
+<p>The Macy Conferences were radically interdisciplinary by design: mathematicians, physicists, neurologists, anthropologists, and psychologists sat around the same table. This was not accidental — Wiener and collaborators believed that the most important scientific problems lay at the <em>interfaces</em> between disciplines, and that the common language of feedback, information, and control could unify what had previously been fragmented specialisms. The analogy to modern AI agent research — which draws simultaneously on linguistics, cognitive science, software engineering, organizational theory, and philosophy of mind — is striking.</p>
+</section>
+<section id="shannons-information-theory" class="level3">
+<h3 class="anchored" data-anchor-id="shannons-information-theory">Shannon’s Information Theory</h3>
+<p>In 1948, Claude Shannon published <a href="https://doi.org/10.1002/j.1538-7305.1948.tb01338.x">“A Mathematical Theory of Communication”</a> in the <em>Bell System Technical Journal</em> (27, 379–423), establishing information theory as a quantitative science. Shannon’s insight — that information could be measured independently of meaning, as a reduction in uncertainty — provided cybernetics with a rigorous mathematical vocabulary. Information became the currency of feedback loops.</p>
+<p>Together, Wiener’s feedback principle and Shannon’s information measure gave cybernetics a two-part foundation: <em>what</em> circulates in a control loop (information, measured as entropy reduction) and <em>how</em> it produces purposive behavior (negative feedback toward a goal state). This dual foundation underpins every modern agent design, from RLHF training loops to tool-calling pipelines.</p>
+<hr>
+</section>
+</section>
+<section id="first-and-second-order-cybernetics" class="level2">
+<h2 class="anchored" data-anchor-id="first-and-second-order-cybernetics">2. First and Second Order Cybernetics</h2>
+<section id="first-order-cybernetics" class="level3">
+<h3 class="anchored" data-anchor-id="first-order-cybernetics">First-Order Cybernetics</h3>
+<p>First-order cybernetics studies systems from the outside — the observer is presumed to be separate from the system under study. A thermostat, a servo-mechanism, a homeostatic regulatory system: the scientist observes, measures, and models. The classic tradition of Wiener, Shannon, and Ashby (see §3) belongs here.</p>
+</section>
+<section id="second-order-cybernetics-the-observer-enters-the-system" class="level3">
+<h3 class="anchored" data-anchor-id="second-order-cybernetics-the-observer-enters-the-system">Second-Order Cybernetics: The Observer Enters the System</h3>
+<p>In the 1970s, a second revolution occurred. Heinz von Foerster, Humberto Maturana, and Francisco Varela recognized that the cybernetic framework had to turn back on itself: <strong>the observer is part of the system</strong>. Von Foerster edited <em><a href="https://link.springer.com/chapter/10.1007/0-387-21722-3_13">Cybernetics of Cybernetics</a></em> (University of Illinois, BCL Report 73.38, 1974; 2nd ed.&nbsp;Future Systems, 1995), a landmark collection that examined how observing systems construct their own reality.</p>
+<p>Second-order cybernetics asks: not “how does the system work?” but “how does the <em>observing</em> system construct its account of the world?” This is an epistemological shift with profound consequences for AI: if an agent’s model of the world is always a product of its own architecture, then the agent’s outputs are as much a reflection of its internal structure as of external reality.</p>
+</section>
+<section id="gregory-bateson-the-difference-that-makes-a-difference" class="level3">
+<h3 class="anchored" data-anchor-id="gregory-bateson-the-difference-that-makes-a-difference">Gregory Bateson: “The Difference that Makes a Difference”</h3>
+<p>Gregory Bateson — anthropologist, cybernetician, and one of the central figures at the Macy Conferences — extended cybernetic thinking into ecology, mind, and social systems. His essay collection <em><a href="https://press.uchicago.edu/ucp/books/book/chicago/S/bo3620295.html">Steps to an Ecology of Mind</a></em> (University of Chicago Press, 2000; orig. Ballantine Books, 1972; <a href="https://archive.org/details/stepstoecologyof00bate">archive.org</a>) contains his famous definition of information: “the difference that makes a difference.” A signal is only information relative to the receiver’s organization — a concept that resonates powerfully with context-sensitivity in LLMs.</p>
+<p>Bateson also developed the concept of <em>logical levels</em> of learning — Learning 0, I, II, and III — corresponding to fixed response, single-loop learning, double-loop learning (learning to learn), and transformative change in the premises of learning itself. Modern agent architectures that modify their own prompts (meta-prompting), their own reward functions (EUREKA), or their own code (Darwin Gödel Machine) are beginning to operate at Bateson’s higher learning levels.</p>
+<p>For second-order cybernetics, the epistemological stakes are high: a system that can observe its own observing is capable of self-modeling, reflexivity, and genuine self-modification. This is the theoretical underpinning of why agents with working memory and reflection (chain-of-thought, inner monologue) behave qualitatively differently from pure feed-forward models.</p>
+<hr>
+</section>
+</section>
+<section id="management-cybernetics-stafford-beer-and-the-viable-system-model" class="level2">
+<h2 class="anchored" data-anchor-id="management-cybernetics-stafford-beer-and-the-viable-system-model">3. Management Cybernetics — Stafford Beer and the Viable System Model</h2>
+<p>No figure in cybernetics is more directly relevant to multi-agent AI architecture than <strong>Stafford Beer</strong> (1926–2002). Where Wiener theorized feedback in organisms and machines, Beer applied cybernetic principles to organizations — and arrived at a structural model of autonomous, adaptive systems that maps with uncanny precision onto modern LLM agent architectures.</p>
+<section id="beers-major-works" class="level3">
+<h3 class="anchored" data-anchor-id="beers-major-works">Beer’s Major Works</h3>
+<ul>
+<li><em><a href="https://archive.org/details/brain-of-the-firm-reclaimed-v-1">Brain of the Firm</a></em> (Allen Lane / Penguin Press, 1972; 2nd ed.&nbsp;Wiley, 1981) — Beer’s argument that the human brain and nervous system provide the correct architectural template for managing a viable organization.</li>
+<li><em>The Heart of Enterprise</em> (John Wiley &amp; Sons, 1979) — the companion volume, formalizing the theoretical laws of viable systems.</li>
+<li><em><a href="https://archive.org/details/diagnosingsystem00beer">Diagnosing the System for Organizations</a></em> (John Wiley &amp; Sons, 1985) — the practical guide to applying the VSM.</li>
+</ul>
+</section>
+<section id="the-viable-system-model-vsm" class="level3">
+<h3 class="anchored" data-anchor-id="the-viable-system-model-vsm">The Viable System Model (VSM)</h3>
+<p>Beer’s concept of viability is precise: a system is viable if it can maintain a separate existence in a given environment, adapting to disturbances without losing its identity or disintegrating. Viability is not the same as optimality — a viable system is one that <em>survives</em>. This framing is directly relevant to long-running agent systems that must remain functional across changing environments, shifting user goals, and unforeseen failure modes.</p>
+<p>The VSM is Beer’s recursive model of any organization capable of surviving in a changing environment. It comprises five interacting systems:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 37%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>System</th>
+<th>Function</th>
+<th>Analogy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>System 1</strong></td>
+<td>Operations — the primary activities that create value</td>
+<td>The muscles, the workers</td>
+</tr>
+<tr class="even">
+<td><strong>System 2</strong></td>
+<td>Coordination — damping oscillations between System 1 units</td>
+<td>The spinal cord, scheduling</td>
+</tr>
+<tr class="odd">
+<td><strong>System 3</strong></td>
+<td>Control — optimizing the whole, allocating resources</td>
+<td>The basal ganglia, management</td>
+</tr>
+<tr class="even">
+<td><strong>System 4</strong></td>
+<td>Intelligence — monitoring the environment, future planning</td>
+<td>The neocortex, strategy</td>
+</tr>
+<tr class="odd">
+<td><strong>System 5</strong></td>
+<td>Policy — identity, values, ultimate authority</td>
+<td>The prefrontal cortex, governance</td>
+</tr>
+</tbody>
+</table>
+<p>The model is <strong>recursive</strong>: each System 1 unit is itself a viable system with its own Systems 1–5. This fractal self-similarity is the key to scalability.</p>
+<p>The VSM maps onto LLM multi-agent architectures with striking fidelity:</p>
+<ul>
+<li><strong>System 1 ↔︎ Worker agents</strong> executing subtasks (code writing, web search, analysis)</li>
+<li><strong>System 2 ↔︎ Coordination layer</strong> managing message passing, preventing conflicts</li>
+<li><strong>System 3 ↔︎ Orchestrator</strong> allocating tasks, monitoring performance, resource management</li>
+<li><strong>System 4 ↔︎ Planning agent</strong> decomposing goals, modeling the environment, anticipating obstacles</li>
+<li><strong>System 5 ↔︎ System prompt / policy</strong> encoding values, constraints, and the agent’s identity</li>
+</ul>
+<p>Where most agent architecture discussions reach for informal metaphors (“managers” and “workers”), Beer had already formalized the cybernetic laws that make such architectures viable — decades before LLMs existed.</p>
+</section>
+<section id="ross-ashby-the-law-of-requisite-variety" class="level3">
+<h3 class="anchored" data-anchor-id="ross-ashby-the-law-of-requisite-variety">Ross Ashby: The Law of Requisite Variety</h3>
+<p>Beer’s work built on Ross Ashby’s foundational <em><a href="https://archive.org/details/introductiontocy00ashb">An Introduction to Cybernetics</a></em> (John Wiley, 1956). Ashby’s <strong>Law of Requisite Variety</strong> — often summarized as “only variety can destroy variety” — states that a controller must be able to produce at least as many distinct states as the system it is controlling. Applied to agents: an agent’s repertoire of possible actions must match (or exceed) the complexity of the environment it must navigate. This is why tool-use and multi-step reasoning are not luxuries but architectural necessities.</p>
+<p>Ashby also invented the <em>homeostat</em> — a physical device that demonstrated automatic self-organization toward stable equilibrium — and articulated the concept of <em>ultrastability</em>: a higher-order regulation mechanism that modifies first-order regulatory parameters when those fail to maintain stability. Ultrastability is the formal ancestor of meta-learning, fine-tuning, and RLHF: when the agent’s first-order behavior fails to satisfy the goal, a higher-order process adjusts the parameters of that first-order behavior.</p>
+</section>
+<section id="project-cybersyn-19711973" class="level3">
+<h3 class="anchored" data-anchor-id="project-cybersyn-19711973">Project Cybersyn (1971–1973)</h3>
+<p>Beer’s most audacious application of the VSM was <a href="https://en.wikipedia.org/wiki/Project_Cybersyn">Project Cybersyn</a>, commissioned by Chilean President Salvador Allende. Beer designed a real-time cybernetic system to manage Chile’s economy — including the <em>Opsroom</em> (a futuristic control room with ergonomic chairs and large displays), <em>Cybernet</em> (a telex network linking factories), and <em>Cyberstride</em> (statistical software for detecting production anomalies in near-real time). The project ran from 1971 to 1973 before being terminated by Pinochet’s coup on September 11, 1973.</p>
+<p>During the October 1972 truckers’ strike — an attempt to paralyze the Allende government — Beer estimated the Cybernet telex network transmitted around 2,000 messages daily, enabling the government to coordinate distribution of essential goods across Chile’s 5,000+ kilometer span with a fraction of its usual logistics infrastructure. It was, arguably, the first large-scale deployment of a distributed real-time decision-support system.</p>
+<p>Cybersyn remains the most ambitious real-world deployment of cybernetic management theory, and a subject of ongoing scholarship (see <a href="https://thereader.mitpress.mit.edu/project-cybersyn-chiles-radical-experiment-in-cybernetic-socialism/">MIT Press Reader</a> for an accessible account). The parallel to modern LLM-backed operations centers — real-time dashboards, anomaly detection, decision support — is striking. Beer had the architecture right fifty years early; the technology is only now catching up.</p>
+<hr>
+</section>
+</section>
+<section id="autopoiesis-self-making-systems" class="level2">
+<h2 class="anchored" data-anchor-id="autopoiesis-self-making-systems">4. Autopoiesis — Self-Making Systems</h2>
+<p>If Beer gave us the organizational structure of viable systems, Humberto Maturana and Francisco Varela gave us the deeper question: what makes a system <em>living</em> at all? Their answer was <strong>autopoiesis</strong>.</p>
+<section id="maturana-and-varela" class="level3">
+<h3 class="anchored" data-anchor-id="maturana-and-varela">Maturana and Varela</h3>
+<p>In <em><a href="https://link.springer.com/book/10.1007/978-94-009-8947-4">Autopoiesis and Cognition: The Realization of the Living</a></em> (D. Reidel Publishing, 1980; <a href="https://archive.org/details/autopoiesiscogni0042matu">archive.org</a>), Maturana and Varela coined the term from Greek <em>autos</em> (self) + <em>poiesis</em> (creation, production). An autopoietic system is one that <strong>produces and maintains itself through its own operations</strong> — its components are continually regenerated by the network of processes they constitute.</p>
+<p>The key distinction: a living system is: - <strong>Organizationally closed</strong> — it defines its own boundary and identity through its internal processes - <strong>Thermodynamically open</strong> — it exchanges energy and matter with its environment</p>
+<p>A cell continuously produces the molecules that constitute it, maintains its membrane, and regulates its internal chemistry — all through processes that are themselves products of the cell. This is not circular; it is the very structure of life.</p>
+</section>
+<section id="enactivism-cognition-as-enactment" class="level3">
+<h3 class="anchored" data-anchor-id="enactivism-cognition-as-enactment">Enactivism: Cognition as Enactment</h3>
+<p>Varela extended autopoietic theory into cognitive science through <em>enactivism</em> — the view that cognition is not about representing a pre-given world but about <strong>enacting</strong> a world through sensorimotor coupling. Together with Evan Thompson and Eleanor Rosch, he developed this in <em><a href="https://direct.mit.edu/books/monograph/3956/The-Embodied-MindCognitive-Science-and-Human">The Embodied Mind: Cognitive Science and Human Experience</a></em> (MIT Press, 1991; <a href="https://doi.org/10.7551/mitpress/6730.001.0001">DOI: 10.7551/mitpress/6730.001.0001</a>). For AI: an agent’s “world” is not a given input stream but something it actively structures through its own operations.</p>
+</section>
+<section id="organizational-closure-and-agent-identity" class="level3">
+<h3 class="anchored" data-anchor-id="organizational-closure-and-agent-identity">Organizational Closure and Agent Identity</h3>
+<p>Maturana and Varela drew a sharp distinction between an autopoietic system’s <em>organization</em> (the invariant pattern of relations that defines its identity) and its <em>structure</em> (the particular physical components that realize it at any moment). A cell can replace every molecule while maintaining its organization. Similarly, an LLM agent can swap its underlying model weights, its tool set, and its memory contents while preserving its organizational pattern — its goals, values, and operational logic encoded in the system prompt and fine-tuning. This distinction between organization and structure is practically important: it tells us what can be changed in an agent system without disrupting its identity, and what cannot.</p>
+</section>
+<section id="autopoiesis-and-llm-agents" class="level3">
+<h3 class="anchored" data-anchor-id="autopoiesis-and-llm-agents">Autopoiesis and LLM Agents</h3>
+<p>The autopoietic question applied to LLM agents: <em>is an agent that modifies its own memory, tools, and code autopoietic?</em> In a formal sense, current LLM agents are not — they do not produce their own substrates. But self-modifying agents like Voyager (§7) that write and store their own skill libraries, or Darwin Gödel Machines that rewrite their own code, approach the autopoietic boundary.</p>
+<p>Niklas Luhmann extended autopoiesis into social theory: social systems, in his framework, are autopoietic systems whose elements are <em>communications</em> — meaning that communication reproduces communication, not individual acts or persons. Applied to multi-agent systems: the communication structure of an agent society can be understood as an autopoietic system in its own right, with emergent properties not reducible to individual agents. See Luhmann’s <em>Social Systems</em> (Stanford University Press, 1995; orig. <em>Soziale Systeme</em>, Suhrkamp, 1984).</p>
+<hr>
+</section>
+</section>
+<section id="self-organization-and-emergence" class="level2">
+<h2 class="anchored" data-anchor-id="self-organization-and-emergence">5. Self-Organization and Emergence</h2>
+<section id="prigogine-order-from-chaos" class="level3">
+<h3 class="anchored" data-anchor-id="prigogine-order-from-chaos">Prigogine: Order from Chaos</h3>
+<p>Ilya Prigogine showed that systems far from thermodynamic equilibrium can spontaneously organize into ordered structures — what he called <strong>dissipative structures</strong>. With Isabelle Stengers, he developed this in <em><a href="https://en.wikipedia.org/wiki/Order_Out_of_Chaos:_Man%27s_New_Dialogue_with_Nature">Order Out of Chaos: Man’s New Dialogue with Nature</a></em> (Bantam Books, 1984; <a href="https://archive.org/details/orderoutofchaosm00prig">archive.org</a>). The principle: nonequilibrium is the source of order. Systems that dissipate energy through irreversible processes can create and sustain complex patterns — from Bénard convection cells to living organisms to economies.</p>
+</section>
+<section id="kauffman-self-organization-in-biology" class="level3">
+<h3 class="anchored" data-anchor-id="kauffman-self-organization-in-biology">Kauffman: Self-Organization in Biology</h3>
+<p>Stuart Kauffman explored how order arises in biological systems without design. In <em>The Origins of Order: Self-Organization and Selection in Evolution</em> (Oxford University Press, 1993), he introduced NK landscapes and Boolean network models to show that biological systems self-organize to “the edge of chaos” — a regime between frozen order and chaotic randomness that maximizes evolvability. The Santa Fe Institute tradition he helped found (complex adaptive systems) studies emergence as a general phenomenon.</p>
+<p><strong>Emergence</strong> — the appearance of macro-level properties not reducible to micro-level components — is perhaps the central mystery of both biology and large-scale AI systems. Why do LLMs exhibit capabilities (arithmetic, code generation, theory of mind) that were not explicitly trained? Why do multi-agent systems produce coordinated behaviors that no individual agent was programmed to execute? These are questions that cybernetics and complex systems theory have been studying for decades. The agent researcher who ignores this literature is likely to rediscover it the hard way.</p>
+</section>
+<section id="the-free-energy-principle" class="level3">
+<h3 class="anchored" data-anchor-id="the-free-energy-principle">The Free Energy Principle</h3>
+<p>The most ambitious contemporary account of adaptive behavior as self-organization is Karl Friston’s <strong>free energy principle</strong>. Friston proposed in <a href="https://doi.org/10.1038/nrn2787">“The free-energy principle: a unified brain theory?”</a> (<em>Nature Reviews Neuroscience</em>, 11(2), 127–138, 2010) that biological agents minimize a quantity called <em>variational free energy</em> — a proxy for surprise or prediction error — through both <strong>perception</strong> (updating internal models) and <strong>action</strong> (changing the world to match predictions). This principle, known as <em>active inference</em>, provides a unified account of perception, action, learning, and attention.</p>
+<p>Active inference treats action not as the output of a separate decision-making module but as prediction-error minimization enacted on the world: an agent that <em>expects</em> to reach a goal state will act to make that expectation true. This dissolves the classical perception/action divide and reframes agency as the perpetual minimization of surprise — a deeply cybernetic insight that echoes Wiener’s feedback principle at the Bayesian level.</p>
+<p>The connection to LLM agents: if an agent’s behavior can be framed as minimizing prediction error (via RLHF, tool use to reduce uncertainty, or memory retrieval to ground predictions), then active inference provides a normative framework for agent design. Friston’s extended treatment is available at <a href="https://arxiv.org/abs/1906.10184">arXiv:1906.10184</a>.</p>
+<hr>
+</section>
+</section>
+<section id="biologically-inspired-computation" class="level2">
+<h2 class="anchored" data-anchor-id="biologically-inspired-computation">6. Biologically Inspired Computation</h2>
+<p>Cybernetics has always been bidirectional: biology informing computation, computation illuminating biology.</p>
+<section id="evolutionary-algorithms" class="level3">
+<h3 class="anchored" data-anchor-id="evolutionary-algorithms">Evolutionary Algorithms</h3>
+<p>John Holland’s <em><a href="https://direct.mit.edu/books/monograph/2574/Adaptation-in-Natural-and-Artificial-SystemsAn">Adaptation in Natural and Artificial Systems</a></em> (University of Michigan Press, 1975; repr. MIT Press, 1992) formalized genetic algorithms — evolutionary search through populations of candidate solutions. The parallel to agent systems: populations of agents can be evolved, recombined, and selected, implementing meta-level optimization over agent behaviors.</p>
+</section>
+<section id="swarm-intelligence" class="level3">
+<h3 class="anchored" data-anchor-id="swarm-intelligence">Swarm Intelligence</h3>
+<p>Marco Dorigo’s <em>ant colony optimization</em> (ACO), introduced in Colorni, Dorigo &amp; Maniezzo, “Distributed Optimization by Ant Colonies” (<em>Proc. First European Conference on Artificial Life</em>, 1992, pp.&nbsp;134–142), showed how collective intelligence emerges from simple local rules and stigmergic communication (agents leaving pheromone-like signals that influence future agents). ACO is the direct ancestor of modern multi-agent parallelism: worker agents operating in parallel, leaving traces (tool outputs, memory entries) that guide subsequent agents.</p>
+</section>
+<section id="reservoir-computing" class="level3">
+<h3 class="anchored" data-anchor-id="reservoir-computing">Reservoir Computing</h3>
+<p>Herbert Jaeger and Harald Haas demonstrated in <a href="https://doi.org/10.1126/science.1091277">“Harnessing Nonlinearity: Predicting Chaotic Systems and Saving Energy in Wireless Communication”</a> (<em>Science</em>, 304, 78–80, 2004) that a fixed random recurrent network (an “echo state network”) could perform powerful temporal computations by training only the output layer. Wolfgang Maass independently developed <strong>Liquid State Machines</strong> as a model of neocortical computation (Maass, Natschläger &amp; Markram, <em>Neural Computation</em>, 2002). Together these established <em>reservoir computing</em> — the principle that complex temporal computation can be offloaded to a rich dynamical substrate, requiring only a simple readout. This prefigures the use of LLMs as “reservoirs” with learned prompting strategies as readout functions.</p>
+</section>
+<section id="spiking-neural-networks-and-neuromorphic-computing" class="level3">
+<h3 class="anchored" data-anchor-id="spiking-neural-networks-and-neuromorphic-computing">Spiking Neural Networks and Neuromorphic Computing</h3>
+<p>Spiking neural networks (SNNs), which process information as temporal spike patterns rather than continuous activations, connect directly to neuromorphic computing hardware (Intel’s Loihi, IBM’s TrueNorth). SNNs are more biologically faithful and dramatically more energy-efficient than conventional ANNs — an important direction as agent systems scale to edge deployment. The Liquid State Machine (Maass et al., 2002) and the Echo State Network (Jaeger &amp; Haas, 2004) sit at the intersection of reservoir computing and spiking networks, demonstrating that complex temporal computation can emerge from fixed random recurrent dynamics.</p>
+</section>
+<section id="immune-inspired-systems" class="level3">
+<h3 class="anchored" data-anchor-id="immune-inspired-systems">Immune-Inspired Systems</h3>
+<p>The biological immune system is a distributed, adaptive pattern-recognition system that distinguishes self from non-self, learns from exposure, and maintains memory of past threats. Forrest and colleagues applied these principles in <em>negative selection algorithms</em> — generating detectors that fire on anomalous patterns by learning not to fire on normal ones. This approach has direct analogues in anomaly detection for agent monitoring: what behaviors are “self” (in-distribution, safe) and what are “non-self” (out-of-distribution, potentially harmful)?</p>
+<hr>
+</section>
+</section>
+<section id="self-evolving-agents-the-modern-frontier" class="level2">
+<h2 class="anchored" data-anchor-id="self-evolving-agents-the-modern-frontier">7. Self-Evolving Agents — The Modern Frontier</h2>
+<p>The deepest cybernetic insight applied to agents: <strong>feedback should operate on the agent’s own structure, not just its outputs</strong>. A truly adaptive agent doesn’t just learn from feedback within a fixed architecture; it modifies its architecture in response to feedback.</p>
+<section id="voyager-lifelong-skill-accumulation" class="level3">
+<h3 class="anchored" data-anchor-id="voyager-lifelong-skill-accumulation">Voyager: Lifelong Skill Accumulation</h3>
+<p><a href="https://arxiv.org/abs/2305.16291">Voyager</a> (Wang et al., 2023; <a href="https://arxiv.org/abs/2305.16291">arXiv:2305.16291</a>) is an LLM-powered agent in Minecraft that continuously explores, acquires skills (as executable code), and stores them in a growing library. New tasks are solved by retrieval and composition of previously learned skills. This is a direct implementation of autopoietic skill accumulation: the agent’s behavioral repertoire is produced and maintained by the agent’s own learning operations.</p>
+</section>
+<section id="eureka-llm-driven-reward-design" class="level3">
+<h3 class="anchored" data-anchor-id="eureka-llm-driven-reward-design">EUREKA: LLM-Driven Reward Design</h3>
+<p><a href="https://arxiv.org/abs/2310.12931">EUREKA</a> (Ma et al., 2023; <a href="https://arxiv.org/abs/2310.12931">arXiv:2310.12931</a>) uses LLMs to automatically generate and refine reward functions for reinforcement learning agents. By iteratively generating reward code, evaluating it, and using the evaluation signal to improve subsequent proposals, EUREKA instantiates a cybernetic loop that operates at the level of the agent’s <em>objective function</em> — a meta-level feedback that Wiener could not have imagined but would have recognized immediately as cybernetic in principle.</p>
+</section>
+<section id="aflow-automated-workflow-search" class="level3">
+<h3 class="anchored" data-anchor-id="aflow-automated-workflow-search">AFlow: Automated Workflow Search</h3>
+<p><a href="https://arxiv.org/abs/2410.10762">AFlow</a> (Zhang et al., 2024; <a href="https://arxiv.org/abs/2410.10762">arXiv:2410.10762</a>; ICLR 2025 Oral) introduces automated agentic workflow generation using Monte Carlo Tree Search over a space of agent compositions. Rather than hand-designing multi-agent pipelines, AFlow searches for effective workflows through code modification and execution feedback — closing the loop from agent behavior back to agent architecture.</p>
+</section>
+<section id="darwin-gödel-machine" class="level3">
+<h3 class="anchored" data-anchor-id="darwin-gödel-machine">Darwin Gödel Machine</h3>
+<p>The <a href="https://arxiv.org/abs/2505.22954">Darwin Gödel Machine</a> (Sakana AI, 2025; <a href="https://arxiv.org/abs/2505.22954">arXiv:2505.22954</a>) is a self-improving system that iteratively modifies its own code, empirically validates each change using coding benchmarks, and accumulates a growing library of improved agent variants via open-ended evolution. Named for Darwin (open-ended evolution) and Gödel (self-reference), it directly implements the cybernetic ideal of a system whose feedback loop targets its own structure. This is not just an agent that learns — it is an agent that evolves.</p>
+<p>The connection back to Wiener is exact: the DGM applies negative feedback not to the agent’s outputs but to the agent’s own code. The thermostat principle, operating one level up.</p>
+</section>
+<section id="promptbreeder-and-prompt-evolution" class="level3">
+<h3 class="anchored" data-anchor-id="promptbreeder-and-prompt-evolution">PromptBreeder and Prompt Evolution</h3>
+<p>Self-referential self-improvement also appears in <a href="https://arxiv.org/abs/2309.16797">PromptBreeder</a> (Fernando et al., <em>ICML 2024</em>; <a href="https://arxiv.org/abs/2309.16797">arXiv:2309.16797</a>), which evolves both task prompts <em>and the mutation prompts that generate new task prompts</em> — a second-order optimization directly analogous to Bateson’s “learning to learn” (Learning II). The system applies evolutionary operators to its own optimization strategy, not just to candidate solutions.</p>
+</section>
+<section id="the-theoretical-precedent-gödel-machines" class="level3">
+<h3 class="anchored" data-anchor-id="the-theoretical-precedent-gödel-machines">The Theoretical Precedent: Gödel Machines</h3>
+<p>Jürgen Schmidhuber’s original <em>Gödel Machine</em> (described in “Gödel Machines: Self-Referential Universal Problem Solvers Making Provably Optimal Self-Improvements”, in <em>Artificial General Intelligence</em>, Springer, 2007) proposed a theoretical framework in which a self-improving agent may only modify itself when it can <em>prove</em> that the modification will improve performance relative to a formal utility function. This is provably safe self-modification — though the proof requirement is computationally intractable in general, making the Darwin Gödel Machine’s empirical (benchmark-based) validation a practical approximation of this ideal.</p>
+<hr>
+</section>
+</section>
+<section id="cybernetic-concepts-in-modern-llm-agents" class="level2">
+<h2 class="anchored" data-anchor-id="cybernetic-concepts-in-modern-llm-agents">8. Cybernetic Concepts in Modern LLM Agents</h2>
+<p>The cybernetic lineage is visible throughout modern LLM agent design, often without explicit acknowledgment.</p>
+<section id="rlhf-as-cybernetic-regulation" class="level3">
+<h3 class="anchored" data-anchor-id="rlhf-as-cybernetic-regulation">RLHF as Cybernetic Regulation</h3>
+<p>Reinforcement Learning from Human Feedback (RLHF) is, formally, a cybernetic control loop: human preference judgments are error signals that drive the update of the model’s parameters. The target state is “behavior that humans prefer”; the negative feedback is the KL divergence from a reward-maximizing policy. This is exactly Wiener’s regulatory mechanism, applied at training time.</p>
+<p>Constitutional AI (Bai et al., 2022) extends this by encoding the <em>goal state</em> as a constitutional document of principles rather than learned preferences alone — closer to Beer’s System 5 (policy, values, ultimate authority) than to simple reward modeling. The emerging practice of <em>scalable oversight</em> — using AI models to evaluate AI outputs at a scale humans cannot — is a direct implementation of Ashby’s ultrastability: a higher-order regulatory process that supervises the first-order agent when direct human oversight is insufficient.</p>
+</section>
+<section id="the-react-loop-as-perceptionaction-cycle" class="level3">
+<h3 class="anchored" data-anchor-id="the-react-loop-as-perceptionaction-cycle">The ReAct Loop as Perception–Action Cycle</h3>
+<p>The ReAct framework — <a href="https://arxiv.org/abs/2210.03629">Yao et al., 2022</a> (<em>ICLR 2023</em>; <a href="https://arxiv.org/abs/2210.03629">arXiv:2210.03629</a>) — formalizes a Reason → Act → Observe loop for LLM agents. This is the direct cognitive science heir of the cybernetic perception–action cycle. Each iteration, the agent observes the environment state, reasons about what action to take, executes the action, and observes the result. This is Wiener’s feedback loop made explicit in prompting.</p>
+</section>
+<section id="the-ooda-loop" class="level3">
+<h3 class="anchored" data-anchor-id="the-ooda-loop">The OODA Loop</h3>
+<p>John Boyd’s <strong>OODA loop</strong> — Observe, Orient, Decide, Act — developed in his unpublished briefing <em><a href="https://www.coljohnboyd.com/static/documents/1986-12__Boyd_John_R__Patterns_of_Conflict__PPT-PDF.pdf">Patterns of Conflict</a></em> (1986) — is a cybernetic decision cycle developed independently in military strategy. Boyd’s innovation was the <em>Orient</em> phase: the agent’s accumulated models, cultural patterns, and prior experience that shape how raw observation is interpreted. This maps directly to the role of context, memory, and system prompt in LLM agent reasoning.</p>
+<p>Boyd also emphasized the critical importance of decision <em>tempo</em> — an agent that can cycle through OODA faster than its adversary or environment gains an advantage. In multi-agent competitive settings (game-playing agents, adversarial red-teaming), the speed and quality of the observe–orient–decide–act cycle are the key performance dimensions. Boyd never published a book; his ideas survive primarily through his briefings, now archived at <a href="https://www.coljohnboyd.com/">coljohnboyd.com</a>.</p>
+</section>
+<section id="multi-agent-coordination-as-beers-system-2" class="level3">
+<h3 class="anchored" data-anchor-id="multi-agent-coordination-as-beers-system-2">Multi-Agent Coordination as Beer’s System 2</h3>
+<p>When multiple worker agents operate in parallel, they produce scheduling conflicts, duplicate work, and resource contention — exactly the “oscillations” that Beer’s System 2 is designed to damp. Modern agent orchestration frameworks (LangGraph, AutoGen, CrewAI) implement System 2 coordination primitives, typically without knowing it. Beer’s framework offers a normative theory for what those coordination mechanisms should accomplish.</p>
+<p>Beer distinguished between <em>autonomic</em> regulation (automatic, low-level, like breathing) and <em>somatic</em> regulation (deliberate, high-level, like deciding to hold one’s breath). System 2 in the VSM is autonomic — it should operate without consuming System 3’s managerial attention. In agent systems, this maps to the design goal that low-level scheduling, deduplication, and conflict resolution should happen automatically in the communication layer, not occupy the orchestrating LLM’s context window.</p>
+</section>
+<section id="tool-use-as-extended-effector" class="level3">
+<h3 class="anchored" data-anchor-id="tool-use-as-extended-effector">Tool Use as Extended Effector</h3>
+<p>When an LLM agent uses a calculator, a web search engine, or a code interpreter, it extends its effector system beyond its core model — just as an organism uses tools to extend its motor capabilities. This is consistent with cybernetic notions of extended agency: the system boundary is defined functionally by what the agent can control, not by the physical substrate of the model.</p>
+<p>This connects to Andy Clark and David Chalmers’ <em>extended mind thesis</em> (1998, <em>Analysis</em>, 58(1), 7–19) — the philosophical claim that cognitive processes can extend beyond the brain into the environment. For LLM agents, the question is not merely philosophical: it has practical implications for capability assessment. An agent with web search access has a qualitatively different capability profile than one without — and the cybernetic concept of requisite variety explains why.</p>
+</section>
+<section id="memory-as-adaptive-regulation" class="level3">
+<h3 class="anchored" data-anchor-id="memory-as-adaptive-regulation">Memory as Adaptive Regulation</h3>
+<p>External memory systems in agents (vector stores, knowledge graphs, episodic buffers) implement adaptive regulation: the agent’s behavior is regulated by its accumulated experience, allowing it to converge on effective strategies over time. This is the cognitive analogue of Prigogine’s dissipative structures — the agent’s memory is the ordered structure maintained far from the equilibrium of a stateless model.</p>
+<p>Cybernetics distinguishes between <em>algedonic</em> signals (pure pain/pleasure signals that bypass normal processing to trigger emergency responses) and ordinary feedback. Modern agent systems increasingly incorporate analogous mechanisms: hard safety refusals that interrupt normal reasoning, anomaly detectors that escalate to human review, and confidence thresholds that trigger fallback behaviors. Beer’s VSM formalized where such signals should enter the organizational hierarchy — directly into System 3 and System 5, bypassing lower-level coordination.</p>
+</section>
+<section id="homeostasis-in-agent-behavior" class="level3">
+<h3 class="anchored" data-anchor-id="homeostasis-in-agent-behavior">Homeostasis in Agent Behavior</h3>
+<p>Constitutional AI, safety fine-tuning, and system prompt constraints are homeostatic mechanisms: they define a safe operating region and apply corrective forces when the agent’s outputs deviate. The thermostat principle, now applied to values and safety properties.</p>
+<p>Cybernetics also suggests that robust homeostasis requires <em>multiple overlapping regulatory mechanisms</em> operating at different timescales — not a single constraint layer. Short-term: per-turn output filtering. Medium-term: RLHF adjusting the model’s policy. Long-term: training data curation and architectural choices. Beer designed the VSM with exactly this multi-timescale structure, a design principle that agent safety research is beginning to rediscover independently.</p>
+</section>
+<section id="amplifying-intelligence-beers-management-amplifiers" class="level3">
+<h3 class="anchored" data-anchor-id="amplifying-intelligence-beers-management-amplifiers">Amplifying Intelligence: Beer’s Management Amplifiers</h3>
+<p>One underappreciated concept from Beer is the <em>management amplifier</em>: a mechanism that allows System 3 to control a much larger System 1 than would otherwise be possible — analogous to how a small electrical signal controls a large power output in electronics. In agent systems, this is the principle behind orchestrator-worker architectures: a single planning LLM can direct dozens of specialized worker agents, amplifying its effective intelligence by parallelism and specialization. Beer provided the formal conditions under which such amplification preserves viability — conditions that current agent orchestration systems would benefit from examining.</p>
+<hr>
+</section>
+</section>
+<section id="the-synthesis-why-cybernetics-matters-for-agent-research" class="level2">
+<h2 class="anchored" data-anchor-id="the-synthesis-why-cybernetics-matters-for-agent-research">The Synthesis: Why Cybernetics Matters for Agent Research</h2>
+<p>Cybernetics provides something that the current agent literature often lacks: a <strong>unified theoretical vocabulary</strong> for control, communication, and adaptation that spans biology, organizations, and machines. The recurring themes:</p>
+<ol type="1">
+<li><strong>Feedback loops</strong> are the universal mechanism of purposive behavior — from thermostats to RLHF to AFlow’s iterative workflow refinement.</li>
+<li><strong>Requisite variety</strong> (Ashby) determines the minimum complexity needed to control a system — and explains why increasingly capable models require increasingly complex tool ecosystems.</li>
+<li><strong>Recursive organization</strong> (VSM) explains how autonomous units compose into larger autonomous units — the foundational principle of multi-agent orchestration at scale.</li>
+<li><strong>Autopoiesis</strong> defines the boundary between a system and its environment, and points toward agents that maintain their own operational continuity across interactions.</li>
+<li><strong>Self-organization</strong> explains how order emerges without a designer — relevant to emergent agent behaviors and capability jumps at scale.</li>
+<li><strong>Active inference</strong> unifies perception and action under a single optimization principle — providing a normative framework for Bayesian agent design.</li>
+<li><strong>Second-order reflexivity</strong> (von Foerster) demands that we account for the observer in any model — a principle with direct implications for alignment: an agent’s “world model” is always the product of its own architecture.</li>
+</ol>
+<section id="gaps-and-open-questions" class="level3">
+<h3 class="anchored" data-anchor-id="gaps-and-open-questions">Gaps and Open Questions</h3>
+<p>The cybernetic tradition also highlights sharp open questions for agent research:</p>
+<ul>
+<li><strong>Boundary problem</strong>: Where does the agent end and the environment begin? When an agent’s context window contains tool outputs, memories, and other agents’ messages, the “agent” is already a distributed system. Maturana’s organizational closure provides a more rigorous framework for this question than current practice.</li>
+<li><strong>Control versus autonomy</strong>: Beer’s VSM formalizes the tension between central control (Systems 3 and 5) and local autonomy (System 1). Current multi-agent systems often resolve this tension crudely — either by over-centralizing (a single orchestrator bottleneck) or under-coordinating (independent agents producing conflicting results). The VSM suggests more nuanced architectures.</li>
+<li><strong>Viability at scale</strong>: A VSM is viable only if each recursive level has sufficient requisite variety. As multi-agent systems grow, do coordination layers scale at the required rate? This is an open empirical question with a strong theoretical grounding.</li>
+<li><strong>Self-modification and safety</strong>: Cybernetics celebrates adaptive self-modification; AI safety is (rightly) cautious about it. Beer’s framework suggests that safe self-modification requires maintaining the invariant <em>organization</em> of the system (its values, constraints, identity) while allowing structural variation (tool updates, memory modification, skill acquisition). This is exactly the alignment problem, restated in cybernetic terms.</li>
+</ul>
+<p>As LLM agents grow more complex — multi-agent, self-modifying, recursively self-improving — the cybernetic tradition will become not a historical curiosity but an increasingly practical framework for design, analysis, and safety.</p>
+<hr>
+</section>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<section id="books-classic-papers" class="level3">
+<h3 class="anchored" data-anchor-id="books-classic-papers">Books &amp; Classic Papers</h3>
+<ul>
+<li>Wiener, N. (1948). <em>Cybernetics: Or Control and Communication in the Animal and the Machine</em>. MIT Press. <a href="https://direct.mit.edu/books/oa-monograph/4581/Cybernetics-or-Control-and-Communication-in-the">MIT Press Open Access</a> | <a href="https://archive.org/details/cybernetics0000norb">archive.org</a></li>
+<li>McCulloch, W.S. &amp; Pitts, W. (1943). A logical calculus of the ideas immanent in nervous activity. <em>Bulletin of Mathematical Biophysics</em>, 5, 115–133. <a href="https://doi.org/10.1007/BF02478259">DOI:10.1007/BF02478259</a></li>
+<li>Shannon, C.E. (1948). A mathematical theory of communication. <em>Bell System Technical Journal</em>, 27, 379–423. <a href="https://doi.org/10.1002/j.1538-7305.1948.tb01338.x">DOI:10.1002/j.1538-7305.1948.tb01338.x</a></li>
+<li>Ashby, W.R. (1956). <em>An Introduction to Cybernetics</em>. John Wiley. <a href="https://archive.org/details/introductiontocy00ashb">archive.org</a></li>
+<li>Von Foerster, H. (Ed.). (1974). <em>Cybernetics of Cybernetics</em> (BCL Report 73.38). University of Illinois. <a href="https://link.springer.com/chapter/10.1007/0-387-21722-3_13">Springer chapter</a></li>
+<li>Bateson, G. (1972). <em>Steps to an Ecology of Mind</em>. Ballantine Books; repr. University of Chicago Press, 2000. <a href="https://press.uchicago.edu/ucp/books/book/chicago/S/bo3620295.html">UChicago Press</a> | <a href="https://archive.org/details/stepstoecologyof00bate">archive.org</a></li>
+<li>Beer, S. (1972). <em>Brain of the Firm</em>. Allen Lane / Penguin Press. <a href="https://archive.org/details/brain-of-the-firm-reclaimed-v-1">archive.org</a></li>
+<li>Beer, S. (1979). <em>The Heart of Enterprise</em>. John Wiley &amp; Sons.</li>
+<li>Beer, S. (1985). <em>Diagnosing the System for Organizations</em>. John Wiley &amp; Sons. <a href="https://archive.org/details/diagnosingsystem00beer">archive.org</a></li>
+<li>Maturana, H.R. &amp; Varela, F.J. (1980). <em>Autopoiesis and Cognition: The Realization of the Living</em>. D. Reidel Publishing. <a href="https://link.springer.com/book/10.1007/978-94-009-8947-4">Springer</a> | <a href="https://archive.org/details/autopoiesiscogni0042matu">archive.org</a></li>
+<li>Varela, F.J., Thompson, E. &amp; Rosch, E. (1991). <em>The Embodied Mind: Cognitive Science and Human Experience</em>. MIT Press. <a href="https://doi.org/10.7551/mitpress/6730.001.0001">DOI:10.7551/mitpress/6730.001.0001</a></li>
+<li>Holland, J.H. (1975). <em>Adaptation in Natural and Artificial Systems</em>. University of Michigan Press; repr. MIT Press, 1992. <a href="https://direct.mit.edu/books/monograph/2574/Adaptation-in-Natural-and-Artificial-SystemsAn">MIT Press</a></li>
+<li>Prigogine, I. &amp; Stengers, I. (1984). <em>Order Out of Chaos: Man’s New Dialogue with Nature</em>. Bantam Books. <a href="https://archive.org/details/orderoutofchaosm00prig">archive.org</a></li>
+<li>Kauffman, S.A. (1993). <em>The Origins of Order: Self-Organization and Selection in Evolution</em>. Oxford University Press.</li>
+<li>Luhmann, N. (1984/1995). <em>Social Systems</em>. Stanford University Press. <a href="https://www.sup.org/books/title/?id=2256">Stanford UP</a></li>
+<li>Boyd, J.R. (1986). <em>Patterns of Conflict</em> (unpublished briefing). <a href="https://www.coljohnboyd.com/static/documents/1986-12__Boyd_John_R__Patterns_of_Conflict__PPT-PDF.pdf">PDF via coljohnboyd.com</a></li>
+</ul>
+</section>
+<section id="modern-papers" class="level3">
+<h3 class="anchored" data-anchor-id="modern-papers">Modern Papers</h3>
+<ul>
+<li>Jaeger, H. &amp; Haas, H. (2004). Harnessing nonlinearity: Predicting chaotic systems and saving energy in wireless communication. <em>Science</em>, 304, 78–80. <a href="https://doi.org/10.1126/science.1091277">DOI:10.1126/science.1091277</a></li>
+<li>Friston, K. (2010). The free-energy principle: A unified brain theory? <em>Nature Reviews Neuroscience</em>, 11(2), 127–138. <a href="https://doi.org/10.1038/nrn2787">DOI:10.1038/nrn2787</a></li>
+<li>Friston, K. et al.&nbsp;(2022). The free energy principle made simpler but not too simple. <a href="https://arxiv.org/abs/2201.06387">arXiv:2201.06387</a></li>
+<li>Yao, S. et al.&nbsp;(2023). ReAct: Synergizing reasoning and acting in language models. <em>ICLR 2023</em>. <a href="https://arxiv.org/abs/2210.03629">arXiv:2210.03629</a></li>
+<li>Wang, G. et al.&nbsp;(2023). Voyager: An open-ended embodied agent with large language models. <a href="https://arxiv.org/abs/2305.16291">arXiv:2305.16291</a></li>
+<li>Ma, Y.J. et al.&nbsp;(2023). Eureka: Human-level reward design via coding large language models. <em>ICLR 2024</em>. <a href="https://arxiv.org/abs/2310.12931">arXiv:2310.12931</a></li>
+<li>Zhang, J. et al.&nbsp;(2024). AFlow: Automating agentic workflow generation. <em>ICLR 2025 Oral</em>. <a href="https://arxiv.org/abs/2410.10762">arXiv:2410.10762</a></li>
+<li>Hughes, E. et al.&nbsp;(2025). Darwin Godel Machine: Open-ended evolution of self-improving agents. <a href="https://arxiv.org/abs/2505.22954">arXiv:2505.22954</a></li>
+<li>Fernando, C. et al.&nbsp;(2024). PromptBreeder: Self-referential self-improvement via prompt evolution. <em>ICML 2024</em>. <a href="https://arxiv.org/abs/2309.16797">arXiv:2309.16797</a></li>
+<li>Colorni, A., Dorigo, M. &amp; Maniezzo, V. (1992). Distributed optimization by ant colonies. <em>Proc. First European Conference on Artificial Life</em>, 134–142. <a href="http://www.scholarpedia.org/article/Ant_colony_optimization">Scholarpedia overview</a></li>
+<li>Maass, W., Natschläger, T. &amp; Markram, H. (2002). Real-time computing without stable states: A new framework for neural computation based on perturbations. <em>Neural Computation</em>, 14(11), 2531–2560. <a href="https://www.semanticscholar.org/paper/Liquid-State-Machines:-Motivation,-Theory,-and-Maass/c0afa07d27f2335b74e57db1be6c7c16918c90c4">Semantic Scholar</a></li>
+</ul>
+</section>
+<section id="resources" class="level3">
+<h3 class="anchored" data-anchor-id="resources">Resources</h3>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Project_Cybersyn">Project Cybersyn — Wikipedia</a></li>
+<li><a href="https://thereader.mitpress.mit.edu/project-cybersyn-chiles-radical-experiment-in-cybernetic-socialism/">Project Cybersyn — MIT Press Reader</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Second-order_cybernetics">Second-Order Cybernetics — Wikipedia</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Free_energy_principle">Free Energy Principle — Wikipedia</a></li>
+<li><a href="http://www.scholarpedia.org/article/Ant_colony_optimization">Ant Colony Optimization — Scholarpedia</a></li>
+<li><a href="http://www.scholarpedia.org/article/Echo_state_network">Echo State Networks — Scholarpedia</a></li>
+<li><a href="https://www.systalk.org/stafford-beer/">Stafford Beer bibliography — Systems Talk</a></li>
+<li><a href="https://monoskop.org/Heinz_von_Foerster">Heinz von Foerster — Monoskop</a></li>
+</ul>
+<hr>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Further reading:</strong> For an applied introduction to Beer’s VSM and its organizational uses, the <a href="https://www.systalk.org/stafford-beer/">Systems Talk resource on Stafford Beer</a> is an excellent starting point. For the biological side of cybernetics, Francisco Varela’s work — including <em><a href="https://www.google.com/books/edition/Principles_of_Biological_Autonomy/CQl1AAAAMAAJ">Principles of Biological Autonomy</a></em> (North-Holland, 1979) — provides the deepest treatment of organizational closure, autonomy, and self-reference in living systems.</p>
+</div>
+</div>
+<hr>
+<p><em>Back to <a href="./topics.html">Topics →</a> · See also: <a href="./cognitive-architectures.html">Cognitive Architectures →</a> · <a href="./multiagent.html">Multi-Agent Systems →</a> · <a href="./agent-societies.html">Agent Societies &amp; Simulation →</a></em></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/llm-agents-survey\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
