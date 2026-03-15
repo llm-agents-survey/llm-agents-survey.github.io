@@ -92,6 +92,14 @@ Norbert Wiener, feedback loops, Stafford Beer's Viable System Model, autopoiesis
 
 ::: {.survey-card}
 ::: {.card-icon}
+🫂
+:::
+### [Social Intelligence & Human-AI Collaboration](social-intelligence.qmd)
+Theory of mind in LLMs, the Kosinski–Ullman debate, social norm reasoning, AI-mediated group collaboration, human-AI teaming, and the foundational vision of human-computer symbiosis from Licklider and Engelbart.
+:::
+
+::: {.survey-card}
+::: {.card-icon}
 🤔
 :::
 ### [Agents and Philosophy](philosophy-agents.qmd)

@@ -32,6 +32,7 @@ project:
     - cognitive-architectures.qmd
     - domain-agents.qmd
     - data-science-agents.qmd
+    - social-intelligence.qmd
     - community.qmd
     - resources.qmd
 
@@ -94,6 +95,8 @@ website:
             text: Agents and Cybernetics
           - href: cognitive-architectures.qmd
             text: Cognitive Architectures
+          - href: social-intelligence.qmd
+            text: Social Intelligence & Human-AI Collaboration
       - text: "By Domain"
         menu:
           - href: by-domain.qmd

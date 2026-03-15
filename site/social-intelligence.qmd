@@ -1,0 +1,539 @@
+---
+title: "Social Intelligence and Human-AI Collaboration"
+subtitle: "Theory of mind, collective intelligence, and LLM agents as collaborative partners"
+---
+
+> *"The hope is that, in not too many years, human brains and computing machines will be
+> coupled together very tightly, and that the resulting partnership will think as no human
+> brain has ever thought."*
+> — J.C.R. Licklider, *Man-Computer Symbiosis* (1960)
+
+Two fundamental questions define the frontier of socially capable LLM agents:
+
+1. **Can LLMs reason about others' minds?** — attributing beliefs, desires, and intentions
+   to agents they interact with (*social intelligence*)
+2. **Can LLMs help humans collaborate better with each other?** — acting as mediators,
+   facilitators, and thinking partners that amplify collective human capability
+   (*AI-mediated collaboration*)
+
+These questions are not merely philosophical. Any agent operating in a social context must
+model other agents AND support human coordination. An agent that cannot attribute false beliefs
+will fail at negotiation, deception detection, and coalition building. An agent that cannot
+scaffold group deliberation risks homogenizing rather than enriching collective intelligence.
+
+As LLM agents move from text-generation tools to social participants — tutors, mediators,
+teammates, companions — their social intelligence shapes the quality of human decisions,
+relationships, and institutions. This page examines the state of the art on both fronts.
+
+---
+
+## 1. Theory of Mind in LLMs
+
+### What Is Theory of Mind?
+
+**Theory of Mind (ToM)** is the ability to attribute mental states — beliefs, desires,
+knowledge, intentions — to others, and to understand that those mental states may differ from
+one's own. It is a cornerstone of human social cognition: without it, we cannot reliably
+predict others' behavior, cooperate, teach, deceive, or empathize.
+
+Developmental psychologists [Wimmer & Perner (1983)](https://doi.org/10.1016/0010-0277(83)90004-5)
+established the **false-belief task** as ToM's gold-standard test. In the classic *Sally-Anne*
+scenario: Sally places a marble in a basket and leaves the room; Anne moves it to a box. Where
+does Sally *believe* the marble is when she returns?
+
+Passing the test requires understanding that Sally holds a *false belief* — that the marble is
+still in the basket — rather than simply reporting where the marble actually is. Children under
+age 4 typically fail; most adults pass without effort. ToM is not binary: it encompasses
+**first-order** beliefs (*I believe X*), **second-order** beliefs (*I believe you believe X*),
+and higher-order nestings that underlie sophisticated social maneuvers like negotiation and
+strategic deception.
+
+### The Great Debate: Emergence or Pattern-Matching?
+
+The question of whether LLMs have ToM erupted in early 2023 with two competing papers.
+
+**[Kosinski (2023)](https://arxiv.org/abs/2302.02083)** — *"Evaluating Large Language Models
+in Theory of Mind Tasks"* (PNAS 2024) — assessed eleven LLMs on 640 prompts across 40
+false-belief task variants. The results were striking:
+
+- Smaller and older models solved **no tasks**
+- GPT-3.5-turbo (March 2023) solved **20%** of tasks
+- **GPT-4 (June 2023) solved 75% of tasks**, matching the performance of six-year-old
+  children in developmental studies
+
+Kosinski raised the tantalizing possibility that ToM "may have spontaneously emerged as a
+byproduct of LLMs' improving language skills" — an incidental product of training on
+human-generated text saturated with mental state language.
+
+**[Ullman (2023)](https://arxiv.org/abs/2302.08399)** — *"Large Language Models Fail on
+Trivial Alterations to Theory-of-Mind Tasks"* — fired back with a targeted skeptical
+intervention. By introducing small surface variations that preserve the *logical structure*
+of ToM scenarios while changing irrelevant surface details, Ullman showed sharp performance
+drops. His argument: LLMs are **pattern-matching on familiar narrative structures** from
+training data, not reasoning from principles about mental states. The zero-hypothesis for
+evaluating LLMs on intuitive psychology should be skeptical — outlying failure cases should
+outweigh aggregate success rates.
+
+Both positions hold partial truths. LLMs may represent something like belief tracking while
+remaining sensitive to superficial features in ways that reveal its fragility. The debate has
+sharpened into a productive research agenda rather than a binary verdict.
+
+More recent work has refined this picture. **[Street et al. (2024)](https://arxiv.org/abs/2405.18870)**
+— *"LLMs achieve adult human performance on higher-order theory of mind tasks"* (PNAS 2024)
+— introduced a handwritten test suite (Multi-Order Theory of Mind Q&A) and found that
+**GPT-4 and Flan-PaLM reach adult-level performance on higher-order ToM tasks overall, with
+GPT-4 exceeding adult performance on 6th-order inferences** (e.g., "I think that you believe
+that she knows that he wants..."). These results suggest that the best-performing LLMs have
+developed a *generalised* capacity for higher-order ToM — though this does not settle the
+mechanistic question of whether such performance reflects genuine mental state reasoning or
+sophisticated statistical approximation.
+
+### Benchmarks That Advanced the Debate
+
+**[BigToM](https://arxiv.org/abs/2306.15448)** (Gandhi et al., NeurIPS 2023) — *"Understanding
+Social Reasoning in Language Models with Language Models"* — introduced **procedural generation**
+as an evaluation methodology. Rather than hand-crafting scenarios, the authors used LLMs to
+populate *causal templates*, producing 25 structural controls and 5,000 diverse model-written
+evaluation scenarios. Human raters judged BigToM quality comparable to expert-written tests.
+
+Key findings: **GPT-4 mirrors human inference patterns on ToM, though less reliably than adult
+humans; other LLMs struggle substantially.** ToM performance emerges as graded across model
+capability, not as a discrete threshold.
+
+**[OpenToM](https://arxiv.org/abs/2402.06044)** (Xu et al., ACL 2024) — *"A Comprehensive
+Benchmark for Evaluating Theory-of-Mind Reasoning Capabilities of Large Language Models"* —
+addressed shortcomings in prior benchmarks: ambiguous narratives, absent personality traits,
+and an exclusive focus on physical world tracking. OpenToM features characters with explicit
+personality traits, action sequences triggered by intentions, and questions about both physical
+and psychological mental states.
+
+The finding: **state-of-the-art LLMs thrive at tracking mental states about the physical world
+(where objects are, what was seen) but fall short at tracking psychological mental states**
+(desires, preferences, emotional responses) — an asymmetry that mirrors a genuine distinction
+in human social cognition.
+
+### Perspective-Taking as a Prompting Strategy
+
+If ToM failures stem from LLMs processing narratives from an omniscient perspective rather
+than a character's viewpoint, can prompting restructure this?
+
+**[SimToM](https://arxiv.org/abs/2311.10227)** (Wilf et al., 2023) — *"Perspective-Taking
+Improves Large Language Models' Theory-of-Mind Capabilities"* — introduced
+a two-stage framework inspired by *Simulation Theory* from cognitive science:
+
+1. **Filter context** to only information the target character has access to
+2. **Reason from that perspective** to answer questions about their mental state
+
+SimToM showed **substantial improvement over baselines on BigToM and ToMi**, requiring no
+additional training — only structured context management. The lesson for agent design: LLMs
+reason better about mental states when prompted to *be* the character rather than to report
+about them from the outside.
+
+This has direct implications for multi-agent systems. An LLM agent using SimToM-style
+perspective-taking when modeling counterparts in negotiation or collaboration can construct
+more accurate models of those counterparts — the basic substrate of coordination and strategic
+reasoning. See also the connection to [BDI reasoning](cybernetics-agents.qmd): if an agent
+can track what another agent *believes*, it can model that agent's expected actions.
+
+### Sycophancy as Failed Perspective-Taking
+
+There is an ironic failure mode worth noting. **Sycophancy** — an LLM reflecting back the
+user's stated or assumed views — appears to be good perspective-taking but actually isn't.
+
+Genuine perspective-taking means understanding what the user believes *and* what they
+genuinely need — which may differ substantially from what they explicitly request. A
+sycophantic model mistakes expressed preferences for epistemic ground truth and tailors outputs
+to please rather than to inform. The ToM literature and the sycophancy literature are thus
+deeply connected: both concern the quality of an agent's model of another mind.
+
+---
+
+## 2. Social Reasoning and Norms
+
+Theory of Mind concerns beliefs; social reasoning more broadly concerns **norms, emotions,
+roles, and the implicit fabric of social life** that give human interaction its texture.
+
+### Benchmarks for Social Common Sense
+
+**[Social IQa (SocialIQA)](https://arxiv.org/abs/1904.09728)** (Sap et al., EMNLP 2019) was
+the first large-scale benchmark for commonsense reasoning about social situations — comprising
+**38,000 multiple-choice questions** probing emotional and social intelligence across everyday
+scenarios. Questions probe: what should someone do after embarrassing a friend? How will
+another person likely react to this action? What motivated this behavior?
+
+SocialIQA tests a broad range of social cognition beyond false-belief tasks, and remains a
+standard benchmark for evaluating social understanding in LLMs.
+
+**[NormBank](https://arxiv.org/abs/2305.17008)** (Ziems et al., ACL 2023) — *"A Knowledge Bank
+of Situational Social Norms"* — addresses a different capacity: understanding context-dependent
+norms. NormBank contains **155,000 situational norms** grounded in specific roles, settings,
+and relationships — what is appropriate for a doctor to say to a patient, how an employee
+should interact with a supervisor in a public setting. The authors frame it as infrastructure
+for "flexible normative reasoning" in interactive, assistive, and collaborative AI systems.
+
+### Emotional and Moral Intelligence
+
+Social intelligence is inseparable from emotional recognition and moral reasoning. LLMs have
+shown reasonable performance on emotion detection tasks but exhibit **cultural bias** in social
+norm comprehension — performing better for Western, educated, WEIRD-sample contexts and poorly
+on norms from underrepresented cultural settings.
+
+Moral reasoning in LLMs is similarly uneven. LLMs are often *fluent* about moral principles
+but not reliably *consistent* — their outputs shift based on framing, persona, and prompt
+structure in ways that suggest memorized moral discourse rather than coherent ethical
+reasoning. Whether LLMs genuinely *apply* norms or *recite patterns associated with* norms
+is, again, an open question that mirrors the ToM debate.
+
+---
+
+## 3. The Vision: Human-Computer Symbiosis
+
+The dream of AI as a *thinking partner* — augmenting rather than replacing human intelligence
+— predates modern LLMs by decades. Understanding this intellectual lineage clarifies what we
+are actually trying to build.
+
+### Founding Documents
+
+**[J.C.R. Licklider (1960)](https://groups.csail.mit.edu/medg/people/psz/Licklider.html)** —
+*"Man-Computer Symbiosis"* (*IRE Transactions on Human Factors in Electronics*, HFE-1, pp.
+4–11) — is the founding document of human-computer interaction as a collaborative endeavor.
+Licklider envisioned a relationship of **intimate coupling** between human and electronic
+intelligence: humans setting goals and framing problems; computers handling routine operations
+and rapid execution; the resulting partnership thinking in ways neither could manage alone.
+
+**[Douglas Engelbart (1962)](https://archive.org/details/1962-engelbart-AHI-framework)** —
+*"Augmenting Human Intellect: A Conceptual Framework"* (SRI Technical Report AFOSR-3233) —
+reframed the goal as **augmenting human capability**. Engelbart's ambition was not to build
+machines that think like humans but to organize human intellectual capabilities "into higher
+levels of synergistic structuring" through tool use. His work gave us the mouse, hypertext,
+and collaborative computing — all in service of amplifying human intellect, not replacing it.
+
+The contrast between *augmentation* and *automation* is not merely semantic:
+
+- **Augmentation**: AI extends human capability; humans remain the locus of judgment and
+  accountability
+- **Automation**: AI replaces human effort; humans are removed from the loop
+
+Automation concentrates expertise in machines and may erode human capability over time.
+Augmentation maintains the human as accountable agent while extending their cognitive reach.
+The most enduring AI systems — calculators, search engines, programming IDEs — have tended
+toward augmentation; the most controversial tend toward automation.
+
+### The Centaur Model
+
+One of the most compelling empirical demonstrations of human-AI synergy came from chess.
+After Garry Kasparov's defeat by Deep Blue (1997), Kasparov proposed a different experiment:
+**Advanced Chess**, in which human players partner with computers rather than compete against
+them.
+
+Writing in the [*New York Review of Books* (February 2010)](https://www.nybooks.com/articles/2010/02/11/the-chess-master-and-the-computer/),
+Kasparov described how the first Advanced Chess tournament (León, Spain, 1998) showed that
+**human-AI hybrid teams (*centaurs*) consistently outperformed both unaided humans and
+standalone AI programs** — provided the human understood how to collaborate with the machine
+effectively.
+
+The lesson: **it is not the strongest human, nor the most powerful AI, but the best *process*
+of human-AI collaboration that produces the best outcomes.** Weaker human players using AI
+effectively sometimes outperformed stronger players who used AI poorly. The quality of the
+collaboration process matters more than the raw capability of either party.
+
+### Superminds
+
+Thomas Malone's [*Superminds: The Surprising Power of People and Computers Thinking Together*](https://www.hachettebookgroup.com/titles/thomas-w-malone/superminds/9780316349109/)
+(Little, Brown Spark, 2018) situates AI within a broader theory of collective intelligence.
+Malone, founding director of MIT's [Center for Collective Intelligence](https://cci.mit.edu/),
+argues that human achievement has always been the product of *groups* organized into
+superminds — hierarchies, markets, democracies, communities.
+
+The transformative claim: AI will not simply automate existing tasks but will help humans
+organize and think together in fundamentally new ways — creating new forms of collective
+intelligence that have never previously existed. The most important AI applications are those
+that augment the *group*, not just the individual.
+
+---
+
+## 4. AI-Mediated Human-Human Collaboration
+
+LLM agents can serve not only as tools for individuals but as **active facilitators and
+mediators of human-to-human interaction** — shaping how groups deliberate, decide, and
+create together.
+
+### Large-Scale Opinion Synthesis
+
+**[Polis](https://pol.is/)** (Computational Democracy Project) is an AI-mediated platform
+for large-scale opinion synthesis. Participants submit short statements; a machine learning
+algorithm maps clusters of opinion and automatically identifies **areas of genuine consensus
+across otherwise divided groups** — surfacing what people actually agree on before conflict
+structures the conversation.
+
+Polis was central to Taiwan's **vTaiwan** deliberative democracy experiments, enabling
+thousands of citizens to participate in developing regulations for platforms like Uber and
+Airbnb. Scholars have cited Polis as a model for democratic deliberation that bypasses social
+media dysfunction while maintaining genuine participatory breadth.
+
+### LLM Facilitation in Group Discussion
+
+**[PTFA (Parallel Thinking-based Facilitation Agent)](https://arxiv.org/abs/2503.12499)** (Gu et
+al., 2025) — *"An LLM-based Agent that Facilitates Online Consensus Building through Parallel
+Thinking"* — takes a more active role. An LLM agent structures group discussion using Edward
+de Bono's Six Thinking Hats, guiding diverse participants through constructive deliberation
+across parallel perspectives. A pilot study demonstrates capabilities in idea generation,
+emotional probing, and deeper analysis of discussion quality.
+
+Stafford Beer's **Team Syntegrity** protocol (see [Agents and Cybernetics →](cybernetics-agents.qmd))
+provides a related conceptual predecessor: a topology-constrained, self-organizing group
+conversation protocol that distributes voice without hierarchical control. AI facilitation may
+offer a computational instantiation of similar cybernetic principles — structure without
+authority.
+
+### Multiagent Debate as Collective Reasoning
+
+**[Du et al. (2023)](https://arxiv.org/abs/2305.14325)** — *"Improving Factuality and
+Reasoning in Language Models through Multiagent Debate"* (ICML 2024) — demonstrated that
+multiple LLM instances debating across rounds converge on more accurate, better-reasoned
+answers than single-model inference. Each agent proposes responses and critiques others';
+the exchange improves mathematical reasoning, strategic reasoning, and factual validity.
+
+Applied to human decision support, this suggests a design pattern: **structured AI debate
+as a countermeasure against anchoring and confirmation bias.** Rather than consulting a
+single AI advisor, a decision-maker could engage with multiple agents offering distinct,
+reasoned perspectives — structured disagreement before forming conclusions.
+
+### Collective Intelligence and AI: The Empirical Question
+
+The foundational reference for this domain is Malone & Bernstein's [*Handbook of Collective
+Intelligence*](https://mitpress.mit.edu/9780262545846/handbook-of-collective-intelligence/)
+(MIT Press, 2015) — a comprehensive survey of how groups act collectively across markets,
+crowds, organizations, and collaborative platforms.
+
+The pressing empirical question: **do AI-mediated groups show better collective intelligence
+than human-only groups?** Cui & Yasseri's [*"AI-enhanced Collective Intelligence"*](https://arxiv.org/abs/2403.10433)
+(*Patterns*, 2024) models human-AI systems as multilayer networks and synthesizes available
+evidence. Their conclusion: **humans and AI possess complementary capabilities that together
+can surpass either in isolation — but only when interactions are carefully structured.**
+Poorly designed human-AI systems can *reduce* collective intelligence through over-reliance
+and perspective homogenization.
+
+---
+
+## 5. Human-AI Teaming
+
+### Mixed-Initiative Systems
+
+**Mixed-initiative systems** are human-AI collaborations where neither party is purely
+passive — both the human and the AI take initiative, propose directions, and redirect the
+task. The concept originated in AI planning research (Horvitz, 1999) and has gained new
+relevance as LLMs become capable of meaningful autonomous action within extended workflows.
+
+The design challenge is **initiative calibration**: an agent that interrupts too frequently
+or a human who over-relies on AI outputs degrades team performance. Well-designed
+mixed-initiative systems adapt dynamically to task demands and user states — more AI
+initiative in routine well-specified tasks, more human initiative in novel, value-laden,
+or high-stakes situations.
+
+### Complementarity and Task Allocation
+
+Effective human-AI teaming exploits **cognitive complementarity**. The characteristic
+strengths differ:
+
+| Human strengths | AI strengths |
+|---|---|
+| Context sensitivity and judgment | Rapid pattern recognition at scale |
+| Ethical reasoning and value alignment | Consistency across large information volumes |
+| Creative synthesis from sparse data | Tireless availability |
+| Novel situation navigation | Systematic search across possibility spaces |
+
+Allocating tasks to exploit these complementary profiles — and adapting that allocation as
+tasks evolve — is a central design challenge in human-AI teaming. As AI capability grows,
+the allocation boundary shifts; how to manage dynamic task allocation in ongoing teams
+remains an open research frontier.
+
+### Trust in Human-AI Teams
+
+Trust is the linchpin of effective teaming. McGrath et al.'s **[CHAI-T framework](https://arxiv.org/abs/2404.01615)**
+(2024) — *"A process framework for active management of trust in human-AI collaboration"* —
+synthesizes psychological and computer science literatures into a process model of how trust
+develops, calibrates, and breaks down over time.
+
+The framework identifies **team processes** — monitoring progress, tracking AI performance,
+inter-party communication — as mechanisms through which trust is actively managed rather than
+passively accumulated.
+
+The key insight: **calibrated trust**, not maximum trust, is the goal. Humans who overtrust
+AI systems make different errors than those who undertrust — both failure modes harm team
+performance. Designing for accurate trust calibration — through transparency, appropriate
+confidence signaling, and graceful failure modes — is as important as improving the
+underlying AI capability.
+
+### CSCW and the Social Participation of AI
+
+The **Computer-Supported Cooperative Work (CSCW)** research community has studied group work
+mediation for decades. As LLM agents become participants in — not just tools for —
+collaborative work, CSCW faces a fundamental challenge: prior models of group cognition
+assume all participants are human.
+
+When an AI agent can initiate tasks, summarize discussions, allocate subtasks, and adapt to
+group dynamics in real time, it becomes a *social participant*, not just an infrastructure
+layer. The appropriate theory of mind, role, and accountability for AI social participants in
+work groups is actively contested in the research community.
+
+---
+
+## 6. Social Agents in Practice
+
+### AI Tutors and the Zone of Proximal Development
+
+Lev Vygotsky's **Zone of Proximal Development (ZPD)** (1978) defines the gap between what a
+learner can do independently and what they can do with expert scaffolding. The ideal tutor —
+a *More Knowledgeable Other* (MKO) — operates precisely at this boundary: not providing
+answers, but guiding the learner to construct them through dialogue.
+
+LLM tutors are a natural instantiation of this vision. An LLM that can assess a student's
+knowledge state, infer their ZPD, and offer Socratic hints without simply delivering answers
+instantiates Vygotsky's pedagogical ideal. Recent work on [adaptive scaffolding for LLM
+pedagogical agents](https://arxiv.org/abs/2508.01503) (2025) has formalized this connection,
+building frameworks that dynamically adjust scaffolding based on assessed student knowledge
+and sociocultural learning theory.
+
+**[Khanmigo](https://www.khanmigo.ai/)** — Khan Academy's LLM-powered tutoring agent,
+deployed across hundreds of U.S. school districts — exemplifies the Socratic AI tutor: an
+agent that asks probing questions rather than giving direct answers, functioning as an
+always-available personalized MKO. The key design principle: the student remains the primary
+agent of their own learning; the AI is the scaffold, not the solver.
+
+### Debate-Based Agents for Decision Support
+
+The multiagent debate paradigm extends naturally to human decision support. Rather than
+consulting a single AI advisor, a human decision-maker could be presented with **multiple AI
+agents offering distinct, reasoned perspectives**, structured to surface disagreements
+constructively before a decision is made.
+
+This approach may counteract anchoring, confirmation bias, and premature closure — pathologies
+of individual and group decision-making alike. The empirical literature on whether this
+actually improves human decisions remains sparse, but the theoretical basis is sound. The
+design challenge: ensuring humans engage with structured AI disagreement as genuine
+deliberation rather than simply deferring to whichever agent sounds most confident.
+
+### AI in Mental Health: Promise and Significant Caution
+
+AI companions and therapeutic chatbots represent one of the most consequential deployments of
+social AI — and one of the most contested. The appeal is genuine: accessible, always-available
+support for people who lack access to professional mental health care.
+
+The risks are equally real. LLMs tested in simulated therapeutic settings have been shown to
+**exhibit stigmatizing attitudes toward mental health conditions, mishandle crisis situations,
+and produce empathy-sounding language without genuine understanding** — findings highlighted
+by [Stanford HAI](https://hai.stanford.edu/news/exploring-the-dangers-of-ai-in-mental-health-care)
+(2024) and replicated in clinical evaluations (*JMIR Mental Health*, 2025).
+
+The responsible framing: AI mental health tools are best understood as **complements to human
+care in low-acuity contexts**, with mandatory clinical oversight, honest disclosure of
+limitations, and clear escalation pathways. Deploying autonomous AI therapists without these
+safeguards is not a social benefit but a social risk.
+
+---
+
+## 7. Open Problems
+
+The social intelligence agenda for LLM agents faces several hard, unresolved challenges:
+
+**The ToM question is unresolved.** Performance on BigToM, OpenToM, and similar benchmarks
+measures task success, not mechanism. LLMs may pass false-belief tests through statistical
+regularities rather than genuine mental state attribution. Clean mechanistic interpretability
+of ToM performance in LLMs is a research priority.
+
+**Brittleness under novelty.** LLMs' social intelligence performs well for common social
+patterns well-represented in training data and fails in unusual, culturally specific, or
+counter-canonical situations. Real-world social contexts contain exactly these edge cases —
+and the failure modes are not graceful.
+
+**Homogenization of perspectives.** AI mediators may converge group discussions toward modal
+views encoded in their training data. This is distinct from simple bias; it is a structural
+feature of any shared AI facilitator. A deliberation platform trained on WEIRD-sample text
+may produce WEIRD-sample consensus even when participants' genuine views are more diverse.
+
+**Power asymmetries.** Who controls the AI facilitator? A deliberation platform deployed by
+a government, corporation, or political actor is not neutral infrastructure — it embeds values
+and incentives. The governance of AI facilitation tools is substantially under-theorized.
+
+**The substitution problem.** Replacing human social interaction with AI interaction — in
+education, therapy, peer support, friendship — may erode the social skills and relationships
+those interactions develop. The long-run social costs of AI social substitution are unknown
+and potentially significant.
+
+**Measuring collective intelligence with AI in the group.** Classical measures of collective
+intelligence (Woolley et al.'s *c*-factor) were developed for human-only groups. When AI
+participates as a social agent, what is being measured? Developing valid measures of
+human-AI collective intelligence is an open methodological challenge.
+
+---
+
+## References
+
+### Papers
+
+- [Kosinski (2023)](https://arxiv.org/abs/2302.02083) — "Evaluating Large Language Models in
+  Theory of Mind Tasks." *PNAS* 2024. arXiv:2302.02083
+- [Street et al. (2024)](https://arxiv.org/abs/2405.18870) — "LLMs achieve adult human
+  performance on higher-order theory of mind tasks." *PNAS* 2024. arXiv:2405.18870
+- [Ullman (2023)](https://arxiv.org/abs/2302.08399) — "Large Language Models Fail on Trivial
+  Alterations to Theory-of-Mind Tasks." arXiv:2302.08399
+- [Gandhi et al. (2023)](https://arxiv.org/abs/2306.15448) — "Understanding Social Reasoning
+  in Language Models with Language Models" (BigToM). NeurIPS 2023. arXiv:2306.15448
+- [Xu et al. (2024)](https://arxiv.org/abs/2402.06044) — "OpenToM: A Comprehensive Benchmark
+  for Evaluating Theory-of-Mind Reasoning Capabilities of LLMs." ACL 2024. arXiv:2402.06044
+- [Wilf et al. (2023)](https://arxiv.org/abs/2311.10227) — "Perspective-Taking Improves
+  Large Language Models' Theory-of-Mind Capabilities" (SimToM). arXiv:2311.10227
+- [Sap et al. (2019)](https://arxiv.org/abs/1904.09728) — "Social IQa: Commonsense Reasoning
+  about Social Interactions." EMNLP 2019. arXiv:1904.09728
+- [Ziems et al. (2023)](https://arxiv.org/abs/2305.17008) — "NormBank: A Knowledge Bank of
+  Situational Social Norms." ACL 2023. arXiv:2305.17008
+- [Du et al. (2023)](https://arxiv.org/abs/2305.14325) — "Improving Factuality and Reasoning
+  in Language Models through Multiagent Debate." ICML 2024. arXiv:2305.14325
+- [Cui & Yasseri (2024)](https://arxiv.org/abs/2403.10433) — "AI-enhanced Collective
+  Intelligence." *Patterns* 5(11), 2024. arXiv:2403.10433
+- [McGrath et al. (2024)](https://arxiv.org/abs/2404.01615) — "A process framework for
+  active management of trust in human-AI collaboration (CHAI-T)." arXiv:2404.01615
+- [Gu et al. (2025)](https://arxiv.org/abs/2503.12499) — "PTFA: An LLM-based Agent that
+  Facilitates Online Consensus Building through Parallel Thinking." arXiv:2503.12499
+- Wimmer, H. & Perner, J. (1983) — "Beliefs about beliefs: Representation and constraining
+  function of wrong beliefs in young children's understanding of deception."
+  [*Cognition* 13(1), 103–128](https://doi.org/10.1016/0010-0277(83)90004-5)
+- Licklider, J.C.R. (1960) — ["Man-Computer Symbiosis."](https://groups.csail.mit.edu/medg/people/psz/Licklider.html)
+  *IRE Trans. Human Factors in Electronics*, HFE-1, 4–11
+- Engelbart, D.C. (1962) — ["Augmenting Human Intellect: A Conceptual Framework."](https://archive.org/details/1962-engelbart-AHI-framework)
+  SRI Technical Report AFOSR-3233
+
+### Blog Posts & Resources
+
+- Kasparov, G. (2010) — ["The Chess Master and the Computer."](https://www.nybooks.com/articles/2010/02/11/the-chess-master-and-the-computer/)
+  *New York Review of Books*, Vol. 57, No. 2 (February 11, 2010)
+- [Stanford HAI: Exploring the Dangers of AI in Mental Health Care](https://hai.stanford.edu/news/exploring-the-dangers-of-ai-in-mental-health-care) (2024)
+- [MIT Center for Collective Intelligence](https://cci.mit.edu/) — Malone's research group on
+  collective intelligence + AI
+
+### Books
+
+- Malone, T.W. (2018) — [*Superminds: The Surprising Power of People and Computers Thinking
+  Together*](https://www.hachettebookgroup.com/titles/thomas-w-malone/superminds/9780316349109/).
+  Little, Brown Spark
+- Malone, T.W. & Bernstein, M.S. (eds., 2015) — [*Handbook of Collective Intelligence*](https://mitpress.mit.edu/9780262545846/handbook-of-collective-intelligence/).
+  MIT Press
+- Vygotsky, L.S. (1978) — *Mind in Society: The Development of Higher Psychological
+  Processes*. Harvard University Press
+
+### Code & Projects
+
+- [Polis / pol.is](https://pol.is/) — Open-source AI-mediated opinion synthesis (used in
+  vTaiwan)
+- [Khanmigo](https://www.khanmigo.ai/) — Khan Academy's LLM-powered Socratic tutoring agent
+- [OpenToM GitHub](https://github.com/seacowx/OpenToM) — OpenToM benchmark repository
+- [BigToM Colab](https://colab.research.google.com/drive/1ZRtmw87CdA4xp24DNS_Ik_uA2ypaRnoU) —
+  Run Theory of Mind experiments (from Kosinski et al.)
+- [Multiagent Debate](https://composable-models.github.io/llm_debate/) — Du et al. (2023)
+  project page and code
+
+---
+
+*Back to [Topics →](topics.qmd) · See also: [Human-Agent Interaction →](human-agent.qmd) ·
+[Agent Societies & Simulation →](agent-societies.qmd) · [Agents and Cybernetics →](cybernetics-agents.qmd)*
